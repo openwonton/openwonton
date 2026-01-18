@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type NodeMetaApplyCommand struct {
 
 func (c *NodeMetaApplyCommand) Help() string {
 	helpText := `
-Usage: nomad node meta apply [-node-id ...] [-unset ...] key1=value1 ... kN=vN
+Usage: wonton node meta apply [-node-id ...] [-unset ...] key1=value1 ... kN=vN
 
 	Modify a node's metadata. This command only applies to client agents, and can
 	be used to update the scheduling metadata the node registers.

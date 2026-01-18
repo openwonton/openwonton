@@ -6,7 +6,7 @@ package command
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )
@@ -61,7 +61,7 @@ func TestCommand_Metrics_Cases(t *testing.T) {
 			"bad argument",
 			[]string{"-address=" + url, "-foo", "bar"},
 			1,
-			"Usage: nomad operator metrics",
+			"Usage: wonton operator metrics",
 			"flag provided but not defined: -foo",
 		},
 		{

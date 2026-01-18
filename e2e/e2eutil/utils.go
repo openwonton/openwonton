@@ -11,11 +11,11 @@ import (
 	"text/template"
 	"time"
 
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/jobspec2"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	api "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/jobspec2"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )

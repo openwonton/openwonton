@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )
@@ -403,7 +403,7 @@ func TestJobEndpointConnect_groupConnectHook_MeshGateway(t *testing.T) {
 // proxy task is being created for a group service with an interpolated name,
 // the service name is interpolated *before the task is created.
 //
-// See https://github.com/hashicorp/nomad/issues/6853
+// See https://github.com/openwonton/openwonton/issues/6853
 func TestJobEndpointConnect_ConnectInterpolation(t *testing.T) {
 	ci.Parallel(t)
 

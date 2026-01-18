@@ -25,7 +25,7 @@ func (f *JobPeriodicCommand) Synopsis() string {
 
 func (f *JobPeriodicCommand) Help() string {
 	helpText := `
-Usage: nomad job periodic <subcommand> [options] [args]
+Usage: wonton job periodic <subcommand> [options] [args]
 
   This command groups subcommands for interacting with periodic jobs.
 

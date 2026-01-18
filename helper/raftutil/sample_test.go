@@ -6,9 +6,9 @@ package raftutil
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/scheduler"
 	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )

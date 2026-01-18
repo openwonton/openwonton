@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // GetAddress returns the IP (or custom advertise address) and port to use for a

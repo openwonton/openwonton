@@ -10,27 +10,50 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
 
 	metrics "github.com/armon/go-metrics"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	client "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/fingerprint"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	sconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	client "github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/fingerprint"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	sconfig "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 // TempDir defines the base dir for temporary directories.
-var TempDir = os.TempDir()
+var TempDir = defaultTempDir()
+
+func defaultTempDir() string {
+	dirName := os.TempDir()
+	if runtime.GOOS != "darwin" {
+		return dirName
+	}
+
+	tmpDir, err := filepath.EvalSymlinks(dirName)
+	if err != nil {
+		return dirName
+	}
+	tmpDir = filepath.Clean(tmpDir)
+
+	shortTmp := "/tmp"
+	if resolved, err := filepath.EvalSymlinks(shortTmp); err == nil {
+		shortTmp = resolved
+	}
+	if len(tmpDir) > len(shortTmp) {
+		return shortTmp
+	}
+	return tmpDir
+}
 
 // TestAgent encapsulates an Agent with a default configuration and startup
 // procedure suitable for testing. It manages a temporary data directory which
@@ -121,6 +144,9 @@ func (a *TestAgent) Start() *TestAgent {
 		name := "agent"
 		if a.Name != "" {
 			name = a.Name + "-agent"
+		}
+		if runtime.GOOS == "darwin" {
+			name = "agent"
 		}
 		name = strings.ReplaceAll(name, "/", "_")
 		d, err := os.MkdirTemp(TempDir, name)

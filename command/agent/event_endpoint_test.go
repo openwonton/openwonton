@@ -13,12 +13,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -261,45 +261,44 @@ func TestHTTP_Alloc_Port_Response(t *testing.T) {
 		streamCh, err := events.Stream(ctx, topics, 1, nil)
 		require.NoError(t, err)
 
-		var allocEvents []api.Event
-		// gather job alloc events
-		go func() {
-			for {
-				select {
-				case event, ok := <-streamCh:
-					if !ok {
-						return
-					}
-					if event.IsHeartbeat() {
+		var networkResource *api.NetworkResource
+		allocEvents := make([]api.Event, 0, 4)
+		testutil.WaitForResultUntil(testutil.Timeout(10*time.Second), func() (bool, error) {
+			select {
+			case event, ok := <-streamCh:
+				if !ok {
+					return false, fmt.Errorf("event stream closed")
+				}
+				if event.IsHeartbeat() {
+					return false, nil
+				}
+				allocEvents = append(allocEvents, event.Events...)
+				for _, e := range allocEvents {
+					if e.Type != structs.TypeAllocationUpdated {
 						continue
 					}
-					allocEvents = append(allocEvents, event.Events...)
-				case <-time.After(10 * time.Second):
-					require.Fail(t, "failed waiting for event stream event")
-				}
-			}
-		}()
-
-		var networkResource *api.NetworkResource
-		testutil.WaitForResult(func() (bool, error) {
-			for _, e := range allocEvents {
-				if e.Type == structs.TypeAllocationUpdated {
 					eventAlloc, err := e.Allocation()
 					if err != nil {
 						return false, err
 					}
-					if len(eventAlloc.AllocatedResources.Tasks["web"].Networks) == 0 {
-						return false, nil
+					taskResources, ok := eventAlloc.AllocatedResources.Tasks["web"]
+					if !ok || len(taskResources.Networks) == 0 {
+						continue
 					}
-					networkResource = eventAlloc.AllocatedResources.Tasks["web"].Networks[0]
+					networkResource = taskResources.Networks[0]
+					if len(networkResource.ReservedPorts) == 0 {
+						continue
+					}
 					if networkResource.ReservedPorts[0].Value == 5000 {
 						return true, nil
 					}
 				}
+				return false, nil
+			case <-time.After(200 * time.Millisecond):
+				return false, nil
 			}
-			return false, nil
 		}, func(e error) {
-			require.NoError(t, err)
+			require.NoError(t, e)
 		})
 
 		require.NotNil(t, networkResource)

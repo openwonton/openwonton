@@ -7,8 +7,8 @@ import (
 	"runtime"
 
 	docker "github.com/fsouza/go-dockerclient"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/stats"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/stats"
 )
 
 var (

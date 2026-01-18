@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/lib/cpuset"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

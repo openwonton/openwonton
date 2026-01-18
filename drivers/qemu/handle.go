@@ -11,8 +11,8 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/drivers/shared/executor"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/drivers/shared/executor"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 type taskHandle struct {

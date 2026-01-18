@@ -24,7 +24,7 @@ job "plugin-cephrbd-controller" {
       # we can't configure networking in a way that will both satisfy the Ceph
       # monitor's requirement to know its own IP address *and* be routable
       # between containers, without either CNI or fixing
-      # https://github.com/hashicorp/nomad/issues/9781
+      # https://github.com/openwonton/openwonton/issues/9781
       #
       # So for now we'll use host networking to keep this demo understandable.
       # That also means the controller plugin will need to use host addresses.

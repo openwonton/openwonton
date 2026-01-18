@@ -6,7 +6,7 @@
 
 package command
 
-import "github.com/hashicorp/nomad/api"
+import "github.com/openwonton/openwonton/api"
 
 func testQuotaSpec() *api.QuotaSpec {
 	panic("not implemented - enterprise only")

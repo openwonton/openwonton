@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 	"github.com/ryanuber/columnize"
 )
@@ -21,7 +21,7 @@ type ServerMembersCommand struct {
 
 func (c *ServerMembersCommand) Help() string {
 	helpText := `
-Usage: nomad server members [options]
+Usage: wonton server members [options]
 
   Display a list of the known servers and their status. Only Nomad servers are
   able to service this command.

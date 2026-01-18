@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // NewDriverHandle returns a handle for task operations on a specific task

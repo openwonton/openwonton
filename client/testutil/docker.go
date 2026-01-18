@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 // DockerIsConnected checks to see if a docker daemon is available (local or remote)

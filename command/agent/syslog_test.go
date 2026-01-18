@@ -10,7 +10,7 @@ import (
 
 	gsyslog "github.com/hashicorp/go-syslog"
 	"github.com/hashicorp/logutils"
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 )
 
 func TestSyslogFilter(t *testing.T) {

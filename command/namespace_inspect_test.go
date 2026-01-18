@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"github.com/stretchr/testify/assert"

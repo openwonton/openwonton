@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/helper/pluginutils/catalog"
-	nconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	"github.com/openwonton/openwonton/helper/pluginutils/catalog"
+	nconfig "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 

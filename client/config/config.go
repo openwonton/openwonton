@@ -18,17 +18,17 @@ import (
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/helper/bufconndialer"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	structsc "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/version"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/client/state"
+	"github.com/openwonton/openwonton/command/agent/host"
+	"github.com/openwonton/openwonton/helper/bufconndialer"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
+	structsc "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/version"
 )
 
 var (

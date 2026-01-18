@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 type drainingNode struct {

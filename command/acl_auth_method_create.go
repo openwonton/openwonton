@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"golang.org/x/exp/slices"
@@ -38,7 +38,7 @@ type ACLAuthMethodCreateCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLAuthMethodCreateCommand) Help() string {
 	helpText := `
-Usage: nomad acl auth-method create [options]
+Usage: wonton acl auth-method create [options]
 
   Create is used to create new ACL auth methods. Use requires a management token.
 

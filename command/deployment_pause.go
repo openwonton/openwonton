@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type DeploymentPauseCommand struct {
 
 func (c *DeploymentPauseCommand) Help() string {
 	helpText := `
-Usage: nomad deployment pause [options] <deployment id>
+Usage: wonton deployment pause [options] <deployment id>
 
   Pause is used to pause a deployment. Pausing a deployment will pause the
   placement of new allocations as part of rolling deployment.

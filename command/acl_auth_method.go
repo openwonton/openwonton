@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 
@@ -22,7 +22,7 @@ type ACLAuthMethodCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLAuthMethodCommand) Help() string {
 	helpText := `
-Usage: nomad acl auth-method <subcommand> [options] [args]
+Usage: wonton acl auth-method <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL auth methods.
 

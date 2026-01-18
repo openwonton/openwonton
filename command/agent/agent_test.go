@@ -16,13 +16,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/hashicorp/raft"
 )
 

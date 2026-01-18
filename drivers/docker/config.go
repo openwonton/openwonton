@@ -6,19 +6,18 @@ package docker
 import (
 	"context"
 	"fmt"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/drivers/shared/capabilities"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/openwonton/openwonton/drivers/shared/capabilities"
+	"github.com/openwonton/openwonton/helper/pluginutils/hclutils"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	"github.com/openwonton/openwonton/plugins/shared/hclspec"
 )
 
 const (
@@ -273,10 +272,7 @@ var (
 		// image to use when creating a network namespace parent container
 		"infra_image": hclspec.NewDefault(
 			hclspec.NewAttr("infra_image", "string", false),
-			hclspec.NewLiteral(fmt.Sprintf(
-				`"gcr.io/google_containers/pause-%s:3.1"`,
-				runtime.GOARCH,
-			)),
+			hclspec.NewLiteral(`"registry.k8s.io/pause:3.9"`),
 		),
 		// timeout to use when pulling the infra image.
 		"infra_image_pull_timeout": hclspec.NewDefault(

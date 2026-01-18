@@ -10,8 +10,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
 )
 
 func TestAgent_LoadKeyrings(t *testing.T) {

@@ -4,11 +4,11 @@
 package catalog
 
 import (
-	"github.com/hashicorp/nomad/drivers/docker"
-	"github.com/hashicorp/nomad/drivers/exec"
-	"github.com/hashicorp/nomad/drivers/java"
-	"github.com/hashicorp/nomad/drivers/qemu"
-	"github.com/hashicorp/nomad/drivers/rawexec"
+	"github.com/openwonton/openwonton/drivers/docker"
+	"github.com/openwonton/openwonton/drivers/exec"
+	"github.com/openwonton/openwonton/drivers/java"
+	"github.com/openwonton/openwonton/drivers/qemu"
+	"github.com/openwonton/openwonton/drivers/rawexec"
 )
 
 // This file is where all builtin plugins should be registered in the catalog.

@@ -15,12 +15,12 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	nomadapi "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/config"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	nomadapi "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/config"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

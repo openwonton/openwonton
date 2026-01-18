@@ -17,7 +17,7 @@ import (
 
 	"github.com/hashicorp/consul/sdk/testutil"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/raft"
 	"github.com/stretchr/testify/require"
 )

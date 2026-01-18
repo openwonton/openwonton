@@ -8,17 +8,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 )
 
 // TestOverlap asserts that the resources used by an allocation are not
 // considered free until their ClientStatus is terminal.
 //
-// See: https://github.com/hashicorp/nomad/issues/10440
+// See: https://github.com/openwonton/openwonton/issues/10440
 func TestOverlap(t *testing.T) {
 	nomadClient := e2eutil.NomadClient(t)
 	e2eutil.WaitForLeader(t, nomadClient)

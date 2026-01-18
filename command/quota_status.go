@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type QuotaStatusCommand struct {
 
 func (c *QuotaStatusCommand) Help() string {
 	helpText := `
-Usage: nomad quota status [options] <quota>
+Usage: wonton quota status [options] <quota>
 
   Status is used to view the status of a particular quota specification.
 

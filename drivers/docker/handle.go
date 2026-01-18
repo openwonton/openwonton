@@ -19,9 +19,9 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 
-	"github.com/hashicorp/nomad/drivers/docker/docklog"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/drivers/docker/docklog"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 type taskHandle struct {

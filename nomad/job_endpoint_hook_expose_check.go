@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 type jobExposeCheckHook struct{}

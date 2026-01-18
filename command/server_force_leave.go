@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type ServerForceLeaveCommand struct {
 
 func (c *ServerForceLeaveCommand) Help() string {
 	helpText := `
-Usage: nomad server force-leave [options] <node>
+Usage: wonton server force-leave [options] <node>
 
   Forces an server to enter the "left" state. This can be used to
   eject nodes which have failed and will not rejoin the cluster.

@@ -16,7 +16,7 @@ type SentinelListCommand struct {
 
 func (c *SentinelListCommand) Help() string {
 	helpText := `
-Usage: nomad sentinel list [options]
+Usage: wonton sentinel list [options]
 
   List is used to display all the installed Sentinel policies.
 

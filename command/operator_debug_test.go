@@ -17,15 +17,15 @@ import (
 
 	consulapi "github.com/hashicorp/consul/api"
 	consultest "github.com/hashicorp/consul/sdk/testutil"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	clienttest "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	clienttest "github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -973,8 +973,6 @@ func TestDebug_EventStream_TopicsFromString(t *testing.T) {
 }
 
 func TestDebug_EventStream(t *testing.T) {
-	ci.Parallel(t)
-
 	// TODO dmay: specify output directory to allow inspection of eventstream.json
 	// TODO dmay: require specific events in the eventstream.json file(s)
 	// TODO dmay: scenario where no events are expected, verify "No events captured"
@@ -995,19 +993,17 @@ func TestDebug_EventStream(t *testing.T) {
 	cmd := &OperatorDebugCommand{Meta: Meta{Ui: ui}}
 
 	// Return command output back to the main test goroutine
-	chOutput := make(chan testOutput)
+	chOutput := make(chan testOutput, 1)
 
 	// Set duration for capture
 	duration := 5 * time.Second
 	// Fail with timeout if duration is exceeded by 5 seconds
-	timeout := duration + 5*time.Second
+	timeout := testutil.Timeout(duration + 20*time.Second)
 
 	// Run debug in a goroutine so we can start the capture before we run the test job
 	t.Logf("%s: Starting nomad operator debug in goroutine\n", time.Since(start))
 	go func() {
 		code := cmd.Run([]string{"-address", url, "-duration", duration.String(), "-interval", "5s", "-event-topic", "Job:*"})
-		assert.Equal(t, 0, code)
-
 		chOutput <- testOutput{
 			name:   "yo",
 			code:   code,
@@ -1049,6 +1045,7 @@ func TestDebug_EventStream(t *testing.T) {
 
 	t.Logf("Values from struct -- code: %d, len(out): %d, len(outerr): %d\n", testOut.code, len(testOut.output), len(testOut.error))
 
+	require.Equal(t, 0, testOut.code)
 	require.Empty(t, testOut.error)
 
 	archive := extractArchiveName(testOut.output)

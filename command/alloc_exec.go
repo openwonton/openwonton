@@ -14,9 +14,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/helper/escapingio"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	"github.com/openwonton/openwonton/helper/escapingio"
 	"github.com/moby/term"
 	"github.com/posener/complete"
 )
@@ -31,7 +31,7 @@ type AllocExecCommand struct {
 
 func (l *AllocExecCommand) Help() string {
 	helpText := `
-Usage: nomad alloc exec [options] <allocation> <command>
+Usage: wonton alloc exec [options] <allocation> <command>
 
   Run command inside the environment of the given allocation and task.
 

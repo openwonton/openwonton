@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
 		vmCfg.vm.network :forwarded_port, guest: 8500, host: 8500, auto_correct: true, host_ip: "127.0.0.1"
 
 		vmCfg.vm.synced_folder '.',
-			'/opt/gopath/src/github.com/hashicorp/nomad'
+			'/opt/gopath/src/github.com/openwonton/openwonton'
 
 		vmCfg.vm.provision "shell",
 			privileged: false,
@@ -42,7 +42,7 @@ Vagrant.configure(2) do |config|
 		vmCfg = configureLinuxProvisioners(vmCfg)
 
 		vmCfg.vm.synced_folder '.',
-			'/opt/gopath/src/github.com/hashicorp/nomad'
+			'/opt/gopath/src/github.com/openwonton/openwonton'
 
 		vmCfg.vm.provision "shell",
 			privileged: false,
@@ -65,7 +65,7 @@ Vagrant.configure(2) do |config|
 			cpus: suggestedCPUCores()
 		vmCfg.vm.network "private_network", type: "dhcp"
 		vmCfg.vm.synced_folder '.',
-			'/opt/gopath/src/github.com/hashicorp/nomad',
+			'/opt/gopath/src/github.com/openwonton/openwonton',
 			type: "nfs",
 			bsd__nfs_options: ['noatime']
 
@@ -96,7 +96,7 @@ Vagrant.configure(2) do |config|
 			end
 
 			vmCfg.vm.synced_folder '.',
-				'/opt/gopath/src/github.com/hashicorp/nomad'
+				'/opt/gopath/src/github.com/openwonton/openwonton'
 
 			vmCfg.vm.provision "shell",
 				privileged: true,
@@ -114,7 +114,7 @@ Vagrant.configure(2) do |config|
 			end
 
 			vmCfg.vm.synced_folder '.',
-				'/opt/gopath/src/github.com/hashicorp/nomad'
+				'/opt/gopath/src/github.com/openwonton/openwonton'
 
 			vmCfg.vm.provision "shell",
 				privileged: true,

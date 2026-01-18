@@ -7,12 +7,12 @@ import (
 	"context"
 	"time"
 
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner/interfaces"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 /*

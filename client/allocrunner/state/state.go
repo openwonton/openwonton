@@ -6,8 +6,8 @@ package state
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // State captures the state of the allocation runner.

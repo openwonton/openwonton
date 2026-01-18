@@ -16,7 +16,7 @@ type SystemGCCommand struct {
 
 func (c *SystemGCCommand) Help() string {
 	helpText := `
-Usage: nomad system gc [options]
+Usage: wonton system gc [options]
 
   Initializes a garbage collection of jobs, evaluations, allocations, and nodes.
 

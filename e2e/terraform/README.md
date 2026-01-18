@@ -152,7 +152,7 @@ terraform destroy
 1. The provisioning process should be able to run a nightly build against a
   variety of OS targets.
 2. The provisioning process should be able to support update-in-place
-  tests. (See [#7063](https://github.com/hashicorp/nomad/issues/7063))
+  tests. (See [#7063](https://github.com/openwonton/openwonton/issues/7063))
 3. A developer should be able to quickly stand up a small E2E cluster and
   provision it with a version of Nomad they've built on their laptop. The
   developer should be able to send updated builds to that cluster with a short

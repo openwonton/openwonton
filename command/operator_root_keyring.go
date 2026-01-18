@@ -10,7 +10,7 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 // OperatorRootKeyringCommand is a Command implementation
@@ -22,7 +22,7 @@ type OperatorRootKeyringCommand struct {
 
 func (c *OperatorRootKeyringCommand) Help() string {
 	helpText := `
-Usage: nomad operator root keyring [options]
+Usage: wonton operator root keyring [options]
 
   Manages encryption keys used for storing variables and signing workload
   identities. This command may be used to examine active encryption keys

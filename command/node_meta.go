@@ -15,7 +15,7 @@ type NodeMetaCommand struct {
 
 func (c *NodeMetaCommand) Help() string {
 	helpText := `
-Usage: nomad node meta [subcommand]
+Usage: wonton node meta [subcommand]
 
 	Interact with a node's metadata. The apply subcommand allows for dynamically
 	updating node metadata. The read subcommand allows reading all of the

@@ -41,7 +41,7 @@ required in the original `jobspec` package.
 
 * [ ] Changelog
 * [ ] Jobspec entry https://www.nomadproject.io/docs/job-specification/index.html
-* [ ] Jobspec sidebar entry https://github.com/hashicorp/nomad/blob/main/website/data/docs-navigation.js
+* [ ] Jobspec sidebar entry https://github.com/openwonton/openwonton/blob/main/website/data/docs-navigation.js
 * [ ] Job JSON API entry https://www.nomadproject.io/api/json-jobs.html
 * [ ] Sample Response output in API https://www.nomadproject.io/api/jobs.html
 * [ ] Consider if it needs a guide https://www.nomadproject.io/guides/index.html
@@ -54,12 +54,12 @@ needs to match the Nomad API; specifically, it should have the form of the corre
 a few ways that this can be accomplished:
 * directly return the struct from the RPC call, if it has the same shape as the corresponding struct in `api/`. 
   This is convenient when possible, resulting in the least work for the developer. 
-  Examples of this approach include [GET `/v1/evaluation/:id`](https://github.com/hashicorp/nomad/blob/v1.0.
+  Examples of this approach include [GET `/v1/evaluation/:id`](https://github.com/openwonton/openwonton/blob/v1.0.
   0/command/agent/eval_endpoint.go#L88).
 * convert the struct from the RPC call to the appropriate `api/` struct.
   This approach is the most developer effort, but it does have a strong guarantee that the HTTP response matches the 
   API, due to the explicit conversion (assuming proper implementation, which requires tests).
-  Examples of this approach include [GET `/v1/volume/csi/:id`](https://github.com/hashicorp/nomad/blob/v1.0.0/command/agent/csi_endpoint.go#L108)
+  Examples of this approach include [GET `/v1/volume/csi/:id`](https://github.com/openwonton/openwonton/blob/v1.0.0/command/agent/csi_endpoint.go#L108)
 * convert to an intermediate struct with the same shape as the `api/` struct.
   This approach strikes a balance between the former two approaches. 
   This conversion can be performed in-situ in the agent HTTP handler, as long as the conversion doesn't need to 

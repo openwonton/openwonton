@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/asset"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/command/asset"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )
@@ -22,7 +22,7 @@ func TestInitCommand_Implements(t *testing.T) {
 }
 
 func TestInitCommand_Run(t *testing.T) {
-	ci.Parallel(t)
+	lockChdir(t)
 	ui := cli.NewMockUi()
 	cmd := &JobInitCommand{Meta: Meta{Ui: ui}}
 
@@ -119,7 +119,7 @@ func TestInitCommand_listTemplates(t *testing.T) {
 }
 
 func TestInitCommand_fromJobTemplate(t *testing.T) {
-	ci.Parallel(t)
+	lockChdir(t)
 	srv, _, url := testServer(t, true, nil)
 	defer srv.Shutdown()
 
@@ -170,7 +170,7 @@ func TestInitCommand_fromJobTemplate(t *testing.T) {
 }
 
 func TestInitCommand_customFilename(t *testing.T) {
-	ci.Parallel(t)
+	lockChdir(t)
 	ui := cli.NewMockUi()
 	cmd := &JobInitCommand{Meta: Meta{Ui: ui}}
 	filename := "custom.nomad"

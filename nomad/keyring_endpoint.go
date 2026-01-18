@@ -11,9 +11,9 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-memdb"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // Keyring endpoint serves RPCs for root key management

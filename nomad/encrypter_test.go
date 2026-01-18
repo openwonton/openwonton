@@ -15,10 +15,10 @@ import (
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 type mockSigner struct {
@@ -226,7 +226,7 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 
 	// Assert that the bootstrap key has been replicated to followers
 	require.Eventually(t, checkReplicationFn(keyID1),
-		time.Second*5, time.Second,
+		testutil.Timeout(10*time.Second), 200*time.Millisecond,
 		"expected keys to be replicated to followers after bootstrap")
 
 	// Assert that key rotations are replicated to followers
@@ -254,11 +254,13 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 
 	keyPath = filepath.Join(leader.GetConfig().DataDir, "keystore",
 		keyID2+nomadKeystoreExtension)
-	_, err = os.Stat(keyPath)
-	require.NoError(t, err, "expected key to be found in leader keystore")
+	require.Eventually(t, func() bool {
+		_, err = os.Stat(keyPath)
+		return err == nil
+	}, testutil.Timeout(10*time.Second), 200*time.Millisecond, "expected key to be found in leader keystore")
 
 	require.Eventually(t, checkReplicationFn(keyID2),
-		time.Second*5, time.Second,
+		testutil.Timeout(10*time.Second), 200*time.Millisecond,
 		"expected keys to be replicated to followers after rotation")
 
 	// Scenario: simulate a key rotation that doesn't get replicated
@@ -290,7 +292,7 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 	}
 
 	require.Eventually(t, checkReplicationFn(keyID3),
-		time.Second*5, time.Second,
+		testutil.Timeout(10*time.Second), 200*time.Millisecond,
 		"expected keys to be replicated to followers after election")
 
 	// Scenario: new members join the cluster
@@ -314,7 +316,7 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 	testutil.WaitForLeader(t, srv5.RPC)
 
 	require.Eventually(t, checkReplicationFn(keyID3),
-		time.Second*5, time.Second,
+		testutil.Timeout(10*time.Second), 200*time.Millisecond,
 		"expected new servers to get replicated keys")
 
 	// Scenario: reload a snapshot
@@ -332,6 +334,7 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 	must.NoError(t, snapshot.Persist(sink))
 
 	must.NoError(t, srv5.fsm.Restore(sink))
+	testutil.WaitForLeaders(t, srv1.RPC, srv2.RPC, srv3.RPC, srv4.RPC, srv5.RPC)
 
 	// rotate the key
 
@@ -340,7 +343,7 @@ func TestEncrypter_KeyringReplication(t *testing.T) {
 	keyID4 := rotateResp.Key.KeyID
 
 	require.Eventually(t, checkReplicationFn(keyID4),
-		time.Second*5, time.Second,
+		testutil.Timeout(10*time.Second), 200*time.Millisecond,
 		"expected new servers to get replicated keys after snapshot restore")
 
 }

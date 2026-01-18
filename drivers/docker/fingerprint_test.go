@@ -7,10 +7,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/shoenig/test/must"
 )
 

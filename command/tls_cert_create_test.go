@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -60,6 +60,7 @@ func TestTlsCertCreateCommand_InvalidArgs(t *testing.T) {
 }
 
 func TestTlsCertCreateCommandDefaults_fileCreate(t *testing.T) {
+	lockChdir(t)
 	testDir := t.TempDir()
 	previousDirectory, err := os.Getwd()
 	require.NoError(t, err)
@@ -70,7 +71,7 @@ func TestTlsCertCreateCommandDefaults_fileCreate(t *testing.T) {
 	caCmd := &TLSCACreateCommand{Meta: Meta{Ui: ui}}
 
 	// Setup CA keys
-	caCmd.Run([]string{"nomad"})
+	require.Equal(t, 0, caCmd.Run([]string{"nomad"}), ui.ErrorWriter.String())
 
 	type testcase struct {
 		name      string
@@ -146,7 +147,7 @@ func TestTlsCertCreateCommandDefaults_fileCreate(t *testing.T) {
 		require.True(t, t.Run(tc.name, func(t *testing.T) {
 			ui := cli.NewMockUi()
 			cmd := &TLSCertCreateCommand{Meta: Meta{Ui: ui}}
-			require.Equal(t, 0, cmd.Run(tc.args))
+			require.Equal(t, 0, cmd.Run(tc.args), ui.ErrorWriter.String())
 			require.Equal(t, tc.errOut, ui.ErrorWriter.String())
 
 			// is a valid cert expects the cert
@@ -171,6 +172,8 @@ func TestTlsCertCreateCommandDefaults_fileCreate(t *testing.T) {
 			require.False(t, cert.IsCA)
 			require.Equal(t, tc.expectDNS, cert.DNSNames)
 			require.Equal(t, tc.expectIP, cert.IPAddresses)
+			require.NoError(t, os.Remove(tc.certPath))
+			require.NoError(t, os.Remove(tc.keyPath))
 		}))
 	}
 }

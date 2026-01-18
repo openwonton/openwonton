@@ -10,11 +10,11 @@ import (
 
 	consulapi "github.com/hashicorp/consul/api"
 	"github.com/hashicorp/consul/sdk/testutil"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

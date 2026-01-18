@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )

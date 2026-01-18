@@ -10,8 +10,8 @@ import (
 	humanize "github.com/dustin/go-humanize"
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper"
 	"github.com/mitchellh/mapstructure"
 )
 

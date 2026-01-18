@@ -7,7 +7,7 @@
 
 # Set the preview mode for the website shell to "developer" or "io"
 PREVIEW_MODE ?= developer
-REPO ?= nomad
+REPO ?= wonton
 
 # Enable setting alternate docker tool, e.g. 'make DOCKER_CMD=podman'
 DOCKER_CMD ?= docker
@@ -57,4 +57,3 @@ website/build-local:
 	@echo "==> Building local Docker image"
 	@$(DOCKER_CMD) build https://github.com/hashicorp/dev-portal.git\#main \
 		-t $(DOCKER_IMAGE_LOCAL)
-

@@ -20,43 +20,43 @@ import (
 	consulapi "github.com/hashicorp/consul/api"
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	arstate "github.com/hashicorp/nomad/client/allocrunner/state"
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/getter"
-	"github.com/hashicorp/nomad/client/allocwatcher"
-	"github.com/hashicorp/nomad/client/config"
-	consulApi "github.com/hashicorp/nomad/client/consul"
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/client/fingerprint"
-	cinterfaces "github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/pluginmanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/client/servers"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
-	"github.com/hashicorp/nomad/client/serviceregistration/nsd"
-	"github.com/hashicorp/nomad/client/serviceregistration/wrapper"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/client/stats"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/client/vaultclient"
-	"github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/envoy"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/pool"
-	hstats "github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/helper/tlsutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	nconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	arstate "github.com/openwonton/openwonton/client/allocrunner/state"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner/getter"
+	"github.com/openwonton/openwonton/client/allocwatcher"
+	"github.com/openwonton/openwonton/client/config"
+	consulApi "github.com/openwonton/openwonton/client/consul"
+	"github.com/openwonton/openwonton/client/devicemanager"
+	"github.com/openwonton/openwonton/client/dynamicplugins"
+	"github.com/openwonton/openwonton/client/fingerprint"
+	cinterfaces "github.com/openwonton/openwonton/client/interfaces"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/client/pluginmanager"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	"github.com/openwonton/openwonton/client/servers"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	"github.com/openwonton/openwonton/client/serviceregistration/checks/checkstore"
+	"github.com/openwonton/openwonton/client/serviceregistration/nsd"
+	"github.com/openwonton/openwonton/client/serviceregistration/wrapper"
+	"github.com/openwonton/openwonton/client/state"
+	"github.com/openwonton/openwonton/client/stats"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/client/vaultclient"
+	"github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/envoy"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/pool"
+	hstats "github.com/openwonton/openwonton/helper/stats"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	nconfig "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/plugins/csi"
+	"github.com/openwonton/openwonton/plugins/device"
 	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/shirou/gopsutil/v3/host"
 	"golang.org/x/exp/maps"
@@ -566,7 +566,7 @@ func NewClient(cfg *config.Config, consulCatalog consul.CatalogAPI, consulProxie
 			"state_dir", cfg.StateDir, "alloc_dir", cfg.AllocDir)
 		logger.Error("Corrupt state is often caused by a bug. Please " +
 			"report as much information as possible to " +
-			"https://github.com/hashicorp/nomad/issues")
+			"https://github.com/openwonton/openwonton/issues")
 		return nil, fmt.Errorf("failed to restore state")
 	}
 
@@ -1297,8 +1297,8 @@ func (c *Client) restoreState() error {
 // wait until it gets allocs from server to launch them.
 //
 // See:
-//   - https://github.com/hashicorp/nomad/pull/6207
-//   - https://github.com/hashicorp/nomad/issues/5984
+//   - https://github.com/openwonton/openwonton/pull/6207
+//   - https://github.com/openwonton/openwonton/issues/5984
 func (c *Client) hasLocalState(alloc *structs.Allocation) bool {
 	tg := alloc.Job.LookupTaskGroup(alloc.TaskGroup)
 	if tg == nil {
@@ -2331,7 +2331,7 @@ OUTER:
 		// timeout when the scheduler which we are contacting is newly added or recovering
 		// after a prolonged downtime.
 		//
-		// For full context, please see https://github.com/hashicorp/nomad/issues/18267
+		// For full context, please see https://github.com/openwonton/openwonton/issues/18267
 		if resp.Index <= req.MinQueryIndex {
 			c.logger.Debug("received stale allocation information; retrying",
 				"index", resp.Index, "min_index", req.MinQueryIndex)

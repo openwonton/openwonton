@@ -15,7 +15,7 @@ type ServiceCommand struct {
 
 func (c *ServiceCommand) Help() string {
 	helpText := `
-Usage: nomad service <subcommand> [options]
+Usage: wonton service <subcommand> [options]
 
   This command groups subcommands for interacting with the services API.
 

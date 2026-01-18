@@ -13,10 +13,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/hashicorp/nomad/drivers/shared/executor/proto"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	sproto "github.com/hashicorp/nomad/plugins/shared/structs/proto"
+	"github.com/openwonton/openwonton/drivers/shared/executor/proto"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	sproto "github.com/openwonton/openwonton/plugins/shared/structs/proto"
 )
 
 type grpcExecutorServer struct {

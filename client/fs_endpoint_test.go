@@ -20,21 +20,26 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/config"
-	sframer "github.com/hashicorp/nomad/client/lib/streamframer"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/config"
+	sframer "github.com/openwonton/openwonton/client/lib/streamframer"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )
+
+func configureFSTestClient(c *config.Config) {
+	c.GCDiskUsageThreshold = 100.0
+	c.GCInodeUsageThreshold = 100.0
+}
 
 // tempAllocDir returns a new alloc dir that is rooted in a temp dir. Caller
 // should cleanup with AllocDir.Destroy()
@@ -86,6 +91,7 @@ func TestFS_Stat(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -123,6 +129,7 @@ func TestFS_Stat_ACL(t *testing.T) {
 	client, cleanup := TestClient(t, func(c *config.Config) {
 		c.ACLEnabled = true
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanup()
 
@@ -219,6 +226,7 @@ func TestFS_List(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -256,6 +264,7 @@ func TestFS_List_ACL(t *testing.T) {
 	client, cleanup := TestClient(t, func(c *config.Config) {
 		c.ACLEnabled = true
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanup()
 
@@ -408,6 +417,7 @@ func TestFS_Stream_GC(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	t.Cleanup(func() { cleanupC() })
 
@@ -497,6 +507,7 @@ func TestFS_Stream_ACL(t *testing.T) {
 	client, cleanup := TestClient(t, func(c *config.Config) {
 		c.ACLEnabled = true
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanup()
 
@@ -625,6 +636,7 @@ func TestFS_Stream(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -741,6 +753,7 @@ func TestFS_Stream_Follow(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -838,6 +851,7 @@ func TestFS_Stream_Limit(t *testing.T) {
 
 	c, cleanup := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanup()
 
@@ -1010,6 +1024,7 @@ func TestFS_Logs_TaskPending(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -1126,6 +1141,7 @@ func TestFS_Logs_GC(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	t.Cleanup(func() { cleanupC() })
 
@@ -1217,6 +1233,7 @@ func TestFS_Logs_ACL(t *testing.T) {
 	client, cleanup := TestClient(t, func(c *config.Config) {
 		c.ACLEnabled = true
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanup()
 
@@ -1347,6 +1364,7 @@ func TestFS_Logs(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 
@@ -1448,6 +1466,7 @@ func TestFS_Logs_Follow(t *testing.T) {
 
 	c, cleanupC := TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.GetConfig().RPCAddr.String()}
+		configureFSTestClient(c)
 	})
 	defer cleanupC()
 

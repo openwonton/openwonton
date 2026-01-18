@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/shoenig/test/must"
 )
 

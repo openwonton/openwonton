@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/shoenig/test"
 	"github.com/shoenig/test/must"
 )

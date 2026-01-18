@@ -11,8 +11,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // Path returns the path to the currently running executable.

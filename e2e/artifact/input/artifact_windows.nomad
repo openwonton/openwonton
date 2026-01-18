@@ -78,7 +78,7 @@ job "windows" {
     }
 
     # TODO(shoenig) setup git in our Windows e2e client
-    # https://github.com/hashicorp/nomad/issues/15505
+    # https://github.com/openwonton/openwonton/issues/15505
     #    task "rawexec_git_custom" {
     #      artifact {
     #        source      = "git::https://github.com/hashicorp/go-set"

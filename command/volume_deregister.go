@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type VolumeDeregisterCommand struct {
 
 func (c *VolumeDeregisterCommand) Help() string {
 	helpText := `
-Usage: nomad volume deregister [options] <id>
+Usage: wonton volume deregister [options] <id>
 
   Remove an unused volume from Nomad.
 

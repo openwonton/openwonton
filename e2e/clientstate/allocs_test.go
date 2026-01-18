@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 )
@@ -25,7 +25,7 @@ func TestClientAllocs(t *testing.T) {
 // testAllocZombie ensures that a restart of a dead allocation does not cause
 // it to come back to life in a not-quite alive state.
 //
-// https://github.com/hashicorp/nomad/issues/17079
+// https://github.com/openwonton/openwonton/issues/17079
 func testAllocZombie(t *testing.T) {
 	nomad := e2eutil.NomadClient(t)
 

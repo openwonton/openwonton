@@ -7,8 +7,8 @@ import (
 	"time"
 
 	metrics "github.com/armon/go-metrics"
-	"github.com/hashicorp/nomad/client/structs"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/structs"
+	nstructs "github.com/openwonton/openwonton/nomad/structs"
 )
 
 // ClientStats endpoint is used for retrieving stats about a client

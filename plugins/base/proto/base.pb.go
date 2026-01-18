@@ -7,7 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	hclspec "github.com/hashicorp/nomad/plugins/shared/hclspec"
+	hclspec "github.com/openwonton/openwonton/plugins/shared/hclspec"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

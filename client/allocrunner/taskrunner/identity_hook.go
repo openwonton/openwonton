@@ -11,8 +11,8 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/helper/users"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/helper/users"
 )
 
 // identityHook sets the task runner's Nomad workload identity token

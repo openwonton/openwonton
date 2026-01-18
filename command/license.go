@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 
@@ -20,7 +20,7 @@ type LicenseCommand struct {
 
 func (l *LicenseCommand) Help() string {
 	helpText := `
-Usage: nomad license <subcommand> [options] [args]
+Usage: wonton license <subcommand> [options] [args]
 
 This command has subcommands for managing the Nomad Enterprise license.
 For more detailed examples see:

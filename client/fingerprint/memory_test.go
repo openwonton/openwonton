@@ -6,10 +6,10 @@ package fingerprint
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs"
 
 	"github.com/stretchr/testify/require"
 )

@@ -26,11 +26,11 @@ import (
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-multierror"
 	goversion "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/escapingfs"
-	"github.com/hashicorp/nomad/version"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/escapingfs"
+	"github.com/openwonton/openwonton/version"
 	"github.com/posener/complete"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
@@ -75,7 +75,7 @@ const (
 
 func (c *OperatorDebugCommand) Help() string {
 	helpText := `
-Usage: nomad operator debug [options]
+Usage: wonton operator debug [options]
 
   Build an archive containing Nomad cluster configuration and state, and Consul
   and Vault status. Include logs and pprof profiles for selected servers and
@@ -859,6 +859,14 @@ func (c *OperatorDebugCommand) captureEventStream(client *api.Client) error {
 		case event := <-eventCh:
 			channelEventCount++
 			if event.Err != nil {
+				if errors.Is(event.Err, context.Canceled) ||
+					errors.Is(event.Err, io.EOF) ||
+					errors.Is(event.Err, io.ErrClosedPipe) ||
+					strings.Contains(event.Err.Error(), "subscription closed by server") {
+					c.verboseOutf("event stream closed: %v", event.Err)
+					return nil
+				}
+
 				errCount++
 				c.verboseOutf("error from event stream: index; %d err: %v", event.Index, event.Err)
 				mErrs = multierror.Append(mErrs, fmt.Errorf("error at index: %d, Err: %w", event.Index, event.Err))

@@ -20,7 +20,7 @@ type ScalingCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ScalingCommand) Help() string {
 	helpText := `
-Usage: nomad scaling <subcommand> [options]
+Usage: wonton scaling <subcommand> [options]
 
   This command groups subcommands for interacting with the scaling API.
 

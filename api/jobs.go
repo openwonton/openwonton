@@ -91,7 +91,7 @@ func (c *Client) Jobs() *Jobs {
 }
 
 // ParseHCL is used to convert the HCL representation of a Job to JSON server side.
-// To parse the HCL client side see package github.com/hashicorp/nomad/jobspec
+// To parse the HCL client side see package github.com/openwonton/openwonton/jobspec
 // Use ParseHCLOpts if you need to customize JobsParseRequest.
 func (j *Jobs) ParseHCL(jobHCL string, canonicalize bool) (*Job, error) {
 	req := &JobsParseRequest{

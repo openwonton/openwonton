@@ -12,12 +12,12 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	ti "github.com/openwonton/openwonton/client/allocrunner/taskrunner/interfaces"
+	"github.com/openwonton/openwonton/client/dynamicplugins"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/csi"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // csiPluginSupervisorHook manages supervising plugins that are running as Nomad
@@ -215,7 +215,7 @@ func (h *csiPluginSupervisorHook) Prestart(ctx context.Context,
 
 func (h *csiPluginSupervisorHook) setSocketHook() {
 
-	// TODO(tgross): https://github.com/hashicorp/nomad/issues/11786
+	// TODO(tgross): https://github.com/openwonton/openwonton/issues/11786
 	// If we're already registered, we should be able to update the
 	// definition in the update hook
 

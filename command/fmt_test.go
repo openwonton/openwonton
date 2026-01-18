@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -138,6 +138,7 @@ func TestFmtCommand_FromStdin(t *testing.T) {
 }
 
 func TestFmtCommand_FromWorkingDirectory(t *testing.T) {
+	lockChdir(t)
 	tmpDir := fmtFixtureWriteDir(t)
 
 	cwd, err := os.Getwd()

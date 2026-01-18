@@ -15,7 +15,7 @@ type ACLCommand struct {
 
 func (f *ACLCommand) Help() string {
 	helpText := `
-Usage: nomad acl <subcommand> [options] [args]
+Usage: wonton acl <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL policies and tokens.
   Users can bootstrap Nomad's ACL system, create policies that restrict access,

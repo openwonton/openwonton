@@ -19,7 +19,7 @@ type OperatorGossipKeyringUseCommand struct {
 
 func (c *OperatorGossipKeyringUseCommand) Help() string {
 	helpText := `
-Usage: nomad operator gossip keyring use [options] <key>
+Usage: wonton operator gossip keyring use [options] <key>
 
   Change the encryption key used for gossip. The key must already be installed
   before this operator can succeed.

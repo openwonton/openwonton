@@ -15,18 +15,18 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/time/rate"
 
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	vapi "github.com/hashicorp/vault/api"
 )
 

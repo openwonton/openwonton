@@ -6,7 +6,7 @@ package loader
 import (
 	"strings"
 
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 )
 
 // configMap returns a mapping of plugin binary name to config.

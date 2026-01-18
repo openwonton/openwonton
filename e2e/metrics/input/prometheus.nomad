@@ -76,7 +76,7 @@ EOH
           "local/prometheus.yml:/etc/prometheus/prometheus.yml",
         ]
 
-        # TODO: https://github.com/hashicorp/nomad/issues/11484
+        # TODO: https://github.com/openwonton/openwonton/issues/11484
         # This is very much not how we should do this, because it
         # exposes the client's mTLS cert to the task and lets the
         # prometheus masquerade as the client.

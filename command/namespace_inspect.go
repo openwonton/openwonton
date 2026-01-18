@@ -16,7 +16,7 @@ type NamespaceInspectCommand struct {
 
 func (c *NamespaceInspectCommand) Help() string {
 	helpText := `
-Usage: nomad namespace inspect [options] <namespace>
+Usage: wonton namespace inspect [options] <namespace>
 
   Inspect is used to view raw information about a particular namespace.
 

@@ -11,13 +11,13 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/helper/pluginutils/singleton"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/base"
+	bstructs "github.com/openwonton/openwonton/plugins/base/structs"
+	"github.com/openwonton/openwonton/plugins/device"
 )
 
 const (

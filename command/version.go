@@ -4,7 +4,7 @@
 package command
 
 import (
-	"github.com/hashicorp/nomad/version"
+	"github.com/openwonton/openwonton/version"
 	"github.com/mitchellh/cli"
 )
 

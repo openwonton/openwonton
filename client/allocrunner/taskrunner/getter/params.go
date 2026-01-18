@@ -123,7 +123,7 @@ func headersCompareFn(a []string, b []string) bool {
 
 const (
 	// stop privilege escalation via setuid/setgid
-	// https://github.com/hashicorp/nomad/issues/6176
+	// https://github.com/openwonton/openwonton/issues/6176
 	umask = fs.ModeSetuid | fs.ModeSetgid
 )
 

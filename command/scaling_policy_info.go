@@ -10,8 +10,8 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 )
 
 // Ensure ScalingPolicyInfoCommand satisfies the cli.Command interface.
@@ -25,7 +25,7 @@ type ScalingPolicyInfoCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ScalingPolicyInfoCommand) Help() string {
 	helpText := `
-Usage: nomad scaling policy info [options] <policy_id>
+Usage: wonton scaling policy info [options] <policy_id>
 
   Info is used to read the specified scaling policy.
 

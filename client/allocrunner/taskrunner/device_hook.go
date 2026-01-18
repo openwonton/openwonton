@@ -8,10 +8,10 @@ import (
 	"fmt"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/plugins/device"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/devicemanager"
+	"github.com/openwonton/openwonton/plugins/device"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 const (

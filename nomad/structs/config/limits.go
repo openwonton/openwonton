@@ -3,7 +3,7 @@
 
 package config
 
-import "github.com/hashicorp/nomad/helper/pointer"
+import "github.com/openwonton/openwonton/helper/pointer"
 
 const (
 	// LimitsNonStreamingConnsPerClient is the number of connections per

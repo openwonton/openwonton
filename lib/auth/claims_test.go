@@ -8,7 +8,7 @@ import (
 
 	"github.com/shoenig/test/must"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func TestSelectorData(t *testing.T) {

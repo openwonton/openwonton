@@ -17,11 +17,11 @@ import (
 	"github.com/shoenig/test/wait"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 var (

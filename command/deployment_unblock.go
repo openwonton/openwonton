@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type DeploymentUnblockCommand struct {
 
 func (c *DeploymentUnblockCommand) Help() string {
 	helpText := `
-Usage: nomad deployment unblock [options] <deployment id>
+Usage: wonton deployment unblock [options] <deployment id>
 
   Unblock is used to unblock a multiregion deployment that's waiting for
   peer region deployments to complete.

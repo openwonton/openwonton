@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type JobRevertCommand struct {
 
 func (c *JobRevertCommand) Help() string {
 	helpText := `
-Usage: nomad job revert [options] <job> <version>
+Usage: wonton job revert [options] <job> <version>
 
   Revert is used to revert a job to a prior version of the job. The available
   versions to revert to can be found using "nomad job history" command.

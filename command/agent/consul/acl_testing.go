@@ -10,7 +10,7 @@ import (
 
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/helper/uuid"
 )
 
 var _ ACLsAPI = (*MockACLsAPI)(nil)

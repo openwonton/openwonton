@@ -13,8 +13,8 @@ import (
 	"github.com/hashicorp/serf/serf"
 	"github.com/shoenig/test/must"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 var _ autopilot.ApplicationIntegration = (*AutopilotDelegate)(nil)

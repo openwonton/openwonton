@@ -11,10 +11,10 @@ import (
 	"path/filepath"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocdir"
-	ifs "github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/client/allocdir"
+	ifs "github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 )
 
 const (

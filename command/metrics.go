@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type OperatorMetricsCommand struct {
 
 func (c *OperatorMetricsCommand) Help() string {
 	helpText := `
-Usage: nomad operator metrics [options]
+Usage: wonton operator metrics [options]
 
 Get Nomad metrics
 

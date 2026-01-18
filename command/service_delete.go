@@ -16,7 +16,7 @@ type ServiceDeleteCommand struct {
 
 func (s *ServiceDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad service delete [options] <service_name> <service_id>
+Usage: wonton service delete [options] <service_name> <service_id>
 
   Delete is used to deregister the specified service registration. It should be
   used with caution and can only remove a single registration, via the service

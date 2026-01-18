@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -31,7 +31,7 @@ type ACLBindingRuleUpdateCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLBindingRuleUpdateCommand) Help() string {
 	helpText := `
-Usage: nomad acl binding-rule update [options] <acl_binding_rule_id>
+Usage: wonton acl binding-rule update [options] <acl_binding_rule_id>
 
   Update is used to update an existing ACL binding rule. Requires a management
   token.

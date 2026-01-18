@@ -1,0 +1,52 @@
+---
+page_title: "Migration: Nomad to OpenWonton"
+description: |-
+  This guide provides instructions for migrating from HashiCorp Nomad to OpenWonton.
+---
+
+# Migration: Nomad to OpenWonton
+
+OpenWonton is a fork of HashiCorp Nomad, and we are committed to providing a smooth migration experience for existing Nomad users. This guide outlines the key changes and steps to migrate your existing infrastructure and workflows.
+
+## Key Changes
+
+*   **CLI Binary:** The `nomad` CLI binary has been renamed to `wonton`.
+*   **Project Name:** The project is now known as OpenWonton.
+
+## Compatibility
+
+OpenWonton maintains a high degree of compatibility with Nomad. Job files, APIs, and the overall architecture remain the same unless otherwise noted.
+
+## Migrating to `wonton`
+
+The most significant change you'll encounter is the renaming of the CLI binary.
+
+### For Users
+
+If you are used to running `nomad` commands, you can create a simple shell alias to make the transition seamless:
+
+```bash
+alias nomad="wonton"
+```
+
+We also plan to ship a `nomad` shim or symlink in our official releases to ensure that existing scripts and automation continue to work without modification.
+
+### For Scripts and Automation
+
+For your scripts and automation, we recommend updating them to use `wonton` directly. This will ensure that your scripts continue to work even if the `nomad` shim is removed in a future release.
+
+A simple `sed` command can help you replace most occurrences in your scripts:
+
+```bash
+sed -i 's/nomad/wonton/g' your-script.sh
+```
+
+**Note:** Always review the changes before applying them, as this command might replace unintended occurrences of the word "nomad".
+
+## Configuration and Data
+
+Your existing Nomad configuration files and data directory can be used with OpenWonton without any changes.
+
+## Future Changes
+
+We will document any future breaking changes in our release notes. We are committed to maintaining a stable and reliable platform.

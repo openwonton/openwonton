@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 )
 
 func TestConsulSupportsTLSSkipVerify(t *testing.T) {

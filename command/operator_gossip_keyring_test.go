@@ -7,7 +7,7 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/cli"
 )
 

@@ -12,9 +12,9 @@ import (
 
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/helper/flags"
-	"github.com/hashicorp/nomad/helper/tlsutil"
-	"github.com/hashicorp/nomad/lib/file"
+	"github.com/openwonton/openwonton/helper/flags"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/lib/file"
 )
 
 type TLSCertCreateCommand struct {
@@ -56,7 +56,7 @@ type TLSCertCreateCommand struct {
 
 func (c *TLSCertCreateCommand) Help() string {
 	helpText := `
-Usage: nomad tls cert create [options]
+Usage: wonton tls cert create [options]
 
   Create a new TLS certificate to use within the Nomad cluster TLS
   configuration. You should use the -client, -server or -cli options to create

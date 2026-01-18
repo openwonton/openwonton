@@ -3,7 +3,7 @@
 
 package config
 
-import "github.com/hashicorp/nomad/helper/pointer"
+import "github.com/openwonton/openwonton/helper/pointer"
 
 // DrainConfig describes a Node's drain behavior on graceful shutdown.
 type DrainConfig struct {

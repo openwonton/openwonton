@@ -25,7 +25,7 @@ type ACLAuthMethodInfoCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLAuthMethodInfoCommand) Help() string {
 	helpText := `
-Usage: nomad acl auth-method info [options] <acl_method_name>
+Usage: wonton acl auth-method info [options] <acl_method_name>
 
   Info is used to fetch information on an existing ACL auth method. Requires a
   management token.

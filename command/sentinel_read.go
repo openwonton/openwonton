@@ -16,7 +16,7 @@ type SentinelReadCommand struct {
 
 func (c *SentinelReadCommand) Help() string {
 	helpText := `
-Usage: nomad sentinel read [options] <name>
+Usage: wonton sentinel read [options] <name>
 
   Read is used to inspect a Sentinel policy.
 

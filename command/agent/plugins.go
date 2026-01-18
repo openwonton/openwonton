@@ -6,9 +6,9 @@ package agent
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/catalog"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
+	"github.com/openwonton/openwonton/helper/pluginutils/catalog"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/helper/pluginutils/singleton"
 )
 
 // setupPlugins is used to setup the plugin loaders.

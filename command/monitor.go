@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 

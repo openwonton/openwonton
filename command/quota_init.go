@@ -29,7 +29,7 @@ type QuotaInitCommand struct {
 
 func (c *QuotaInitCommand) Help() string {
 	helpText := `
-Usage: nomad quota init <filename>
+Usage: wonton quota init <filename>
 
   Creates an example quota specification file that can be used as a starting
   point to customize further. If no filename is given, the default of "spec.hcl"

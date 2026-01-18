@@ -77,7 +77,7 @@ func Supported() *Set {
 // maintain the legacy list here, because previous versions of Nomad deferred to
 // the capability.List library function, which adds new capabilities over time.
 //
-// https://github.com/hashicorp/nomad/blob/v1.0.4/vendor/github.com/syndtr/gocapability/capability/enum_gen.go#L88
+// https://github.com/openwonton/openwonton/blob/v1.0.4/vendor/github.com/syndtr/gocapability/capability/enum_gen.go#L88
 func LegacySupported() *Set {
 	return New([]string{
 		"CAP_CHOWN",

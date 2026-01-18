@@ -6,7 +6,7 @@ package agent
 import (
 	"net/http"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func (s *HTTPServer) NodeMetaRequest(resp http.ResponseWriter, req *http.Request) (interface{}, error) {

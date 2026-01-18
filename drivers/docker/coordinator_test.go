@@ -11,10 +11,10 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 

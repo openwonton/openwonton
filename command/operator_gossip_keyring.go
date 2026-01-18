@@ -19,7 +19,7 @@ type OperatorGossipKeyringCommand struct {
 
 func (c *OperatorGossipKeyringCommand) Help() string {
 	helpText := `
-Usage: nomad operator gossip keyring [options]
+Usage: wonton operator gossip keyring [options]
 
   Manages encryption keys used for gossip messages between Nomad servers. Gossip
   encryption is optional. When enabled, this command may be used to examine

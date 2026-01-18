@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 	vapi "github.com/hashicorp/vault/api"
 )
 

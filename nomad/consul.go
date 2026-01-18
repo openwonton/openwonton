@@ -14,9 +14,9 @@ import (
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"golang.org/x/exp/slices"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/time/rate"
@@ -505,7 +505,7 @@ func (s *Server) purgeSITokenAccessors(accessors []*structs.SITokenAccessor) err
 // the Consul scope. There was a Meta field introduced which Nomad can leverage
 // in the future, when Consul no longer supports versions that do not contain the
 // field. The Meta field would be used to track which Nomad "owns" the CE.
-// https://github.com/hashicorp/nomad/issues/8971
+// https://github.com/openwonton/openwonton/issues/8971
 type ConsulConfigsAPI interface {
 	// SetIngressCE adds the given ConfigEntry to Consul, overwriting
 	// the previous entry if set.

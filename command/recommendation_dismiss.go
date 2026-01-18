@@ -10,7 +10,7 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 )
 
 // Ensure RecommendationDismissCommand satisfies the cli.Command interface.
@@ -45,7 +45,7 @@ type RecommendationDismissCommand struct {
 // Help satisfies the cli.Command Help function.
 func (r *RecommendationDismissCommand) Help() string {
 	helpText := `
-Usage: nomad recommendation dismiss [options] <recommendation_ids>
+Usage: wonton recommendation dismiss [options] <recommendation_ids>
 
   Dismiss one or more Nomad recommendations.
 

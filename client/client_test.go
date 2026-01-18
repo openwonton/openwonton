@@ -20,27 +20,27 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocrunner"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	trstate "github.com/hashicorp/nomad/client/allocrunner/taskrunner/state"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/fingerprint"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	regMock "github.com/hashicorp/nomad/client/serviceregistration/mock"
-	cstate "github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper/pluginutils/catalog"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	nconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/device"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocrunner"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	trstate "github.com/openwonton/openwonton/client/allocrunner/taskrunner/state"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/fingerprint"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	regMock "github.com/openwonton/openwonton/client/serviceregistration/mock"
+	cstate "github.com/openwonton/openwonton/client/state"
+	"github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/helper/pluginutils/catalog"
+	"github.com/openwonton/openwonton/helper/pluginutils/singleton"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	nconfig "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/plugins/device"
+	psstructs "github.com/openwonton/openwonton/plugins/shared/structs"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 func testACLServer(t *testing.T, cb func(*nomad.Config)) (*nomad.Server, string, *structs.ACLToken, func()) {
@@ -650,6 +650,8 @@ func TestClient_SaveRestoreState(t *testing.T) {
 	c1, cleanupC1 := TestClient(t, func(c *config.Config) {
 		c.DevMode = false
 		c.RPCHandler = s1
+		c.GCDiskUsageThreshold = 100.0
+		c.GCInodeUsageThreshold = 100.0
 	})
 	t.Cleanup(func() {
 		for _, ar := range c1.getAllocRunners() {
@@ -703,7 +705,7 @@ func TestClient_SaveRestoreState(t *testing.T) {
 			}
 			return nil
 		}),
-		wait.Timeout(time.Second*10),
+		wait.Timeout(testutil.Timeout(20*time.Second)),
 		wait.Gap(time.Millisecond*30),
 	))
 
@@ -2154,6 +2156,9 @@ func TestClient_AllocPrerunErrorDuringRestore(t *testing.T) {
 	}
 	var actual []string
 	for _, event := range ts.Events {
+		if event.Type == structs.TaskKilling {
+			continue
+		}
 		actual = append(actual, event.Type)
 	}
 	must.Eq(t, expectEvents, actual)

@@ -23,20 +23,20 @@ import (
 
 	templateconfig "github.com/hashicorp/consul-template/config"
 	ctestutil "github.com/hashicorp/consul/sdk/testutil"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/taskenv"
-	clienttestutil "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/users"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	sconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/kr/pretty"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/taskenv"
+	clienttestutil "github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/users"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	sconfig "github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -136,6 +136,18 @@ func (m *mockExecutor) Exec(timeout time.Duration, cmd string, args []string) ([
 	return []byte{}, m.DesiredExit, m.DesiredErr
 }
 
+var consulVaultTestLock = make(chan struct{}, 1)
+var consulVaultTestSeen sync.Map
+
+func acquireConsulVaultTestSlot(t *testing.T) {
+	t.Helper()
+	if _, loaded := consulVaultTestSeen.LoadOrStore(t, struct{}{}); loaded {
+		return
+	}
+	consulVaultTestLock <- struct{}{}
+	t.Cleanup(func() { <-consulVaultTestLock })
+}
+
 // testHarness is used to test the TaskTemplateManager by spinning up
 // Consul/Vault as needed
 type testHarness struct {
@@ -156,6 +168,10 @@ type testHarness struct {
 // newTestHarness returns a harness starting a dev consul and vault server,
 // building the appropriate config and creating a TaskTemplateManager
 func newTestHarness(t *testing.T, templates []*structs.Template, consul, vault bool) *testHarness {
+	if consul || vault {
+		acquireConsulVaultTestSlot(t)
+	}
+
 	region := "global"
 	mockNode := mock.Node()
 
@@ -2040,7 +2056,7 @@ func TestTaskTemplateManager_Escapes(t *testing.T) {
 		},
 		//TODO: Fix this test. I *think* it should pass. The double
 		//      joining of the task dir onto the destination seems like
-		//      a bug. https://github.com/hashicorp/nomad/issues/9389
+		//      a bug. https://github.com/openwonton/openwonton/issues/9389
 		{
 			Name: "RawExecOk",
 			Config: func() *TaskTemplateManagerConfig {

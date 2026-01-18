@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type JobPromoteCommand struct {
 
 func (c *JobPromoteCommand) Help() string {
 	helpText := `
-Usage: nomad job promote [options] <job id>
+Usage: wonton job promote [options] <job id>
 
   Promote is used to promote task groups in the most recent deployment for the
   given job. Promotion should occur when the deployment has placed canaries for a

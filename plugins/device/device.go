@@ -9,8 +9,8 @@ import (
 	"time"
 
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 const (

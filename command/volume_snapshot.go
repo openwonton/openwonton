@@ -25,7 +25,7 @@ func (f *VolumeSnapshotCommand) Synopsis() string {
 
 func (f *VolumeSnapshotCommand) Help() string {
 	helpText := `
-Usage: nomad volume snapshot <subcommand> [options] [args]
+Usage: wonton volume snapshot <subcommand> [options] [args]
 
   This command groups subcommands for interacting with CSI volume snapshots.
 

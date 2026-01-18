@@ -22,12 +22,12 @@ import (
 	"github.com/hashicorp/go-msgpack/codec"
 	"github.com/hpcloud/tail/watch"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/client/allocdir"
-	sframer "github.com/hashicorp/nomad/client/lib/streamframer"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/client/allocdir"
+	sframer "github.com/openwonton/openwonton/client/lib/streamframer"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 var (

@@ -13,10 +13,10 @@ import (
 	"sync"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/users"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/helper/users"
 )
 
 // apiHook exposes the Task API. The Task API allows task's to access the Nomad
@@ -115,7 +115,7 @@ func (h *apiHook) Stop(ctx context.Context, req *interfaces.TaskStopRequest, res
 // The path needs to be as short as possible because of the low limits on the
 // sun_path char array imposed by the syscall used to create unix sockets.
 //
-// See https://github.com/hashicorp/nomad/pull/13971 for an example of the
+// See https://github.com/openwonton/openwonton/pull/13971 for an example of the
 // sadness this causes.
 func apiSocketPath(taskDir *allocdir.TaskDir) string {
 	return filepath.Join(taskDir.SecretsDir, "api.sock")

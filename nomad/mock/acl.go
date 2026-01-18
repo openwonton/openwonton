@@ -19,8 +19,8 @@ import (
 	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // StateStore defines the methods required from state.StateStore but avoids a

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type DeploymentListCommand struct {
 
 func (c *DeploymentListCommand) Help() string {
 	helpText := `
-Usage: nomad deployment list [options]
+Usage: wonton deployment list [options]
 
   List is used to list the set of deployments tracked by Nomad.
 

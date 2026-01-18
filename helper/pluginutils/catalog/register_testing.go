@@ -6,7 +6,7 @@
 
 package catalog
 
-import "github.com/hashicorp/nomad/drivers/mock"
+import "github.com/openwonton/openwonton/drivers/mock"
 
 // Register the mock driver with the builtin driver plugin catalog. All builtin
 // plugins that are intended for production use should be registered in

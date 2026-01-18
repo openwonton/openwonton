@@ -9,11 +9,11 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
+	bstructs "github.com/openwonton/openwonton/plugins/base/structs"
 )
 
 // StatsUpdater is the interface required by the StatsHook to update stats.

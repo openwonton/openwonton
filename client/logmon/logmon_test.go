@@ -11,11 +11,11 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/lib/fifo"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/lib/fifo"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -249,6 +249,8 @@ func TestLogmon_Start_restart(t *testing.T) {
 	}, func(err error) {
 		require.NoError(err)
 	})
+
+	require.NoError(stdout.Close())
 
 	// Start logmon again and assert that it can receive logs again
 	require.NoError(lm.Start(cfg))

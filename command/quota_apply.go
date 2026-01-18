@@ -14,8 +14,8 @@ import (
 	multierror "github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper"
 	"github.com/mitchellh/mapstructure"
 	"github.com/posener/complete"
 )
@@ -26,7 +26,7 @@ type QuotaApplyCommand struct {
 
 func (c *QuotaApplyCommand) Help() string {
 	helpText := `
-Usage: nomad quota apply [options] <input>
+Usage: wonton quota apply [options] <input>
 
   Apply is used to create or update a quota specification. The specification file
   will be read from stdin by specifying "-", otherwise a path to the file is

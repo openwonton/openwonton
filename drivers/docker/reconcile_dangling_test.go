@@ -5,8 +5,10 @@ package docker
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 	"time"
@@ -16,10 +18,10 @@ import (
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 func fakeContainerList(t *testing.T) (nomadContainer, nonNomadContainer docker.APIContainers) {
@@ -33,6 +35,31 @@ func fakeContainerList(t *testing.T) (nomadContainer, nonNomadContainer docker.A
 	must.NoError(t, err, must.Sprint("failed to decode container list"))
 
 	return sampleContainerList[0], sampleContainerList[1]
+}
+
+func ensureDockerImageLoaded(t *testing.T, client *docker.Client, imageName, imageTar string) {
+	t.Helper()
+
+	if imageName == "" {
+		t.Fatalf("image name is required to load docker test image")
+	}
+	if imageTar == "" {
+		t.Fatalf("image tar is required to load docker test image")
+	}
+
+	if _, err := client.InspectImage(imageName); err == nil {
+		return
+	} else if !errors.Is(err, docker.ErrNoSuchImage) {
+		must.NoError(t, err)
+		return
+	}
+
+	imagePath := filepath.Join("test-resources", "docker", imageTar)
+	f, err := os.Open(imagePath)
+	must.NoError(t, err, must.Sprintf("failed to open %s", imagePath))
+	defer f.Close()
+
+	must.NoError(t, client.LoadImage(docker.LoadImageOptions{InputStream: f}))
 }
 
 func Test_HasMount(t *testing.T) {
@@ -63,7 +90,7 @@ func Test_HasNomadName(t *testing.T) {
 // TestDanglingContainerRemoval_normal asserts containers without corresponding tasks
 // are removed after the creation grace period.
 func TestDanglingContainerRemoval_normal(t *testing.T) {
-	ci.Parallel(t)
+	// Runs serially since the reconciler can remove other tests' containers.
 	testutil.DockerCompatible(t)
 
 	// start two containers: one tracked nomad container, and one unrelated container
@@ -173,7 +200,7 @@ var (
 )
 
 func TestDanglingContainerRemoval_network(t *testing.T) {
-	ci.Parallel(t)
+	// Runs serially since the reconciler can remove other tests' containers.
 	testutil.DockerCompatible(t)
 	testutil.RequireLinux(t) // bridge implies linux
 
@@ -214,8 +241,10 @@ func TestDanglingContainerRemoval_Stopped(t *testing.T) {
 	_, cfg, _ := dockerTask(t)
 
 	dockerClient := newTestDockerClient(t)
-	container, err := dockerClient.CreateContainer(docker.CreateContainerOptions{
-		Name: "mytest-image-" + uuid.Generate(),
+	ensureDockerImageLoaded(t, dockerClient, cfg.Image, cfg.LoadImage)
+	containerName := "mytest-image-" + uuid.Generate()
+	containerOpts := docker.CreateContainerOptions{
+		Name: containerName,
 		Config: &docker.Config{
 			Image: cfg.Image,
 			Cmd:   append([]string{cfg.Command}, cfg.Args...),
@@ -223,7 +252,12 @@ func TestDanglingContainerRemoval_Stopped(t *testing.T) {
 				dockerLabelAllocID: uuid.Generate(),
 			},
 		},
-	})
+	}
+	container, err := dockerClient.CreateContainer(containerOpts)
+	if errors.Is(err, docker.ErrNoSuchImage) {
+		ensureDockerImageLoaded(t, dockerClient, cfg.Image, cfg.LoadImage)
+		container, err = dockerClient.CreateContainer(containerOpts)
+	}
 	must.NoError(t, err)
 	t.Cleanup(func() {
 		_ = dockerClient.RemoveContainer(docker.RemoveContainerOptions{
@@ -237,6 +271,20 @@ func TestDanglingContainerRemoval_Stopped(t *testing.T) {
 
 	err = dockerClient.StopContainer(container.ID, 60)
 	must.NoError(t, err)
+	must.Wait(t, wait.InitialSuccess(
+		wait.ErrorFunc(func() error {
+			c, err := dockerClient.InspectContainer(container.ID)
+			if err != nil {
+				return err
+			}
+			if c.State.Running {
+				return fmt.Errorf("container still running")
+			}
+			return nil
+		}),
+		wait.Timeout(10*time.Second),
+		wait.Gap(100*time.Millisecond),
+	))
 
 	dd := dockerDriverHarness(t, nil).Impl().(*Driver)
 	reconciler := newReconciler(dd)

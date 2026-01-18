@@ -6,7 +6,7 @@ package docklog
 import (
 	"context"
 
-	"github.com/hashicorp/nomad/drivers/docker/docklog/proto"
+	"github.com/openwonton/openwonton/drivers/docker/docklog/proto"
 )
 
 // dockerLoggerClient implements the dockerLogger interface for client side requests

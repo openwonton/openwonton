@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"golang.org/x/sys/unix"
 )
 

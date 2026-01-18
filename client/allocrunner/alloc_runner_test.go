@@ -18,21 +18,21 @@ import (
 	"github.com/shoenig/test/wait"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allochealth"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	arstate "github.com/hashicorp/nomad/client/allocrunner/state"
-	"github.com/hashicorp/nomad/client/allocrunner/tasklifecycle"
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner"
-	"github.com/hashicorp/nomad/client/allocwatcher"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	regMock "github.com/hashicorp/nomad/client/serviceregistration/mock"
-	"github.com/hashicorp/nomad/client/state"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allochealth"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	arstate "github.com/openwonton/openwonton/client/allocrunner/state"
+	"github.com/openwonton/openwonton/client/allocrunner/tasklifecycle"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner"
+	"github.com/openwonton/openwonton/client/allocwatcher"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	regMock "github.com/openwonton/openwonton/client/serviceregistration/mock"
+	"github.com/openwonton/openwonton/client/state"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 // destroy does a blocking destroy on an alloc runner
@@ -1180,7 +1180,7 @@ func TestAllocRunner_TaskLeader_StopTG(t *testing.T) {
 // TestAllocRunner_TaskLeader_StopRestoredTG asserts that when stopping a
 // restored task group with a leader that failed before restoring the leader is
 // not stopped as it does not exist.
-// See https://github.com/hashicorp/nomad/issues/3420#issuecomment-341666932
+// See https://github.com/openwonton/openwonton/issues/3420#issuecomment-341666932
 func TestAllocRunner_TaskLeader_StopRestoredTG(t *testing.T) {
 	ci.Parallel(t)
 

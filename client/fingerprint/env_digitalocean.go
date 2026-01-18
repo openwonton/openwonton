@@ -15,8 +15,8 @@ import (
 	cleanhttp "github.com/hashicorp/go-cleanhttp"
 	log "github.com/hashicorp/go-hclog"
 
-	"github.com/hashicorp/nomad/helper/useragent"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/useragent"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

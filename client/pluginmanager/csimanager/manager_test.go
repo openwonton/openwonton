@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/client/pluginmanager"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/dynamicplugins"
+	"github.com/openwonton/openwonton/client/pluginmanager"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )

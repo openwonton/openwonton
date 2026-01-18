@@ -11,10 +11,10 @@ import (
 	"testing"
 
 	"github.com/creack/pty"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )
@@ -97,7 +97,7 @@ func TestMeta_Colorize(t *testing.T) {
 		{
 			Name: "disable colors via env var",
 			SetupFn: func(t *testing.T, m *Meta) {
-				t.Setenv(EnvNomadCLINoColor, "1")
+				t.Setenv(EnvWontonCLINoColor, "1")
 				m.SetupUi([]string{})
 			},
 			ExpectColor: false,
@@ -112,7 +112,7 @@ func TestMeta_Colorize(t *testing.T) {
 		{
 			Name: "force colors via env var",
 			SetupFn: func(t *testing.T, m *Meta) {
-				t.Setenv(EnvNomadCLIForceColor, "1")
+				t.Setenv(EnvWontonCLIForceColor, "1")
 				m.SetupUi([]string{})
 			},
 			ExpectColor: true,
@@ -127,7 +127,7 @@ func TestMeta_Colorize(t *testing.T) {
 		{
 			Name: "no color take predecence over force color via env var",
 			SetupFn: func(t *testing.T, m *Meta) {
-				t.Setenv(EnvNomadCLINoColor, "1")
+				t.Setenv(EnvWontonCLINoColor, "1")
 				m.SetupUi([]string{"-force-color"})
 			},
 			ExpectColor: false,
@@ -146,8 +146,10 @@ func TestMeta_Colorize(t *testing.T) {
 			os.Stdout = tty
 
 			// Make sure color related environment variables are clean.
-			t.Setenv(EnvNomadCLIForceColor, "")
-			t.Setenv(EnvNomadCLINoColor, "")
+			t.Setenv(EnvWontonCLIForceColor, "")
+			t.Setenv(EnvWontonCLINoColor, "")
+			t.Setenv("NOMAD_CLI_FORCE_COLOR", "")
+			t.Setenv("NOMAD_CLI_NO_COLOR", "")
 
 			// Run test case.
 			m := &Meta{}

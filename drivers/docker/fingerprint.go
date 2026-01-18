@@ -10,11 +10,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/plugins/drivers/utils"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	"github.com/openwonton/openwonton/plugins/drivers/utils"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 func (d *Driver) Fingerprint(ctx context.Context) (<-chan *drivers.Fingerprint, error) {

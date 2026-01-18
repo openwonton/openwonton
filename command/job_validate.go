@@ -9,10 +9,10 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/posener/complete"
 )
 
@@ -23,8 +23,8 @@ type JobValidateCommand struct {
 
 func (c *JobValidateCommand) Help() string {
 	helpText := `
-Usage: nomad job validate [options] <path>
-Alias: nomad validate
+Usage: wonton job validate [options] <path>
+Alias: wonton validate
 
   Checks if a given HCL job file has a valid specification. This can be used to
   check for any syntax errors or validation problems with a job.

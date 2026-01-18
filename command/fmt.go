@@ -49,7 +49,7 @@ type FormatCommand struct {
 
 func (*FormatCommand) Help() string {
 	helpText := `
-Usage: nomad fmt [flags] paths ...
+Usage: wonton fmt [flags] paths ...
 
   Formats Nomad agent configuration and job file to a canonical format.
   If a path is a directory, it will recursively format all files

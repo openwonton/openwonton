@@ -8,16 +8,18 @@ import (
 	"context"
 	"fmt"
 	"net"
+	"os"
 	"path/filepath"
+	"runtime"
 	"sync"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -157,7 +159,7 @@ func TestConsulGRPCSocketHook_Prerun_Error(t *testing.T) {
 func TestConsulGRPCSocketHook_proxy_Unix(t *testing.T) {
 	ci.Parallel(t)
 
-	dir := t.TempDir()
+	dir := shortTempDir(t)
 
 	// Setup fake listener that would be inside the netns (normally a unix
 	// socket, but it doesn't matter for this test).
@@ -270,4 +272,20 @@ func TestConsulGRPCSocketHook_proxy_Unix(t *testing.T) {
 	for len(errCh) > 0 {
 		assert.NoError(t, <-errCh)
 	}
+}
+
+func shortTempDir(t *testing.T) string {
+	if runtime.GOOS != "darwin" {
+		return t.TempDir()
+	}
+
+	baseDir := "/tmp"
+	if resolved, err := filepath.EvalSymlinks(baseDir); err == nil {
+		baseDir = resolved
+	}
+
+	dir, err := os.MkdirTemp(baseDir, "nomadtest")
+	require.NoError(t, err)
+	t.Cleanup(func() { _ = os.RemoveAll(dir) })
+	return dir
 }

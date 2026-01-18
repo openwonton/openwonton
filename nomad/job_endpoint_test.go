@@ -13,13 +13,13 @@ import (
 
 	"github.com/hashicorp/go-memdb"
 	msgpackrpc "github.com/hashicorp/net-rpc-msgpackrpc"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/hashicorp/raft"
 	"github.com/kr/pretty"
 	"github.com/shoenig/test/must"
@@ -117,7 +117,7 @@ func TestJobEndpoint_Register(t *testing.T) {
 // terminal, not just DesiredStatus, for the resources used by a job to be
 // considered free for subsequent placements to use.
 //
-// See: https://github.com/hashicorp/nomad/issues/10440
+// See: https://github.com/openwonton/openwonton/issues/10440
 func TestJobEndpoint_Register_NonOverlapping(t *testing.T) {
 	ci.Parallel(t)
 

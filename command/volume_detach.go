@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type VolumeDetachCommand struct {
 
 func (c *VolumeDetachCommand) Help() string {
 	helpText := `
-Usage: nomad volume detach [options] <vol id> <node id>
+Usage: wonton volume detach [options] <vol id> <node id>
 
   Detach a volume from a Nomad client.
 

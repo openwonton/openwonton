@@ -4,13 +4,13 @@
 package interfaces
 
 import (
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/state"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/state"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // AllocRunner is the interface to the allocRunner struct used by client.Client

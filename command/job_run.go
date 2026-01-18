@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/posener/complete"
 )
 
@@ -29,8 +29,8 @@ type JobRunCommand struct {
 
 func (c *JobRunCommand) Help() string {
 	helpText := `
-Usage: nomad job run [options] <path>
-Alias: nomad run
+Usage: wonton job run [options] <path>
+Alias: wonton run
 
   Starts running a new job or updates an existing job using
   the specification located at <path>. This is the main command

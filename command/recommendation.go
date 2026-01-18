@@ -20,7 +20,7 @@ type RecommendationCommand struct {
 // Help satisfies the cli.Command Help function.
 func (r *RecommendationCommand) Help() string {
 	helpText := `
-Usage: nomad recommendation <subcommand> [options]
+Usage: wonton recommendation <subcommand> [options]
 
   This command groups subcommands for interacting with the recommendation API.
 

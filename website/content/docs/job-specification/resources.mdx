@@ -126,7 +126,7 @@ To avoid degrading the cluster experience, we recommend examining and monitoring
 resource utilization and considering the following suggestions:
 
 * Set `oom_score_adj` for Linux host services that aren't managed by Nomad, e.g.
-  Docker, logging services, and the Nomad agent itself. For Systemd services, you can use the [`OOMScoreAdj` field](https://github.com/hashicorp/nomad/blob/v1.0.0/dist/systemd/nomad.service#L25).
+  Docker, logging services, and the Nomad agent itself. For Systemd services, you can use the [`OOMScoreAdj` field](https://github.com/openwonton/openwonton/blob/v1.0.0/dist/systemd/nomad.service#L25).
 
 * Monitor hosts for memory utilization and set alerts on Out-Of-Memory errors
 

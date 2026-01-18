@@ -5,6 +5,8 @@ package allocdir
 
 import (
 	"os"
+	"path/filepath"
+	"runtime"
 
 	hclog "github.com/hashicorp/go-hclog"
 	testing "github.com/mitchellh/go-testing-interface"
@@ -13,7 +15,15 @@ import (
 // TestAllocDir returns a built alloc dir in a temporary directory and cleanup
 // func.
 func TestAllocDir(t testing.T, l hclog.Logger, prefix, id string) (*AllocDir, func()) {
-	dir, err := os.MkdirTemp("", prefix)
+	baseDir := os.TempDir()
+	if runtime.GOOS == "darwin" {
+		baseDir = "/tmp"
+		if resolved, err := filepath.EvalSymlinks(baseDir); err == nil {
+			baseDir = resolved
+		}
+	}
+
+	dir, err := os.MkdirTemp(baseDir, prefix)
 	if err != nil {
 		t.Fatalf("Couldn't create temp dir: %v", err)
 	}

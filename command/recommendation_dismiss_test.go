@@ -7,14 +7,14 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/posener/complete"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 func TestRecommendationDismissCommand_Run(t *testing.T) {
@@ -96,6 +96,8 @@ func TestRecommendationDismissCommand_Run(t *testing.T) {
 }
 
 func TestRecommendationDismissCommand_AutocompleteArgs(t *testing.T) {
+	ci.Parallel(t)
+
 	srv, client, url := testServer(t, false, nil)
 	defer srv.Shutdown()
 
@@ -113,7 +115,6 @@ func TestRecommendationDismissCommand_AutocompleteArgs(t *testing.T) {
 }
 
 func testRecommendationAutocompleteCommand(t *testing.T, client *api.Client, srv *agent.TestAgent, cmd *RecommendationAutocompleteCommand) {
-	ci.Parallel(t)
 	require := require.New(t)
 
 	// Register a test job to write a recommendation against.

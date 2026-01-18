@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func main() {

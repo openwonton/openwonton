@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/shoenig/test/must"
 )
 

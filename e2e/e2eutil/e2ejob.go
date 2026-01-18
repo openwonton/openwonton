@@ -15,12 +15,12 @@ import (
 	"testing"
 	"time"
 
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/discover"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	api "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/framework"
+	"github.com/openwonton/openwonton/helper/discover"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

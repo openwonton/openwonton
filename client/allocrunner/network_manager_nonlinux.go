@@ -8,10 +8,10 @@ package allocrunner
 
 import (
 	hclog "github.com/hashicorp/go-hclog"
-	clientconfig "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	clientconfig "github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // noopNetworkManager implements the drivers.DriverNetoworkManager interface to

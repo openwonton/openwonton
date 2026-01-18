@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 )
 
@@ -374,7 +374,7 @@ func TestCheckWatcher_MultipleChecks(t *testing.T) {
 
 // TestCheckWatcher_Deadlock asserts that check watcher will not deadlock when
 // attempting to restart a task even if its update queue is full.
-// https://github.com/hashicorp/nomad/issues/5395
+// https://github.com/openwonton/openwonton/issues/5395
 func TestCheckWatcher_Deadlock(t *testing.T) {
 	ci.Parallel(t)
 

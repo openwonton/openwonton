@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/stretchr/testify/require"
 )
 

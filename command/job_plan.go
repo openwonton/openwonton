@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/scheduler"
 	"github.com/posener/complete"
 )
 
@@ -38,8 +38,8 @@ type JobPlanCommand struct {
 
 func (c *JobPlanCommand) Help() string {
 	helpText := `
-Usage: nomad job plan [options] <path>
-Alias: nomad plan
+Usage: wonton job plan [options] <path>
+Alias: wonton plan
 
   Plan invokes a dry-run of the scheduler to determine the effects of submitting
   either a new or updated version of a job. The plan will not result in any

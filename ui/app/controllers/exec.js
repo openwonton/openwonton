@@ -49,7 +49,7 @@ export default class ExecController extends Controller {
       fontFamily: 'monospace',
       fontWeight: '400',
     });
-    window.execTerminal = this.terminal; // Issue to improve: https://github.com/hashicorp/nomad/issues/7457
+    window.execTerminal = this.terminal; // Issue to improve: https://github.com/openwonton/openwonton/issues/7457
 
     this.terminal.write(ANSI_UI_GRAY_400);
 

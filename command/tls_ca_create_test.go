@@ -9,12 +9,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
 func TestCACreateCommand(t *testing.T) {
+	lockChdir(t)
 	testDir := t.TempDir()
 	previousDirectory, err := os.Getwd()
 	require.NoError(t, err)
@@ -35,7 +37,8 @@ func TestCACreateCommand(t *testing.T) {
 			"nomad-agent-ca.pem",
 			"nomad-agent-ca-key.pem",
 			func(t *testing.T, cert *x509.Certificate) {
-				require.Equal(t, 1825*24*time.Hour, time.Until(cert.NotAfter).Round(24*time.Hour))
+				now := tlsutil.TestTimeFunc()()
+				require.Equal(t, 1825*24*time.Hour, cert.NotAfter.Sub(now).Round(24*time.Hour))
 				require.False(t, cert.PermittedDNSDomainsCritical)
 				require.Len(t, cert.PermittedDNSDomains, 0)
 			},
@@ -54,7 +57,8 @@ func TestCACreateCommand(t *testing.T) {
 			"foo-agent-ca.pem",
 			"foo-agent-ca-key.pem",
 			func(t *testing.T, cert *x509.Certificate) {
-				require.Equal(t, 365*24*time.Hour, time.Until(cert.NotAfter).Round(24*time.Hour))
+				now := tlsutil.TestTimeFunc()()
+				require.Equal(t, 365*24*time.Hour, cert.NotAfter.Sub(now).Round(24*time.Hour))
 				require.True(t, cert.PermittedDNSDomainsCritical)
 				require.Len(t, cert.PermittedDNSDomains, 4)
 				require.ElementsMatch(t, cert.PermittedDNSDomains, []string{"nomad", "foo", "localhost", "bar"})
@@ -71,7 +75,8 @@ func TestCACreateCommand(t *testing.T) {
 			"nomad-agent-ca.pem",
 			"nomad-agent-ca-key.pem",
 			func(t *testing.T, cert *x509.Certificate) {
-				require.Equal(t, 365*24*time.Hour, time.Until(cert.NotAfter).Round(24*time.Hour))
+				now := tlsutil.TestTimeFunc()()
+				require.Equal(t, 365*24*time.Hour, cert.NotAfter.Sub(now).Round(24*time.Hour))
 			},
 		},
 	}

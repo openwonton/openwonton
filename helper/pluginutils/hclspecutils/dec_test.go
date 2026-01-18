@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/hcl/v2/hcldec"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/plugins/shared/hclspec"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
 )

@@ -4,9 +4,9 @@
 package devicemanager
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/device"
 )
 
 type ReserveFn func(d *structs.AllocatedDeviceResource) (*device.ContainerReservation, error)

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type JobEvalCommand struct {
 
 func (c *JobEvalCommand) Help() string {
 	helpText := `
-Usage: nomad job eval [options] <job_id>
+Usage: wonton job eval [options] <job_id>
 
   Force an evaluation of the provided job ID. Forcing an evaluation will
   trigger the scheduler to re-evaluate the job. The force flags allow

@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/command/asset"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/command/asset"
 	"github.com/posener/complete"
 )
 
@@ -27,8 +27,8 @@ type JobInitCommand struct {
 
 func (c *JobInitCommand) Help() string {
 	helpText := `
-Usage: nomad job init <filename>
-Alias: nomad init <filename>
+Usage: wonton job init <filename>
+Alias: wonton init <filename>
 
   Creates an example job file that can be used as a starting point to customize
   further. If no filename is given, the default of "example.nomad.hcl" will be used.

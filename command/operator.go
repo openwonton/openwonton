@@ -15,7 +15,7 @@ type OperatorCommand struct {
 
 func (f *OperatorCommand) Help() string {
 	helpText := `
-Usage: nomad operator <subcommand> [options]
+Usage: wonton operator <subcommand> [options]
 
   Provides cluster-level tools for Nomad operators, such as interacting with
   the Raft subsystem. NOTE: Use this command with extreme caution, as improper

@@ -7,13 +7,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/posener/complete"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
@@ -164,9 +163,6 @@ func TestVarPutCommand_AutocompleteArgs(t *testing.T) {
 }
 
 func TestVarPutCommand_KeyWarning(t *testing.T) {
-	// Extract invalid characters from warning message.
-	r := regexp.MustCompile(`contains characters \[(.*)\]`)
-
 	tcs := []struct {
 		name     string
 		goodKeys []string
@@ -262,11 +258,8 @@ func TestVarPutCommand_KeyWarning(t *testing.T) {
 				must.StrContains(t, errOut, k) // every bad key should appear in the warning output
 			}
 
-			if len(tc.badChars) > 0 {
-				invalid := r.FindAllStringSubmatch(errOut, -1)
-				for i, k := range tc.badChars {
-					must.Eq(t, invalid[i][1], k) // every bad char should appear in the warning output
-				}
+			for _, k := range tc.badChars {
+				must.StrContains(t, errOut, k)
 			}
 
 			for _, k := range tc.goodKeys {

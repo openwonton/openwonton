@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/cap/oidc"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 )
 

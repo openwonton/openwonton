@@ -12,10 +12,10 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 	"github.com/stretchr/testify/require"
 )
 

@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
-	"github.com/hashicorp/nomad/helper/raftutil"
-	"github.com/hashicorp/nomad/nomad"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
+	"github.com/openwonton/openwonton/helper/raftutil"
+	"github.com/openwonton/openwonton/nomad"
 	"github.com/posener/complete"
 )
 
@@ -21,7 +21,7 @@ type OperatorSnapshotStateCommand struct {
 
 func (c *OperatorSnapshotStateCommand) Help() string {
 	helpText := `
-Usage: nomad operator snapshot state [options] <file>
+Usage: wonton operator snapshot state [options] <file>
 
   Displays a JSON representation of state in the snapshot.
 

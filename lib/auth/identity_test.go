@@ -8,8 +8,8 @@ import (
 
 	"github.com/shoenig/test/must"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func Test_NewIdentity(t *testing.T) {

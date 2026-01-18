@@ -19,7 +19,7 @@ type VarPurgeCommand struct {
 
 func (c *VarPurgeCommand) Help() string {
 	helpText := `
-Usage: nomad var purge [options] <path>
+Usage: wonton var purge [options] <path>
 
   Purge is used to permanently delete an existing variable.
 

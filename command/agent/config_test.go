@@ -15,12 +15,12 @@ import (
 	"time"
 
 	sockaddr "github.com/hashicorp/go-sockaddr"
-	"github.com/hashicorp/nomad/ci"
-	client "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/ci"
+	client "github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -675,8 +675,15 @@ func TestConfig_Listener(t *testing.T) {
 		t.Fatalf("expected port error")
 	}
 
+	allocPort := func() int {
+		ln, err := net.Listen("tcp", "127.0.0.1:0")
+		require.NoError(t, err)
+		defer ln.Close()
+		return ln.Addr().(*net.TCPAddr).Port
+	}
+
 	// Works with valid inputs
-	ports := ci.PortAllocator.Grab(2)
+	ports := []int{allocPort(), allocPort()}
 
 	ln, err := config.Listener("tcp", "127.0.0.1", ports[0])
 	if err != nil {

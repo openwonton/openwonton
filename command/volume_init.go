@@ -29,7 +29,7 @@ type VolumeInitCommand struct {
 
 func (c *VolumeInitCommand) Help() string {
 	helpText := `
-Usage: nomad volume init <filename>
+Usage: wonton volume init <filename>
 
   Creates an example volume specification file that can be used as a starting
   point to customize further. If no filename is give, the default "volume.json"

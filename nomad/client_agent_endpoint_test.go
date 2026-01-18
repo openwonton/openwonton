@@ -15,17 +15,17 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client"
-	"github.com/hashicorp/nomad/client/config"
-	sframer "github.com/hashicorp/nomad/client/lib/streamframer"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client"
+	"github.com/openwonton/openwonton/client/config"
+	sframer "github.com/openwonton/openwonton/client/lib/streamframer"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/command/agent/pprof"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -293,7 +293,7 @@ func TestMonitor_Monitor_RemoteServer(t *testing.T) {
 			encoder := codec.NewEncoder(p1, structs.MsgpackHandle)
 			require.Nil(encoder.Encode(req))
 
-			timeout := time.After(2 * time.Second)
+			timeout := time.After(testutil.Timeout(5 * time.Second))
 			received := ""
 
 		OUTER:

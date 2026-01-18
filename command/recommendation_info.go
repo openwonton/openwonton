@@ -23,7 +23,7 @@ type RecommendationInfoCommand struct {
 // Help satisfies the cli.Command Help function.
 func (r *RecommendationInfoCommand) Help() string {
 	helpText := `
-Usage: nomad recommendation info [options] <recommendation_id>
+Usage: wonton recommendation info [options] <recommendation_id>
 
   Info is used to read the specified recommendation.
 

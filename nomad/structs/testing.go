@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	psstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 // NodeResourcesToAllocatedResources converts a node resources to an allocated

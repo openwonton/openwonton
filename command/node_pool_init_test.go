@@ -11,8 +11,8 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/asset"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/command/asset"
 )
 
 func TestNodePoolInitCommand_Implements(t *testing.T) {
@@ -21,7 +21,7 @@ func TestNodePoolInitCommand_Implements(t *testing.T) {
 }
 
 func TestNodePoolInitCommand_Run(t *testing.T) {
-	ci.Parallel(t)
+	lockChdir(t)
 	dir := t.TempDir()
 	origDir, err := os.Getwd()
 	must.NoError(t, err)
@@ -30,7 +30,6 @@ func TestNodePoolInitCommand_Run(t *testing.T) {
 	t.Cleanup(func() { os.Chdir(origDir) })
 
 	t.Run("hcl", func(t *testing.T) {
-		ci.Parallel(t)
 		dir := dir
 		ui := cli.NewMockUi()
 		cmd := &NodePoolInitCommand{Meta: Meta{Ui: ui}}
@@ -75,7 +74,6 @@ func TestNodePoolInitCommand_Run(t *testing.T) {
 	})
 
 	t.Run("json", func(t *testing.T) {
-		ci.Parallel(t)
 		dir := dir
 		ui := cli.NewMockUi()
 		cmd := &NodePoolInitCommand{Meta: Meta{Ui: ui}}

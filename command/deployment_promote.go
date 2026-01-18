@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type DeploymentPromoteCommand struct {
 
 func (c *DeploymentPromoteCommand) Help() string {
 	helpText := `
-Usage: nomad deployment promote [options] <deployment id>
+Usage: wonton deployment promote [options] <deployment id>
 
   Promote is used to promote task groups in a deployment. Promotion should occur
   when the deployment has placed canaries for a task group and those canaries have

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	memdb "github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // autopilotConfigTableSchema returns a new table schema used for storing

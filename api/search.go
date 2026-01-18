@@ -4,7 +4,7 @@
 package api
 
 import (
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 )
 
 type Search struct {

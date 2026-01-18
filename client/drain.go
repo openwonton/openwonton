@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func (c *Client) DrainSelf() error {

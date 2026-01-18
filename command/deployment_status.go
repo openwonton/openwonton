@@ -14,8 +14,8 @@ import (
 	"time"
 
 	"github.com/gosuri/uilive"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/go-glint"
 	"github.com/mitchellh/go-glint/components"
 	"github.com/moby/term"
@@ -28,7 +28,7 @@ type DeploymentStatusCommand struct {
 
 func (c *DeploymentStatusCommand) Help() string {
 	helpText := `
-Usage: nomad deployment status [options] <deployment id>
+Usage: wonton deployment status [options] <deployment id>
 
   Status is used to display the status of a deployment. The status will display
   the number of desired changes as well as the currently applied changes.

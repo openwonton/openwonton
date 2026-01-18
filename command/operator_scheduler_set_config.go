@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	flagHelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	flagHelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -155,7 +155,7 @@ func (o *OperatorSchedulerSetConfig) Synopsis() string {
 
 func (o *OperatorSchedulerSetConfig) Help() string {
 	helpText := `
-Usage: nomad operator scheduler set-config [options]
+Usage: wonton operator scheduler set-config [options]
 
   Modifies the current scheduler configuration.
 

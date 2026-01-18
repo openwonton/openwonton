@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/jobspec2"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/jobspec2"
 	"github.com/shoenig/test/must"
 )
 

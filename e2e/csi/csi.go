@@ -15,11 +15,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	e2e "github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	e2e "github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/e2e/framework"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 func init() {
@@ -120,7 +120,7 @@ func waitForVolumeClaimRelease(volID string, wc *e2e.WaitConfig) error {
 }
 
 // TODO(tgross): replace this w/ AllocFS().Stat() after
-// https://github.com/hashicorp/nomad/issues/7365 is fixed
+// https://github.com/openwonton/openwonton/issues/7365 is fixed
 func readFile(client *api.Client, allocID string, path string) (bytes.Buffer, error) {
 	var stdout, stderr bytes.Buffer
 	alloc, _, err := client.Allocations().Info(allocID, nil)

@@ -19,12 +19,12 @@ import (
 
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/testutil"
 
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
@@ -1357,18 +1357,34 @@ func TestJobRestartCommand_shutdownDelay_reschedule(t *testing.T) {
 			// Check that allocs have shutdown delay event.
 			for _, alloc := range allocs {
 				for _, s := range alloc.TaskStates {
-					var killedEv *api.TaskEvent
-					var killingEv *api.TaskEvent
+					var killedTimes []int64
+					var killingTimes []int64
 					for _, ev := range s.Events {
 						if strings.Contains(ev.Type, "Killed") {
-							killedEv = ev
+							killedTimes = append(killedTimes, ev.Time)
 						}
 						if strings.Contains(ev.Type, "Killing") {
-							killingEv = ev
+							killingTimes = append(killingTimes, ev.Time)
 						}
 					}
 
-					diff := killedEv.Time - killingEv.Time
+					must.True(t, len(killedTimes) > 0, must.Sprint("missing Killed event"))
+					must.True(t, len(killingTimes) > 0, must.Sprint("missing Killing event"))
+
+					diff := time.Duration(-1)
+					for _, kt := range killingTimes {
+						for _, kd := range killedTimes {
+							if kd < kt {
+								continue
+							}
+							cand := time.Duration(kd - kt)
+							if diff < 0 || cand < diff {
+								diff = cand
+							}
+						}
+					}
+
+					must.True(t, diff >= 0, must.Sprint("no Killed event after Killing event"))
 					if tc.shutdownDelay {
 						must.GreaterEq(t, shutdownDelay, time.Duration(diff))
 					} else {

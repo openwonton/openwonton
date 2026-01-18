@@ -16,7 +16,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-cleanhttp"
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -34,7 +34,7 @@ type OperatorAPICommand struct {
 
 func (*OperatorAPICommand) Help() string {
 	helpText := `
-Usage: nomad operator api [options] <path>
+Usage: wonton operator api [options] <path>
 
   api is a utility command for accessing Nomad's HTTP API and is inspired by
   the popular curl command line tool. Nomad's operator api command populates

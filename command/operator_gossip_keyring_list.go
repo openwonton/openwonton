@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -20,7 +20,7 @@ type OperatorGossipKeyringListCommand struct {
 
 func (c *OperatorGossipKeyringListCommand) Help() string {
 	helpText := `
-Usage: nomad operator gossip keyring list [options]
+Usage: wonton operator gossip keyring list [options]
 
   List all gossip keys currently in use within the cluster.
 

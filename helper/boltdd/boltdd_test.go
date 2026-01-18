@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 	"go.etcd.io/bbolt"
 )

@@ -4,9 +4,9 @@
 package volumewatcher
 
 import (
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // Create a client node with plugin info

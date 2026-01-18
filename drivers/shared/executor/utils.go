@@ -12,9 +12,9 @@ import (
 	"github.com/golang/protobuf/ptypes"
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/drivers/shared/executor/proto"
-	"github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/openwonton/openwonton/drivers/shared/executor/proto"
+	"github.com/openwonton/openwonton/helper/stats"
+	"github.com/openwonton/openwonton/plugins/base"
 )
 
 const (

@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/cap/util"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -24,7 +24,7 @@ type UiCommand struct {
 
 func (c *UiCommand) Help() string {
 	helpText := `
-Usage: nomad ui [options] <identifier>
+Usage: wonton ui [options] <identifier>
 
 Open the Nomad Web UI in the default browser. An optional identifier may be
 provided, in which case the UI will be opened to view the details for that

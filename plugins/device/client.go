@@ -10,9 +10,9 @@ import (
 
 	"github.com/LK4D4/joincontext"
 	"github.com/golang/protobuf/ptypes"
-	"github.com/hashicorp/nomad/helper/pluginutils/grpcutils"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device/proto"
+	"github.com/openwonton/openwonton/helper/pluginutils/grpcutils"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/device/proto"
 )
 
 // devicePluginClient implements the client side of a remote device plugin, using

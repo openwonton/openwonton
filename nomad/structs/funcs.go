@@ -14,7 +14,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/acl"
+	"github.com/openwonton/openwonton/acl"
 	"golang.org/x/crypto/blake2b"
 )
 

@@ -14,12 +14,12 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/logmon"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/logmon"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	bstructs "github.com/openwonton/openwonton/plugins/base/structs"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 )

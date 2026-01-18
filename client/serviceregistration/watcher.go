@@ -10,8 +10,8 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // composite of allocID + taskName for uniqueness

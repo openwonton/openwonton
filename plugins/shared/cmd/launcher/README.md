@@ -11,13 +11,13 @@ plugin with your own.
 
 
 ```
-# Current working directory should be the root folder: github.com/hashicorp/nomad
+# Current working directory should be the root folder: github.com/openwonton/openwonton
 
 # Build the plugin launcher
-$ go build github.com/hashicorp/nomad/plugins/shared/cmd/launcher/
+$ go build github.com/openwonton/openwonton/plugins/shared/cmd/launcher/
 
 # Build the example fs-device plugin
-$ go build -o fs-device github.com/hashicorp/nomad/plugins/device/cmd/example/cmd
+$ go build -o fs-device github.com/openwonton/openwonton/plugins/device/cmd/example/cmd
 
 # Launch the plugin
 $ ./launcher device ./fs-device

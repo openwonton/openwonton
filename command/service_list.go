@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -24,7 +24,7 @@ type ServiceListCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ServiceListCommand) Help() string {
 	helpText := `
-Usage: nomad service list [options]
+Usage: wonton service list [options]
 
   List is used to list the currently registered services.
 

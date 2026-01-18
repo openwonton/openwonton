@@ -9,8 +9,8 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 var (

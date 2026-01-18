@@ -6,9 +6,9 @@ package command
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

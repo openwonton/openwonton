@@ -43,7 +43,7 @@ COPY ./scripts/release/docker-build-all /tmp/scripts/docker-build-all
 ENV GOPATH="/opt/gopath" \
     PATH="/home/vagrant/.nvm/versions/node/.default/bin:/home/vagrant/bin:/opt/gopath/bin:/home/vagrant/.yarn/bin:/home/vagrant/.config/yarn/global/node_modules/.bin:$PATH"
 
-RUN mkdir -p /opt/gopath/src/github.com/hashicorp/nomad
+RUN mkdir -p /opt/gopath/src/github.com/openwonton/openwonton
 RUN mkdir -p /home/vagrant/bin \
     && mkdir -p /home/vagrant/bin /home/vagrant/.ssh \
     && git config --global user.email "nomad@hashicorp.com" \

@@ -15,7 +15,7 @@ type SystemReconcileCommand struct {
 
 func (s *SystemReconcileCommand) Help() string {
 	helpText := `
-Usage: nomad system reconcile <subcommand> [options]
+Usage: wonton system reconcile <subcommand> [options]
 
   This command groups subcommands for interacting with the system reconcile API.
 

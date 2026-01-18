@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
 )

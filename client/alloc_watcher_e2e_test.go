@@ -10,13 +10,13 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/nomad"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -58,6 +58,7 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 			CertFile:             clientCertFn,
 			KeyFile:              clientKeyFn,
 		}
+		c.Server.Enabled = false
 		c.Client.Enabled = true
 		c.Client.Servers = []string{server.GetConfig().RPCAddr.String()}
 	}
@@ -134,7 +135,7 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 			newAlloc = allocReply.Allocations[0]
 		}
 
-		return newAlloc.ClientStatus != structs.AllocClientStatusRunning,
+		return newAlloc.ClientStatus == structs.AllocClientStatusRunning,
 			fmt.Errorf("client status: %v", newAlloc.ClientStatus)
 	}, func(err error) {
 		t.Fatalf("new alloc not running: %v", err)

@@ -8,7 +8,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"golang.org/x/exp/slices"
 )
 

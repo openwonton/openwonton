@@ -9,12 +9,12 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/serviceregistration/checks"
+	"github.com/openwonton/openwonton/client/serviceregistration/checks/checkstore"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

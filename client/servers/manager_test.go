@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/servers"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/servers"
+	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/stretchr/testify/require"
 )
 

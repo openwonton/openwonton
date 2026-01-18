@@ -16,7 +16,7 @@ type NodeConfigCommand struct {
 
 func (c *NodeConfigCommand) Help() string {
 	helpText := `
-Usage: nomad node config [options]
+Usage: wonton node config [options]
 
   View or modify a client node's configuration details. This command only works
   on client nodes, and can be used to update the running client configurations

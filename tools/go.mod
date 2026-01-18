@@ -1,4 +1,4 @@
-module github.com/hashicorp/nomad/tools
+module github.com/openwonton/openwonton/tools
 
 go 1.20
 

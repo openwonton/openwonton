@@ -56,7 +56,7 @@ rules:
       # Pattern used by endpoints that support both normal ACLs and workload
       # identity but break authentication and authorization up
       # TODO: currently this is just for Variables and should be removed once
-      # https://github.com/hashicorp/nomad/issues/15875 is complete.
+      # https://github.com/openwonton/openwonton/issues/15875 is complete.
       - pattern-not-inside: |
           authErr := $A.$B.Authenticate($A.ctx, args)
           ...
@@ -69,7 +69,7 @@ rules:
       # Second pattern used by endpoints that support both normal ACLs and
       # workload identity but break authentication and authorization up
       # TODO: currently this is just for Variables and should be removed once
-      # https://github.com/hashicorp/nomad/issues/15875 is complete.
+      # https://github.com/openwonton/openwonton/issues/15875 is complete.
       - pattern-not-inside: |
           authErr := $A.$B.Authenticate($A.ctx, args)
           ...

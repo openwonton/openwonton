@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type EvalListCommand struct {
 
 func (c *EvalListCommand) Help() string {
 	helpText := `
-Usage: nomad eval list [options]
+Usage: wonton eval list [options]
 
   List is used to list the set of evaluations processed by Nomad.
 

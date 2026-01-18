@@ -17,7 +17,7 @@ type AgentInfoCommand struct {
 
 func (c *AgentInfoCommand) Help() string {
 	helpText := `
-Usage: nomad agent-info [options]
+Usage: wonton agent-info [options]
 
   Display status information about the local agent.
 

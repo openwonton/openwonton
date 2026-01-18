@@ -16,9 +16,9 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/go-getter"
-	"github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/helper/subproc"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/interfaces"
+	"github.com/openwonton/openwonton/helper/subproc"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

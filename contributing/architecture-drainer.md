@@ -177,9 +177,9 @@ flowchart TD
 
 [`nomad node drain`]: https://developer.hashicorp.com/nomad/docs/commands/node/drain
 [node drain tutorial]: https://developer.hashicorp.com/nomad/tutorials/manage-clusters/node-drain
-[`nomad/drainer`]: https://github.com/hashicorp/nomad/tree/main/nomad/drainer
-[`watch_nodes.go`]: https://github.com/hashicorp/nomad/blob/main/nomad/drainer/watch_nodes.go
-[`watch_jobs.go`]: https://github.com/hashicorp/nomad/blob/main/nomad/drainer/watch_jobs.go
-[`drain_heap.go`]: https://github.com/hashicorp/nomad/blob/main/nomad/drainer/drain_heap.go
-[`nomad/drainer_shims.go`]: https://github.com/hashicorp/nomad/blob/main/nomad/drainer_shims.go
+[`nomad/drainer`]: https://github.com/openwonton/openwonton/tree/main/nomad/drainer
+[`watch_nodes.go`]: https://github.com/openwonton/openwonton/blob/main/nomad/drainer/watch_nodes.go
+[`watch_jobs.go`]: https://github.com/openwonton/openwonton/blob/main/nomad/drainer/watch_jobs.go
+[`drain_heap.go`]: https://github.com/openwonton/openwonton/blob/main/nomad/drainer/drain_heap.go
+[`nomad/drainer_shims.go`]: https://github.com/openwonton/openwonton/blob/main/nomad/drainer_shims.go
 [`migrate`]: https://developer.hashicorp.com/nomad/docs/job-specification/migrate

@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api/internal/testutil"
+	"github.com/openwonton/openwonton/api/internal/testutil"
 	"github.com/shoenig/test"
 	"github.com/shoenig/test/must"
 )

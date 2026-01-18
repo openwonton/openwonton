@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -31,7 +31,7 @@ type ACLBindingRuleCreateCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLBindingRuleCreateCommand) Help() string {
 	helpText := `
-Usage: nomad acl binding-rule create [options]
+Usage: wonton acl binding-rule create [options]
 
   Create is used to create new ACL binding rules. Use requires a management
   token.

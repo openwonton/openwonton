@@ -15,7 +15,7 @@ type ServerCommand struct {
 
 func (f *ServerCommand) Help() string {
 	helpText := `
-Usage: nomad server <subcommand> [options] [args]
+Usage: wonton server <subcommand> [options] [args]
 
   This command groups subcommands for interacting with Nomad servers. Users can
   list Servers, join a server to the cluster, and force leave a server.

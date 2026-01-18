@@ -16,7 +16,7 @@ type TLSCACommand struct {
 
 func (c *TLSCACommand) Help() string {
 	helpText := `
-Usage: nomad tls ca <subcommand> [options]
+Usage: wonton tls ca <subcommand> [options]
 
   This command groups subcommands for interacting with certificate authorities.
   For examples, see the documentation.

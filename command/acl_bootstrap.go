@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -21,7 +21,7 @@ type ACLBootstrapCommand struct {
 
 func (c *ACLBootstrapCommand) Help() string {
 	helpText := `
-Usage: nomad acl bootstrap [options]
+Usage: wonton acl bootstrap [options]
 
   Bootstrap is used to bootstrap the ACL system and get an initial token.
 

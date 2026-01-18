@@ -18,7 +18,7 @@ type VolumeCreateCommand struct {
 
 func (c *VolumeCreateCommand) Help() string {
 	helpText := `
-Usage: nomad volume create [options] <input>
+Usage: wonton volume create [options] <input>
 
   Creates a volume in an external storage provider and registers it in Nomad.
 

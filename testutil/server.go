@@ -25,8 +25,8 @@ import (
 	"time"
 
 	cleanhttp "github.com/hashicorp/go-cleanhttp"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/discover"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/discover"
 	testing "github.com/mitchellh/go-testing-interface"
 )
 

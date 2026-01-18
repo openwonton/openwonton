@@ -12,17 +12,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	ctestutils "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/drivers/shared/capabilities"
-	"github.com/hashicorp/nomad/drivers/shared/executor"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	basePlug "github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dtestutil "github.com/hashicorp/nomad/plugins/drivers/testutils"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	ctestutils "github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/drivers/shared/capabilities"
+	"github.com/openwonton/openwonton/drivers/shared/executor"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	basePlug "github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	dtestutil "github.com/openwonton/openwonton/plugins/drivers/testutils"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
 )
@@ -93,6 +93,8 @@ func TestExecDriver_StartWaitStop(t *testing.T) {
 func TestExec_ExecTaskStreaming(t *testing.T) {
 	ci.SkipTestWithoutRootAccess(t)
 	ci.Parallel(t)
+	ctestutils.RequireRoot(t)
+	ctestutils.ExecCompatible(t)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()

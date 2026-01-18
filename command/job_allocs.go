@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type JobAllocsCommand struct {
 
 func (c *JobAllocsCommand) Help() string {
 	helpText := `
-Usage: nomad job allocs [options] <job>
+Usage: wonton job allocs [options] <job>
 
   Display allocations for a particular job.
 

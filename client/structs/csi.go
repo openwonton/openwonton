@@ -6,8 +6,8 @@ package structs
 import (
 	"errors"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/csi"
 )
 
 // CSIVolumeMountOptions contains the mount options that should be provided when

@@ -8,7 +8,7 @@ package catalog
 import (
 	"sync"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
 )
 
 var (

@@ -8,7 +8,7 @@ import (
 	"errors"
 	"sync/atomic"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

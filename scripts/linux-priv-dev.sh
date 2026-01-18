@@ -24,7 +24,7 @@ sed -i -e "s/.*nomad.*/${ip} ${hostname}/" /etc/hosts
 
 # Ensure we cd into the working directory on login
 if [ -d /home/vagrant/ ] ; then
-  if ! grep "cd /opt/gopath/src/github.com/hashicorp/nomad" /home/vagrant/.profile ; then
-    echo 'cd /opt/gopath/src/github.com/hashicorp/nomad' >> /home/vagrant/.profile
+  if ! grep "cd /opt/gopath/src/github.com/openwonton/openwonton" /home/vagrant/.profile ; then
+    echo 'cd /opt/gopath/src/github.com/openwonton/openwonton' >> /home/vagrant/.profile
   fi
 fi

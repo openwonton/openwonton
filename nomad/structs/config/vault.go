@@ -6,7 +6,7 @@ package config
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/helper/pointer"
 	vault "github.com/hashicorp/vault/api"
 )
 

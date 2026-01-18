@@ -13,10 +13,10 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/consul"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	ti "github.com/openwonton/openwonton/client/allocrunner/taskrunner/interfaces"
+	"github.com/openwonton/openwonton/client/consul"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

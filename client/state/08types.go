@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/state"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner/state"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 // allocRunnerMutableState08 is state that had to be written on each save as it
 // changed over the life-cycle of the alloc_runner in Nomad 0.8.
 //
-// https://github.com/hashicorp/nomad/blob/v0.8.6/client/alloc_runner.go#L146-L153
+// https://github.com/openwonton/openwonton/blob/v0.8.6/client/alloc_runner.go#L146-L153
 type allocRunnerMutableState08 struct {
 	// AllocClientStatus does not need to be upgraded as it is computed
 	// from task states.
@@ -35,7 +35,7 @@ type allocRunnerMutableState08 struct {
 // taskRunnerState08 was used to snapshot the state of the task runner in Nomad
 // 0.8.
 //
-// https://github.com/hashicorp/nomad/blob/v0.8.6/client/task_runner.go#L188-L197
+// https://github.com/openwonton/openwonton/blob/v0.8.6/client/task_runner.go#L188-L197
 // COMPAT(0.10): Allows upgrading from 0.8.X to 0.9.0.
 type taskRunnerState08 struct {
 	Version            string

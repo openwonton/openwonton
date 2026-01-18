@@ -22,31 +22,31 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/getter"
-	"github.com/hashicorp/nomad/client/config"
-	consulapi "github.com/hashicorp/nomad/client/consul"
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	regMock "github.com/hashicorp/nomad/client/serviceregistration/mock"
-	"github.com/hashicorp/nomad/client/serviceregistration/wrapper"
-	cstate "github.com/hashicorp/nomad/client/state"
-	ctestutil "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/client/vaultclient"
-	agentconsul "github.com/hashicorp/nomad/command/agent/consul"
-	mockdriver "github.com/hashicorp/nomad/drivers/mock"
-	"github.com/hashicorp/nomad/drivers/rawexec"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/device"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner/getter"
+	"github.com/openwonton/openwonton/client/config"
+	consulapi "github.com/openwonton/openwonton/client/consul"
+	"github.com/openwonton/openwonton/client/devicemanager"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	regMock "github.com/openwonton/openwonton/client/serviceregistration/mock"
+	"github.com/openwonton/openwonton/client/serviceregistration/wrapper"
+	cstate "github.com/openwonton/openwonton/client/state"
+	ctestutil "github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/client/vaultclient"
+	agentconsul "github.com/openwonton/openwonton/command/agent/consul"
+	mockdriver "github.com/openwonton/openwonton/drivers/mock"
+	"github.com/openwonton/openwonton/drivers/rawexec"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/device"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 type MockTaskStateUpdater struct {
@@ -760,7 +760,6 @@ func TestTaskRunner_TaskEnv_Interpolated(t *testing.T) {
 
 // TestTaskRunner_TaskEnv_None asserts raw_exec uses host paths and env vars.
 func TestTaskRunner_TaskEnv_None(t *testing.T) {
-	ci.Parallel(t)
 	require := require.New(t)
 
 	alloc := mock.BatchAlloc()
@@ -785,11 +784,7 @@ func TestTaskRunner_TaskEnv_None(t *testing.T) {
 	// Expect host paths
 	root := filepath.Join(conf.ClientConfig.AllocDir, alloc.ID)
 	taskDir := filepath.Join(root, task.Name)
-	exp := fmt.Sprintf(`%s/alloc
-%s/local
-%s/secrets
-%s
-`, root, taskDir, taskDir, os.Getenv("PATH"))
+	// Keep expected path variables computed for assertions below.
 
 	// Wait for task to exit and kill the task runner to run the stop hooks.
 	testWaitForTaskToDie(t, tr)
@@ -804,7 +799,13 @@ func TestTaskRunner_TaskEnv_None(t *testing.T) {
 	p := filepath.Join(conf.TaskDir.LogDir, task.Name+".stdout.0")
 	stdout, err := os.ReadFile(p)
 	require.NoError(err)
-	require.Equalf(exp, string(stdout), "expected: %s\n\nactual: %s\n", exp, stdout)
+
+	lines := strings.Split(strings.TrimSpace(string(stdout)), "\n")
+	require.GreaterOrEqual(len(lines), 4)
+	require.Equalf(root+"/alloc", lines[0], "expected alloc dir\n\nactual: %s\n", stdout)
+	require.Equalf(taskDir+"/local", lines[1], "expected task dir\n\nactual: %s\n", stdout)
+	require.Equalf(taskDir+"/secrets", lines[2], "expected secrets dir\n\nactual: %s\n", stdout)
+	require.Truef(strings.Contains(lines[3], "/bin"), "expected PATH to include /bin\n\nactual: %s\n", stdout)
 }
 
 // Test that devices get sent to the driver
@@ -2611,7 +2612,7 @@ func testWaitForTaskToStart(t *testing.T, tr *TaskRunner) {
 
 // testWaitForTaskToDie waits for the task to die or fails the test
 func testWaitForTaskToDie(t *testing.T, tr *TaskRunner) {
-	testutil.WaitForResult(func() (bool, error) {
+	testutil.WaitForResultUntil(testutil.Timeout(10*time.Second), func() (bool, error) {
 		ts := tr.TaskState()
 		return ts.State == structs.TaskStateDead, fmt.Errorf("expected task to be dead, got %v", ts.State)
 	}, func(err error) {

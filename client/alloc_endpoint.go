@@ -13,12 +13,12 @@ import (
 
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/acl"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/acl"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	nstructs "github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // Allocations endpoint is used for interacting with client allocations

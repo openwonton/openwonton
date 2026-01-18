@@ -21,15 +21,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/stream"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/stream"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 type MockSink struct {
@@ -3016,7 +3016,7 @@ func TestFSM_ReconcileSummaries(t *testing.T) {
 
 // COMPAT: Remove in 0.11
 func TestFSM_ReconcileParentJobSummary(t *testing.T) {
-	// This test exercises code to handle https://github.com/hashicorp/nomad/issues/3886
+	// This test exercises code to handle https://github.com/openwonton/openwonton/issues/3886
 	ci.Parallel(t)
 
 	require := require.New(t)

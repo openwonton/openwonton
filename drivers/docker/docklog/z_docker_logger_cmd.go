@@ -8,7 +8,7 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/openwonton/openwonton/plugins/base"
 )
 
 // Install a plugin cli handler to ease working with tests

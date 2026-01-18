@@ -4,8 +4,8 @@
 package taskrunner
 
 import (
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/taskrunner/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func (tr *TaskRunner) Alloc() *structs.Allocation {

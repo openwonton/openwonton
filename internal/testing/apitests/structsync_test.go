@@ -7,9 +7,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

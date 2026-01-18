@@ -13,7 +13,7 @@ devices and working with the Nomad client to make them available to assigned
 tasks.
 
 For a real world example of a Nomad device plugin implementation, see the [Nvidia
-GPU plugin](https://github.com/hashicorp/nomad-device-nvidia).
+GPU plugin](https://github.com/openwonton/openwonton-device-nvidia).
 
 ## Authoring Device Plugins
 
@@ -71,11 +71,11 @@ variables for the task, as well as a list of host devices and files to be mounte
 into the task's filesystem. Any orchestration required to prepare the device for
 use should also be performed in this function.
 
-[deviceplugin]: https://github.com/hashicorp/nomad/blob/v0.9.0/plugins/device/device.go#L20-L33
+[deviceplugin]: https://github.com/openwonton/openwonton/blob/v0.9.0/plugins/device/device.go#L20-L33
 [baseplugin]: /nomad/docs/concepts/plugins/base
-[skeletonproject]: https://github.com/hashicorp/nomad-skeleton-device-plugin
-[fingerprintresponse]: https://github.com/hashicorp/nomad/blob/v0.9.0/plugins/device/device.go#L37-L43
-[fingerprintfn]: https://github.com/hashicorp/nomad-skeleton-device-plugin/blob/v0.1.0/device/device.go#L159-L165
-[statsfn]: https://github.com/hashicorp/nomad-skeleton-device-plugin/blob/v0.1.0/device/device.go#L169-L176
-[reservefn]: https://github.com/hashicorp/nomad-skeleton-device-plugin/blob/v0.1.0/device/device.go#L189-L245
-[dimensioned]: https://github.com/hashicorp/nomad/blob/v0.9.0/plugins/shared/structs/stats.go#L33-L34
+[skeletonproject]: https://github.com/openwonton/openwonton-skeleton-device-plugin
+[fingerprintresponse]: https://github.com/openwonton/openwonton/blob/v0.9.0/plugins/device/device.go#L37-L43
+[fingerprintfn]: https://github.com/openwonton/openwonton-skeleton-device-plugin/blob/v0.1.0/device/device.go#L159-L165
+[statsfn]: https://github.com/openwonton/openwonton-skeleton-device-plugin/blob/v0.1.0/device/device.go#L169-L176
+[reservefn]: https://github.com/openwonton/openwonton-skeleton-device-plugin/blob/v0.1.0/device/device.go#L189-L245
+[dimensioned]: https://github.com/openwonton/openwonton/blob/v0.9.0/plugins/shared/structs/stats.go#L33-L34

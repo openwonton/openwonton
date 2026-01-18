@@ -23,18 +23,18 @@ import (
 	multierror "github.com/hashicorp/go-multierror"
 	plugin "github.com/hashicorp/go-plugin"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/drivers/docker/docklog"
-	"github.com/hashicorp/nomad/drivers/shared/capabilities"
-	"github.com/hashicorp/nomad/drivers/shared/eventer"
-	"github.com/hashicorp/nomad/drivers/shared/hostnames"
-	"github.com/hashicorp/nomad/drivers/shared/resolvconf"
-	"github.com/hashicorp/nomad/helper"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/drivers/docker/docklog"
+	"github.com/openwonton/openwonton/drivers/shared/capabilities"
+	"github.com/openwonton/openwonton/drivers/shared/eventer"
+	"github.com/openwonton/openwonton/drivers/shared/hostnames"
+	"github.com/openwonton/openwonton/drivers/shared/resolvconf"
+	"github.com/openwonton/openwonton/helper"
+	nstructs "github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	pstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 	"github.com/ryanuber/go-glob"
 	"golang.org/x/exp/slices"
 )
@@ -1703,7 +1703,7 @@ func (d *Driver) SignalTask(taskID string, signal string) error {
 
 	// TODO: review whether we can timeout in this and other Docker API
 	// calls without breaking the expected client behavior.
-	// see https://github.com/hashicorp/nomad/issues/9503
+	// see https://github.com/openwonton/openwonton/issues/9503
 	return h.Signal(context.Background(), sig)
 }
 

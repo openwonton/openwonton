@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -27,7 +27,7 @@ type ServiceInfoCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ServiceInfoCommand) Help() string {
 	helpText := `
-Usage: nomad service info [options] <service_name>
+Usage: wonton service info [options] <service_name>
 
   Info is used to read the services registered to a single service name.
 

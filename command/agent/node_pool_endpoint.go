@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 func (s *HTTPServer) NodePoolsRequest(resp http.ResponseWriter, req *http.Request) (any, error) {

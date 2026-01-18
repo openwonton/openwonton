@@ -3,4 +3,4 @@
 # SPDX-License-Identifier: MPL-2.0
 
 
-cd /opt/gopath/src/github.com/hashicorp/nomad && make bootstrap
+cd /opt/gopath/src/github.com/openwonton/openwonton && make bootstrap

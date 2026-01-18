@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type AllocRestartCommand struct {
 
 func (c *AllocRestartCommand) Help() string {
 	helpText := `
-Usage: nomad alloc restart [options] <allocation> <task>
+Usage: wonton alloc restart [options] <allocation> <task>
 
   Restart an existing allocation. This command is used to restart a specific alloc
   and its tasks. If no task is provided then all of the allocation's tasks that

@@ -6,12 +6,12 @@ package client
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/mock"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/nomad/mock"
+	nstructs "github.com/openwonton/openwonton/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

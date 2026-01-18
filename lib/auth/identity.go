@@ -4,7 +4,7 @@
 package auth
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 type Identity struct {

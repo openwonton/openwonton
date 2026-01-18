@@ -6,7 +6,7 @@ package agent
 import (
 	"net/http"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // SearchRequest accepts a prefix and context and returns a list of matching

@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type SentinelApplyCommand struct {
 
 func (c *SentinelApplyCommand) Help() string {
 	helpText := `
-Usage: nomad sentinel apply [options] <name> <file>
+Usage: wonton sentinel apply [options] <name> <file>
 
   Apply is used to write a new Sentinel policy or update an existing one.
   The name of the policy and file must be specified. The file will be read

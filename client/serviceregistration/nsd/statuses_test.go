@@ -6,13 +6,13 @@ package nsd
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	"github.com/openwonton/openwonton/client/serviceregistration/checks/checkstore"
+	"github.com/openwonton/openwonton/client/state"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 )
 

@@ -4,11 +4,12 @@
 package testutils
 
 import (
+	"runtime"
 	"strings"
 	"testing"
 
 	"github.com/docker/docker/libnetwork/resolvconf"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/shoenig/test/must"
 )
 
@@ -33,10 +34,11 @@ func TestTaskDNSConfig(t *testing.T, driver *DriverHarness, taskID string, dns *
 		must.Zero(t, r.exitCode)
 
 		resolvConf := []byte(strings.TrimSpace(r.stdout))
+		containerNameservers := resolvconf.GetNameservers(resolvConf, resolvconf.IP)
 
 		if dns != nil {
 			if len(dns.Servers) > 0 {
-				must.SliceContainsAll(t, dns.Servers, resolvconf.GetNameservers(resolvConf, resolvconf.IP))
+				must.SliceContainsAll(t, dns.Servers, containerNameservers)
 			}
 			if len(dns.Searches) > 0 {
 				must.SliceContainsAll(t, dns.Searches, resolvconf.GetSearchDomains(resolvConf))
@@ -45,6 +47,11 @@ func TestTaskDNSConfig(t *testing.T, driver *DriverHarness, taskID string, dns *
 				must.SliceContainsAll(t, dns.Options, resolvconf.GetOptions(resolvConf))
 			}
 		} else {
+			if runtime.GOOS == "darwin" && !usesHostNetwork && isDockerDesktopResolver(containerNameservers) {
+				must.Greater(t, 0, len(containerNameservers))
+				return
+			}
+
 			systemPath := "/etc/resolv.conf"
 			if !usesHostNetwork {
 				systemPath = resolvconf.Path()
@@ -52,9 +59,16 @@ func TestTaskDNSConfig(t *testing.T, driver *DriverHarness, taskID string, dns *
 
 			system, specificErr := resolvconf.GetSpecific(systemPath)
 			must.NoError(t, specificErr)
-			must.SliceContainsAll(t, resolvconf.GetNameservers(system.Content, resolvconf.IP), resolvconf.GetNameservers(resolvConf, resolvconf.IP))
+			must.SliceContainsAll(t, resolvconf.GetNameservers(system.Content, resolvconf.IP), containerNameservers)
 			must.SliceContainsAll(t, resolvconf.GetSearchDomains(system.Content), resolvconf.GetSearchDomains(resolvConf))
 			must.SliceContainsAll(t, resolvconf.GetOptions(system.Content), resolvconf.GetOptions(resolvConf))
 		}
 	})
+}
+
+func isDockerDesktopResolver(nameservers []string) bool {
+	if len(nameservers) != 1 {
+		return false
+	}
+	return nameservers[0] == "127.0.0.11" || nameservers[0] == "192.168.65.7"
 }

@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 )
 
 // supportedTLSVersions are the current TLS versions that Nomad supports
@@ -43,6 +43,22 @@ var supportedTLSCiphers = map[string]uint16{
 	"TLS_RSA_WITH_AES_128_CBC_SHA256":         tls.TLS_RSA_WITH_AES_128_CBC_SHA256,
 	"TLS_RSA_WITH_AES_128_CBC_SHA":            tls.TLS_RSA_WITH_AES_128_CBC_SHA,
 	"TLS_RSA_WITH_AES_256_CBC_SHA":            tls.TLS_RSA_WITH_AES_256_CBC_SHA,
+}
+
+const tlsTestTimeEnv = "NOMAD_TLS_TEST_TIME"
+
+func tlsTimeFunc() func() time.Time {
+	if v := strings.TrimSpace(os.Getenv(tlsTestTimeEnv)); v != "" {
+		if t, err := time.Parse(time.RFC3339, v); err == nil {
+			return func() time.Time { return t }
+		}
+	}
+	return time.Now
+}
+
+// TestTimeFunc returns a time provider that respects NOMAD_TLS_TEST_TIME.
+func TestTimeFunc() func() time.Time {
+	return tlsTimeFunc()
 }
 
 // signatureAlgorithm is the string representation of a signing algorithm
@@ -242,6 +258,7 @@ func (c *Config) OutgoingTLSConfig() (*tls.Config, error) {
 		CipherSuites:             c.CipherSuites,
 		MinVersion:               c.MinVersion,
 		PreferServerCipherSuites: c.PreferServerCipherSuites,
+		Time:                     tlsTimeFunc(),
 	}
 	if c.VerifyServerHostname {
 		tlsConfig.InsecureSkipVerify = false
@@ -327,9 +344,13 @@ func WrapTLSClient(conn net.Conn, tlsConfig *tls.Config) (net.Conn, error) {
 
 	// The following is lightly-modified from the doFullHandshake
 	// method in crypto/tls's handshake_client.go.
+	now := tlsTimeFunc()
+	if tlsConfig.Time != nil {
+		now = tlsConfig.Time
+	}
 	opts := x509.VerifyOptions{
 		Roots:         tlsConfig.RootCAs,
-		CurrentTime:   time.Now(),
+		CurrentTime:   now(),
 		DNSName:       "",
 		Intermediates: x509.NewCertPool(),
 	}
@@ -360,6 +381,7 @@ func (c *Config) IncomingTLSConfig() (*tls.Config, error) {
 		CipherSuites:             c.CipherSuites,
 		MinVersion:               c.MinVersion,
 		PreferServerCipherSuites: c.PreferServerCipherSuites,
+		Time:                     tlsTimeFunc(),
 	}
 
 	// Parse the CA cert if any

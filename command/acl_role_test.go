@@ -6,7 +6,7 @@ package command
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/stretchr/testify/require"
 )
 

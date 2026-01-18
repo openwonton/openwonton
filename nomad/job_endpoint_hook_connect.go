@@ -12,11 +12,11 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/envoy"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/helper/envoy"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"golang.org/x/exp/slices"
 )
 

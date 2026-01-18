@@ -5,8 +5,8 @@ package structs
 
 import (
 	"github.com/golang/protobuf/ptypes/wrappers"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/plugins/shared/structs/proto"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/plugins/shared/structs/proto"
 )
 
 func ConvertProtoAttribute(in *proto.Attribute) *Attribute {

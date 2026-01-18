@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type OperatorRootKeyringRemoveCommand struct {
 
 func (c *OperatorRootKeyringRemoveCommand) Help() string {
 	helpText := `
-Usage: nomad operator root keyring remove [options] <key ID>
+Usage: wonton operator root keyring remove [options] <key ID>
 
   Remove an encryption key from the cluster. This operation may only be
   performed on keys that are not the active key.

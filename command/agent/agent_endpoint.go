@@ -19,12 +19,12 @@ import (
 	"github.com/docker/docker/pkg/ioutils"
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/api"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/api"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/command/agent/host"
+	"github.com/openwonton/openwonton/command/agent/pprof"
+	"github.com/openwonton/openwonton/nomad"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/serf/serf"
 )
 

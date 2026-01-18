@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/acl"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/acl"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/shoenig/test/must"
 )
 

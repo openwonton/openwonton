@@ -8,8 +8,8 @@ import (
 	"sync"
 
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/nomad/state/indexer"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/state/indexer"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

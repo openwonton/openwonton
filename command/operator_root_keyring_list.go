@@ -18,7 +18,7 @@ type OperatorRootKeyringListCommand struct {
 
 func (c *OperatorRootKeyringListCommand) Help() string {
 	helpText := `
-Usage: nomad operator root keyring list [options]
+Usage: wonton operator root keyring list [options]
 
   List the currently installed keys. This list returns key metadata and not
   sensitive key material.

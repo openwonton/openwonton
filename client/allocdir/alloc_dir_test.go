@@ -16,9 +16,9 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 
@@ -88,8 +88,8 @@ func TestAllocDir_BuildAlloc(t *testing.T) {
 //	import cycle, due to testutil transitively importing allocdir. This
 //	should be fixed after DriverManager is implemented.
 func MountCompatible(t *testing.T) {
-	if runtime.GOOS == "windows" {
-		t.Skip("Windows does not support mount")
+	if runtime.GOOS != "linux" {
+		t.Skip("Mount tests require Linux")
 	}
 
 	if syscall.Geteuid() != 0 {

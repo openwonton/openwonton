@@ -97,7 +97,7 @@ func (o *OperatorSchedulerGetConfig) Synopsis() string {
 
 func (o *OperatorSchedulerGetConfig) Help() string {
 	helpText := `
-Usage: nomad operator scheduler get-config [options]
+Usage: wonton operator scheduler get-config [options]
 
   Displays the current scheduler configuration.
 

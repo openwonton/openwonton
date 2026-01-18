@@ -12,12 +12,12 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hashicorp/nomad/helper"
-	hargs "github.com/hashicorp/nomad/helper/args"
-	"github.com/hashicorp/nomad/helper/escapingfs"
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/helper"
+	hargs "github.com/openwonton/openwonton/helper/args"
+	"github.com/openwonton/openwonton/helper/escapingfs"
+	"github.com/openwonton/openwonton/lib/cpuset"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/zclconf/go-cty/cty"
 )
 
@@ -160,7 +160,7 @@ type TaskEnv struct {
 
 	// EnvMap is the map of environment variables with client-specific
 	// task directories
-	// See https://github.com/hashicorp/nomad/pull/9671
+	// See https://github.com/openwonton/openwonton/pull/9671
 	EnvMapClient map[string]string
 
 	// clientTaskDir is the absolute path to the task root directory on the host
@@ -338,7 +338,7 @@ func (t *TaskEnv) ReplaceEnv(arg string) string {
 // * NOMAD_SECRETS_DIR
 // and anything that was interpolated using them.
 //
-// See https://github.com/hashicorp/nomad/pull/9671
+// See https://github.com/openwonton/openwonton/pull/9671
 func (t *TaskEnv) replaceEnvClient(arg string) string {
 	return hargs.ReplaceEnv(arg, t.EnvMapClient, t.NodeAttrs)
 }

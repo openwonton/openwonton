@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
@@ -24,7 +24,7 @@ type RecommendationApplyCommand struct {
 // Help satisfies the cli.Command Help function.
 func (r *RecommendationApplyCommand) Help() string {
 	helpText := `
-Usage: nomad recommendation apply [options] <recommendation_ids>
+Usage: wonton recommendation apply [options] <recommendation_ids>
 
   Apply one or more Nomad recommendations.
 

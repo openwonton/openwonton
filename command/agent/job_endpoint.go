@@ -10,11 +10,11 @@ import (
 	"strings"
 
 	"github.com/golang/snappy"
-	"github.com/hashicorp/nomad/acl"
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/jobspec"
-	"github.com/hashicorp/nomad/jobspec2"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/acl"
+	api "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/jobspec"
+	"github.com/openwonton/openwonton/jobspec2"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 )

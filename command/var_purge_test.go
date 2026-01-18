@@ -8,8 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/posener/complete"
 	"github.com/stretchr/testify/require"
 )
@@ -63,11 +64,11 @@ func TestVarPurgeCommand_Fails(t *testing.T) {
 }
 
 func TestVarPurgeCommand_Online(t *testing.T) {
-	ci.Parallel(t)
-
 	// Create a server
 	srv, client, url := testServer(t, true, nil)
 	defer srv.Shutdown()
+	testutil.WaitForLeader(t, srv.Agent.RPC)
+	waitForHTTP(t, client)
 
 	t.Run("unchecked", func(t *testing.T) {
 		ui := cli.NewMockUi()
@@ -89,7 +90,6 @@ func TestVarPurgeCommand_Online(t *testing.T) {
 	})
 
 	t.Run("unchecked", func(t *testing.T) {
-		ci.Parallel(t)
 		ui := cli.NewMockUi()
 		cmd := &VarPurgeCommand{Meta: Meta{Ui: ui}}
 
@@ -113,7 +113,6 @@ func TestVarPurgeCommand_Online(t *testing.T) {
 	})
 
 	t.Run("autocompleteArgs", func(t *testing.T) {
-		ci.Parallel(t)
 		ui := cli.NewMockUi()
 		cmd := &VarPurgeCommand{Meta: Meta{Ui: ui, flagAddress: url}}
 

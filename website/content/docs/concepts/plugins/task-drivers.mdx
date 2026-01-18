@@ -231,7 +231,7 @@ The Nomad client publishes events associated with an allocation. The
 tasks and the Nomad client will associate them with the correct allocation.
 
 An `Eventer` utility is available in the
-`github.com/hashicorp/nomad/drivers/shared/eventer` package implements an
+`github.com/openwonton/openwonton/drivers/shared/eventer` package implements an
 event loop and publishing mechanism for use in the `TaskEvents` function.
 
 ### `SignalTask(taskID string, signal string) error`
@@ -250,11 +250,11 @@ The `ExecTask` function is used by the Nomad client to execute commands inside
 the task execution context. For example, the Docker driver executes commands
 inside the running container. `ExecTask` is called for Consul script checks.
 
-[lxcdriver]: https://github.com/hashicorp/nomad-driver-lxc
-[driverplugin]: https://github.com/hashicorp/nomad/blob/v0.9.0/plugins/drivers/driver.go#L39-L57
-[skeletonproject]: https://github.com/hashicorp/nomad-skeleton-driver-plugin
+[lxcdriver]: https://github.com/openwonton/openwonton-driver-lxc
+[driverplugin]: https://github.com/openwonton/openwonton/blob/v0.9.0/plugins/drivers/driver.go#L39-L57
+[skeletonproject]: https://github.com/openwonton/openwonton-skeleton-driver-plugin
 [baseplugin]: /nomad/docs/concepts/plugins/base
-[taskconfig]: https://godoc.org/github.com/hashicorp/nomad/plugins/drivers#TaskConfig
-[taskhandle]: https://godoc.org/github.com/hashicorp/nomad/plugins/drivers#TaskHandle
-[fifopackage]: https://godoc.org/github.com/hashicorp/nomad/client/lib/fifo
+[taskconfig]: https://godoc.org/github.com/openwonton/openwonton/plugins/drivers#TaskConfig
+[taskhandle]: https://godoc.org/github.com/openwonton/openwonton/plugins/drivers#TaskHandle
+[fifopackage]: https://godoc.org/github.com/openwonton/openwonton/client/lib/fifo
 [rtd]: /nomad/plugins/drivers/remote

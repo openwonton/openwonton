@@ -14,13 +14,13 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 
-	sframer "github.com/hashicorp/nomad/client/lib/streamframer"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/command/agent/monitor"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
+	sframer "github.com/openwonton/openwonton/client/lib/streamframer"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/command/agent/host"
+	"github.com/openwonton/openwonton/command/agent/monitor"
+	"github.com/openwonton/openwonton/command/agent/pprof"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
 
 	"github.com/hashicorp/go-msgpack/codec"
 )

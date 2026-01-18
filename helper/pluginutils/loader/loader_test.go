@@ -14,11 +14,11 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	version "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/device"
 	"github.com/stretchr/testify/require"
 )
 

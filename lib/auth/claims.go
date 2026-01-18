@@ -11,7 +11,7 @@ import (
 
 	"github.com/mitchellh/pointerstructure"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // SelectorData returns the data for go-bexpr for selector evaluation.

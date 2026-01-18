@@ -12,9 +12,9 @@ import (
 	"strings"
 
 	"github.com/dustin/go-humanize"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/posener/complete"
 )
 
@@ -24,7 +24,7 @@ type VolumeSnapshotListCommand struct {
 
 func (c *VolumeSnapshotListCommand) Help() string {
 	helpText := `
-Usage: nomad volume snapshot list [-plugin plugin_id]
+Usage: wonton volume snapshot list [-plugin plugin_id]
 
   Display a list of CSI volume snapshots for a plugin along
   with their source volume ID as known to the external

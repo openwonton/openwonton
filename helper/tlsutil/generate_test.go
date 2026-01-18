@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/stretchr/testify/require"
 )
 
@@ -93,8 +93,10 @@ func TestGenerateCA(t *testing.T) {
 		require.Equal(t, true, cert.IsCA)
 		require.Equal(t, true, cert.BasicConstraintsValid)
 
-		require.WithinDuration(t, cert.NotBefore, time.Now(), time.Minute)
-		require.WithinDuration(t, cert.NotAfter, time.Now().AddDate(0, 0, 1825), time.Minute)
+		nowFn := tlsTimeFunc()
+		now := nowFn()
+		require.WithinDuration(t, cert.NotBefore, now, time.Minute)
+		require.WithinDuration(t, cert.NotAfter, now.AddDate(0, 0, 1825), time.Minute)
 
 		require.Equal(t, x509.KeyUsageCertSign|x509.KeyUsageCRLSign|x509.KeyUsageDigitalSignature, cert.KeyUsage)
 	})
@@ -111,8 +113,10 @@ func TestGenerateCA(t *testing.T) {
 		require.Equal(t, true, cert.IsCA)
 		require.Equal(t, true, cert.BasicConstraintsValid)
 
-		require.WithinDuration(t, cert.NotBefore, time.Now(), time.Minute)
-		require.WithinDuration(t, cert.NotAfter, time.Now().AddDate(0, 0, 1825), time.Minute)
+		nowFn := tlsTimeFunc()
+		now := nowFn()
+		require.WithinDuration(t, cert.NotBefore, now, time.Minute)
+		require.WithinDuration(t, cert.NotAfter, now.AddDate(0, 0, 1825), time.Minute)
 
 		require.Equal(t, x509.KeyUsageCertSign|x509.KeyUsageCRLSign|x509.KeyUsageDigitalSignature, cert.KeyUsage)
 	})
@@ -148,8 +152,10 @@ func TestGenerateCA(t *testing.T) {
 		require.Equal(t, true, cert.IsCA)
 		require.Equal(t, true, cert.BasicConstraintsValid)
 
-		require.WithinDuration(t, cert.NotBefore, time.Now(), time.Minute)
-		require.WithinDuration(t, cert.NotAfter, time.Now().AddDate(0, 0, 6), time.Minute)
+		nowFn := tlsTimeFunc()
+		now := nowFn()
+		require.WithinDuration(t, cert.NotBefore, now, time.Minute)
+		require.WithinDuration(t, cert.NotAfter, now.AddDate(0, 0, 6), time.Minute)
 
 		require.Equal(t, x509.KeyUsageCertSign|x509.KeyUsageCRLSign|x509.KeyUsageDigitalSignature, cert.KeyUsage)
 	})
@@ -163,7 +169,8 @@ func TestGenerateCA(t *testing.T) {
 		require.NotEmpty(t, pk)
 
 		cert, err := parseCert(ca)
-		require.WithinDuration(t, cert.NotAfter, time.Now().AddDate(0, 0, 365), time.Minute)
+		nowFn := tlsTimeFunc()
+		require.WithinDuration(t, cert.NotAfter, nowFn().AddDate(0, 0, 365), time.Minute)
 	})
 
 	t.Run("Custom CA No CN", func(t *testing.T) {
@@ -259,8 +266,10 @@ func TestGenerateCert(t *testing.T) {
 	require.Contains(t, cert.Issuer.CommonName, "Custom CA")
 	require.Equal(t, false, cert.IsCA)
 
-	require.WithinDuration(t, cert.NotBefore, time.Now(), time.Minute)
-	require.WithinDuration(t, cert.NotAfter, time.Now().AddDate(0, 0, 365), time.Minute)
+	nowFn := tlsTimeFunc()
+	now := nowFn()
+	require.WithinDuration(t, cert.NotBefore, now, time.Minute)
+	require.WithinDuration(t, cert.NotAfter, now.AddDate(0, 0, 365), time.Minute)
 
 	require.Equal(t, x509.KeyUsageDigitalSignature|x509.KeyUsageKeyEncipherment, cert.KeyUsage)
 	require.Equal(t, extKeyUsage, cert.ExtKeyUsage)

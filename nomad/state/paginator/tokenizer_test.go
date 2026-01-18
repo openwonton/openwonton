@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/mock"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/nomad/mock"
 	"github.com/stretchr/testify/require"
 )
 

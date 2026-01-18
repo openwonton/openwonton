@@ -6,11 +6,11 @@ package allocrunner
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/pluginmanager"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/plugins/drivers/testutils"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/pluginmanager"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	"github.com/openwonton/openwonton/plugins/drivers/testutils"
 	"github.com/stretchr/testify/require"
 )
 

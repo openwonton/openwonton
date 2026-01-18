@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // KeyringRequest is used route operator/raft API requests to the implementing

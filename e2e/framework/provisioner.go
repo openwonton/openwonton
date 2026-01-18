@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	capi "github.com/hashicorp/consul/api"
-	napi "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/useragent"
-	"github.com/hashicorp/nomad/helper/uuid"
+	napi "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/useragent"
+	"github.com/openwonton/openwonton/helper/uuid"
 	vapi "github.com/hashicorp/vault/api"
 )
 

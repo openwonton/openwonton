@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/helper/envoy"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/envoy"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // ConnectJob adds a Connect proxy sidecar group service to mock.Job.

@@ -15,8 +15,8 @@ import (
 	"github.com/posener/complete"
 	"golang.org/x/exp/slices"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 )
 
 type AllocStatusCommand struct {
@@ -25,7 +25,7 @@ type AllocStatusCommand struct {
 
 func (c *AllocStatusCommand) Help() string {
 	helpText := `
-Usage: nomad alloc status [options] <allocation>
+Usage: wonton alloc status [options] <allocation>
 
   Display information about existing allocations and its tasks. This command can
   be used to inspect the current status of an allocation, including its running

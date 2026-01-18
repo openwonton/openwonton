@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/kr/pretty"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
@@ -6189,7 +6189,7 @@ func TestStateStore_UpsertAlloc_AllocsByNamespace(t *testing.T) {
 }
 
 // Testing to ensure we keep issue
-// https://github.com/hashicorp/nomad/issues/2583 fixed
+// https://github.com/openwonton/openwonton/issues/2583 fixed
 func TestStateStore_UpsertAlloc_No_Job(t *testing.T) {
 	ci.Parallel(t)
 

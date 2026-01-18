@@ -6,10 +6,10 @@ package command
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )

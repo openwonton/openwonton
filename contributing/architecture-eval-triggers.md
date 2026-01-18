@@ -253,7 +253,7 @@ and eventually need to be garbage collected.
 
 
 [Scheduling in Nomad]: https://www.nomadproject.io/docs/internals/scheduling/scheduling
-[`structs.go`]: https://github.com/hashicorp/nomad/blob/v1.4.0-beta.1/nomad/structs/structs.go#L10857-L10875
+[`structs.go`]: https://github.com/openwonton/openwonton/blob/v1.4.0-beta.1/nomad/structs/structs.go#L10857-L10875
 [`update`]: https://www.nomadproject.io/docs/job-specification/update
 [`restart` attempts]: https://www.nomadproject.io/docs/job-specification/restart
 [`max_client_disconnect`]: https://www.nomadproject.io/docs/job-specification/group#max-client-disconnect

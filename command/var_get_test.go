@@ -8,9 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/posener/complete"
 	"github.com/stretchr/testify/require"
 )
@@ -64,11 +65,11 @@ func TestVarGetCommand_Fails(t *testing.T) {
 }
 
 func TestVarGetCommand(t *testing.T) {
-	ci.Parallel(t)
-
 	// Create a server
 	srv, client, url := testServer(t, true, nil)
 	defer srv.Shutdown()
+	testutil.WaitForLeader(t, srv.Agent.RPC)
+	waitForHTTP(t, client)
 
 	testCases := []struct {
 		name     string
@@ -105,7 +106,6 @@ func TestVarGetCommand(t *testing.T) {
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%v_%s", i, tc.name), func(t *testing.T) {
 			tc := tc
-			ci.Parallel(t)
 			var err error
 			// Create a namespace for the test case
 			testNS := strings.Map(validNS, t.Name())
@@ -165,8 +165,6 @@ func TestVarGetCommand(t *testing.T) {
 		})
 	}
 	t.Run("Autocomplete", func(t *testing.T) {
-		ci.Parallel(t)
-
 		ui := cli.NewMockUi()
 		cmd := &VarGetCommand{Meta: Meta{Ui: ui, flagAddress: url}}
 

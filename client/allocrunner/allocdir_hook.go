@@ -5,7 +5,7 @@ package allocrunner
 
 import (
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocdir"
 )
 
 // allocDirHook creates and destroys the root directory and shared directories

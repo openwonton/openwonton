@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -23,7 +23,7 @@ type inspectedQuota struct {
 
 func (c *QuotaInspectCommand) Help() string {
 	helpText := `
-Usage: nomad quota inspect [options] <quota>
+Usage: wonton quota inspect [options] <quota>
 
   Inspect is used to view raw information about a particular quota.
 

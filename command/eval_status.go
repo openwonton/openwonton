@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type EvalStatusCommand struct {
 
 func (c *EvalStatusCommand) Help() string {
 	helpText := `
-Usage: nomad eval status [options] <evaluation>
+Usage: wonton eval status [options] <evaluation>
 
   Display information about evaluations. This command can be used to inspect the
   current status of an evaluation as well as determine the reason an evaluation

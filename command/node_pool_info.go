@@ -25,7 +25,7 @@ func (c *NodePoolInfoCommand) Synopsis() string {
 
 func (c *NodePoolInfoCommand) Help() string {
 	helpText := `
-Usage: nomad node pool info <node-pool>
+Usage: wonton node pool info <node-pool>
 
   Info is used to fetch information about an existing node pool.
 

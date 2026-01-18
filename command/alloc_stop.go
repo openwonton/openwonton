@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 type AllocStopCommand struct {
@@ -16,8 +16,8 @@ type AllocStopCommand struct {
 
 func (c *AllocStopCommand) Help() string {
 	helpText := `
-Usage: nomad alloc stop [options] <allocation>
-Alias: nomad stop
+Usage: wonton alloc stop [options] <allocation>
+Alias: wonton stop
 
   Stop an existing allocation. This command is used to signal a specific alloc
   to shut down. When the allocation has been shut down, it will then be

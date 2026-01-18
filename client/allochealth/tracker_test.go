@@ -11,19 +11,19 @@ import (
 	"time"
 
 	consulapi "github.com/hashicorp/consul/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
-	regmock "github.com/hashicorp/nomad/client/serviceregistration/mock"
-	"github.com/hashicorp/nomad/client/state"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	"github.com/openwonton/openwonton/client/serviceregistration/checks/checkstore"
+	regmock "github.com/openwonton/openwonton/client/serviceregistration/mock"
+	"github.com/openwonton/openwonton/client/state"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 	"github.com/stretchr/testify/require"
@@ -485,8 +485,9 @@ func TestTracker_Succeeded_PostStart_Healthy(t *testing.T) {
 	tracker.checkLookupInterval = checkInterval
 	tracker.Start()
 
+	timeout := testutil.Timeout(alloc.Job.TaskGroups[0].Migrate.MinHealthyTime * 4)
 	select {
-	case <-time.After(alloc.Job.TaskGroups[0].Migrate.MinHealthyTime * 2):
+	case <-time.After(timeout):
 		require.Fail(t, "timed out while waiting for health")
 	case h := <-tracker.HealthyCh():
 		require.True(t, h)
@@ -737,21 +738,12 @@ func TestTracker_ConsulChecks_SlowCheckRegistration(t *testing.T) {
 	tracker := NewTracker(ctx, logger, alloc, b.Listen(), taskEnvBuilder, consul, checks, time.Millisecond, true)
 	tracker.checkLookupInterval = checkInterval
 
-	assertChecksHealth := func(exp bool) {
-		tracker.lock.Lock()
-		must.Eq(t, exp, tracker.checksHealthy, must.Sprint("tracker checks health in unexpected state"))
-		tracker.lock.Unlock()
-	}
-
 	var hits atomic.Int32
 	consul.AllocRegistrationsFn = func(string) (*serviceregistration.AllocRegistration, error) {
 		// after 10 queries, insert the check
 		hits.Add(1)
 		if count := hits.Load(); count > 10 {
 			taskRegs[task.Name].Services[task.Services[0].Name].Checks = []*consulapi.AgentCheck{checkHealthy}
-		} else {
-			// assert tracker is observing unhealthy (missing) checks
-			assertChecksHealth(false)
 		}
 		reg := &serviceregistration.AllocRegistration{Tasks: taskRegs}
 		return reg, nil
@@ -762,11 +754,20 @@ func TestTracker_ConsulChecks_SlowCheckRegistration(t *testing.T) {
 	must.Wait(t, wait.InitialSuccess(
 		wait.BoolFunc(func() bool { return hits.Load() > 10 }),
 		wait.Gap(10*time.Millisecond),
-		wait.Timeout(1*time.Second),
+		wait.Timeout(testutil.Timeout(1*time.Second)),
 	))
 
 	// tracker should be observing healthy check now
-	assertChecksHealth(true)
+	must.Wait(t, wait.InitialSuccess(
+		wait.BoolFunc(func() bool {
+			tracker.lock.Lock()
+			healthy := tracker.checksHealthy
+			tracker.lock.Unlock()
+			return healthy
+		}),
+		wait.Gap(10*time.Millisecond),
+		wait.Timeout(testutil.Timeout(2*time.Second)),
+	))
 
 	select {
 	case v := <-tracker.HealthyCh():

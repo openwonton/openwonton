@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -28,7 +28,7 @@ func (c *NodePoolCommand) Synopsis() string {
 
 func (c *NodePoolCommand) Help() string {
 	helpText := `
-Usage: nomad node pool <subcommand> [options] [args]
+Usage: wonton node pool <subcommand> [options] [args]
 
   This command groups subcommands for interacting with node pools. Node pools
   are used to partition and control access to a group of nodes. This command

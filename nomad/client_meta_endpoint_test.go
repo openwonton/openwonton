@@ -6,12 +6,12 @@ package nomad
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 )
 
@@ -36,7 +36,7 @@ import (
 // ending is never pretty as the Servers will suffer CPU starvation and
 // potentially Raft flapping before anyone actually OOMs.
 //
-// See https://github.com/hashicorp/nomad/issues/16517 for details.
+// See https://github.com/openwonton/openwonton/issues/16517 for details.
 //
 // If test fails it will do so spectacularly by consuming all available CPU and
 // potentially all available memory. Running it in a VM or container is

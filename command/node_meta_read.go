@@ -17,7 +17,7 @@ type NodeMetaReadCommand struct {
 
 func (c *NodeMetaReadCommand) Help() string {
 	helpText := `
-Usage: nomad node meta read [-json] [-node-id ...]
+Usage: wonton node meta read [-json] [-node-id ...]
 
   Read a node's metadata. This command only works on client agents. The node
   status command can be used to retrieve node metadata from any agent.

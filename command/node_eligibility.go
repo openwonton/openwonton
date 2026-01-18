@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type NodeEligibilityCommand struct {
 
 func (c *NodeEligibilityCommand) Help() string {
 	helpText := `
-Usage: nomad node eligibility [options] <node>
+Usage: wonton node eligibility [options] <node>
 
   Toggles the nodes scheduling eligibility. When a node is marked as ineligible,
   no new allocations will be placed on it but existing allocations will remain.

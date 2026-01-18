@@ -5,9 +5,9 @@ package getter
 
 import (
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/interfaces"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // New creates a Sandbox with the given ArtifactConfig.

@@ -29,9 +29,9 @@
 set -o errexit
 set -o xtrace
 
-cp -r /tmp/nomad-git /opt/gopath/src/github.com/hashicorp/nomad/.git
+cp -r /tmp/nomad-git /opt/gopath/src/github.com/openwonton/openwonton/.git
 
-cd /opt/gopath/src/github.com/hashicorp/nomad
+cd /opt/gopath/src/github.com/openwonton/openwonton
 
 # checkout directory from .git and ensures a prestine state
 git checkout .
@@ -42,5 +42,5 @@ make -f ./scripts/release/Makefile.linux \
   "RELEASE_TARGET=${RELEASE_TARGET}" \
   update_version build_releases
 
-cp -r /opt/gopath/src/github.com/hashicorp/nomad \
+cp -r /opt/gopath/src/github.com/openwonton/openwonton \
     /tmp/artifacts/repo

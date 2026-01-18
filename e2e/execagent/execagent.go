@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 type AgentMode int

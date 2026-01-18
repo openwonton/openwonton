@@ -13,9 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/command/ui"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	"github.com/openwonton/openwonton/command/ui"
 	"github.com/posener/complete"
 )
 
@@ -31,8 +31,8 @@ type AllocLogsCommand struct {
 
 func (l *AllocLogsCommand) Help() string {
 	helpText := `
-Usage: nomad alloc logs [options] <allocation> <task>
-Alias: nomad logs
+Usage: wonton alloc logs [options] <allocation> <task>
+Alias: wonton logs
 
   Streams the stdout/stderr of the given allocation and task.
 

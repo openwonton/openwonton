@@ -16,9 +16,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	msgpackrpc "github.com/hashicorp/net-rpc-msgpackrpc"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/tlsutil"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/yamux"
 )
 

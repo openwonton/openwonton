@@ -114,15 +114,15 @@ The command will output the changelog entries to be inserted into CHANGELOG.md w
 ```md
 IMPROVEMENTS:
 
-* Added the `bar` interface. [[GH-2032](https://github.com/hashicorp/nomad/issues/2032)]
+* Added the `bar` interface. [[GH-2032](https://github.com/openwonton/openwonton/issues/2032)]
 
 DEPRECATIONS:
 
-* Deprecated the `foo` interface, please use the `bar` interface instead. [[GH-1001](https://github.com/hashicorp/nomad/issues/1001)]
+* Deprecated the `foo` interface, please use the `bar` interface instead. [[GH-1001](https://github.com/openwonton/openwonton/issues/1001)]
 
 BUG FIXES:
 
-* csi: fixed a CLI panic when formatting `volume status` with `-verbose` flag [[GH-10818](https://github.com/hashicorp/nomad/issues/10818)]
+* csi: fixed a CLI panic when formatting `volume status` with `-verbose` flag [[GH-10818](https://github.com/openwonton/openwonton/issues/10818)]
 ```
 
 ## FAQ

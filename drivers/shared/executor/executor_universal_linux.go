@@ -12,11 +12,11 @@ import (
 	"syscall"
 
 	"github.com/containernetworking/plugins/pkg/ns"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/lib/resources"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/users"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/client/lib/resources"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/helper/users"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/opencontainers/runc/libcontainer/specconv"
 )

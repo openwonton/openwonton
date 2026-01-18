@@ -6,9 +6,9 @@ package docker
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pluginutils/hclutils"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )

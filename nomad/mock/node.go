@@ -4,9 +4,9 @@
 package mock
 
 import (
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	psstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 func Node() *structs.Node {

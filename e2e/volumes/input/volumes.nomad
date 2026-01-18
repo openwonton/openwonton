@@ -82,7 +82,7 @@ EOT
       #
       # - we can't write unless the nobody user has permissions to write there
       # - we can't template into this location because the host_volume mounts
-      #   over the template (see https://github.com/hashicorp/nomad/issues/7796)
+      #   over the template (see https://github.com/openwonton/openwonton/issues/7796)
       volume_mount {
         volume      = "data"
         destination = "/tmp/foo"

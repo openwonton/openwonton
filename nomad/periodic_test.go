@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -121,7 +121,7 @@ func testPeriodicJob(times ...time.Time) *structs.Job {
 }
 
 // TestPeriodicDispatch_SetEnabled test that setting enabled twice is a no-op.
-// This tests the reported issue: https://github.com/hashicorp/nomad/issues/2829
+// This tests the reported issue: https://github.com/openwonton/openwonton/issues/2829
 func TestPeriodicDispatch_SetEnabled(t *testing.T) {
 	ci.Parallel(t)
 	p, _ := testPeriodicDispatcher(t)

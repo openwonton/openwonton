@@ -16,7 +16,7 @@ type NamespaceDeleteCommand struct {
 
 func (c *NamespaceDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad namespace delete [options] <namespace>
+Usage: wonton namespace delete [options] <namespace>
 
   Delete is used to remove a namespace.
 

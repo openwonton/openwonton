@@ -1,0 +1,8 @@
+{
+  "Namespace": "default",
+  "Path": "path/to/variable",
+  "Items": {
+    "key1": "value 1",
+    "key2": "value 2"
+  }
+}

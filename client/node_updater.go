@@ -9,10 +9,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/devicemanager"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 var (

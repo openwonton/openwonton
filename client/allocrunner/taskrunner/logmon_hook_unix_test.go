@@ -15,11 +15,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shirou/gopsutil/v3/process"
 	"github.com/stretchr/testify/require"
 )
@@ -153,10 +153,10 @@ func TestTaskRunner_LogmonHook_ShutdownMidStart(t *testing.T) {
 	})
 
 	go func() {
-		time.Sleep(2 * time.Second)
+		time.Sleep(50 * time.Millisecond)
 
-		proc.SendSignal(syscall.SIGCONT)
-		proc.Kill()
+		_ = proc.SendSignal(syscall.SIGCONT)
+		_ = proc.Kill()
 	}()
 
 	req.PreviousState = map[string]string{

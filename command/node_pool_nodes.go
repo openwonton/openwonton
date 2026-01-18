@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -26,7 +26,7 @@ func (c *NodePoolNodesCommand) Synopsis() string {
 
 func (c *NodePoolNodesCommand) Help() string {
 	helpText := `
-Usage: nomad node pool nodes <node-pool>
+Usage: wonton node pool nodes <node-pool>
 
   Node pool nodes is used to list nodes in a given node pool.
 

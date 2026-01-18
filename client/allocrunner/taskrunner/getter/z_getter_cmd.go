@@ -6,7 +6,7 @@ package getter
 import (
 	"os"
 
-	"github.com/hashicorp/nomad/helper/subproc"
+	"github.com/openwonton/openwonton/helper/subproc"
 )
 
 const (

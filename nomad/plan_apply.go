@@ -13,9 +13,9 @@ import (
 	log "github.com/hashicorp/go-hclog"
 	memdb "github.com/hashicorp/go-memdb"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/raft"
 )
 
@@ -548,7 +548,7 @@ func evaluatePlanPlacements(pool *EvaluatePool, snap *state.StateSnapshot, plan 
 			if reason != "" {
 				//TODO This was debug level and should return
 				//to debug level in the future. However until
-				//https://github.com/hashicorp/nomad/issues/9506
+				//https://github.com/openwonton/openwonton/issues/9506
 				//is resolved this log line is the only way to
 				//monitor the disagreement between workers and
 				//the plan applier.

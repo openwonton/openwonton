@@ -17,11 +17,11 @@ import (
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/lib/lang"
-	"github.com/hashicorp/nomad/nomad/stream"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/lib/lang"
+	"github.com/openwonton/openwonton/nomad/stream"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"golang.org/x/exp/slices"
 )
 
@@ -3922,7 +3922,7 @@ func (s *StateStore) upsertAllocsImpl(index uint64, allocs []*structs.Allocation
 				alloc.DeploymentStatus.ModifyIndex = index
 			}
 
-			// Issue https://github.com/hashicorp/nomad/issues/2583 uncovered
+			// Issue https://github.com/openwonton/openwonton/issues/2583 uncovered
 			// the a race between a forced garbage collection and the scheduler
 			// marking an allocation as terminal. The issue is that the
 			// allocation from the scheduler has its job normalized and the FSM
@@ -5065,7 +5065,7 @@ func (s *StateStore) ReconcileJobSummaries(index uint64) error {
 			// COMPAT: Remove after 0.11
 
 			// The following block of code fixes incorrect child summaries due to a bug
-			// See https://github.com/hashicorp/nomad/issues/3886 for details
+			// See https://github.com/openwonton/openwonton/issues/3886 for details
 			rawSummary, err := txn.First("job_summary", "id", job.Namespace, job.ID)
 			if err != nil {
 				return err

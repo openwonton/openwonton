@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	memdb "github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // nodePoolInit creates the built-in node pools that should always be present

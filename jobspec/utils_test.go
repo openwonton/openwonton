@@ -6,7 +6,7 @@ package jobspec
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/stretchr/testify/require"
 )
 

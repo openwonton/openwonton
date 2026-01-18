@@ -15,9 +15,9 @@ import (
 	"github.com/hashicorp/raft"
 	"github.com/hashicorp/serf/serf"
 
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/snapshot"
-	"github.com/hashicorp/nomad/nomad/structs"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/snapshot"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // Operator endpoint is used to perform low-level operator tasks for Nomad.

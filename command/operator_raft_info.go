@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper/raftutil"
+	"github.com/openwonton/openwonton/helper/raftutil"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type OperatorRaftInfoCommand struct {
 
 func (c *OperatorRaftInfoCommand) Help() string {
 	helpText := `
-Usage: nomad operator raft info <path to nomad data dir>
+Usage: wonton operator raft info <path to nomad data dir>
 
   Displays summary information about the raft logs in the data directory.
 

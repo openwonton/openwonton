@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 // GenerateEtcHostsMount writes a /etc/hosts file using the network spec's

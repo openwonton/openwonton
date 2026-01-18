@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api/internal/testutil"
+	"github.com/openwonton/openwonton/api/internal/testutil"
 	"github.com/shoenig/test/must"
 )
 
@@ -476,7 +476,7 @@ func TestTask_Canonicalize_Vault(t *testing.T) {
 	}
 }
 
-// Ensures no regression on https://github.com/hashicorp/nomad/issues/3132
+// Ensures no regression on https://github.com/openwonton/openwonton/issues/3132
 func TestTaskGroup_Canonicalize_Update(t *testing.T) {
 	testutil.Parallel(t)
 

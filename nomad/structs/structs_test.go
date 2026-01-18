@@ -14,9 +14,9 @@ import (
 
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/kr/pretty"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
@@ -2264,7 +2264,7 @@ func TestTask_Validate_Service_AddressMode_Ok(t *testing.T) {
 
 	cases := []*Service{
 		{
-			// https://github.com/hashicorp/nomad/issues/3681#issuecomment-357274177
+			// https://github.com/openwonton/openwonton/issues/3681#issuecomment-357274177
 			Name:        "DriverModeWithLabel",
 			Provider:    "consul",
 			PortLabel:   "http",
@@ -2333,7 +2333,7 @@ func TestTask_Validate_Service_AddressMode_Bad(t *testing.T) {
 
 	cases := []*Service{
 		{
-			// https://github.com/hashicorp/nomad/issues/3681#issuecomment-357274177
+			// https://github.com/openwonton/openwonton/issues/3681#issuecomment-357274177
 			Name:        "DriverModeWithLabel",
 			PortLabel:   "asdf",
 			AddressMode: AddressModeDriver,

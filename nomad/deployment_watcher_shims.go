@@ -4,7 +4,7 @@
 package nomad
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // deploymentWatcherRaftShim is the shim that provides the state watching

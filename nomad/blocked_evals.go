@@ -9,8 +9,8 @@ import (
 
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

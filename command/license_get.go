@@ -6,7 +6,7 @@ package command
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -16,10 +16,10 @@ type LicenseGetCommand struct {
 
 func (c *LicenseGetCommand) Help() string {
 	helpText := `
-Usage: nomad license get [options]
+Usage: wonton license get [options]
 
   Gets the license loaded by the server. The command is not forwarded to the
-  Nomad leader, and will return the license from the specific server being
+  OpenWonton leader, and will return the license from the specific server being
   contacted.
 
   When ACLs are enabled, this command requires a token with the
@@ -41,7 +41,7 @@ func (c *LicenseGetCommand) AutocompleteArgs() complete.Predictor {
 }
 
 func (c *LicenseGetCommand) Synopsis() string {
-	return "Retrieve the current Nomad Enterprise License"
+	return "Retrieve the current OpenWonton License"
 }
 
 func (c *LicenseGetCommand) Name() string { return "license get" }

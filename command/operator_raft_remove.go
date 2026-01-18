@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type OperatorRaftRemoveCommand struct {
 
 func (c *OperatorRaftRemoveCommand) Help() string {
 	helpText := `
-Usage: nomad operator raft remove-peer [options]
+Usage: wonton operator raft remove-peer [options]
 
   Remove the Nomad server with given -peer-address from the Raft configuration.
 

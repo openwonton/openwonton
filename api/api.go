@@ -35,6 +35,8 @@ var (
 )
 
 const (
+	tlsTestTimeEnv = "NOMAD_TLS_TEST_TIME"
+
 	// AllNamespacesNamespace is a sentinel Namespace value to indicate that api should search for
 	// jobs and allocations in all the namespaces the requester can access.
 	AllNamespacesNamespace = "*"
@@ -44,6 +46,18 @@ const (
 	// perform the action.
 	PermissionDeniedErrorContent = "Permission denied"
 )
+
+func tlsTimeFunc() func() time.Time {
+	if testTime := os.Getenv(tlsTestTimeEnv); testTime != "" {
+		parsed, err := time.Parse(time.RFC3339, testTime)
+		if err == nil {
+			return func() time.Time {
+				return parsed
+			}
+		}
+	}
+	return time.Now
+}
 
 // QueryOptions are used to parametrize a query
 type QueryOptions struct {
@@ -450,6 +464,7 @@ func ConfigureTLS(httpClient *http.Client, tlsConfig *TLSConfig) error {
 	if tlsConfig.TLSServerName != "" {
 		clientTLSConfig.ServerName = tlsConfig.TLSServerName
 	}
+	clientTLSConfig.Time = tlsTimeFunc()
 
 	return nil
 }

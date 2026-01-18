@@ -4,12 +4,33 @@
 package client
 
 import (
+	"runtime"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/config"
 	"github.com/stretchr/testify/require"
 )
+
+func requireCPUFrequency(t *testing.T, attributes map[string]string) {
+	t.Helper()
+	if attributes["cpu.frequency"] != "" {
+		return
+	}
+	if runtime.GOOS == "darwin" {
+		if attributes["cpu.frequency.power"] != "" || attributes["cpu.frequency.efficiency"] != "" {
+			return
+		}
+	}
+	t.Fatalf("expected cpu frequency attribute")
+}
+
+func requireNoCPUFrequency(t *testing.T, attributes map[string]string) {
+	t.Helper()
+	require.NotContains(t, attributes, "cpu.frequency")
+	require.NotContains(t, attributes, "cpu.frequency.power")
+	require.NotContains(t, attributes, "cpu.frequency.efficiency")
+}
 
 func TestFingerprintManager_Run_ResourcesFingerprint(t *testing.T) {
 	ci.Parallel(t)
@@ -63,7 +84,7 @@ func TestFimgerprintManager_Run_InWhitelist(t *testing.T) {
 
 	node := testClient.config.Node
 
-	require.NotEqual(node.Attributes["cpu.frequency"], "")
+	requireCPUFrequency(t, node.Attributes)
 }
 
 func TestFingerprintManager_Run_InDenylist(t *testing.T) {
@@ -92,7 +113,7 @@ func TestFingerprintManager_Run_InDenylist(t *testing.T) {
 
 	node := testClient.config.Node
 
-	require.NotContains(node.Attributes, "cpu.frequency")
+	requireNoCPUFrequency(t, node.Attributes)
 	require.NotEqual(node.Attributes["memory.totalbytes"], "")
 }
 
@@ -122,7 +143,7 @@ func TestFingerprintManager_Run_Combination(t *testing.T) {
 
 	node := testClient.config.Node
 
-	require.NotEqual(node.Attributes["cpu.frequency"], "")
+	requireCPUFrequency(t, node.Attributes)
 	require.NotEqual(node.Attributes["cpu.arch"], "")
 	require.NotContains(node.Attributes, "memory.totalbytes")
 	require.NotContains(node.Attributes, "os.name")
@@ -154,7 +175,7 @@ func TestFingerprintManager_Run_CombinationLegacyNames(t *testing.T) {
 
 	node := testClient.config.Node
 
-	require.NotEqual(node.Attributes["cpu.frequency"], "")
+	requireCPUFrequency(t, node.Attributes)
 	require.NotEqual(node.Attributes["cpu.arch"], "")
 	require.NotContains(node.Attributes, "memory.totalbytes")
 	require.NotContains(node.Attributes, "os.name")

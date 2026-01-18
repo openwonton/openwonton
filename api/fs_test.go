@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/docker/go-units"
-	"github.com/hashicorp/nomad/api/internal/testutil"
+	"github.com/openwonton/openwonton/api/internal/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 )

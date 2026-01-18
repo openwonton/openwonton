@@ -8,18 +8,19 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	ctestutil "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dtestutil "github.com/hashicorp/nomad/plugins/drivers/testutils"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	ctestutil "github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/pluginutils/hclutils"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	dtestutil "github.com/openwonton/openwonton/plugins/drivers/testutils"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -117,6 +118,9 @@ func copyFile(src, dst string, t *testing.T) {
 func TestQemuDriver_User(t *testing.T) {
 	ci.Parallel(t)
 	ctestutil.QemuCompatible(t)
+	if runtime.GOOS != "linux" {
+		t.Skip("test requires user switching supported by the executor")
+	}
 
 	require := require.New(t)
 	ctx, cancel := context.WithCancel(context.Background())
@@ -125,10 +129,11 @@ func TestQemuDriver_User(t *testing.T) {
 	d := NewQemuDriver(ctx, testlog.HCLogger(t))
 	harness := dtestutil.NewDriverHarness(t, d)
 
+	unknownUser := "openwonton-test-" + uuid.Generate()
 	task := &drivers.TaskConfig{
 		ID:   uuid.Generate(),
 		Name: "linux",
-		User: "alice",
+		User: unknownUser,
 		Resources: &drivers.Resources{
 			NomadResources: &structs.AllocatedTaskResources{
 				Memory: structs.AllocatedMemoryResources{
@@ -166,7 +171,8 @@ func TestQemuDriver_User(t *testing.T) {
 
 	_, _, err := harness.StartTask(task)
 	require.Error(err)
-	require.Contains(err.Error(), "unknown user alice", err.Error())
+	require.Contains(err.Error(), "unknown user", err.Error())
+	require.Contains(err.Error(), unknownUser, err.Error())
 
 }
 

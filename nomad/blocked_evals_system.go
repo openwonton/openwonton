@@ -3,7 +3,7 @@
 
 package nomad
 
-import "github.com/hashicorp/nomad/nomad/structs"
+import "github.com/openwonton/openwonton/nomad/structs"
 
 // systemEvals are handled specially, each job may have a blocked eval on each node
 type systemEvals struct {

@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -35,7 +35,7 @@ type EvalDeleteCommand struct {
 
 func (e *EvalDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad eval delete [options] <evaluation>
+Usage: wonton eval delete [options] <evaluation>
 
   Delete an evaluation by ID. If the evaluation ID is omitted, this command
   will use the filter flag to identify and delete a set of evaluations. If ACLs

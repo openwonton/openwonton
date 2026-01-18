@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type OperatorSnapshotSaveCommand struct {
 
 func (c *OperatorSnapshotSaveCommand) Help() string {
 	helpText := `
-Usage: nomad operator snapshot save [options] <file>
+Usage: wonton operator snapshot save [options] <file>
 
   Retrieves an atomic, point-in-time snapshot of the state of the Nomad servers
   which includes jobs, nodes, allocations, periodic jobs, and ACLs.

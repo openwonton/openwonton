@@ -14,8 +14,8 @@ import (
 	"time"
 
 	humanize "github.com/dustin/go-humanize"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -36,8 +36,8 @@ type AllocFSCommand struct {
 
 func (f *AllocFSCommand) Help() string {
 	helpText := `
-Usage: nomad alloc fs [options] <allocation> <path>
-Alias: nomad fs
+Usage: wonton alloc fs [options] <allocation> <path>
+Alias: wonton fs
 
   fs displays either the contents of an allocation directory for the passed
   allocation, or displays the file at the given path. The path is relative to

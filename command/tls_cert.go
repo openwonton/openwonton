@@ -16,7 +16,7 @@ type TLSCertCommand struct {
 
 func (c *TLSCertCommand) Help() string {
 	helpText := `
-Usage: nomad tls cert <subcommand> [options]
+Usage: wonton tls cert <subcommand> [options]
 
   This command groups subcommands for interacting with certificates.
   For examples, see the documentation.

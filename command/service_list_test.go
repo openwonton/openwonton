@@ -8,11 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/testutil"
 	"github.com/mitchellh/cli"
-	"github.com/stretchr/testify/assert"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -67,42 +66,41 @@ func TestServiceListCommand_Run(t *testing.T) {
 	// Reset the output writer, otherwise we will have additional information here.
 	ui.OutputWriter.Reset()
 
-	// Job register doesn't assure the service registration has completed. It
-	// therefore needs this wrapper to account for eventual service
-	// registration. One this has completed, we can perform lookups without
-	// similar wraps.
-	require.Eventually(t, func() bool {
+	// Job register doesn't assure the service registration has completed.
+	// Wait for the service to appear before running the command assertions.
+	testutil.WaitForResultUntil(testutil.Timeout(10*time.Second), func() (bool, error) {
+		list, _, err := client.Services().List(nil)
+		if err != nil {
+			return false, err
+		}
+		for _, reg := range list {
+			for _, svc := range reg.Services {
+				if svc.ServiceName == "service-discovery-nomad-list" {
+					return true, nil
+				}
+			}
+		}
+		return false, fmt.Errorf("service not registered")
+	}, func(err error) {
+		require.NoError(t, err)
+	})
 
-		defer ui.OutputWriter.Reset()
+	// Perform a standard lookup.
+	require.Equal(t, 0, cmd.Run([]string{"-address=" + url}))
 
-		// Perform a standard lookup.
-		if code := cmd.Run([]string{"-address=" + url}); code != 0 {
-			return false
-		}
-
-		// Test each header and data entry.
-		s := ui.OutputWriter.String()
-		if !assert.Contains(t, s, "Service Name") {
-			return false
-		}
-		if !assert.Contains(t, s, "Tags") {
-			return false
-		}
-		if !assert.Contains(t, s, "service-discovery-nomad-list") {
-			return false
-		}
-		if !assert.Contains(t, s, "[bar,foo]") {
-			return false
-		}
-		return true
-	}, 5*time.Second, 100*time.Millisecond)
+	// Test each header and data entry.
+	s := ui.OutputWriter.String()
+	require.Contains(t, s, "Service Name")
+	require.Contains(t, s, "Tags")
+	require.Contains(t, s, "service-discovery-nomad-list")
+	require.Contains(t, s, "[bar,foo]")
 
 	// Perform a wildcard namespace lookup.
 	code := cmd.Run([]string{"-address=" + url, "-namespace", "*"})
 	require.Equal(t, 0, code)
 
 	// Test each header and data entry.
-	s := ui.OutputWriter.String()
+	s = ui.OutputWriter.String()
 	require.Contains(t, s, "Service Name")
 	require.Contains(t, s, "Namespace")
 	require.Contains(t, s, "Tags")

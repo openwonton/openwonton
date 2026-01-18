@@ -3,7 +3,7 @@
 # A script for building macOS binary on a remote macOS host
 #
 # The helper is expected to be invoked with nomad repo as a first argument, e.g.
-# `mac-remote-build ~/go/src/github.com/hashicorp/nomad`.
+# `mac-remote-build ~/go/src/github.com/openwonton/openwonton`.
 #
 # The repository is required to have a HEAD with all generated files and udpated version committed.
 #
@@ -29,7 +29,7 @@ then
 fi
 
 TMP_WORKSPACE="/tmp/nomad-workspace/$(date +%Y-%m-%d-%s)"
-REPO_REMOTE_PATH="${TMP_WORKSPACE}/gopath/src/github.com/hashicorp/nomad"
+REPO_REMOTE_PATH="${TMP_WORKSPACE}/gopath/src/github.com/openwonton/openwonton"
 
 readonly remote_macos_host=${REMOTE_MACOS_HOST:-sharedmac-bot}
 
@@ -50,7 +50,7 @@ set -o xtrace
 
 TMP_WORKSPACE="$1"
 RELEASE_TARGET="$2"
-REPO_PATH="${TMP_WORKSPACE}/gopath/src/github.com/hashicorp/nomad"
+REPO_PATH="${TMP_WORKSPACE}/gopath/src/github.com/openwonton/openwonton"
 
 
 mkdir -p "${TMP_WORKSPACE}/tmp"

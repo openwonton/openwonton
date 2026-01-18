@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/boltdd"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/boltdd"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/stretchr/testify/require"
 	"go.etcd.io/bbolt"
 )

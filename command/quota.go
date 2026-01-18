@@ -6,7 +6,7 @@ package command
 import (
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -17,7 +17,7 @@ type QuotaCommand struct {
 
 func (f *QuotaCommand) Help() string {
 	helpText := `
-Usage: nomad quota <subcommand> [options] [args]
+Usage: wonton quota <subcommand> [options] [args]
 
   This command groups subcommands for interacting with resource quotas. Resource
   quotas allow operators to restrict the aggregate resource usage of namespaces.

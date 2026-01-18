@@ -9,8 +9,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 	mocker "github.com/stretchr/testify/mock"
 )
 

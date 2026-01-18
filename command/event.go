@@ -20,7 +20,7 @@ type EventCommand struct {
 // and the complete list of flags the command accepts.
 func (e *EventCommand) Help() string {
 	helpText := `
-Usage: nomad event <subcommand> [options] [args]
+Usage: wonton event <subcommand> [options] [args]
 
   This command groups subcommands for interacting with Nomad event sinks.
   Nomad's event sinks system can be used to subscribe to the event stream for

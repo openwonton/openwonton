@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	e2e "github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	e2e "github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/e2e/framework"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 )
 
 const ns = ""

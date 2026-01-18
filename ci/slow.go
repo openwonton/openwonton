@@ -6,6 +6,7 @@ package ci
 import (
 	"os"
 	"strconv"
+	"sync"
 	"testing"
 )
 
@@ -25,10 +26,16 @@ func SkipSlow(t *testing.T, reason string) {
 func Parallel(t *testing.T) {
 	value := os.Getenv("CI")
 	isCI, err := strconv.ParseBool(value)
-	if !isCI || err != nil {
-		t.Parallel()
+	if err == nil && isCI {
+		return
 	}
+	if _, loaded := parallelSeen.LoadOrStore(t, struct{}{}); loaded {
+		return
+	}
+	t.Parallel()
 }
+
+var parallelSeen sync.Map
 
 // TinyChroot is useful for testing, where we do not use anything other than
 // trivial /bin commands like sleep and sh. Copying a minimal chroot helps in

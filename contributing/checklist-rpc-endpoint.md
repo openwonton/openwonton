@@ -31,7 +31,7 @@ Prefer adding a new message to changing any existing RPC messages.
   * RPCs triggered by an internal process may not need support
   * Check ACLs as an optimization
 
-* [ ] Endpoint added/updated in the [`nomad-openapi`](https://github.com/hashicorp/nomad-openapi) repository.
+* [ ] Endpoint added/updated in the [`nomad-openapi`](https://github.com/openwonton/openwonton-openapi) repository.
   * New endpoints will need to be configured in that repository's `generator` package.
   * Updated endpoints may require the `generator` configuration to change, especially if parameters or headers change.
   * If the accepted or returned `struct` schema changes, the Nomad version references in `generator/go.mod` will need
@@ -51,7 +51,7 @@ Prefer adding a new message to changing any existing RPC messages.
   * Set `QueryOptions.AllowStale = true` in the *Server* RPC forwarder to avoid
     an infinite loop between leaders and followers when a Client RPC is
     forwarded through a follower. See
-    https://github.com/hashicorp/nomad/issues/16517
+    https://github.com/openwonton/openwonton/issues/16517
 
 ## Docs
 

@@ -23,15 +23,16 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -78,6 +79,9 @@ func TestMultipleInterfaces(t *testing.T) {
 	ci.Parallel(t)
 
 	httpIps := []string{"127.0.0.1", "127.0.0.2"}
+	if err := canBindAddress(httpIps[1]); err != nil {
+		t.Skipf("additional loopback address unavailable (%s): %v", httpIps[1], err)
+	}
 
 	s := makeHTTPServer(t, func(c *Config) {
 		c.Addresses.HTTP = strings.Join(httpIps, " ")
@@ -92,6 +96,14 @@ func TestMultipleInterfaces(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, resp.StatusCode, 200)
 	}
+}
+
+func canBindAddress(addr string) error {
+	ln, err := net.Listen("tcp", net.JoinHostPort(addr, "0"))
+	if err != nil {
+		return err
+	}
+	return ln.Close()
 }
 
 // TestRootFallthrough tests rootFallthrough handler to
@@ -820,6 +832,7 @@ func TestHTTP_VerifyHTTPSClient(t *testing.T) {
 
 	tlConf := &tls.Config{
 		ServerName: "client.regionFoo.nomad",
+		Time:       tlsutil.TestTimeFunc(),
 	}
 	cacert, err := os.ReadFile(cafile)
 	if err != nil {
@@ -865,6 +878,7 @@ func TestHTTP_VerifyHTTPSClient(t *testing.T) {
 	tlsConf := &tls.Config{
 		RootCAs:    pool,
 		ServerName: "server.regionFoo.nomad",
+		Time:       tlsutil.TestTimeFunc(),
 	}
 	transport := &http.Transport{TLSClientConfig: tlsConf}
 	client := &http.Client{Transport: transport}
@@ -990,6 +1004,7 @@ func TestHTTP_VerifyHTTPSClient_AfterConfigReload(t *testing.T) {
 	tlsConf := &tls.Config{
 		ServerName: "client.regionFoo.nomad",
 		RootCAs:    x509.NewCertPool(),
+		Time:       tlsutil.TestTimeFunc(),
 		GetClientCertificate: func(*tls.CertificateRequestInfo) (*tls.Certificate, error) {
 			c, err := tls.LoadX509KeyPair(foocert, fookey)
 			if err != nil {
@@ -1024,6 +1039,7 @@ func TestHTTP_VerifyHTTPSClient_AfterConfigReload(t *testing.T) {
 	tlsConf = &tls.Config{
 		ServerName: "client.regionFoo.nomad",
 		RootCAs:    x509.NewCertPool(),
+		Time:       tlsutil.TestTimeFunc(),
 		GetClientCertificate: func(*tls.CertificateRequestInfo) (*tls.Certificate, error) {
 			c, err := tls.LoadX509KeyPair(foocert, fookey)
 			if err != nil {
@@ -1369,7 +1385,9 @@ func TestHTTPServer_Limits_OK(t *testing.T) {
 		require.NoError(t, limitConn.SetReadDeadline(deadline))
 		n, err := limitConn.Read(buf)
 		require.Equal(t, response, string(buf))
-		require.Nil(t, err)
+		if err != nil && !errors.Is(err, io.EOF) {
+			require.NoError(t, err)
+		}
 		require.Equal(t, len(response), n)
 		require.NoError(t, limitConn.Close())
 

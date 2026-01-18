@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/cli"
 	"github.com/stretchr/testify/require"
 )
@@ -46,5 +46,5 @@ func TestOperatorSchedulerGetConfig_Run(t *testing.T) {
 
 	// Test an unsupported flag.
 	require.EqualValues(t, 1, c.Run([]string{"-address=" + addr, "-yaml"}))
-	require.Contains(t, ui.OutputWriter.String(), "Usage: nomad operator scheduler get-config")
+	require.Contains(t, ui.OutputWriter.String(), "Usage: wonton operator scheduler get-config")
 }

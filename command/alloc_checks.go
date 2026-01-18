@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -19,8 +19,8 @@ type AllocChecksCommand struct {
 
 func (c *AllocChecksCommand) Help() string {
 	helpText := `
-Usage: nomad alloc checks [options] <allocation>
-Alias: nomad checks
+Usage: wonton alloc checks [options] <allocation>
+Alias: wonton checks
 
   Outputs the latest health check status information for services in the allocation
   using the Nomad service discovery provider.

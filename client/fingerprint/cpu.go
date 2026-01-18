@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/hashicorp/nomad/lib/cpuset"
+	"github.com/openwonton/openwonton/lib/cpuset"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/stats"
-	shelpers "github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/stats"
+	shelpers "github.com/openwonton/openwonton/helper/stats"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

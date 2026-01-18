@@ -22,7 +22,7 @@ type ACLBindingRuleDeleteCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLBindingRuleDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad acl binding-rule delete <acl_binding_rule_id>
+Usage: wonton acl binding-rule delete <acl_binding_rule_id>
 
   Delete is used to delete an existing ACL binding rule. Use requires a
   management token.

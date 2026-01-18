@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper"
 	"github.com/posener/complete"
 )
 
@@ -23,7 +23,7 @@ type ACLTokenCreateCommand struct {
 
 func (c *ACLTokenCreateCommand) Help() string {
 	helpText := `
-Usage: nomad acl token create [options]
+Usage: wonton acl token create [options]
 
   Create is used to issue new ACL tokens. Requires a management token.
 

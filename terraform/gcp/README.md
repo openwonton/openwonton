@@ -177,7 +177,7 @@ Before moving onto the next steps, ensure the following environment variables ar
 
 ## Build HashiStack Golden Image with Packer
 
-[Packer](https://www.packer.io/intro/index.html) is HashiCorp's open source tool for creating identical machine images for multiple platforms from a single source configuration. The machine image created here can be customized through modifications to the [build configuration file](https://github.com/hashicorp/nomad/blob/main/terraform/gcp/packer.json) and the [shell script](https://github.com/hashicorp/nomad/blob/main/terraform/shared/scripts/setup.sh).
+[Packer](https://www.packer.io/intro/index.html) is HashiCorp's open source tool for creating identical machine images for multiple platforms from a single source configuration. The machine image created here can be customized through modifications to the [build configuration file](https://github.com/openwonton/openwonton/blob/main/terraform/gcp/packer.json) and the [shell script](https://github.com/openwonton/openwonton/blob/main/terraform/shared/scripts/setup.sh).
 
 Use the following command to build the machine image:
 
@@ -243,7 +243,7 @@ export VAULT_ADDR=http://localhost:8200
 
 You have deployed a Nomad cluster to GCP! 🎉
 
-Click [here](https://github.com/hashicorp/nomad/blob/main/terraform/README.md#test) for next steps.
+Click [here](https://github.com/openwonton/openwonton/blob/main/terraform/README.md#test) for next steps.
 
 > ### After You Finish
 > Come back here when you're done exploring Nomad and the HashiCorp stack. In the next section, you'll learn how to clean up, and will destroy the demo infrastructure you've created.

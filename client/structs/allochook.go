@@ -6,8 +6,8 @@ package structs
 import (
 	"sync"
 
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/helper"
 )
 
 // AllocHookResources contains data that is provided by AllocRunner Hooks for

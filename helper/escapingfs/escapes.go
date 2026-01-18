@@ -52,16 +52,23 @@ func pathEscapesBaseViaSymlink(base, full string) (bool, error) {
 		return false, err
 	}
 
-	rel, err := filepath.Rel(resolveSym, base)
+	baseResolved, err := filepath.EvalSymlinks(base)
 	if err != nil {
-		return true, nil
+		return false, err
 	}
 
-	// note: this is not the same as !filesystem.IsAbs; we are asking if the relative
-	// path is descendent of the base path, indicating it does not escape.
-	isRelative := strings.HasPrefix(rel, "..") || rel == "."
-	escapes := !isRelative
-	return escapes, nil
+	baseClean := filepath.Clean(baseResolved)
+	resolveClean := filepath.Clean(resolveSym)
+
+	if resolveClean == baseClean {
+		return false, nil
+	}
+
+	if strings.HasPrefix(resolveClean, baseClean+string(os.PathSeparator)) {
+		return false, nil
+	}
+
+	return true, nil
 }
 
 // PathEscapesAllocDir returns true if base/prefix/path escapes the given base directory.

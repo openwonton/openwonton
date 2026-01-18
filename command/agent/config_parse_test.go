@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -570,7 +570,7 @@ func (c *Config) addDefaults() {
 
 // Tests for a panic parsing json with an object of exactly
 // length 1 described in
-// https://github.com/hashicorp/nomad/issues/1290
+// https://github.com/openwonton/openwonton/issues/1290
 func TestConfig_ParsePanic(t *testing.T) {
 	ci.Parallel(t)
 

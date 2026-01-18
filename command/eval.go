@@ -15,7 +15,7 @@ type EvalCommand struct {
 
 func (f *EvalCommand) Help() string {
 	helpText := `
-Usage: nomad eval <subcommand> [options] [args]
+Usage: wonton eval <subcommand> [options] [args]
 
   This command groups subcommands for interacting with evaluations. Evaluations
   are used to trigger a scheduling event. As such, evaluations are an internal

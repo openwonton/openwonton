@@ -15,7 +15,7 @@ type VolumeCommand struct {
 
 func (c *VolumeCommand) Help() string {
 	helpText := `
-Usage: nomad volume <subcommand> [options]
+Usage: wonton volume <subcommand> [options]
 
   volume groups commands that interact with volumes.
 

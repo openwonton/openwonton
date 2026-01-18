@@ -11,7 +11,7 @@ import (
 	"github.com/posener/complete"
 	"github.com/ryanuber/columnize"
 
-	"github.com/hashicorp/nomad/helper/tlsutil"
+	"github.com/openwonton/openwonton/helper/tlsutil"
 )
 
 type TLSCertInfoCommand struct {
@@ -20,7 +20,7 @@ type TLSCertInfoCommand struct {
 
 func (c *TLSCertInfoCommand) Help() string {
 	helpText := `
-Usage: nomad tls cert info <certificate file>
+Usage: wonton tls cert info <certificate file>
 
   Show information about a TLS certificate.
 `

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/posener/complete"
 )
 
@@ -118,7 +118,7 @@ func (c *OperatorAutopilotSetCommand) Synopsis() string {
 
 func (c *OperatorAutopilotSetCommand) Help() string {
 	helpText := `
-Usage: nomad operator autopilot set-config [options]
+Usage: wonton operator autopilot set-config [options]
 
   Modifies the current Autopilot configuration.
 

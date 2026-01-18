@@ -22,7 +22,7 @@ type ACLRoleDeleteCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLRoleDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad acl role delete <acl_role_id>
+Usage: wonton acl role delete <acl_role_id>
 
   Delete is used to delete an existing ACL role. Use requires a management
   token.

@@ -6,7 +6,7 @@ package command
 import (
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -17,7 +17,7 @@ type NamespaceCommand struct {
 
 func (f *NamespaceCommand) Help() string {
 	helpText := `
-Usage: nomad namespace <subcommand> [options] [args]
+Usage: wonton namespace <subcommand> [options] [args]
 
   This command groups subcommands for interacting with namespaces. Namespaces
   allow jobs and their associated objects to be segmented from each other and

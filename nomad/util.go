@@ -13,8 +13,8 @@ import (
 
 	memdb "github.com/hashicorp/go-memdb"
 	version "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/state"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/serf/serf"
 	"golang.org/x/exp/slices"
 )

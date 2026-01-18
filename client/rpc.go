@@ -13,11 +13,11 @@ import (
 
 	metrics "github.com/armon/go-metrics"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/client/servers"
-	"github.com/hashicorp/nomad/helper"
-	inmem "github.com/hashicorp/nomad/helper/codec"
-	"github.com/hashicorp/nomad/helper/pool"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/servers"
+	"github.com/openwonton/openwonton/helper"
+	inmem "github.com/openwonton/openwonton/helper/codec"
+	"github.com/openwonton/openwonton/helper/pool"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // rpcEndpoints holds the RPC endpoints

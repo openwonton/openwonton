@@ -4,7 +4,7 @@
 package command
 
 import (
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 // testVariable returns a test variable spec

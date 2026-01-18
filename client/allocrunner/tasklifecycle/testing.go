@@ -6,8 +6,8 @@ package tasklifecycle
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	testing "github.com/mitchellh/go-testing-interface"
 )
 

@@ -14,15 +14,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/useragent"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/useragent"
 	tomb "gopkg.in/tomb.v2"
 
 	metrics "github.com/armon/go-metrics"
 	log "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	vapi "github.com/hashicorp/vault/api"
 
 	"golang.org/x/sync/errgroup"

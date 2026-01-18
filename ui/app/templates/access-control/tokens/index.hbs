@@ -79,7 +79,7 @@
               <div class="tag-group">
                 {{!--
                   We don't treat roles (roleNames) the same as policies, because Roles' names are currently
-                  returning blank on the /tokens endpoint: https://github.com/hashicorp/nomad/issues/18451
+                  returning blank on the /tokens endpoint: https://github.com/openwonton/openwonton/issues/18451
                   TODO: when that's fixed, we can use an #each #let pattern like we do for policyNames.
                  --}}
                 {{#each B.data.roles as |role|}}

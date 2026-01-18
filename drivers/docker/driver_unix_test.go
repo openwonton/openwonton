@@ -18,13 +18,13 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dtestutil "github.com/hashicorp/nomad/plugins/drivers/testutils"
-	tu "github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	dtestutil "github.com/openwonton/openwonton/plugins/drivers/testutils"
+	tu "github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -628,15 +628,23 @@ func TestDockerDriver_CreateContainerConfig_MountsCombined(t *testing.T) {
 		},
 	}
 
-	if runtime.GOOS != "linux" {
-		expectedMounts[0].BindOptions = &docker.BindOptions{}
-		expectedMounts[1].BindOptions = &docker.BindOptions{}
-	}
-
 	foundMounts := c.HostConfig.Mounts
 	sort.Slice(foundMounts, func(i, j int) bool {
 		return foundMounts[i].Target < foundMounts[j].Target
 	})
+	for i := range expectedMounts {
+		if expectedMounts[i].BindOptions != nil && expectedMounts[i].BindOptions.Propagation == "" {
+			expectedMounts[i].BindOptions = nil
+		}
+		if expectedMounts[i].BindOptions != nil && runtime.GOOS != "linux" {
+			expectedMounts[i].BindOptions = nil
+		}
+	}
+	for i := range foundMounts {
+		if foundMounts[i].BindOptions != nil && foundMounts[i].BindOptions.Propagation == "" {
+			foundMounts[i].BindOptions = nil
+		}
+	}
 	require.EqualValues(t, expectedMounts, foundMounts)
 
 	expectedDevices := []docker.Device{
@@ -711,7 +719,7 @@ func TestDockerDriver_Start_Image_HTTPS(t *testing.T) {
 	testutil.DockerCompatible(t)
 
 	taskCfg := TaskConfig{
-		Image:            "https://gcr.io/google_containers/pause:0.8.0",
+		Image:            "https://registry.k8s.io/pause:3.9",
 		ImagePullTimeout: "5m",
 	}
 	task := &drivers.TaskConfig{
@@ -857,6 +865,7 @@ func Test_dnsConfig(t *testing.T) {
 			require.NoError(t, task.EncodeConcreteDriverConfig(&taskCfg))
 
 			cleanup := harness.MkAllocDir(task, false)
+			copyImage(t, task.TaskDir(), "busybox.tar")
 
 			_, _, err := harness.StartTask(task)
 			require.NoError(t, err)

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shirou/gopsutil/v3/mem"
 )
 

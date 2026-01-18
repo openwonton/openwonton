@@ -4,7 +4,7 @@
 package base
 
 import (
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/openwonton/openwonton/plugins/shared/hclspec"
 )
 
 var (

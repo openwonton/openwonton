@@ -8,8 +8,8 @@ import (
 
 	"math"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
+	psstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 )
 
 // deviceAllocator is used to allocate devices to allocations. The allocator

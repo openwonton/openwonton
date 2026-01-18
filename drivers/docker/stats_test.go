@@ -10,8 +10,8 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/ci"
-	cstructs "github.com/hashicorp/nomad/client/structs"
+	"github.com/openwonton/openwonton/ci"
+	cstructs "github.com/openwonton/openwonton/client/structs"
 	"github.com/stretchr/testify/require"
 )
 

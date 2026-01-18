@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -26,7 +26,7 @@ type JobScalingEventsCommand struct {
 // Help satisfies the cli.Command Help function.
 func (j *JobScalingEventsCommand) Help() string {
 	helpText := `
-Usage: nomad job scaling-events [options] <args>
+Usage: wonton job scaling-events [options] <args>
 
   List the scaling events for the specified job.
 

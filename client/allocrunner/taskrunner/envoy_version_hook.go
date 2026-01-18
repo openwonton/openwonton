@@ -11,11 +11,11 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-version"
-	ifs "github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/consul"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/envoy"
-	"github.com/hashicorp/nomad/nomad/structs"
+	ifs "github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/consul"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/helper/envoy"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

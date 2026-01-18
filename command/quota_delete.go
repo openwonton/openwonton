@@ -16,7 +16,7 @@ type QuotaDeleteCommand struct {
 
 func (c *QuotaDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad quota delete [options] <quota>
+Usage: wonton quota delete [options] <quota>
 
   Delete is used to delete an existing quota specification.
 

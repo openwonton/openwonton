@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 func (c *PluginStatusCommand) csiBanner() {

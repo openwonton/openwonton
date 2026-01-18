@@ -19,7 +19,7 @@ type OperatorGossipKeyringInstallCommand struct {
 
 func (c *OperatorGossipKeyringInstallCommand) Help() string {
 	helpText := `
-Usage: nomad operator gossip keyring install [options] <key>
+Usage: wonton operator gossip keyring install [options] <key>
 
   Install a new encryption key used for gossip. This will broadcast the new key
   to all members in the cluster.

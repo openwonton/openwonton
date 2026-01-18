@@ -12,13 +12,13 @@ import (
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/client/structs"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/csi/fake"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/dynamicplugins"
+	"github.com/openwonton/openwonton/client/pluginmanager/csimanager"
+	"github.com/openwonton/openwonton/client/structs"
+	nstructs "github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/csi"
+	"github.com/openwonton/openwonton/plugins/csi/fake"
 )
 
 var fakePlugin = &dynamicplugins.PluginInfo{

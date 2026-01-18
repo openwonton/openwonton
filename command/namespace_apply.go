@@ -13,8 +13,8 @@ import (
 
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/hashicorp/nomad/api"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/mitchellh/mapstructure"
 	"github.com/posener/complete"
 )
@@ -25,7 +25,7 @@ type NamespaceApplyCommand struct {
 
 func (c *NamespaceApplyCommand) Help() string {
 	helpText := `
-Usage: nomad namespace apply [options] <input>
+Usage: wonton namespace apply [options] <input>
 
   Apply is used to create or update a namespace. The specification file
   will be read from stdin by specifying "-", otherwise a path to the file is

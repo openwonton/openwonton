@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -26,7 +26,7 @@ func (c *NodePoolDeleteCommand) Synopsis() string {
 
 func (c *NodePoolDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad node pool delete [options] <node-pool>
+Usage: wonton node pool delete [options] <node-pool>
 
   Delete is used to remove a node pool.
 

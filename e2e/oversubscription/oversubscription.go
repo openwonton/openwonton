@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/e2e/framework"
+	"github.com/openwonton/openwonton/helper/uuid"
 )
 
 type OversubscriptionTest struct {

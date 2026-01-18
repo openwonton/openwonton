@@ -15,7 +15,7 @@ type SystemCommand struct {
 
 func (sc *SystemCommand) Help() string {
 	helpText := `
-Usage: nomad system <subcommand> [options]
+Usage: wonton system <subcommand> [options]
 
   This command groups subcommands for interacting with the system API. Users
   can perform system maintenance tasks such as trigger the garbage collector or

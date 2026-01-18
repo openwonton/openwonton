@@ -11,9 +11,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/helper/boltdd"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/dynamicplugins"
+	"github.com/openwonton/openwonton/helper/boltdd"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"go.etcd.io/bbolt"
 )
 

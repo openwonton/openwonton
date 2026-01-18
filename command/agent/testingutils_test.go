@@ -6,9 +6,9 @@ package agent
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
 )
 
 func MockJob() *api.Job {

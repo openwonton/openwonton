@@ -6,8 +6,8 @@ package vaultclient
 import (
 	"sync"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
 	vaultapi "github.com/hashicorp/vault/api"
 )
 

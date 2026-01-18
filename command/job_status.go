@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -30,7 +30,7 @@ type JobStatusCommand struct {
 
 func (c *JobStatusCommand) Help() string {
 	helpText := `
-Usage: nomad status [options] <job>
+Usage: wonton status [options] <job>
 
   Display status information about a job. If no job ID is given, a list of all
   known jobs will be displayed.

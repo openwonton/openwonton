@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper/snapshot"
+	"github.com/openwonton/openwonton/helper/snapshot"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type OperatorSnapshotInspectCommand struct {
 
 func (c *OperatorSnapshotInspectCommand) Help() string {
 	helpText := `
-Usage: nomad operator snapshot inspect [options] <file>
+Usage: wonton operator snapshot inspect [options] <file>
 
   Displays information about a snapshot file on disk.
 

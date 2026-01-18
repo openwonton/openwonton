@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-hclog"
-	trstate "github.com/hashicorp/nomad/client/allocrunner/taskrunner/state"
-	"github.com/hashicorp/nomad/client/state"
+	trstate "github.com/openwonton/openwonton/client/allocrunner/taskrunner/state"
+	"github.com/openwonton/openwonton/client/state"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type OperatorClientStateCommand struct {
 
 func (c *OperatorClientStateCommand) Help() string {
 	helpText := `
-Usage: nomad operator client-state <path_to_nomad_dir>
+Usage: wonton operator client-state <path_to_nomad_dir>
 
   Emits a representation of the stored client state in JSON format.
 `

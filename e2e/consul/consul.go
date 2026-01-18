@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"os"
 
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	api "github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/e2e/framework"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -136,7 +136,7 @@ func (tc *ConsulE2ETest) TestConsulRegisterOnUpdate(f *framework.F) {
 func (tc *ConsulE2ETest) TestCanaryInplaceUpgrades(f *framework.F) {
 	t := f.T()
 
-	// TODO(shoenig) https://github.com/hashicorp/nomad/issues/9627
+	// TODO(shoenig) https://github.com/openwonton/openwonton/issues/9627
 	t.Skip("THIS TEST IS BROKEN (#9627)")
 
 	nomadClient := tc.Nomad()

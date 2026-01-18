@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-getter"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/mitchellh/go-homedir"
 	"github.com/shoenig/test/must"
 )
@@ -41,10 +41,10 @@ func TestUtil_getURL(t *testing.T) {
 	}, {
 		name: "option",
 		artifact: &structs.TaskArtifact{
-			GetterSource:  "git::github.com/hashicorp/nomad",
+			GetterSource:  "git::github.com/openwonton/openwonton",
 			GetterOptions: map[string]string{"sshkey": "abc123"},
 		},
-		expURL: "git::github.com/hashicorp/nomad?sshkey=abc123",
+		expURL: "git::github.com/openwonton/openwonton?sshkey=abc123",
 		expErr: nil,
 	}, {
 		name: "github case",

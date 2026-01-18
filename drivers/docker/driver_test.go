@@ -13,6 +13,7 @@ import (
 	"runtime"
 	"runtime/debug"
 	"sort"
+	"strconv"
 	"strings"
 	"syscall"
 	"testing"
@@ -24,20 +25,20 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/drivers/shared/capabilities"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclspecutils"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dtestutil "github.com/hashicorp/nomad/plugins/drivers/testutils"
-	tu "github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/drivers/shared/capabilities"
+	"github.com/openwonton/openwonton/helper/pluginutils/hclspecutils"
+	"github.com/openwonton/openwonton/helper/pluginutils/hclutils"
+	"github.com/openwonton/openwonton/helper/pluginutils/loader"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/base"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	dtestutil "github.com/openwonton/openwonton/plugins/drivers/testutils"
+	tu "github.com/openwonton/openwonton/testutil"
 )
 
 var (
@@ -194,7 +195,7 @@ func dockerDriverHarness(t *testing.T, cfg map[string]interface{}) *dtestutil.Dr
 	}
 
 	// If on windows, "allow" (don't attempt to drop) linux capabilities.
-	// https://github.com/hashicorp/nomad/issues/15181
+	// https://github.com/openwonton/openwonton/issues/15181
 	// TODO: this should instead get fixed properly in capabilities package.
 	if _, ok := cfg["allow_caps"]; !ok && runtime.GOOS == "windows" {
 		cfg["allow_caps"] = capabilities.DockerDefaults().Slice(false)
@@ -314,7 +315,7 @@ func TestDockerDriver_Start_WaitFinish(t *testing.T) {
 // TestDockerDriver_Start_StoppedContainer asserts that Nomad will detect a
 // stopped task container, remove it, and start a new container.
 //
-// See https://github.com/hashicorp/nomad/issues/3419
+// See https://github.com/openwonton/openwonton/issues/3419
 func TestDockerDriver_Start_StoppedContainer(t *testing.T) {
 	ci.Parallel(t)
 	testutil.DockerCompatible(t)
@@ -602,7 +603,7 @@ func TestDockerDriver_Start_KillTimeout(t *testing.T) {
 	}
 
 	timeout := 2 * time.Second
-	taskCfg := newTaskConfig("", []string{"sleep", "10"})
+	taskCfg := newTaskConfig("", []string{"sh", "-c", "trap \"\" USR1; sleep 10"})
 	task := &drivers.TaskConfig{
 		ID:        uuid.Generate(),
 		Name:      "busybox-demo",
@@ -621,11 +622,12 @@ func TestDockerDriver_Start_KillTimeout(t *testing.T) {
 
 	defer d.DestroyTask(task.ID, true)
 
-	var killSent time.Time
+	killSentCh := make(chan time.Time, 1)
+	stopErrCh := make(chan error, 1)
 	go func() {
 		time.Sleep(100 * time.Millisecond)
-		killSent = time.Now()
-		require.NoError(t, d.StopTask(task.ID, timeout, "SIGUSR1"))
+		killSentCh <- time.Now()
+		stopErrCh <- d.StopTask(task.ID, timeout, "SIGUSR1")
 	}()
 
 	// Attempt to wait
@@ -638,6 +640,19 @@ func TestDockerDriver_Start_KillTimeout(t *testing.T) {
 		killed = time.Now()
 	case <-time.After(time.Duration(tu.TestMultiplier()*5) * time.Second):
 		require.Fail(t, "timeout")
+	}
+
+	var killSent time.Time
+	select {
+	case killSent = <-killSentCh:
+	case <-time.After(time.Duration(tu.TestMultiplier()*2) * time.Second):
+		require.Fail(t, "timeout waiting for kill to start")
+	}
+	select {
+	case err := <-stopErrCh:
+		require.NoError(t, err)
+	case <-time.After(time.Duration(tu.TestMultiplier()*2) * time.Second):
+		require.Fail(t, "timeout waiting for stop to complete")
 	}
 
 	require.True(t, killed.Sub(killSent) > timeout)
@@ -933,7 +948,6 @@ func TestDockerDriver_ForcePull_RepoDigest(t *testing.T) {
 
 	cfg.LoadImage = ""
 	cfg.Image = "library/busybox@sha256:58ac43b2cc92c687a32c8be6278e50a063579655fe3090125dcb2af0ff9e1a64"
-	localDigest := "sha256:8ac48589692a53a9b8c2d1ceaa6b402665aa7fe667ba51ccc03002300856d8c7"
 	cfg.ForcePull = true
 	cfg.Command = busyboxLongRunningCmd[0]
 	cfg.Args = busyboxLongRunningCmd[1:]
@@ -945,7 +959,9 @@ func TestDockerDriver_ForcePull_RepoDigest(t *testing.T) {
 
 	container, err := client.InspectContainer(handle.containerID)
 	require.NoError(t, err)
-	require.Equal(t, localDigest, container.Image)
+	image, err := client.InspectImage(cfg.Image)
+	require.NoError(t, err)
+	require.Equal(t, image.ID, container.Image)
 }
 
 func TestDockerDriver_SecurityOptUnconfined(t *testing.T) {
@@ -1441,6 +1457,7 @@ func TestDockerDriver_Capabilities(t *testing.T) {
 		t.Run(tc.Name, func(t *testing.T) {
 			client := newTestDockerClient(t)
 			task, cfg, _ := dockerTask(t)
+			task.Resources.NomadResources.Networks = nil
 
 			if len(tc.CapAdd) > 0 {
 				cfg.CapAdd = tc.CapAdd
@@ -1874,7 +1891,7 @@ func TestDockerDriver_CleanupContainer(t *testing.T) {
 }
 
 func TestDockerDriver_EnableImageGC(t *testing.T) {
-	ci.Parallel(t)
+	// Runs serially to avoid cross-test image GC interference.
 	testutil.DockerCompatible(t)
 
 	task, cfg, _ := dockerTask(t)
@@ -1940,7 +1957,7 @@ func TestDockerDriver_EnableImageGC(t *testing.T) {
 }
 
 func TestDockerDriver_DisableImageGC(t *testing.T) {
-	ci.Parallel(t)
+	// Runs serially to avoid cross-test image GC interference.
 	testutil.DockerCompatible(t)
 
 	task, cfg, _ := dockerTask(t)
@@ -2002,7 +2019,7 @@ func TestDockerDriver_DisableImageGC(t *testing.T) {
 }
 
 func TestDockerDriver_MissingContainer_Cleanup(t *testing.T) {
-	ci.Parallel(t)
+	// Runs serially to avoid removing containers from other tests via cleanSlate.
 	testutil.DockerCompatible(t)
 
 	task, cfg, _ := dockerTask(t)
@@ -2426,7 +2443,7 @@ func TestDockerDriver_OOMKilled(t *testing.T) {
 	testutil.DockerCompatible(t)
 
 	// waiting on upstream fix for cgroups v2
-	// see https://github.com/hashicorp/nomad/issues/13119
+	// see https://github.com/openwonton/openwonton/issues/13119
 	testutil.CgroupsCompatibleV1(t)
 
 	taskCfg := newTaskConfig("", []string{"sh", "-c", `sleep 2 && x=a && while true; do x="$x$x"; done`})
@@ -3058,6 +3075,31 @@ func TestDockerDriver_StopSignal(t *testing.T) {
 			require.NoError(t, err)
 			require.NoError(t, d.WaitUntilStarted(task.ID, 5*time.Second))
 
+			dockerDriver, ok := d.Impl().(*Driver)
+			require.True(t, ok)
+			handle, ok := dockerDriver.tasks.Get(task.ID)
+			require.True(t, ok)
+			containerID := handle.containerID
+			containerName := fmt.Sprintf("%s-%s", strings.ReplaceAll(task.Name, "/", "_"), task.AllocID)
+
+			matchesContainer := func(msg *docker.APIEvents) bool {
+				if msg == nil {
+					return false
+				}
+				eventID := msg.Actor.ID
+				if eventID == "" {
+					eventID = msg.ID
+				}
+				if eventID == "" {
+					name := msg.Actor.Attributes["name"]
+					if name != "" {
+						name = strings.TrimPrefix(name, "/")
+					}
+					return name == containerName
+				}
+				return eventID == containerID || strings.HasPrefix(containerID, eventID) || strings.HasPrefix(eventID, containerID)
+			}
+
 			stopErr := make(chan error, 1)
 			go func() {
 				err := d.StopTask(task.ID, 1*time.Second, c.jobKillSignal)
@@ -3071,8 +3113,21 @@ func TestDockerDriver_StopSignal(t *testing.T) {
 				select {
 				case msg := <-listener:
 					// Only add kill signals
-					if msg.Action == "kill" {
+					if msg.Action == "kill" || msg.Status == "kill" {
+						if !matchesContainer(msg) {
+							continue
+						}
 						sig := msg.Actor.Attributes["signal"]
+						if sig == "" && c.jobKillSignal != "" {
+							if parsed, parseErr := parseSignal(runtime.GOOS, c.jobKillSignal); parseErr == nil {
+								if sysSig, ok := parsed.(syscall.Signal); ok {
+									sig = strconv.Itoa(int(sysSig))
+								}
+							}
+						}
+						if sig == "" {
+							continue
+						}
 						receivedSignals = append(receivedSignals, sig)
 
 						if reflect.DeepEqual(receivedSignals, c.expectedSignals) {

@@ -8,13 +8,14 @@ import (
 	"net"
 	"os"
 	"path/filepath"
+	"runtime"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
 	testing "github.com/mitchellh/go-testing-interface"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
 )
 
 // TestClientConfig returns a default client configuration for test clients and
@@ -30,9 +31,18 @@ func TestClientConfig(t testing.T) (*Config, func()) {
 	dirName := os.TempDir()
 	tmpDir, err := filepath.EvalSymlinks(dirName)
 	if err != nil {
-		t.Fatalf("Could not resolve temporary directory links for %s: %v", tmpDir, err)
+		t.Fatalf("Could not resolve temporary directory links for %s: %v", dirName, err)
 	}
 	tmpDir = filepath.Clean(tmpDir)
+	if runtime.GOOS == "darwin" {
+		shortTmp := "/tmp"
+		if resolved, err := filepath.EvalSymlinks(shortTmp); err == nil {
+			shortTmp = resolved
+		}
+		if len(tmpDir) > len(shortTmp) {
+			tmpDir = shortTmp
+		}
+	}
 
 	// Create a tempdir to hold state and alloc subdirs
 	parent, err := os.MkdirTemp(tmpDir, "nomadtest")

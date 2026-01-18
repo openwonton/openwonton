@@ -16,7 +16,7 @@ type SystemReconcileSummariesCommand struct {
 
 func (c *SystemReconcileSummariesCommand) Help() string {
 	helpText := `
-Usage: nomad system reconcile summaries [options]
+Usage: wonton system reconcile summaries [options]
 
   Reconciles the summaries of all registered jobs.
 

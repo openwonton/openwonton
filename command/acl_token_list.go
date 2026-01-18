@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type ACLTokenListCommand struct {
 
 func (c *ACLTokenListCommand) Help() string {
 	helpText := `
-Usage: nomad acl token list
+Usage: wonton acl token list
 
   List is used to list existing ACL tokens.
 

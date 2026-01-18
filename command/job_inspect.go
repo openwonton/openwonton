@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -18,8 +18,8 @@ type JobInspectCommand struct {
 
 func (c *JobInspectCommand) Help() string {
 	helpText := `
-Usage: nomad job inspect [options] <job>
-Alias: nomad inspect
+Usage: wonton job inspect [options] <job>
+Alias: wonton inspect
 
   Inspect is used to see the specification of a submitted job.
 

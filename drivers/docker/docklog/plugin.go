@@ -10,8 +10,8 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/drivers/docker/docklog/proto"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/openwonton/openwonton/drivers/docker/docklog/proto"
+	"github.com/openwonton/openwonton/plugins/base"
 	"google.golang.org/grpc"
 )
 

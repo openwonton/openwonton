@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/posener/complete"
 )
 
@@ -20,7 +20,7 @@ type VolumeDeleteCommand struct {
 
 func (c *VolumeDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad volume delete [options] <vol id>
+Usage: wonton volume delete [options] <vol id>
 
   Delete a volume from an external storage provider. The volume must still be
   registered with Nomad in order to be deleted. Deleting will fail if the

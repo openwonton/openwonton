@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -26,7 +26,7 @@ type ACLBindingRuleListCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLBindingRuleListCommand) Help() string {
 	helpText := `
-Usage: nomad acl binding-rule list [options]
+Usage: wonton acl binding-rule list [options]
 
   List is used to list existing ACL binding rules. Requires a management token.
 

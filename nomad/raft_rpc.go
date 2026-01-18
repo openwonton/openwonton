@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/helper/pool"
-	"github.com/hashicorp/nomad/helper/tlsutil"
+	"github.com/openwonton/openwonton/helper/pool"
+	"github.com/openwonton/openwonton/helper/tlsutil"
 	"github.com/hashicorp/raft"
 )
 

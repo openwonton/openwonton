@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/helper"
 )
 
 const (
@@ -200,7 +200,7 @@ func (d *dynamicRegistry) RegisterPlugin(info *PluginInfo) error {
 		pmap[info.Name] = infos
 	}
 
-	// TODO(tgross): https://github.com/hashicorp/nomad/issues/11786
+	// TODO(tgross): https://github.com/openwonton/openwonton/issues/11786
 	// If we're already registered, we should update the definition
 	// and send a broadcast of any update so the instanceManager can
 	// be restarted if there's been a change

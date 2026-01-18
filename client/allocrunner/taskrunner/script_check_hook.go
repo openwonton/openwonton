@@ -11,12 +11,12 @@ import (
 
 	"github.com/hashicorp/consul/api"
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	tinterfaces "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/taskenv"
-	agentconsul "github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	tinterfaces "github.com/openwonton/openwonton/client/allocrunner/taskrunner/interfaces"
+	"github.com/openwonton/openwonton/client/serviceregistration"
+	"github.com/openwonton/openwonton/client/taskenv"
+	agentconsul "github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 var _ interfaces.TaskPoststartHook = &scriptCheckHook{}

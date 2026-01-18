@@ -10,7 +10,7 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	version "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/openwonton/openwonton/helper"
 )
 
 // checkConsulTLSSkipVerify logs if Consul does not support TLSSkipVerify on

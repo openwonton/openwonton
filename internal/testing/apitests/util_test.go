@@ -6,8 +6,8 @@ package apitests
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper/pointer"
 )
 
 func assertQueryMeta(t *testing.T, qm *api.QueryMeta) {

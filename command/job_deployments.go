@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type JobDeploymentsCommand struct {
 
 func (c *JobDeploymentsCommand) Help() string {
 	helpText := `
-Usage: nomad job deployments [options] <job>
+Usage: wonton job deployments [options] <job>
 
   Deployments is used to display the deployments for a particular job.
 

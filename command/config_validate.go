@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	multierror "github.com/hashicorp/go-multierror"
-	agent "github.com/hashicorp/nomad/command/agent"
+	agent "github.com/openwonton/openwonton/command/agent"
 )
 
 type ConfigValidateCommand struct {
@@ -18,7 +18,7 @@ type ConfigValidateCommand struct {
 
 func (c *ConfigValidateCommand) Help() string {
 	helpText := `
-Usage: nomad config validate <config_path> [<config_path...>]
+Usage: wonton config validate <config_path> [<config_path...>]
 
   Perform validation on a set of Nomad configuration files. This is useful
   to test the Nomad configuration without starting the agent.

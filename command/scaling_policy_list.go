@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -24,7 +24,7 @@ type ScalingPolicyListCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ScalingPolicyListCommand) Help() string {
 	helpText := `
-Usage: nomad scaling policy list [options]
+Usage: wonton scaling policy list [options]
 
   List is used to list the currently configured scaling policies.
 

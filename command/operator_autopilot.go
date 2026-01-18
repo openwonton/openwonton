@@ -25,7 +25,7 @@ func (c *OperatorAutopilotCommand) Synopsis() string {
 
 func (c *OperatorAutopilotCommand) Help() string {
 	helpText := `
-Usage: nomad operator autopilot <subcommand> [options]
+Usage: wonton operator autopilot <subcommand> [options]
 
   This command groups subcommands for interacting with Nomad's Autopilot
   subsystem. Autopilot provides automatic, operator-friendly management of Nomad

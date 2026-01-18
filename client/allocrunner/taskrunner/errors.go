@@ -6,7 +6,7 @@ package taskrunner
 import (
 	"errors"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

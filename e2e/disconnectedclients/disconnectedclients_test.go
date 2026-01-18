@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )

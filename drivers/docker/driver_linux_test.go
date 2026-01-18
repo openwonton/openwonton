@@ -12,10 +12,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	tu "github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/testutil"
+	"github.com/openwonton/openwonton/helper/pointer"
+	tu "github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type OperatorRootKeyringRotateCommand struct {
 
 func (c *OperatorRootKeyringRotateCommand) Help() string {
 	helpText := `
-Usage: nomad operator root keyring rotate [options]
+Usage: wonton operator root keyring rotate [options]
 
   Generate a new encryption key for all future variables.
 

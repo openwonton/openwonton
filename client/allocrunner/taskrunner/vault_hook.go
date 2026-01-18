@@ -15,11 +15,11 @@ import (
 	"github.com/hashicorp/consul-template/signals"
 	log "github.com/hashicorp/go-hclog"
 
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/vaultclient"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	ti "github.com/openwonton/openwonton/client/allocrunner/taskrunner/interfaces"
+	"github.com/openwonton/openwonton/client/vaultclient"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

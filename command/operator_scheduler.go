@@ -18,7 +18,7 @@ type OperatorSchedulerCommand struct {
 
 func (o *OperatorSchedulerCommand) Help() string {
 	helpText := `
-Usage: nomad operator scheduler <subcommand> [options]
+Usage: wonton operator scheduler <subcommand> [options]
 
   This command groups subcommands for interacting with Nomad's scheduler
   subsystem.

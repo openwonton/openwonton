@@ -6,7 +6,7 @@ package nomad
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 // jobNodePoolValidatingHook is an admission hook that ensures the job has valid

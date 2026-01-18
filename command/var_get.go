@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -22,7 +22,7 @@ type VarGetCommand struct {
 
 func (c *VarGetCommand) Help() string {
 	helpText := `
-Usage: nomad var get [options] <path>
+Usage: wonton var get [options] <path>
 
   The 'var get' command is used to get the contents of an existing variable.
 

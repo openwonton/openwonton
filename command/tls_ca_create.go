@@ -9,9 +9,9 @@ import (
 
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/helper/flags"
-	"github.com/hashicorp/nomad/helper/tlsutil"
-	"github.com/hashicorp/nomad/lib/file"
+	"github.com/openwonton/openwonton/helper/flags"
+	"github.com/openwonton/openwonton/helper/tlsutil"
+	"github.com/openwonton/openwonton/lib/file"
 )
 
 type TLSCACreateCommand struct {
@@ -59,7 +59,7 @@ type TLSCACreateCommand struct {
 
 func (c *TLSCACreateCommand) Help() string {
 	helpText := `
-Usage: nomad tls ca create [options]
+Usage: wonton tls ca create [options]
 
   Create a new certificate authority.
 

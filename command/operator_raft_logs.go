@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper/raftutil"
+	"github.com/openwonton/openwonton/helper/raftutil"
 	"github.com/posener/complete"
 )
 
@@ -19,7 +19,7 @@ type OperatorRaftLogsCommand struct {
 
 func (c *OperatorRaftLogsCommand) Help() string {
 	helpText := `
-Usage: nomad operator raft logs <path to nomad data dir>
+Usage: wonton operator raft logs <path to nomad data dir>
 
   Display the log entries persisted in the Nomad data directory in JSON
   format.

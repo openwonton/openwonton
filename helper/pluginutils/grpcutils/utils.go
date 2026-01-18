@@ -7,7 +7,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/hashicorp/nomad/plugins/base/structs"
+	"github.com/openwonton/openwonton/plugins/base/structs"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

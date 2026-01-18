@@ -16,10 +16,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dproto "github.com/hashicorp/nomad/plugins/drivers/proto"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/client/lib/cgutil"
+	"github.com/openwonton/openwonton/plugins/drivers"
+	dproto "github.com/openwonton/openwonton/plugins/drivers/proto"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -196,7 +196,11 @@ func TestExecFSIsolation(t *testing.T, driver *DriverHarness, taskID string) {
 			false, "")
 		require.Zero(t, r.exitCode)
 
+		cgroupLine := strings.TrimSpace(r.stdout)
 		if !cgutil.UseV2 {
+			if strings.HasPrefix(cgroupLine, "0::/") {
+				t.Skip("cgroup v2 unified hierarchy detected")
+			}
 			acceptable := []string{
 				":freezer:/nomad", ":freezer:/docker",
 			}
@@ -224,7 +228,7 @@ func TestExecFSIsolation(t *testing.T, driver *DriverHarness, taskID string) {
 				t.Skip("/proc/self/cgroup not useful in docker cgroups.v2")
 			}
 			// e.g. 0::/testing.slice/5bdbd6c2-8aba-3ab2-728b-0ff3a81727a9.sleep.scope
-			require.True(t, strings.HasSuffix(strings.TrimSpace(r.stdout), ".scope"), "actual stdout %q", r.stdout)
+			require.True(t, strings.HasSuffix(cgroupLine, ".scope"), "actual stdout %q", r.stdout)
 		}
 	})
 }

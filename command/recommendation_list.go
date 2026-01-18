@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -24,7 +24,7 @@ type RecommendationListCommand struct {
 // Help satisfies the cli.Command Help function.
 func (r *RecommendationListCommand) Help() string {
 	helpText := `
-Usage: nomad recommendation list [options]
+Usage: wonton recommendation list [options]
 
   List is used to list the available recommendations.
 

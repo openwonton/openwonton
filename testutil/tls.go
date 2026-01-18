@@ -9,7 +9,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/tlsutil"
+	"github.com/openwonton/openwonton/helper/tlsutil"
 	"github.com/stretchr/testify/require"
 )
 

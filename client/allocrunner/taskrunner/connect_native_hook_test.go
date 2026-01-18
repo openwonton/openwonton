@@ -8,26 +8,40 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sync"
 	"testing"
 
 	consulapi "github.com/hashicorp/consul/api"
 	consultest "github.com/hashicorp/consul/sdk/testutil"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/client/testutil"
-	agentconsul "github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
+	"github.com/openwonton/openwonton/client/taskenv"
+	"github.com/openwonton/openwonton/client/testutil"
+	agentconsul "github.com/openwonton/openwonton/command/agent/consul"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/stretchr/testify/require"
 )
 
+var consulTestLock = make(chan struct{}, 1)
+var consulTestSeen sync.Map
+
+func acquireConsulTestSlot(t *testing.T) {
+	t.Helper()
+	if _, loaded := consulTestSeen.LoadOrStore(t, struct{}{}); loaded {
+		return
+	}
+	consulTestLock <- struct{}{}
+	t.Cleanup(func() { <-consulTestLock })
+}
+
 func getTestConsul(t *testing.T) *consultest.TestServer {
+	acquireConsulTestSlot(t)
 	testConsul, err := consultest.NewTestServerConfigT(t, func(c *consultest.TestServerConfig) {
 		c.Peering = nil         // fix for older versions of Consul (<1.13.0) that don't support peering
 		if !testing.Verbose() { // disable consul logging if -v not set

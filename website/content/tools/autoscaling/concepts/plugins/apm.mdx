@@ -10,7 +10,7 @@ APM plugins are used by the autoscaler to interact with an external APM system,
 returning metrics that are used by the autoscaler to inform scaling actions.
 
 For a real-world example of a Nomad APM plugin implementation, see the
-[`prometheus` plugin](https://github.com/hashicorp/nomad-autoscaler/tree/main/plugins/builtin/apm/prometheus).
+[`prometheus` plugin](https://github.com/openwonton/openwonton-autoscaler/tree/main/plugins/builtin/apm/prometheus).
 
 ## Authoring APM Plugins
 
@@ -42,7 +42,7 @@ multiple time series to be returned. This endpoint is currently only used for
 An example would be to return the CPU utilization for all allocations during
 the time range.
 
-[apm_plugin]: https://github.com/hashicorp/nomad-autoscaler/blob/v0.3.0/plugins/apm/apm.go#L11
+[apm_plugin]: https://github.com/openwonton/openwonton-autoscaler/blob/v0.3.0/plugins/apm/apm.go#L11
 [base_plugin]: /nomad/tools/autoscaling/internals/plugins/base
-[noop_plugin]: https://github.com/hashicorp/nomad-autoscaler/tree/v0.3.0/plugins/test/noop-apm
+[noop_plugin]: https://github.com/openwonton/openwonton-autoscaler/tree/v0.3.0/plugins/test/noop-apm
 [das]: /nomad/tools/autoscaling#dynamic-application-sizing

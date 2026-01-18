@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type NamespaceStatusCommand struct {
 
 func (c *NamespaceStatusCommand) Help() string {
 	helpText := `
-Usage: nomad namespace status [options] <namespace>
+Usage: wonton namespace status [options] <namespace>
 
   Status is used to view the status of a particular namespace.
 

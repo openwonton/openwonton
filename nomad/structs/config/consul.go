@@ -11,7 +11,7 @@ import (
 
 	consul "github.com/hashicorp/consul/api"
 	"github.com/hashicorp/go-secure-stdlib/listenerutil"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/helper/pointer"
 )
 
 // ConsulConfig contains the configuration information necessary to

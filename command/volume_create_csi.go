@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 )
 
 func (c *VolumeCreateCommand) csiCreate(client *api.Client, ast *ast.File) int {

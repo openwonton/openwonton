@@ -14,8 +14,8 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/lib/auth/oidc"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/lib/auth/oidc"
 )
 
 // Ensure LoginCommand satisfies the cli.Command interface.
@@ -37,7 +37,7 @@ type LoginCommand struct {
 // Help satisfies the cli.Command Help function.
 func (l *LoginCommand) Help() string {
 	helpText := `
-Usage: nomad login [options]
+Usage: wonton login [options]
 
   The login command will exchange the provided third party credentials with the
   requested auth method for a newly minted Nomad ACL token.

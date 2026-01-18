@@ -8,8 +8,8 @@ package fingerprint
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

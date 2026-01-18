@@ -16,7 +16,7 @@ type SentinelDeleteCommand struct {
 
 func (c *SentinelDeleteCommand) Help() string {
 	helpText := `
-Usage: nomad sentinel delete [options] <name>
+Usage: wonton sentinel delete [options] <name>
 
   Delete is used to delete an existing Sentinel policy.
 

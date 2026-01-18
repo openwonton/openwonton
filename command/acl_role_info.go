@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -27,7 +27,7 @@ type ACLRoleInfoCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLRoleInfoCommand) Help() string {
 	helpText := `
-Usage: nomad acl role info [options] <acl_role_id>
+Usage: wonton acl role info [options] <acl_role_id>
 
   Info is used to fetch information on an existing ACL roles. Requires a
   management token.

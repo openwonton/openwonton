@@ -27,14 +27,14 @@ import (
 	hclog "github.com/hashicorp/go-hclog"
 	gsyslog "github.com/hashicorp/go-syslog"
 	"github.com/hashicorp/logutils"
-	"github.com/hashicorp/nomad/helper"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
-	gatedwriter "github.com/hashicorp/nomad/helper/gated-writer"
-	"github.com/hashicorp/nomad/helper/logging"
-	"github.com/hashicorp/nomad/helper/winsvc"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/version"
+	"github.com/openwonton/openwonton/helper"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
+	gatedwriter "github.com/openwonton/openwonton/helper/gated-writer"
+	"github.com/openwonton/openwonton/helper/logging"
+	"github.com/openwonton/openwonton/helper/winsvc"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
+	"github.com/openwonton/openwonton/version"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
@@ -1302,7 +1302,7 @@ func (c *Command) Synopsis() string {
 
 func (c *Command) Help() string {
 	helpText := `
-Usage: nomad agent [options]
+Usage: wonton agent [options]
 
   Starts the Nomad agent and runs until an interrupt is received.
   The agent may be a client and/or server.

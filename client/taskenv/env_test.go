@@ -14,11 +14,11 @@ import (
 	hcl "github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/gohcl"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -673,7 +673,7 @@ func TestEnvironment_AppendHostEnvvars(t *testing.T) {
 
 // TestEnvironment_DashesInTaskName asserts dashes in port labels are properly
 // converted to underscores in environment variables.
-// See: https://github.com/hashicorp/nomad/issues/2405
+// See: https://github.com/openwonton/openwonton/issues/2405
 func TestEnvironment_DashesInTaskName(t *testing.T) {
 	ci.Parallel(t)
 

@@ -13,9 +13,9 @@ import (
 	"time"
 
 	humanize "github.com/dustin/go-humanize"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/posener/complete"
 )
 
@@ -46,7 +46,7 @@ type NodeStatusCommand struct {
 
 func (c *NodeStatusCommand) Help() string {
 	helpText := `
-Usage: nomad node status [options] <node>
+Usage: wonton node status [options] <node>
 
   Display status information about a given node. The list of nodes
   returned includes only nodes which jobs may be scheduled to, and

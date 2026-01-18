@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/ptypes"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers/proto"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers/proto"
 )
 
 var taskStateToProtoMap = map[TaskState]proto.TaskState{

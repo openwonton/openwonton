@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 
@@ -22,7 +22,7 @@ type ACLBindingRuleCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLBindingRuleCommand) Help() string {
 	helpText := `
-Usage: nomad acl binding-rule <subcommand> [options] [args]
+Usage: wonton acl binding-rule <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL binding rules.
   Nomad's ACL system can be used to control access to data and APIs. For a full

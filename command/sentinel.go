@@ -15,7 +15,7 @@ type SentinelCommand struct {
 
 func (f *SentinelCommand) Help() string {
 	helpText := `
-Usage: nomad sentinel <subcommand> [options] [args]
+Usage: wonton sentinel <subcommand> [options] [args]
 
   This command groups subcommands for interacting with Sentinel policies.
   Sentinel policies allow operators to express fine-grained policies as code and

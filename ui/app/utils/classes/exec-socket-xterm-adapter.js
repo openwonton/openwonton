@@ -39,7 +39,7 @@ export default class ExecSocketXtermAdapter {
       this.terminal.writeln('');
       this.terminal.write(ANSI_UI_GRAY_400);
       this.terminal.writeln('The connection has closed.');
-      // Issue to add interpretation of close events: https://github.com/hashicorp/nomad/issues/7464
+      // Issue to add interpretation of close events: https://github.com/openwonton/openwonton/issues/7464
     };
 
     terminal.resized = () => {

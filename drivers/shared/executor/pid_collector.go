@@ -10,9 +10,9 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/lib/resources"
-	"github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/openwonton/openwonton/client/lib/resources"
+	"github.com/openwonton/openwonton/helper/stats"
+	"github.com/openwonton/openwonton/plugins/drivers"
 	ps "github.com/mitchellh/go-ps"
 	"github.com/shirou/gopsutil/v3/process"
 )

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -17,7 +17,7 @@ type DeploymentResumeCommand struct {
 
 func (c *DeploymentResumeCommand) Help() string {
 	helpText := `
-Usage: nomad deployment resume [options] <deployment id>
+Usage: wonton deployment resume [options] <deployment id>
 
   Resume is used to unpause a paused deployment. Resuming a deployment will
   resume the placement of new allocations as part of rolling deployment.

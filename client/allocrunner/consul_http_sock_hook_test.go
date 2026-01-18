@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client/allocdir"
+	"github.com/openwonton/openwonton/helper/testlog"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -32,7 +32,7 @@ func TestConsulSocketHook_PrerunPostrun_Ok(t *testing.T) {
 
 	logger := testlog.HCLogger(t)
 
-	allocDir, cleanupDir := allocdir.TestAllocDir(t, logger, "ConnectNativeTask", alloc.ID)
+	allocDir, cleanupDir := allocdir.TestAllocDir(t, logger, "CNT", alloc.ID)
 	defer cleanupDir()
 
 	// start unix socket proxy
@@ -102,7 +102,7 @@ func TestConsulHTTPSocketHook_Prerun_Error(t *testing.T) {
 	alloc := mock.Alloc()
 	connectNativeAlloc := mock.ConnectNativeAlloc("bridge")
 
-	allocDir, cleanupDir := allocdir.TestAllocDir(t, logger, "ConnectNativeTask", alloc.ID)
+	allocDir, cleanupDir := allocdir.TestAllocDir(t, logger, "CNT", alloc.ID)
 	defer cleanupDir()
 
 	{

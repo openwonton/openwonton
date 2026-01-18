@@ -15,8 +15,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
 	"github.com/mitchellh/colorstring"
 	"github.com/mitchellh/mapstructure"
@@ -29,7 +29,7 @@ type VarCommand struct {
 
 func (f *VarCommand) Help() string {
 	helpText := `
-Usage: nomad var <subcommand> [options] [args]
+Usage: wonton var <subcommand> [options] [args]
 
   This command groups subcommands for interacting with variables. Variables
   allow operators to provide credentials and otherwise sensitive material to

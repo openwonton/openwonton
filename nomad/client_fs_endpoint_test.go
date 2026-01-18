@@ -13,17 +13,22 @@ import (
 
 	codec "github.com/hashicorp/go-msgpack/codec"
 	msgpackrpc "github.com/hashicorp/net-rpc-msgpackrpc"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client"
-	"github.com/hashicorp/nomad/client/config"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/client"
+	"github.com/openwonton/openwonton/client/config"
+	cstructs "github.com/openwonton/openwonton/client/structs"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/stretchr/testify/require"
 )
+
+func configureFSClient(c *config.Config) {
+	c.GCDiskUsageThreshold = 100.0
+	c.GCInodeUsageThreshold = 100.0
+}
 
 func TestClientFS_List_Local(t *testing.T) {
 	ci.Parallel(t)
@@ -37,6 +42,7 @@ func TestClientFS_List_Local(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -196,6 +202,7 @@ func TestClientFS_List_Remote(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -313,6 +320,7 @@ func TestClientFS_Stat_Local(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -472,6 +480,7 @@ func TestClientFS_Stat_Remote(t *testing.T) {
 
 	c, cleanup := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanup()
 
@@ -744,6 +753,7 @@ func TestClientFS_Streaming_Local(t *testing.T) {
 
 	c, cleanup := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanup()
 
@@ -876,6 +886,7 @@ func TestClientFS_Streaming_Local_Follow(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -1022,6 +1033,7 @@ func TestClientFS_Streaming_Remote_Server(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -1168,6 +1180,7 @@ func TestClientFS_Streaming_Remote_Region(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 		c.Region = "two"
 	})
 	defer cleanupC()
@@ -1573,6 +1586,7 @@ func TestClientFS_Logs_Local(t *testing.T) {
 
 	c, cleanupC := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanupC()
 
@@ -1706,6 +1720,7 @@ func TestClientFS_Logs_Local_Follow(t *testing.T) {
 
 	c, cleanup := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanup()
 
@@ -1853,6 +1868,7 @@ func TestClientFS_Logs_Remote_Server(t *testing.T) {
 
 	c, cleanup := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 	})
 	defer cleanup()
 
@@ -2000,6 +2016,7 @@ func TestClientFS_Logs_Remote_Region(t *testing.T) {
 
 	c, cleanup := client.TestClient(t, func(c *config.Config) {
 		c.Servers = []string{s2.config.RPCAddr.String()}
+		configureFSClient(c)
 		c.Region = "two"
 	})
 	defer cleanup()

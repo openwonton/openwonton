@@ -11,11 +11,11 @@ import (
 	"syscall"
 
 	hclog "github.com/hashicorp/go-hclog"
-	clientconfig "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/lib/nsutil"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	clientconfig "github.com/openwonton/openwonton/client/config"
+	"github.com/openwonton/openwonton/client/lib/nsutil"
+	"github.com/openwonton/openwonton/client/pluginmanager/drivermanager"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/plugins/drivers"
 )
 
 func newNetworkManager(alloc *structs.Allocation, driverManager drivermanager.Manager) (nm drivers.DriverNetworkManager, err error) {
@@ -99,7 +99,7 @@ func newNetworkManager(alloc *structs.Allocation, driverManager drivermanager.Ma
 			//  indicates only Docker supports this, which is true unless a
 			//  custom driver can which means this check still holds as true as
 			//  we can tell.
-			//  Please see: https://github.com/hashicorp/nomad/issues/11180
+			//  Please see: https://github.com/openwonton/openwonton/issues/11180
 			return nil, fmt.Errorf("hostname is not currently supported on driver %s", task.Driver)
 		}
 

@@ -23,7 +23,7 @@ func fileDoesNotExist(file string) bool {
 
 func (c *TLSCommand) Help() string {
 	helpText := `
-Usage: nomad tls <subcommand> <subcommand> [options]
+Usage: wonton tls <subcommand> <subcommand> [options]
 
 This command groups subcommands for creating certificates for Nomad TLS configuration. 
 The TLS command allows operators to generate self signed certificates to use

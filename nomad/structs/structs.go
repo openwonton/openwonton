@@ -33,18 +33,18 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-set"
 	"github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/args"
-	"github.com/hashicorp/nomad/helper/constraints/semver"
-	"github.com/hashicorp/nomad/helper/escapingfs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/lib/kheap"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/openwonton/openwonton/acl"
+	"github.com/openwonton/openwonton/command/agent/host"
+	"github.com/openwonton/openwonton/command/agent/pprof"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/helper/args"
+	"github.com/openwonton/openwonton/helper/constraints/semver"
+	"github.com/openwonton/openwonton/helper/escapingfs"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/helper/uuid"
+	"github.com/openwonton/openwonton/lib/cpuset"
+	"github.com/openwonton/openwonton/lib/kheap"
+	psstructs "github.com/openwonton/openwonton/plugins/shared/structs"
 	"github.com/miekg/dns"
 	"github.com/mitchellh/copystructure"
 	"github.com/ryanuber/go-glob"
@@ -11172,7 +11172,7 @@ func (a *Allocation) ToIdentityClaims(job *Job) *IdentityClaims {
 			// TODO: implement a refresh loop to prevent allocation identities from
 			// expiring before the allocation is terminal. Once that's implemented,
 			// add an ExpiresAt here ExpiresAt: &jwt.NumericDate{}
-			// https://github.com/hashicorp/nomad/issues/16258
+			// https://github.com/openwonton/openwonton/issues/16258
 			NotBefore: now,
 			IssuedAt:  now,
 		},

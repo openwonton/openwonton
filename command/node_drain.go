@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	flaghelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
+	flaghelper "github.com/openwonton/openwonton/helper/flags"
 
 	"github.com/posener/complete"
 )
@@ -28,7 +28,7 @@ type NodeDrainCommand struct {
 
 func (c *NodeDrainCommand) Help() string {
 	helpText := `
-Usage: nomad node drain [options] <node>
+Usage: wonton node drain [options] <node>
 
   Toggles node draining on a specified node. It is required that either
   -enable or -disable is specified, but not both.  The -self flag is useful to

@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"math/big"
 	"net"
-	"time"
 )
 
 // GenerateSerialNumber returns random bigint generated with crypto/rand
@@ -163,6 +162,8 @@ func GenerateCA(opts CAOpts) (string, string, error) {
 	}
 
 	// Create the CA cert
+	nowFn := tlsTimeFunc()
+	now := nowFn()
 	template := x509.Certificate{
 		SerialNumber: sn,
 		Subject: pkix.Name{
@@ -178,8 +179,8 @@ func GenerateCA(opts CAOpts) (string, string, error) {
 		BasicConstraintsValid: true,
 		KeyUsage:              x509.KeyUsageCertSign | x509.KeyUsageCRLSign | x509.KeyUsageDigitalSignature,
 		IsCA:                  true,
-		NotAfter:              time.Now().AddDate(0, 0, opts.Days),
-		NotBefore:             time.Now(),
+		NotAfter:              now.AddDate(0, 0, opts.Days),
+		NotBefore:             now,
 		AuthorityKeyId:        id,
 		SubjectKeyId:          id,
 	}
@@ -229,6 +230,8 @@ func GenerateCert(opts CertOpts) (string, string, error) {
 		}
 	}
 
+	nowFn := tlsTimeFunc()
+	now := nowFn()
 	template := x509.Certificate{
 		SerialNumber:          sn,
 		Subject:               pkix.Name{CommonName: opts.Name},
@@ -236,8 +239,8 @@ func GenerateCert(opts CertOpts) (string, string, error) {
 		KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment,
 		ExtKeyUsage:           opts.ExtKeyUsage,
 		IsCA:                  false,
-		NotAfter:              time.Now().AddDate(0, 0, opts.Days),
-		NotBefore:             time.Now(),
+		NotAfter:              now.AddDate(0, 0, opts.Days),
+		NotBefore:             now,
 		SubjectKeyId:          id,
 		DNSNames:              opts.DNSNames,
 		IPAddresses:           opts.IPAddresses,
@@ -356,6 +359,8 @@ func Verify(caString, certString, dns string) error {
 	opts := x509.VerifyOptions{
 		DNSName: fmt.Sprint(dns),
 		Roots:   roots,
+		// Align with test time overrides to avoid time-dependent failures.
+		CurrentTime: tlsTimeFunc()(),
 	}
 
 	_, err = cert.Verify(opts)

@@ -6,7 +6,7 @@ package executor
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/mitchellh/go-ps"
 )
 

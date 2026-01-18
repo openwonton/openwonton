@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"golang.org/x/exp/slices"
@@ -38,7 +38,7 @@ type ACLAuthMethodUpdateCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLAuthMethodUpdateCommand) Help() string {
 	helpText := `
-Usage: nomad acl auth-method update [options] <acl_auth_method_name>
+Usage: wonton acl auth-method update [options] <acl_auth_method_name>
 
   Update is used to update ACL auth methods. Use requires a management token.
 

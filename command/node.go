@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 
@@ -18,7 +18,7 @@ type NodeCommand struct {
 
 func (f *NodeCommand) Help() string {
 	helpText := `
-Usage: nomad node <subcommand> [options] [args]
+Usage: wonton node <subcommand> [options] [args]
 
   This command groups subcommands for interacting with nodes. Nodes in Nomad are
   agent's that can run submitted workloads. This command can be used to examine

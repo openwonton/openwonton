@@ -6,9 +6,10 @@ package java
 import (
 	"fmt"
 	"runtime"
+	"sync"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/openwonton/openwonton/ci"
 	"github.com/stretchr/testify/require"
 )
 
@@ -108,6 +109,12 @@ func TestDriver_javaVersionInfo(t *testing.T) {
 		t.Skip("test requires bash to run")
 	}
 
+	unlock := lockJavaCommands()
+	defer unlock()
+
+	restoreMac := stubMacOSJavaHome()
+	defer restoreMac()
+
 	initCmd := javaVersionCommand
 	defer func() {
 		javaVersionCommand = initCmd
@@ -135,6 +142,12 @@ func TestDriver_javaVersionInfo_UnexpectedOutput(t *testing.T) {
 		t.Skip("test requires bash to run")
 	}
 
+	unlock := lockJavaCommands()
+	defer unlock()
+
+	restoreMac := stubMacOSJavaHome()
+	defer restoreMac()
+
 	initCmd := javaVersionCommand
 	defer func() {
 		javaVersionCommand = initCmd
@@ -158,6 +171,12 @@ func TestDriver_javaVersionInfo_JavaVersionFails(t *testing.T) {
 		t.Skip("test requires bash to run")
 	}
 
+	unlock := lockJavaCommands()
+	defer unlock()
+
+	restoreMac := stubMacOSJavaHome()
+	defer restoreMac()
+
 	initCmd := javaVersionCommand
 	defer func() {
 		javaVersionCommand = initCmd
@@ -175,4 +194,25 @@ func TestDriver_javaVersionInfo_JavaVersionFails(t *testing.T) {
 	require.Equal(t, "", version)
 	require.Equal(t, "", jdkJRE)
 	require.Equal(t, "", vm)
+}
+
+var javaCommandMu sync.Mutex
+
+func lockJavaCommands() func() {
+	javaCommandMu.Lock()
+	return func() {
+		javaCommandMu.Unlock()
+	}
+}
+
+func stubMacOSJavaHome() func() {
+	if runtime.GOOS != "darwin" {
+		return func() {}
+	}
+
+	initCmd := macOSJavaTestCommand
+	macOSJavaTestCommand = "/usr/bin/true"
+	return func() {
+		macOSJavaTestCommand = initCmd
+	}
 }

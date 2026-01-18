@@ -5,7 +5,7 @@ package state
 
 import (
 	memdb "github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 var MsgTypeEvents = map[structs.MessageType]string{

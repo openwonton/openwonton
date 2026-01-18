@@ -6,7 +6,7 @@ package nomad
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 type jobNamespaceConstraintCheckHook struct {

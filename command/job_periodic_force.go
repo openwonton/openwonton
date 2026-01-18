@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -18,7 +18,7 @@ type JobPeriodicForceCommand struct {
 
 func (c *JobPeriodicForceCommand) Help() string {
 	helpText := `
-Usage: nomad job periodic force <job id>
+Usage: wonton job periodic force <job id>
 
   This command is used to force the creation of a new instance of a periodic job.
   This is used to immediately run a periodic job, even if it violates the job's

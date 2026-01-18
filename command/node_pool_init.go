@@ -10,7 +10,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/command/asset"
+	"github.com/openwonton/openwonton/command/asset"
 	"github.com/posener/complete"
 )
 
@@ -31,7 +31,7 @@ type NodePoolInitCommand struct {
 
 func (c *NodePoolInitCommand) Help() string {
 	helpText := `
-Usage: nomad node pool init <filename>
+Usage: wonton node pool init <filename>
 
   Creates an example node pool specification file that can be used as a starting
   point to customize further. When no filename is supplied, a default filename

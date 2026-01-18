@@ -6,7 +6,7 @@ package consul
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/e2e/e2eutil"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
 )
 
 func TestConsul(t *testing.T) {

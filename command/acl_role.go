@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
 )
 
@@ -23,7 +23,7 @@ type ACLRoleCommand struct {
 // Help satisfies the cli.Command Help function.
 func (a *ACLRoleCommand) Help() string {
 	helpText := `
-Usage: nomad acl role <subcommand> [options] [args]
+Usage: wonton acl role <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL roles. Nomad's ACL
   system can be used to control access to data and APIs. ACL roles are

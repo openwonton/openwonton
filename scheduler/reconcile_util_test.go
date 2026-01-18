@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/ci"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/mock"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/shoenig/test/must"
 )
 
@@ -937,7 +937,7 @@ func TestReconcile_shouldFilter(t *testing.T) {
 // Test that we properly create the bitmap even when the alloc set includes an
 // allocation with a higher count than the current min count and it is byte
 // aligned.
-// Ensure no regression from: https://github.com/hashicorp/nomad/issues/3008
+// Ensure no regression from: https://github.com/openwonton/openwonton/issues/3008
 func TestBitmapFrom(t *testing.T) {
 	ci.Parallel(t)
 

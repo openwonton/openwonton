@@ -6,9 +6,9 @@ package artifact
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/e2e/e2eutil"
+	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/shoenig/test/must"
 )
 
@@ -70,7 +70,7 @@ func testWindows(t *testing.T) {
 	check("rawexec", "rawexec_zip_custom")
 
 	// todo(shoenig) needs git on windows
-	// https://github.com/hashicorp/nomad/issues/15505
+	// https://github.com/openwonton/openwonton/issues/15505
 	// check("rawexec", "rawexec_git_custom")
 }
 

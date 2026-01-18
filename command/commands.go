@@ -7,18 +7,18 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/version"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/version"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/mitchellh/cli"
 )
 
 const (
-	// EnvNomadCLINoColor is an env var that toggles colored UI output.
-	EnvNomadCLINoColor = `NOMAD_CLI_NO_COLOR`
+	// EnvWontonCLINoColor is an env var that toggles colored UI output.
+	EnvWontonCLINoColor = `WONTON_CLI_NO_COLOR`
 
-	// EnvNomadCLIForceColor is an env var that forces colored UI output.
-	EnvNomadCLIForceColor = `NOMAD_CLI_FORCE_COLOR`
+	// EnvWontonCLIForceColor is an env var that forces colored UI output.
+	EnvWontonCLIForceColor = `WONTON_CLI_FORCE_COLOR`
 )
 
 // DeprecatedCommand is a command that wraps an existing command and prints a
@@ -46,8 +46,8 @@ func (c *DeprecatedCommand) Run(args []string) int {
 
 func (c *DeprecatedCommand) warn() {
 	c.Ui.Warn(wrapAtLength(fmt.Sprintf(
-		"WARNING! The \"nomad %s\" command is deprecated. Please use \"nomad %s\" "+
-			"instead. This command will be removed a later version of Nomad.",
+		"WARNING! The \"wonton %s\" command is deprecated. Please use \"wonton %s\" "+
+			"instead. This command will be removed a later version of OpenWonton.",
 		c.Old,
 		c.New)))
 	c.Ui.Warn("")
@@ -58,7 +58,7 @@ type NamedCommand interface {
 	Name() string
 }
 
-// Commands returns the mapping of CLI commands for Nomad. The meta
+// Commands returns the mapping of CLI commands for OpenWonton. The meta
 // parameter lets you set meta options for all commands.
 func Commands(metaPtr *Meta, agentUi cli.Ui) map[string]cli.CommandFactory {
 	if metaPtr == nil {

@@ -6,7 +6,7 @@ package serviceregistration
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

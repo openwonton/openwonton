@@ -21,7 +21,7 @@ type ScalingPolicyCommand struct {
 // Help satisfies the cli.Command Help function.
 func (s *ScalingPolicyCommand) Help() string {
 	helpText := `
-Usage: nomad scaling policy <subcommand> [options]
+Usage: wonton scaling policy <subcommand> [options]
 
   This command groups subcommands for interacting with scaling policies. Scaling
   policies can be used by an external autoscaler to perform scaling actions on

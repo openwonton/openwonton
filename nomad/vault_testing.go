@@ -7,8 +7,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/nomad/structs/config"
 	vapi "github.com/hashicorp/vault/api"
 )
 

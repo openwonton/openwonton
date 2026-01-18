@@ -8,9 +8,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/plugins/base"
-	baseproto "github.com/hashicorp/nomad/plugins/base/proto"
-	"github.com/hashicorp/nomad/plugins/drivers/proto"
+	"github.com/openwonton/openwonton/plugins/base"
+	baseproto "github.com/openwonton/openwonton/plugins/base/proto"
+	"github.com/openwonton/openwonton/plugins/drivers/proto"
 	"google.golang.org/grpc"
 )
 

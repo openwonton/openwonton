@@ -19,8 +19,8 @@ import (
 	"github.com/dustin/go-humanize/english"
 	multierror "github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -106,7 +106,7 @@ type JobRestartCommand struct {
 
 func (c *JobRestartCommand) Help() string {
 	helpText := `
-Usage: nomad job restart [options] <job>
+Usage: wonton job restart [options] <job>
 
   Restart or reschedule allocations for a particular job.
 

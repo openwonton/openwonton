@@ -7,18 +7,27 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"sync"
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/helper/pointer"
+	"github.com/openwonton/openwonton/nomad/structs"
+	"github.com/openwonton/openwonton/testutil"
 	"github.com/shoenig/test/must"
 )
 
 var nonAlphaNum = regexp.MustCompile(`[^a-zA-Z0-9]+`)
+var chdirLock sync.Mutex
+
+func lockChdir(t *testing.T) {
+	chdirLock.Lock()
+	t.Cleanup(func() {
+		chdirLock.Unlock()
+	})
+}
 
 func testServer(t *testing.T, runClient bool, cb func(*agent.Config)) (*agent.TestAgent, *api.Client, string) {
 	// Make a new test server
@@ -150,6 +159,18 @@ func waitForNodes(t *testing.T, client *api.Client) {
 			}
 		}
 		return false, fmt.Errorf("no ready nodes")
+	}, func(err error) {
+		must.NoError(t, err)
+	})
+}
+
+func waitForHTTP(t *testing.T, client *api.Client) {
+	testutil.WaitForResult(func() (bool, error) {
+		_, err := client.Status().Leader()
+		if err != nil {
+			return false, err
+		}
+		return true, nil
 	}, func(err error) {
 		must.NoError(t, err)
 	})
