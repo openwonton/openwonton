@@ -25,11 +25,11 @@ Usage: wonton operator scheduler <subcommand> [options]
 
   Get the scheduler configuration:
 
-      $ nomad operator scheduler get-config
+      $ wonton operator scheduler get-config
 
   Set the scheduler to use the spread algorithm:
 
-      $ nomad operator scheduler set-config -scheduler-algorithm=spread
+      $ wonton operator scheduler set-config -scheduler-algorithm=spread
 
   Please see the individual subcommand help for detailed usage information.
 `

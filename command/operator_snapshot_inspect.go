@@ -23,7 +23,7 @@ Usage: wonton operator snapshot inspect [options] <file>
   Displays information about a snapshot file on disk.
 
   To inspect the file "backup.snap":
-    $ nomad operator snapshot inspect backup.snap
+    $ wonton operator snapshot inspect backup.snap
 `
 	return strings.TrimSpace(helpText)
 }

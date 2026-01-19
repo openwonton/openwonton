@@ -22,15 +22,15 @@ Usage: wonton server <subcommand> [options] [args]
 
   List Nomad servers:
 
-      $ nomad server members
+      $ wonton server members
 
   Join a new server to another:
 
-      $ nomad server join "IP:Port"
+      $ wonton server join "IP:Port"
 
   Force a server to leave:
 
-      $ nomad server force-leave <name>
+      $ wonton server force-leave <name>
 
   Please see the individual subcommand help for detailed usage information.
 `

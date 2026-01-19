@@ -93,7 +93,20 @@ endif
 		GOOS=$(firstword $(subst _, ,$*)) \
 		GOARCH=$(lastword $(subst _, ,$*)) \
 		CC=$(CC) \
-		go build -trimpath -ldflags "$(GO_LDFLAGS)" -tags "$(GO_TAGS)" -o $(GO_OUT)
+		go build -trimpath -ldflags "$(GO_LDFLAGS)" -tags "$(GO_TAGS)" -o $(GO_OUT) ./cmd/wonton
+
+pkg/%/nomad: GO_OUT ?= $@
+pkg/%/nomad: CC ?= $(shell go env CC)
+pkg/%/nomad: ## Build OpenWonton nomad shim for GOOS_GOARCH, e.g. pkg/linux_amd64/nomad
+ifeq (,$(findstring $(THIS_OS),$(SUPPORTED_OSES)))
+	$(warning WARNING: Building OpenWonton is only supported on $(SUPPORTED_OSES); not $(THIS_OS))
+endif
+	@echo "==> Building $@ with tags $(GO_TAGS)..."
+	@CGO_ENABLED=$(CGO_ENABLED) \
+		GOOS=$(firstword $(subst _, ,$*)) \
+		GOARCH=$(lastword $(subst _, ,$*)) \
+		CC=$(CC) \
+		go build -trimpath -ldflags "$(GO_LDFLAGS)" -tags "$(GO_TAGS)" -o $(GO_OUT) ./cmd/nomad
 
 ifneq (armv7l,$(THIS_ARCH))
 pkg/linux_arm/wonton: CC = arm-linux-gnueabihf-gcc
@@ -110,10 +123,25 @@ endif
 pkg/windows_%/wonton: GO_OUT = $@.exe
 pkg/windows_%/wonton: GO_TAGS += timetzdata
 
+ifneq (armv7l,$(THIS_ARCH))
+pkg/linux_arm/nomad: CC = arm-linux-gnueabihf-gcc
+endif
+
+ifneq (aarch64,$(THIS_ARCH))
+pkg/linux_arm64/nomad: CC = aarch64-linux-gnu-gcc
+endif
+
+ifeq (Darwin,$(THIS_OS))
+pkg/linux_%/nomad: CGO_ENABLED = 0
+endif
+
+pkg/windows_%/nomad: GO_OUT = $@.exe
+pkg/windows_%/nomad: GO_TAGS += timetzdata
+
 # Define package targets for each of the build targets we actually have on this system
 define makePackageTarget
 
-pkg/$(1).zip: pkg/$(1)/wonton
+ pkg/$(1).zip: pkg/$(1)/wonton pkg/$(1)/nomad
 	@echo "==> Packaging for $(1)..."
 	@zip -j pkg/$(1).zip pkg/$(1)/*
 
@@ -254,19 +282,26 @@ tidy: ## Tidy up the go mod files
 dev: GOOS=$(shell go env GOOS)
 dev: GOARCH=$(shell go env GOARCH)
 dev: DEV_TARGET=pkg/$(GOOS)_$(GOARCH)/wonton
+dev: DEV_SHIM_TARGET=pkg/$(GOOS)_$(GOARCH)/nomad
 dev: hclfmt ## Build for the current development platform
 	@echo "==> Removing old development build..."
 	@rm -f $(PROJECT_ROOT)/$(DEV_TARGET)
+	@rm -f $(PROJECT_ROOT)/$(DEV_SHIM_TARGET)
 	@rm -f $(PROJECT_ROOT)/bin/wonton
+	@rm -f $(PROJECT_ROOT)/bin/nomad
 	@rm -f $(BIN)/wonton
+	@rm -f $(BIN)/nomad
 	@if [ -d vendor ]; then echo -e "==> WARNING: Found vendor directory.  This may cause build errors, consider running 'rm -r vendor' or 'make clean' to remove.\n"; fi
 	@$(MAKE) --no-print-directory \
 		$(DEV_TARGET) \
+		$(DEV_SHIM_TARGET) \
 		GO_TAGS="$(GO_TAGS) $(WONTON_UI_TAG)"
 	@mkdir -p $(PROJECT_ROOT)/bin
 	@mkdir -p $(BIN)
 	@cp $(PROJECT_ROOT)/$(DEV_TARGET) $(PROJECT_ROOT)/bin/
+	@cp $(PROJECT_ROOT)/$(DEV_SHIM_TARGET) $(PROJECT_ROOT)/bin/
 	@cp $(PROJECT_ROOT)/$(DEV_TARGET) $(BIN)
+	@cp $(PROJECT_ROOT)/$(DEV_SHIM_TARGET) $(BIN)
 
 .PHONY: prerelease
 prerelease: GO_TAGS=ui codegen_generated release
@@ -329,6 +364,7 @@ clean: ## Remove build artifacts
 	@rm -rf "$(PROJECT_ROOT)/pkg/"
 	@rm -rf "$(PROJECT_ROOT)/vendor/"
 	@rm -f "$(BIN)/wonton"
+	@rm -f "$(BIN)/nomad"
 
 .PHONY: testcluster
 testcluster: ## Bring up a Linux test cluster using Vagrant. Set PROVIDER if necessary.

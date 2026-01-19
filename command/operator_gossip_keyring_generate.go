@@ -11,7 +11,7 @@ import (
 )
 
 // OperatorGossipKeyringGenerateCommand is a Command implementation that
-// generates an encryption key for use in `nomad agent`.
+// generates an encryption key for use in `wonton agent`.
 type OperatorGossipKeyringGenerateCommand struct {
 	Meta
 }

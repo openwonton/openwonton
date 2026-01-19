@@ -26,15 +26,15 @@ Usage: wonton namespace <subcommand> [options] [args]
 
   Create or update a namespace:
 
-      $ nomad namespace apply -description "My new namespace" <name> 
+      $ wonton namespace apply -description "My new namespace" <name> 
 
   List namespaces:
 
-      $ nomad namespace list
+      $ wonton namespace list
 
   View the status of a namespace:
 
-      $ nomad namespace status <name>
+      $ wonton namespace status <name>
 
   Please see the individual subcommand help for detailed usage information.
 `

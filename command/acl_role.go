@@ -32,23 +32,23 @@ Usage: wonton acl role <subcommand> [options] [args]
 
   Create an ACL role:
 
-      $ nomad acl role create -name="name" -policy-name="policy-name"
+      $ wonton acl role create -name="name" -policy-name="policy-name"
 
   List all ACL roles:
 
-      $ nomad acl role list
+      $ wonton acl role list
 
   Lookup a specific ACL role:
 
-      $ nomad acl role info <acl_role_id>
+      $ wonton acl role info <acl_role_id>
 
   Update an ACL role:
 
-      $ nomad acl role update -name="updated-name" <acl_role_id>
+      $ wonton acl role update -name="updated-name" <acl_role_id>
 
   Delete an ACL role:
 
-      $ nomad acl role delete <acl_role_id>
+      $ wonton acl role delete <acl_role_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

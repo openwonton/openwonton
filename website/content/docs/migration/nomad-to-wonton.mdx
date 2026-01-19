@@ -10,7 +10,7 @@ OpenWonton is a fork of HashiCorp Nomad, and we are committed to providing a smo
 
 ## Key Changes
 
-*   **CLI Binary:** The `nomad` CLI binary has been renamed to `wonton`.
+*   **CLI Binary:** The primary CLI binary is now `wonton`.
 *   **Project Name:** The project is now known as OpenWonton.
 
 ## Compatibility
@@ -29,7 +29,7 @@ If you are used to running `nomad` commands, you can create a simple shell alias
 alias nomad="wonton"
 ```
 
-We also plan to ship a `nomad` shim or symlink in our official releases to ensure that existing scripts and automation continue to work without modification.
+We also ship a `nomad` shim (or symlink in some packages) that invokes `wonton` so existing scripts and automation continue to work without modification.
 
 ### For Scripts and Automation
 

@@ -26,17 +26,17 @@ Usage: wonton node <subcommand> [options] [args]
 
   Examine the status of a node:
 
-      $ nomad node status <node-id>
+      $ wonton node status <node-id>
 
   Mark a node as ineligible for running workloads. This is useful when the node
   is expected to be removed or upgraded so new allocations aren't placed on it:
 
-      $ nomad node eligibility -disable <node-id>
+      $ wonton node eligibility -disable <node-id>
 
   Mark a node to be drained, allowing batch jobs four hours to finish before
   forcing them off the node:
 
-      $ nomad node drain -enable -deadline 4h <node-id>
+      $ wonton node drain -enable -deadline 4h <node-id>
 
   Please see the individual subcommand help for detailed usage information.
 `

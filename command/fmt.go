@@ -190,7 +190,7 @@ func (f *FormatCommand) fmt() {
 
 				fp.Close()
 			} else {
-				f.appendError(fmt.Errorf("Only .nomad and .hcl files can be processed using nomad fmt"))
+				f.appendError(fmt.Errorf("Only .nomad and .hcl files can be processed using wonton fmt"))
 				continue
 			}
 		}

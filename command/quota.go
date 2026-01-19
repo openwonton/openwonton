@@ -27,15 +27,15 @@ Usage: wonton quota <subcommand> [options] [args]
 
   Examine a quota's status:
 
-      $ nomad quota status <name>
+      $ wonton quota status <name>
 
   List existing quotas:
 
-      $ nomad quota list
+      $ wonton quota list
 
   Create a new quota specification:
 
-      $ nomad quota apply <path>
+      $ wonton quota apply <path>
 
   Please see the individual subcommand help for detailed usage information.
 `

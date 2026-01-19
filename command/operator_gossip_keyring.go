@@ -29,23 +29,23 @@ Usage: wonton operator gossip keyring [options]
 
   Generate an encryption key:
 
-      $ nomad operator gossip keyring generate
+      $ wonton operator gossip keyring generate
 
   List all gossip encryption keys:
 
-      $ nomad operator gossip keyring list
+      $ wonton operator gossip keyring list
 
   Remove an encryption key from the keyring:
 
-      $ nomad operator gossip keyring remove <key>
+      $ wonton operator gossip keyring remove <key>
 
   Install an encryption key from backup:
 
-      $ nomad operator gossip keyring install <key>
+      $ wonton operator gossip keyring install <key>
 
   Use an already-installed encryption key:
 
-      $ nomad operator gossip keyring use <key>
+      $ wonton operator gossip keyring use <key>
 
   Please see individual subcommand help for detailed usage information.
 

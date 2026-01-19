@@ -5,7 +5,7 @@
 # When pinning use the multi-arch manifest list, `docker buildx imagetools inspect ...`
 FROM docker.io/library/busybox@sha256:9e2bbca079387d7965c3a9cee6d0c53f4f4e63ff7637877a83c4c05f2a666112 as release
 
-ARG PRODUCT_NAME=nomad
+ARG PRODUCT_NAME=wonton
 ARG PRODUCT_VERSION
 ARG PRODUCT_REVISION
 # TARGETARCH and TARGETOS are set automatically when --platform is provided.
@@ -15,6 +15,7 @@ LABEL maintainer="Nomad Team <nomad@hashicorp.com>"
 LABEL version=${PRODUCT_VERSION}
 LABEL revision=${PRODUCT_REVISION}
 
+COPY dist/$TARGETOS/$TARGETARCH/wonton /bin/
 COPY dist/$TARGETOS/$TARGETARCH/nomad /bin/
 COPY ./scripts/docker-entrypoint.sh /
 

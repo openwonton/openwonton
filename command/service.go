@@ -21,15 +21,15 @@ Usage: wonton service <subcommand> [options]
 
   List services:
 
-      $ nomad service list
+      $ wonton service list
 
   Detail an individual service:
 
-      $ nomad service info <service_name>
+      $ wonton service info <service_name>
 
   Delete an individual service registration:
 
-      $ nomad service delete <service_name> <service_id>
+      $ wonton service delete <service_name> <service_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

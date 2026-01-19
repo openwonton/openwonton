@@ -4,6 +4,15 @@ Overview
 
 We are renaming our HashiCorp Nomad fork to OpenWonton to align with the OpenTofu/OpenBao naming convention and to establish a distinct project identity. The primary CLI will become wonton, with compatibility options to minimize migration friction for existing Nomad users.
 
+Status (2026-01-18)
+	•	Module path: keep github.com/openwonton/openwonton.
+	•	Compatibility: Go-based `nomad` shim implemented (execs `wonton`).
+	•	CLI rename: primary entrypoint moved to `cmd/wonton`, help/usage uses `wonton`.
+	•	Packaging: build now ships both `wonton` and `nomad`; dist artifacts named `wonton_*`.
+	•	Docker: entrypoint execs `wonton` and warns with OpenWonton branding.
+	•	Version output: `OpenWonton v...`.
+	•	Docs/migration guide and CI/release pipeline updates still pending.
+
 Goals
 	1.	Establish a clear, consistent OpenWonton brand across code, binaries, docs, and releases.
 	2.	Provide a first-class CLI named wonton.

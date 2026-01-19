@@ -29,11 +29,11 @@ Usage: wonton scaling policy <subcommand> [options]
 
   List policies:
 
-      $ nomad scaling policy list
+      $ wonton scaling policy list
 
   Detail an individual scaling policy:
 
-      $ nomad scaling policy info <policy_id>
+      $ wonton scaling policy info <policy_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

@@ -40,7 +40,7 @@ Node Meta Apply Options:
     Unset the comma separated list of keys.
 
   Example:
-    $ nomad node meta apply -unset testing,tempvar ready=1 role=preinit-db
+    $ wonton node meta apply -unset testing,tempvar ready=1 role=preinit-db
 `
 	return strings.TrimSpace(helpText)
 }

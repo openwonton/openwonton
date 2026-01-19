@@ -51,6 +51,15 @@
     ]
   },
   {
+    "title": "Migration",
+    "routes": [
+      {
+        "title": "Nomad to OpenWonton",
+        "path": "migration/nomad-to-wonton"
+      }
+    ]
+  },
+  {
     "title": "Integrations",
     "routes": [
       {

@@ -24,15 +24,15 @@ Usage: wonton acl token <subcommand> [options] [args]
 
   Create an ACL token:
 
-      $ nomad acl token create -name "my-token" -policy foo -policy bar
+      $ wonton acl token create -name "my-token" -policy foo -policy bar
 
   Lookup a token and display its associated policies:
 
-      $ nomad acl policy info <token_accessor_id>
+      $ wonton acl policy info <token_accessor_id>
 
   Revoke an ACL token:
 
-      $ nomad acl policy delete <token_accessor_id>
+      $ wonton acl policy delete <token_accessor_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

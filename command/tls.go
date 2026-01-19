@@ -34,15 +34,15 @@ More detailed examples are available in the subcommands or the documentation.
 
 Create a CA
 
-    $ nomad tls ca create
+    $ wonton tls ca create
 
 Create a server certificate
 
-    $ nomad tls cert create -server
+    $ wonton tls cert create -server
 
 Create a client certificate
 
-    $ nomad tls cert create -client
+    $ wonton tls cert create -client
 
 `
 	return strings.TrimSpace(helpText)

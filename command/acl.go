@@ -23,7 +23,7 @@ Usage: wonton acl <subcommand> [options] [args]
 
   Bootstrap ACLs:
 
-      $ nomad acl bootstrap
+      $ wonton acl bootstrap
 
   Please see the individual subcommand help for detailed usage information.
 `

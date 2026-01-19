@@ -24,15 +24,15 @@ Usage: wonton acl policy <subcommand> [options] [args]
 
   Create an ACL policy:
 
-      $ nomad acl policy apply <name> <policy-file>
+      $ wonton acl policy apply <name> <policy-file>
 
   List ACL policies:
 
-      $ nomad acl policy list
+      $ wonton acl policy list
 
   Inspect an ACL policy:
 
-      $ nomad acl policy info <policy>
+      $ wonton acl policy info <policy>
 
   Please see the individual subcommand help for detailed usage information.
 `

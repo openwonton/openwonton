@@ -33,7 +33,7 @@ Usage: wonton operator snapshot restore [options] <file>
 
   To restore a snapshot from the file "backup.snap":
 
-    $ nomad operator snapshot restore backup.snap
+    $ wonton operator snapshot restore backup.snap
 
 General Options:
 

@@ -23,11 +23,11 @@ Usage: wonton tls cert <subcommand> [options]
 
   Create a TLS certificate.
 
-      $ nomad tls cert create
+      $ wonton tls cert create
 
   Show information about a TLS certificate.
 
-      $ nomad tls cert info
+      $ wonton tls cert info
 `
 	return strings.TrimSpace(helpText)
 }

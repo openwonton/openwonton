@@ -26,16 +26,16 @@ Usage: wonton operator snapshot <subcommand> [options]
 
   Create a snapshot:
 
-      $ nomad operator snapshot save backup.snap
+      $ wonton operator snapshot save backup.snap
 
   Inspect a snapshot:
 
-      $ nomad operator snapshot inspect backup.snap
+      $ wonton operator snapshot inspect backup.snap
 
   Run a daemon process that locally saves a snapshot every hour (available only in
   Nomad Enterprise) :
 
-      $ nomad operator snapshot agent
+      $ wonton operator snapshot agent
 
   Please see the individual subcommand help for detailed usage information.
 `

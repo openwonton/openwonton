@@ -30,16 +30,16 @@ Usage: wonton operator snapshot save [options] <file>
 
   To create a snapshot from the leader server and save it to "backup.snap":
 
-    $ nomad snapshot save backup.snap
+    $ wonton snapshot save backup.snap
 
   To create a potentially stale snapshot from any available server (useful if no
   leader is available):
 
-    $ nomad snapshot save -stale backup.snap
+    $ wonton snapshot save -stale backup.snap
 
   This is useful for situations where a cluster is in a degraded state and no
   leader is available. To target a specific server for a snapshot, you can run
-  the 'nomad operator snapshot save' command on that specific server.
+  the 'wonton operator snapshot save' command on that specific server.
 
 
 General Options:

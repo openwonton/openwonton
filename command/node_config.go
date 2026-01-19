@@ -49,7 +49,7 @@ Client Config Options:
     capability.
 
     Example:
-      $ nomad node config -update-servers foo:4647 bar:4647
+      $ wonton node config -update-servers foo:4647 bar:4647
 `
 	return strings.TrimSpace(helpText)
 }

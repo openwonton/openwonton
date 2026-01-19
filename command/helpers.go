@@ -17,12 +17,12 @@ import (
 	"time"
 
 	gg "github.com/hashicorp/go-getter"
+	"github.com/kr/text"
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/api"
 	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	"github.com/openwonton/openwonton/jobspec"
 	"github.com/openwonton/openwonton/jobspec2"
-	"github.com/kr/text"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"github.com/ryanuber/columnize"
 )
@@ -578,7 +578,7 @@ func (j *JobGetter) Get(jpath string) (*api.JobSubmission, *api.Job, error) {
 		}
 		if err != nil {
 			if _, merr := jobspec.Parse(&source); merr == nil {
-				return nil, nil, fmt.Errorf("Failed to parse using HCL 2. Use the HCL 1 parser with `nomad run -hcl1`, or address the following issues:\n%v", err)
+				return nil, nil, fmt.Errorf("Failed to parse using HCL 2. Use the HCL 1 parser with `wonton run -hcl1`, or address the following issues:\n%v", err)
 			}
 		}
 	}
@@ -674,7 +674,7 @@ func sanitizeUUIDPrefix(prefix string) string {
 // commandErrorText is used to easily render the same messaging across commands
 // when an error is printed.
 func commandErrorText(cmd NamedCommand) string {
-	return fmt.Sprintf("For additional help try 'nomad %s -help'", cmd.Name())
+	return fmt.Sprintf("For additional help try 'wonton %s -help'", cmd.Name())
 }
 
 // uiErrorWriter is a io.Writer that wraps underlying ui.ErrorWriter().

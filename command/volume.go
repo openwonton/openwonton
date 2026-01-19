@@ -21,27 +21,27 @@ Usage: wonton volume <subcommand> [options]
 
   Register a new volume or update an existing volume:
 
-      $ nomad volume register <input>
+      $ wonton volume register <input>
 
   Examine the status of a volume:
 
-      $ nomad volume status <id>
+      $ wonton volume status <id>
 
   Deregister an unused volume:
 
-      $ nomad volume deregister <id>
+      $ wonton volume deregister <id>
 
   Detach an unused volume:
 
-      $ nomad volume detach <vol id> <node id>
+      $ wonton volume detach <vol id> <node id>
 
   Create an external volume and register it:
 
-      $ nomad volume create <input>
+      $ wonton volume create <input>
 
   Delete an external volume and deregister it:
 
-      $ nomad volume delete <external id>
+      $ wonton volume delete <external id>
 
   Please see the individual subcommand help for detailed usage information.
 `

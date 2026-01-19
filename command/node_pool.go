@@ -36,19 +36,19 @@ Usage: wonton node pool <subcommand> [options] [args]
 
   Create or update a node pool:
 
-    $ nomad node pool apply <path>
+    $ wonton node pool apply <path>
 
   List all node pools:
 
-    $ nomad node pool list
+    $ wonton node pool list
 
   Fetch information on an existing node pool:
 
-    $ nomad node info <name>
+    $ wonton node info <name>
 
   Delete a node pool:
 
-    $ nomad node pool delete <name>
+    $ wonton node pool delete <name>
 
   Please refer to individual subcommand help for detailed usage information.
 `

@@ -661,7 +661,7 @@ func (c *JobStatusCommand) outputFailedPlacements(failedEval *api.Evaluation) {
 	}
 
 	if len(sorted) > maxFailedTGs {
-		trunc := fmt.Sprintf("\nPlacement failures truncated. To see remainder run:\nnomad eval-status %s", failedEval.ID)
+		trunc := fmt.Sprintf("\nPlacement failures truncated. To see remainder run:\nwonton eval-status %s", failedEval.ID)
 		c.Ui.Output(trunc)
 	}
 }

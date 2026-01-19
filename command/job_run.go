@@ -94,7 +94,7 @@ Run Options:
 
   -json
     Parses the job file as JSON. If the outer object has a Job field, such as
-    from "nomad job inspect" or "nomad run -output", the value of the field is
+    from "wonton job inspect" or "wonton run -output", the value of the field is
     used as the job.
 
   -hcl1

@@ -45,7 +45,7 @@ Node Meta Options:
     Format and display node metadata using a Go template.
 
     Example:
-      $ nomad node meta read -node-id 3b58b0a6
+      $ wonton node meta read -node-id 3b58b0a6
 `
 	return strings.TrimSpace(helpText)
 }

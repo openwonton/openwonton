@@ -28,7 +28,7 @@ https://www.nomadproject.io/docs/commands/license/
 
 Retrieve the server's license:
 
-	$ nomad license get
+	$ wonton license get
 
 	`
 	return strings.TrimSpace(helpText)

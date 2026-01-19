@@ -25,7 +25,11 @@ You can find Terraform manifests for bringing up a development OpenWonton cluste
 
 ## Documentation
 
-Full, comprehensive documentation is under development.
+Documentation lives in the `website/content` directory. The migration guide from Nomad to OpenWonton is available at `website/content/docs/migration/nomad-to-wonton.mdx`.
+
+## Compatibility and Migration
+
+OpenWonton ships a `wonton` CLI and a `nomad` compatibility shim so existing scripts can keep working. New usage should prefer `wonton` directly. See the migration guide for details.
 
 ## Contributing
 

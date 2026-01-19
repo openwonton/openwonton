@@ -42,23 +42,23 @@ Usage: wonton var <subcommand> [options] [args]
 
   Create a variable specification file:
 
-      $ nomad var init
+      $ wonton var init
 
   Upsert a variable:
 
-      $ nomad var put <path>
+      $ wonton var put <path>
 
   Examine a variable:
 
-      $ nomad var get <path>
+      $ wonton var get <path>
 
   List existing variables:
 
-      $ nomad var list <prefix>
+      $ wonton var list <prefix>
 
   Purge a variable:
 
-      $ nomad var purge <path>
+      $ wonton var purge <path>
 
   Please see the individual subcommand help for detailed usage information.
 `

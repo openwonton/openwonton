@@ -48,8 +48,8 @@ Usage: wonton eval delete [options] <evaluation>
 
   The eval broker is expected to be paused prior to running this command and
   un-paused after. This can be done using the following two commands:
-    - nomad operator scheduler set-config -pause-eval-broker=true
-    - nomad operator scheduler set-config -pause-eval-broker=false
+    - wonton operator scheduler set-config -pause-eval-broker=true
+    - wonton operator scheduler set-config -pause-eval-broker=false
 
 General Options:
 
@@ -136,8 +136,8 @@ func (e *EvalDeleteCommand) Run(args []string) int {
 
 	if !schedulerConfig.SchedulerConfig.PauseEvalBroker {
 		e.Ui.Error("Eval broker is not paused")
-		e.Ui.Output(`To delete evaluations you must first pause the eval broker by running "nomad operator scheduler set-config -pause-eval-broker=true"`)
-		e.Ui.Output(`After the deletion is complete, unpause the eval broker by running "nomad operator scheduler set-config -pause-eval-broker=false"`)
+		e.Ui.Output(`To delete evaluations you must first pause the eval broker by running "wonton operator scheduler set-config -pause-eval-broker=true"`)
+		e.Ui.Output(`After the deletion is complete, unpause the eval broker by running "wonton operator scheduler set-config -pause-eval-broker=false"`)
 		return 1
 	}
 

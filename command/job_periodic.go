@@ -31,7 +31,7 @@ Usage: wonton job periodic <subcommand> [options] [args]
 
   Force a periodic job:
 
-      $ nomad job periodic force <job_id>
+      $ wonton job periodic force <job_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

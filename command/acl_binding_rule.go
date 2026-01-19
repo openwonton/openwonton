@@ -30,7 +30,7 @@ Usage: wonton acl binding-rule <subcommand> [options] [args]
 
   Create an ACL binding rule:
 
-      $ nomad acl binding-rule create \
+      $ wonton acl binding-rule create \
           -auth-method=auth0 \
           -selector="nomad-engineering in list.groups" \
           -bind-type=role \
@@ -38,21 +38,21 @@ Usage: wonton acl binding-rule <subcommand> [options] [args]
 
   List all ACL binding rules:
 
-      $ nomad acl binding-rule list
+      $ wonton acl binding-rule list
 
   Lookup a specific ACL binding rule:
 
-      $ nomad acl binding-rule info <acl_binding_rule_id>
+      $ wonton acl binding-rule info <acl_binding_rule_id>
 
   Update an ACL binding rule:
 
-      $ nomad acl binding-rule update \
-          -description="nomad engineering team" \
+      $ wonton acl binding-rule update \
+          -description="wonton engineering team" \
           <acl_binding_rule_id>
 
   Delete an ACL binding rule:
 
-      $ nomad acl binding-rule delete <acl_binding_rule_id>
+      $ wonton acl binding-rule delete <acl_binding_rule_id>
 
   Please see the individual subcommand help for detailed usage information.
 `

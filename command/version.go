@@ -4,8 +4,8 @@
 package command
 
 import (
-	"github.com/openwonton/openwonton/version"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/version"
 )
 
 // VersionCommand is a Command implementation prints the version.
@@ -26,5 +26,5 @@ func (c *VersionCommand) Run(_ []string) int {
 }
 
 func (c *VersionCommand) Synopsis() string {
-	return "Prints the Nomad version"
+	return "Prints the OpenWonton version"
 }

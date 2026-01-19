@@ -37,18 +37,18 @@ Usage: wonton event <subcommand> [options] [args]
           "*": ["*"]
         }
       }
-      $ nomad event sink register sink.json
+      $ wonton event sink register sink.json
       Successfully registered "my-sink" event sink!
 
   List event sinks:
 
-      $ nomad event sink list
+      $ wonton event sink list
       ID         Type     Address           Topics    LatestIndex
       my-sink    webhook  http://127.0.0.1  *[*]      0
 
   Deregister an event sink:
 
-      $ nomad event sink deregister my-sink
+      $ wonton event sink deregister my-sink
       Successfully deregistered "my-sink" event sink!
 
   Please see the individual subcommand help for detailed usage information.

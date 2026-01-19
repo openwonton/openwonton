@@ -1,6 +1,6 @@
-# Nomad Documentation Website
+# OpenWonton Documentation Website
 
-This subdirectory contains the content for the [Nomad Documentation](https://developer.hashicorp.com/nomad/docs).
+This subdirectory contains the content for the OpenWonton documentation site.
 
 <!--
   This readme file contains several blocks of generated text, to make it easier to share common information

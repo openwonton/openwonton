@@ -84,7 +84,7 @@ func (c *OperatorRootKeyringRotateCommand) Run(args []string) int {
 
 	client, err := c.Meta.Client()
 	if err != nil {
-		c.Ui.Error(fmt.Sprintf("Error creating nomad cli client: %s", err))
+		c.Ui.Error(fmt.Sprintf("Error creating wonton cli client: %s", err))
 		return 1
 	}
 

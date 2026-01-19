@@ -22,7 +22,7 @@ Usage: wonton config <subcommand> [options] [args]
 
   Validate configuration:
 
-      $ nomad config validate <config_path> [<config_path>...]
+      $ wonton config validate <config_path> [<config_path>...]
 
   Please see the individual subcommand help for detailed usage information.
 `

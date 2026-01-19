@@ -122,7 +122,7 @@ func (l *LoginCommand) Run(args []string) int {
 	)
 
 	if l.authMethodType != "" {
-		l.Ui.Warn("warning: '-type' flag has been deprecated for nomad login command and will be ignored.")
+		l.Ui.Warn("warning: '-type' flag has been deprecated for wonton login command and will be ignored.")
 	}
 
 	authMethodList, _, err := client.ACLAuthMethods().List(nil)

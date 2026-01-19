@@ -22,9 +22,9 @@ import (
 	_ "github.com/openwonton/openwonton/drivers/shared/executor"
 
 	// Don't move any other code imports above the import block above!
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/command"
 	"github.com/openwonton/openwonton/version"
-	"github.com/mitchellh/cli"
 )
 
 var (
@@ -94,7 +94,7 @@ func Run(args []string) int {
 
 	commands := command.Commands(metaPtr, agentUi)
 	cli := &cli.CLI{
-		Name:                       "nomad",
+		Name:                       "wonton",
 		Version:                    version.GetVersion().FullVersionNumber(true),
 		Args:                       args,
 		Commands:                   commands,
@@ -102,7 +102,7 @@ func Run(args []string) int {
 		Autocomplete:               true,
 		AutocompleteNoDefaultFlags: true,
 		HelpFunc: groupedHelpFunc(
-			cli.BasicHelpFunc("nomad"),
+			cli.BasicHelpFunc("wonton"),
 		),
 		HelpWriter: os.Stdout,
 	}
@@ -121,7 +121,7 @@ func groupedHelpFunc(f cli.HelpFunc) cli.HelpFunc {
 		var b bytes.Buffer
 		tw := tabwriter.NewWriter(&b, 0, 2, 6, ' ', 0)
 
-		fmt.Fprintf(tw, "Usage: nomad [-version] [-help] [-autocomplete-(un)install] <command> [args]\n\n")
+		fmt.Fprintf(tw, "Usage: wonton [-version] [-help] [-autocomplete-(un)install] <command> [args]\n\n")
 		fmt.Fprintf(tw, "Common commands:\n")
 		for _, v := range commonCommands {
 			printCommand(tw, v, commands[v])

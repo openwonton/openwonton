@@ -28,23 +28,23 @@ Usage: wonton acl auth-method <subcommand> [options] [args]
 
   Create an ACL auth method:
 
-      $ nomad acl auth-method create -name="name" -type="OIDC" -max-token-ttl="3600s"
+      $ wonton acl auth-method create -name="name" -type="OIDC" -max-token-ttl="3600s"
 
   List all ACL auth methods:
 
-      $ nomad acl auth-method list
+      $ wonton acl auth-method list
 
   Lookup a specific ACL auth method:
 
-      $ nomad acl auth-method info <acl_auth_method_name>
+      $ wonton acl auth-method info <acl_auth_method_name>
 
   Update an ACL auth method:
 
-      $ nomad acl auth-method update -type="updated-type" <acl_auth_method_name>
+      $ wonton acl auth-method update -type="updated-type" <acl_auth_method_name>
 
   Delete an ACL auth method:
 
-      $ nomad acl auth-method delete <acl_auth_method_name>
+      $ wonton acl auth-method delete <acl_auth_method_name>
 
   Please see the individual subcommand help for detailed usage information.
 `

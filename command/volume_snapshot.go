@@ -31,16 +31,16 @@ Usage: wonton volume snapshot <subcommand> [options] [args]
 
   Create a snapshot of an external storage volume:
 
-      $ nomad volume snapshot create <volume id>
+      $ wonton volume snapshot create <volume id>
 
   Display a list of CSI volume snapshots along with their
   source volume ID as known to the external storage provider.
 
-      $ nomad volume snapshot list -plugin <plugin id>
+      $ wonton volume snapshot list -plugin <plugin id>
 
   Delete a snapshot of an external storage volume:
 
-      $ nomad volume snapshot delete <snapshot id>
+      $ wonton volume snapshot delete <snapshot id>
 
   Please see the individual subcommand help for detailed usage information.
 `

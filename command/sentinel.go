@@ -28,15 +28,15 @@ Usage: wonton sentinel <subcommand> [options] [args]
 
   Read an existing policy:
 
-      $ nomad sentinel read <name>
+      $ wonton sentinel read <name>
 
   List existing policies:
 
-      $ nomad sentinel list
+      $ wonton sentinel list
 
   Create a new Sentinel policy:
 
-      $ nomad sentinel apply <name> <path>
+      $ wonton sentinel apply <name> <path>
 
   Please see the individual subcommand help for detailed usage information.
 `

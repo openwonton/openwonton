@@ -71,7 +71,7 @@ func (c *OperatorRootKeyringRemoveCommand) Run(args []string) int {
 
 	client, err := c.Meta.Client()
 	if err != nil {
-		c.Ui.Error(fmt.Sprintf("Error creating nomad cli client: %s", err))
+		c.Ui.Error(fmt.Sprintf("Error creating wonton cli client: %s", err))
 		return 1
 	}
 	_, err = client.Keyring().Delete(&api.KeyringDeleteOptions{

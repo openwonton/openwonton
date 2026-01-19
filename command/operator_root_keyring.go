@@ -32,15 +32,15 @@ Usage: wonton operator root keyring [options]
 
   Rotate the encryption key:
 
-      $ nomad operator root keyring rotate
+      $ wonton operator root keyring rotate
 
   List all encryption key metadata:
 
-      $ nomad operator root keyring list
+      $ wonton operator root keyring list
 
   Remove an encryption key from the keyring:
 
-      $ nomad operator root keyring remove <key ID>
+      $ wonton operator root keyring remove <key ID>
 
   Please see individual subcommand help for detailed usage information.
 `

@@ -21,7 +21,7 @@ Usage: wonton system reconcile <subcommand> [options]
 
   Reconcile the summaries of all registered jobs:
 
-      $ nomad system reconcile summaries
+      $ wonton system reconcile summaries
 
   Please see the individual subcommand help for detailed usage information.
 `

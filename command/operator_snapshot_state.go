@@ -27,7 +27,7 @@ Usage: wonton operator snapshot state [options] <file>
 
   To inspect the file "backup.snap":
 
-    $ nomad operator snapshot state backup.snap
+    $ wonton operator snapshot state backup.snap
 
 Snapshot State Options:
 

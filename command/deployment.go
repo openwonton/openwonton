@@ -24,18 +24,18 @@ Usage: wonton deployment <subcommand> [options] [args]
 
   Examine a deployments status:
 
-      $ nomad deployment status <deployment-id>
+      $ wonton deployment status <deployment-id>
 
   Promote the canaries to allow the remaining allocations to be updated in a
   rolling deployment fashion:
 
-      $ nomad deployment promote <deployment-id>
+      $ wonton deployment promote <deployment-id>
 
   Mark a deployment as failed. This will stop new allocations from being placed
   and if the job's upgrade block specifies auto_revert, causes the job to
   revert back to the last stable version of the job:
 
-      $ nomad deployment fail <deployment-id>
+      $ wonton deployment fail <deployment-id>
 
   Please see the individual subcommand help for detailed usage information.
 `

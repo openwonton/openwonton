@@ -25,9 +25,9 @@ Usage: wonton deployment promote [options] <deployment id>
   when the deployment has placed canaries for a task group and those canaries have
   been deemed healthy. When a task group is promoted, the rolling upgrade of the
   remaining allocations is unblocked. If the canaries are found to be unhealthy,
-  the deployment may either be failed using the "nomad deployment fail" command,
+  the deployment may either be failed using the "wonton deployment fail" command,
   the job can be failed forward by submitting a new version or failed backwards by
-  reverting to an older version using the "nomad job revert" command.
+  reverting to an older version using the "wonton job revert" command.
 
   When ACLs are enabled, this command requires a token with the 'submit-job'
   and 'read-job' capabilities for the deployment's namespace.

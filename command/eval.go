@@ -24,15 +24,15 @@ Usage: wonton eval <subcommand> [options] [args]
 
   List evaluations:
 
-      $ nomad eval list
+      $ wonton eval list
 
   Examine an evaluations status:
 
-      $ nomad eval status <eval-id>
+      $ wonton eval status <eval-id>
 
   Delete evaluations:
 
-      $ nomad eval delete <eval-id>
+      $ wonton eval delete <eval-id>
 
   Please see the individual subcommand help for detailed usage information.
 `

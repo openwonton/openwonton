@@ -65,7 +65,7 @@ type OperatorDebugCommand struct {
 }
 
 const (
-	userAgent                     = "nomad operator debug"
+	userAgent                     = "wonton operator debug"
 	clusterDir                    = "cluster"
 	clientDir                     = "client"
 	serverDir                     = "server"
@@ -637,7 +637,7 @@ func (c *OperatorDebugCommand) Run(args []string) int {
 	// Display general info about the capture
 	c.Ui.Output("Starting debugger...")
 	c.Ui.Output("")
-	c.Ui.Output(fmt.Sprintf("Nomad CLI Version: %s", version.GetVersion().FullVersionNumber(true)))
+	c.Ui.Output(fmt.Sprintf("OpenWonton CLI Version: %s", version.GetVersion().FullVersionNumber(true)))
 	c.Ui.Output(fmt.Sprintf("           Region: %s", c.region))
 	c.Ui.Output(fmt.Sprintf("        Namespace: %s", c.namespace))
 	c.Ui.Output(fmt.Sprintf("          Servers: (%d/%d) %v", serverCaptureCount, serversFound, c.serverIDs))

@@ -22,7 +22,7 @@ func (c *JobRevertCommand) Help() string {
 Usage: wonton job revert [options] <job> <version>
 
   Revert is used to revert a job to a prior version of the job. The available
-  versions to revert to can be found using "nomad job history" command.
+  versions to revert to can be found using "wonton job history" command.
 
   When ACLs are enabled, this command requires a token with the 'submit-job'
   capability for the job's namespace. The 'list-jobs' capability is required to
