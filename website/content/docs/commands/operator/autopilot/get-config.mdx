@@ -13,7 +13,7 @@ configuration. See the [Autopilot Guide] for more information about Autopilot.
 ## Usage
 
 ```plaintext
-nomad operator autopilot get-config [options]
+wonton operator autopilot get-config [options]
 ```
 
 If ACLs are enabled, this command requires a token with the `operator:read`
@@ -26,7 +26,7 @@ capability.
 The output looks like this:
 
 ```shell-session
-$ nomad operator autopilot get-config
+$ wonton operator autopilot get-config
 CleanupDeadServers = true
 LastContactThreshold = 200ms
 MaxTrailingLogs = 250
@@ -62,7 +62,7 @@ UpgradeMigrationTag = ""
   them to voters.
 
 - `UpgradeVersionTag` - Controls the node-meta key to use for
-  version info when performing upgrade migrations. If left blank, the Nomad
+  version info when performing upgrade migrations. If left blank, the OpenWonton
   version will be used.
 
 [autopilot guide]: /nomad/tutorials/manage-clusters/autopilot

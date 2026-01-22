@@ -12,7 +12,7 @@ The `acl policy apply` command is used to create or update ACL policies.
 ## Usage
 
 ```plaintext
-nomad acl policy apply [options] <name> <path>
+wonton acl policy apply [options] <name> <path>
 ```
 
 The `acl policy apply` command requires two arguments, the policy name and path
@@ -46,14 +46,14 @@ This command requires a management ACL token.
 Create a new ACL Policy:
 
 ```shell-session
-$ nomad acl policy apply my-policy my-policy.json
+$ wonton acl policy apply my-policy my-policy.json
 Successfully wrote 'my-policy' ACL policy!
 ```
 
 Associate an ACL Policy with a specific task:
 
 ```shell-session
-$ nomad acl policy apply \
+$ wonton acl policy apply \
     -namespace default -job example -group cache -task redis \
     my-policy my-policy.json
 Successfully wrote 'my-policy' ACL policy!

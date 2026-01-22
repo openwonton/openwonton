@@ -21,7 +21,7 @@ OpenWonton provides several key features:
 
 ## Quick Start
 
-You can find Terraform manifests for bringing up a development OpenWonton cluster on a public cloud in the [`terraform`](terraform/) directory.
+You can find Terraform manifests for bringing up a development OpenWonton cluster on a public cloud in the [`terraform`](terraform/) directory. Hetzner Cloud provisioning lives in [`terraform/hetzner`](terraform/hetzner/).
 
 ## Documentation
 
@@ -29,7 +29,7 @@ Documentation lives in the `website/content` directory. The migration guide from
 
 ## Compatibility and Migration
 
-OpenWonton ships a `wonton` CLI and a `nomad` compatibility shim so existing scripts can keep working. New usage should prefer `wonton` directly. See the migration guide for details.
+OpenWonton ships a `wonton` CLI and a `nomad` compatibility shim so existing scripts can keep working. New usage should prefer `wonton` directly. If you use the Go API client, update imports to `github.com/openwonton/openwonton/api`. See the migration guide for details.
 
 ## Contributing
 

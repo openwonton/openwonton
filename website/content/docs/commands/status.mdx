@@ -2,20 +2,20 @@
 layout: docs
 page_title: 'Commands: status'
 description: |
-  Display the status output for any Nomad resource.
+  Display the status output for any OpenWonton resource.
 ---
 
 # Command: status
 
-The `status` command displays the status output for any Nomad resource.
+The `status` command displays the status output for any OpenWonton resource.
 
 ## Usage
 
 ```plaintext
-nomad status [options] <identifier>
+wonton status [options] <identifier>
 ```
 
-The status command accepts any Nomad identifier or identifier prefix as its sole
+The status command accepts any OpenWonton identifier or identifier prefix as its sole
 argument. The command detects the type of the identifier and routes to the
 appropriate status command to display more detailed output.
 
@@ -31,7 +31,7 @@ for backwards compatibility and should not be relied on.
 Display the status of a job:
 
 ```shell-session
-$ nomad status example
+$ wonton status example
 ID            = example
 Name          = example
 Submit Date   = 08/28/17 23:01:39 UTC
@@ -63,7 +63,7 @@ e1d14a39  f9dabe93  cache       0        run      running  08/28/17 23:01:39 UTC
 Display the status of an allocation:
 
 ```shell-session
-$ nomad status e1d14a39
+$ wonton status e1d14a39
 ID                  = e1d14a39
 Eval ID             = cc882755
 Name                = example.cache[0]
@@ -99,7 +99,7 @@ Time                   Type        Description
 Display the status of a deployment:
 
 ```shell-session
-$ nomad status f5506391
+$ wonton status f5506391
 ID          = f5506391
 Job ID      = example
 Job Version = 0
@@ -114,7 +114,7 @@ cache       1        1       1        0
 Display the status of a node:
 
 ```shell-session
-$ nomad status f9dabe93
+$ wonton status f9dabe93
 ID      = f9dabe93
 Name    = nomad-server01
 Class   = <none>

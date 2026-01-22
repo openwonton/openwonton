@@ -8,6 +8,7 @@
 Thumbs.db
 .idea
 .fleet
+.env
 
 # Folders
 _obj
@@ -135,3 +136,7 @@ e2e/remotetasks/input/ecs.vars
 
 # Tools files
 tools/missing/missing
+
+# local progress files
+ progress.md
+ plan.md

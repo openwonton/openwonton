@@ -2,7 +2,7 @@
 layout: docs
 page_title: server Block - Agent Configuration
 description: |-
-  The "server" block configures the Nomad agent to operate in server mode to
+  The "server" block configures the OpenWonton agent to operate in server mode to
   participate in scheduling decisions, register with service discovery, handle
   join failures, and more.
 ---
@@ -11,7 +11,7 @@ description: |-
 
 <Placement groups={['server']} />
 
-The `server` block configures the Nomad agent to operate in server mode to
+The `server` block configures the OpenWonton agent to operate in server mode to
 participate in scheduling decisions, register with service discovery, handle
 join failures, and more.
 
@@ -57,14 +57,14 @@ server {
   events for its event stream.
 
 - `encrypt` `(string: "")` - Specifies the secret key to use for encryption of
-  Nomad server's gossip network traffic. This key must be 32 bytes that are
+  OpenWonton server's gossip network traffic. This key must be 32 bytes that are
   [RFC4648] "URL and filename safe" base64-encoded. You can generate an
   appropriately-formatted key with the [`nomad operator gossip keyring
   generate`] command. The provided key is automatically persisted to the data
   directory and loaded automatically whenever the agent is restarted. This means
-  that to encrypt Nomad server's gossip protocol, this option only needs to be
+  that to encrypt OpenWonton server's gossip protocol, this option only needs to be
   provided once on each agent's initial startup sequence. If it is provided
-  after Nomad has been initialized with an encryption key, then the provided key
+  after OpenWonton has been initialized with an encryption key, then the provided key
   is ignored and a warning will be displayed. See the [encryption
   documentation][encryption] for more details on this option and its impact on
   the cluster.
@@ -85,7 +85,7 @@ server {
   less frequently but collect more jobs at a time. Reducing this interval is
   useful if there is a large throughput of tasks, leading to a large set of
   dead jobs. This is specified using a label suffix like "30s" or "3m". `job_gc_interval`
-  was introduced in Nomad 0.10.0.
+  was introduced in OpenWonton 0.10.0.
 
 - `job_gc_threshold` `(string: "4h")` - Specifies the minimum time a job must be
   in the terminal state before it is eligible for garbage collection. This is
@@ -127,7 +127,7 @@ server {
   bootstrapping cluster. The parameter is ignored once the cluster is bootstrapped or
   value is updated through the [API endpoint][update-scheduler-config]. See [the
   example section](#configuring-scheduler-config) for more details
-  `default_scheduler_config` was introduced in Nomad 0.10.4.
+  `default_scheduler_config` was introduced in OpenWonton 0.10.4.
 
 - `heartbeat_grace` `(string: "10s")` - Specifies the additional time given
   beyond the heartbeat TTL of Clients to account for network and processing
@@ -166,7 +166,7 @@ server {
   and then `NOMAD_LICENSE_PATH`.
 
 - `plan_rejection_tracker` <code>([PlanRejectionTracker](#plan_rejection_tracker-parameters))</code> -
-  Configuration for the plan rejection tracker that the Nomad leader uses to
+  Configuration for the plan rejection tracker that the OpenWonton leader uses to
   track the history of plan rejections.
 
 - `raft_boltdb` - This is a nested object that allows configuring options for
@@ -177,26 +177,26 @@ server {
     server startup times.
 
 - `raft_protocol` `(int: 3)` - Specifies the Raft protocol version to use when
-  communicating with other Nomad servers. This affects available Autopilot
+  communicating with other OpenWonton servers. This affects available Autopilot
   features and is typically not required as the agent internally knows the
   latest version, but may be useful in some upgrade scenarios. Must be `3` in
-  Nomad v1.4 or later.
+  OpenWonton v1.4 or later.
 
-- `raft_multiplier` `(int: 1)` - An integer multiplier used by Nomad servers to
+- `raft_multiplier` `(int: 1)` - An integer multiplier used by OpenWonton servers to
   scale key Raft timing parameters. Omitting this value or setting it to 0 uses
   default timing described below. Lower values are used to tighten timing and
   increase sensitivity while higher values relax timings and reduce sensitivity.
-  Tuning this affects the time it takes Nomad to detect leader failures and to
+  Tuning this affects the time it takes OpenWonton to detect leader failures and to
   perform leader elections, at the expense of requiring more network and CPU
   resources for better performance. The maximum allowed value is 10.
 
-  By default, Nomad will use the highest-performance timing, currently equivalent
+  By default, OpenWonton will use the highest-performance timing, currently equivalent
   to setting this to a value of 1. Increasing the timings makes leader election
   less likely during periods of networking issues or resource starvation. Since
-  leader elections pause Nomad's normal work, it may be beneficial for slow or
+  leader elections pause OpenWonton's normal work, it may be beneficial for slow or
   unreliable networks to wait longer before electing a new leader. The trade-off
   when raising this value is that during network partitions or other events
-  (server crash) where a leader is lost, Nomad will not elect a new leader for
+  (server crash) where a leader is lost, OpenWonton will not elect a new leader for
   a longer period of time than the default. The [`nomad.nomad.leader.barrier` and
   `nomad.raft.leader.lastContact` metrics](/nomad/docs/operations/metrics-reference) are a good
   indicator of how often leader elections occur and Raft latency.
@@ -224,9 +224,9 @@ server {
   zone that this server will be a part of for Autopilot management. For more
   information, see the [Autopilot Guide](/nomad/tutorials/manage-clusters/autopilot).
 
-- `rejoin_after_leave` `(bool: false)` - Specifies if Nomad will ignore a
+- `rejoin_after_leave` `(bool: false)` - Specifies if OpenWonton will ignore a
   previous leave and attempt to rejoin the cluster when starting. By default,
-  Nomad treats leave as a permanent intent and does not attempt to join the
+  OpenWonton treats leave as a permanent intent and does not attempt to join the
   cluster again when starting. This flag allows the previous state to be used to
   rejoin the cluster.
 
@@ -242,16 +242,16 @@ server {
   the next garbage collection interval.
 
 - `server_join` <code>([server_join][server-join]: nil)</code> - Specifies
-  how the Nomad server will connect to other Nomad servers. The `retry_join`
+  how the OpenWonton server will connect to other OpenWonton servers. The `retry_join`
   fields may directly specify the server address or use go-discover syntax for
   auto-discovery. See the [server_join documentation][server-join] for more detail.
 
 - `upgrade_version` `(string: "")` - A custom version of the format X.Y.Z to use
-  in place of the Nomad version when custom upgrades are enabled in Autopilot.
+  in place of the OpenWonton version when custom upgrades are enabled in Autopilot.
   For more information, see the [Autopilot Guide](/nomad/tutorials/manage-clusters/autopilot).
 
 - `search` <code>([search][search]: nil)</code> - Specifies configuration parameters
-  for the Nomad search API.
+  for the OpenWonton search API.
 
 - `job_max_priority` `(int: 100)` - Specifies the maximum priority that can be assigned to a job.
    A valid value must be between `100` and `32766`.
@@ -290,7 +290,7 @@ server {
   the [server_join block][server-join].
 
 - `start_join` `(array<string>: [])` - Specifies a list of server addresses to
-  join on startup. If Nomad is unable to join with any of the specified
+  join on startup. If OpenWonton is unable to join with any of the specified
   addresses, agent startup will fail. See the [server address
   format](/nomad/docs/configuration/server_join#server-address-format)
   section for more information on the format of the string. This field is
@@ -300,7 +300,7 @@ server {
 
 The leader plan rejection tracker can be adjusted to prevent evaluations from
 getting stuck due to always being scheduled to a client that may have an
-unexpected issue. Refer to [Monitoring Nomad][monitoring_nomad_progress] for
+unexpected issue. Refer to [Monitoring OpenWonton][monitoring_nomad_progress] for
 more details.
 
 - `enabled` `(bool: false)` - Specifies if plan rejections should be tracked.
@@ -324,8 +324,8 @@ account.
 
 ### Common Setup
 
-This example shows a common Nomad agent `server` configuration block. The two
-IP addresses could also be DNS, and should point to the other Nomad servers in
+This example shows a common OpenWonton agent `server` configuration block. The two
+IP addresses could also be DNS, and should point to the other OpenWonton servers in
 the cluster
 
 ```hcl
@@ -353,9 +353,9 @@ server {
 
 ### Automatic Bootstrapping
 
-The Nomad servers can automatically bootstrap if Consul is configured. For a
+The OpenWonton servers can automatically bootstrap if Consul is configured. For a
 more detailed explanation, please see the
-[automatic Nomad bootstrapping documentation](/nomad/tutorials/manage-clusters/clustering).
+[automatic OpenWonton bootstrapping documentation](/nomad/tutorials/manage-clusters/clustering).
 
 ### Restricting Schedulers
 
@@ -412,8 +412,8 @@ server {
 ~> This is an advanced topic. It is most beneficial to clusters over 1,000
    nodes or with unreliable networks or nodes (eg some edge deployments).
 
-Nomad Clients periodically heartbeat to Nomad Servers to confirm they are
-operating as expected. Nomad Clients which do not heartbeat in the specified
+OpenWonton Clients periodically heartbeat to OpenWonton Servers to confirm they are
+operating as expected. OpenWonton Clients which do not heartbeat in the specified
 amount of time are considered `down` and their allocations are marked as `lost`
 or `disconnected` (if [`max_client_disconnect`][max_client_disconnect] is set)
 and rescheduled.
@@ -428,9 +428,9 @@ tradeoffs:
   functional Client and its workloads to be marked as `down` and the work
   rescheduled.
 
-While Nomad Clients can connect to any Server, all heartbeats are forwarded to
+While OpenWonton Clients can connect to any Server, all heartbeats are forwarded to
 the leader for processing. Since this heartbeat processing consumes resources,
-Nomad adjusts the rate at which Clients heartbeat based on cluster size. The
+OpenWonton adjusts the rate at which Clients heartbeat based on cluster size. The
 goal is to try to keep the resource cost of processing heartbeats constant
 regardless of cluster size.
 
@@ -488,10 +488,10 @@ system has for a delay in noticing crashed Clients. For example a
 `failover_heartbeat_ttl` of 30 minutes may give even the slowest clients in the
 largest clusters ample time to heartbeat after an election. However if the
 election was due to a datacenter-wide failure affecting Clients, it will be 30
-minutes before Nomad recognizes that they are `down` and reschedules their
+minutes before OpenWonton recognizes that they are `down` and reschedules their
 work.
 
-[encryption]: /nomad/tutorials/transport-security/security-gossip-encryption 'Nomad Encryption Overview'
+[encryption]: /nomad/tutorials/transport-security/security-gossip-encryption 'OpenWonton Encryption Overview'
 [server-join]: /nomad/docs/configuration/server_join 'Server Join'
 [update-scheduler-config]: /nomad/api-docs/operator/scheduler#update-scheduler-configuration 'Scheduler Config'
 [bootstrapping a cluster]: /nomad/docs/faq#bootstrapping

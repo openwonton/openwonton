@@ -7,7 +7,7 @@ description: |
 
 # Command: volume register
 
-The `volume register` command registers external storage volumes with Nomad's
+The `volume register` command registers external storage volumes with OpenWonton's
 [Container Storage Interface (CSI)][csi] support. The volume must exist on the
 remote storage provider before it can be registered and used by a task.
 
@@ -18,12 +18,12 @@ register the volume as well.
 ## Usage
 
 ```plaintext
-nomad volume register [options] [file]
+wonton volume register [options] [file]
 ```
 
 The `volume register` command requires a single argument, specifying the path
 to a file containing a valid [volume specification][volume_specification]. This
-file will be read and the job will be submitted to Nomad for scheduling. If the
+file will be read and the job will be submitted to OpenWonton for scheduling. If the
 supplied path is "-", the job file is read from STDIN. Otherwise it is read
 from the file at the supplied path.
 

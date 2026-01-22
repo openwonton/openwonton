@@ -17,7 +17,7 @@ resource allocation.
 The `qemu` driver can execute any regular `qemu` image (e.g. `qcow`, `img`,
 `iso`), and is currently invoked with `qemu-system-x86_64`.
 
-The driver requires the image to be accessible from the Nomad client via the
+The driver requires the image to be accessible from the OpenWonton client via the
 [`artifact` downloader](/nomad/docs/job-specification/artifact).
 
 ## Task Configuration
@@ -127,7 +127,7 @@ way to retrieve the image being run.
 
 The `qemu` driver will set the following client attributes:
 
-- `driver.qemu` - Set to `1` if QEMU is found on the host node. Nomad determines
+- `driver.qemu` - Set to `1` if QEMU is found on the host node. OpenWonton determines
   this by executing `qemu-system-x86_64 -version` on the host and parsing the output
 - `driver.qemu.version` - Version of `qemu-system-x86_64`, ex: `2.4.0`
 
@@ -166,8 +166,8 @@ plugin "qemu" {
 
 ## Resource Isolation
 
-Nomad uses QEMU to provide full software virtualization for virtual machine
-workloads. Nomad can use QEMU KVM's hardware-assisted virtualization to deliver
+OpenWonton uses QEMU to provide full software virtualization for virtual machine
+workloads. OpenWonton can use QEMU KVM's hardware-assisted virtualization to deliver
 better performance.
 
 Virtualization provides the highest level of isolation for workloads that

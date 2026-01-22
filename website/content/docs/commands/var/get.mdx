@@ -3,7 +3,7 @@ layout: docs
 page_title: "Command: var get"
 description: |-
   The "var get" command retrieves the variable at the given path from
-  Nomad. If no variable exists at that path, an error is returned.
+  OpenWonton. If no variable exists at that path, an error is returned.
 ---
 
 # Command: var get
@@ -13,7 +13,7 @@ The `var get` command is used to get the contents of an existing [variable][].
 ## Usage
 
 ```plaintext
-nomad var get [options] <path>
+wonton var get [options] <path>
 ```
 
 If ACLs are enabled, this command requires a token with the `variables:read`
@@ -44,7 +44,7 @@ documentation for details.
 Retrieve the variable stored at path "secret/creds":
 
 ```shell-session
-$ nomad var get secret/creds
+$ wonton var get secret/creds
 Namespace   = default
 Path        = secret/creds
 Create Time = 2022-08-23T11:14:37-04:00
@@ -57,7 +57,7 @@ passcode = my-long-passcode
 Return only the "passcode" item from the variable stored at "secret/creds":
 
 ```shell-session
-$ nomad var get -item=passcode secret/creds
+$ wonton var get -item=passcode secret/creds
 my-long-passcode
 ```
 

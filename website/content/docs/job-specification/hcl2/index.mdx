@@ -3,15 +3,15 @@ layout: docs
 page_title: Configuration Language
 description: |-
   Noamd uses text files to describe infrastructure and to set variables.
-  These text files are called Nomad job specifications and are
+  These text files are called OpenWonton job specifications and are
   written in the HCL language.
 ---
 
 # HCL2
 
-Nomad uses the Hashicorp Configuration Language - HCL - designed to allow
+OpenWonton uses the Hashicorp Configuration Language - HCL - designed to allow
 concise descriptions of the required steps to get to a job file.
-Nomad 1.0 adopts
+OpenWonton 1.0 adopts
 [HCL2](https://github.com/hashicorp/hcl/blob/hcl2/README.md), the second
 generation of HashiCorp Configuration Language. HCL2 extends the HCL language by
 adding expressions and input variables support to improve job spec
@@ -20,8 +20,8 @@ messages for invalid jobs.
 
 ## HCL Parsing Context
 
-The [Nomad API uses JSON][jobs-api], not HCL, to represent Nomad jobs.
-When running commands like `nomad job run` and `nomad job plan`, the Nomad CLI
+The [OpenWonton API uses JSON][jobs-api], not HCL, to represent OpenWonton jobs.
+When running commands like `nomad job run` and `nomad job plan`, the OpenWonton CLI
 parses HCL and ultimately converts it to JSON. Because this parsing happens locally
 (i.e., where the operator is running the CLI) before job submission, there are some
 limits to the capabilities that can be accessed by HCL job specifications. For
@@ -78,7 +78,7 @@ task "example" {
   combining other values. They appear as values for arguments, or within other
   expressions.
 
-For full details about Nomad's syntax, see:
+For full details about OpenWonton's syntax, see:
 
 - [Configuration Syntax](/nomad/docs/job-specification/hcl2/syntax)
 - [Expressions](/nomad/docs/job-specification/hcl2/expressions)
@@ -86,15 +86,15 @@ For full details about Nomad's syntax, see:
 ## Backward Compatibilities
 
 HCL2 syntax closely mirrors HCL1, but has some minor changes. Most existing
-Nomad job specifications will not require any changes.
+OpenWonton job specifications will not require any changes.
 
 When you run `nomad job run` or `nomad job plan`, the CLI will report any
 required changes. Also, you can activate a backwards compatibility mode by
-passing `-hcl1` to use Nomad's HCL1 parser instead.
+passing `-hcl1` to use OpenWonton's HCL1 parser instead.
 
 ### Blocks
 
-Nomad 0.12 and earlier allowed a few variations for defining blocks. For example, the following variations of `meta` were accepted:
+OpenWonton 0.12 and earlier allowed a few variations for defining blocks. For example, the following variations of `meta` were accepted:
 
 ```hcl
 meta {
@@ -107,7 +107,7 @@ meta {
 meta = { "team" = "...", organization = "..." }
 ```
 
-Starting with Nomad 1.0 and the HCL2 parser, only the block syntax with unquoted attributes is accepted:
+Starting with OpenWonton 1.0 and the HCL2 parser, only the block syntax with unquoted attributes is accepted:
 
 ```hcl
 meta {
@@ -162,7 +162,7 @@ mounts = [
 ]
 ```
 
-Or better yet, the new [`mount`](/nomad/docs/drivers/docker#mount) syntax, introduced in Nomad 1.0.1, is more appropriate here:
+Or better yet, the new [`mount`](/nomad/docs/drivers/docker#mount) syntax, introduced in OpenWonton 1.0.1, is more appropriate here:
 
 ```hcl
 mount {
@@ -175,7 +175,7 @@ mount {
 
 ### Multiline "here doc" string
 
-Nomad supports multi-line string literals in the so-called "heredoc" style, inspired by Unix shell languages:
+OpenWonton supports multi-line string literals in the so-called "heredoc" style, inspired by Unix shell languages:
 
 ```hcl
 template {
@@ -191,6 +191,6 @@ above example, `data` is read as `"hello\n world\n "` in HCL1, but `"hello\n wor
 
 ### Decimals
 
-Nomad 0.12 and earlier accepted small decimal values without a leading zero
-(e.g. `.3`, `.59`, `.9`). In such case, Nomad 1.0 requires a leading zero (e.g.
+OpenWonton 0.12 and earlier accepted small decimal values without a leading zero
+(e.g. `.3`, `.59`, `.9`). In such case, OpenWonton 1.0 requires a leading zero (e.g.
 `0.3`, `0.59`, `0.9`).

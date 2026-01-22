@@ -2,7 +2,7 @@
 layout: docs
 page_title: "Command: var put"
 description: |-
-  The "var put" command writes a variable to the given path in Nomad.
+  The "var put" command writes a variable to the given path in OpenWonton.
 ---
 
 # Command: var put
@@ -12,8 +12,8 @@ The `var put` command creates or updates an existing [variable][].
 ## Usage
 
 ```plaintext
-nomad var put [options] <variable spec file reference> [<key>=<value>]...
-nomad var put [options] <path to store variable> [<variable spec file reference>] [<key>=<value>]...
+wonton var put [options] <variable spec file reference> [<key>=<value>]...
+wonton var put [options] <path to store variable> [<variable spec file reference>] [<key>=<value>]...
 ```
 
 Variable metadata and items can be supplied using a [variable
@@ -46,7 +46,7 @@ paths: `^[a-zA-Z0-9-_~/]{1,128}$`
 
 The keys for the items in a variable may contain any character, but keys
 containing characters outside the set of Unicode letters, Unicode digits, and
-the underscore (`_`) can not be read directly using dotted references in Nomad's
+the underscore (`_`) can not be read directly using dotted references in OpenWonton's
 template engine. Instead, they require the use of the `index` template function
 to directly access their values. This does not impact cases where the keys and
 values are read using the `range` function.
@@ -88,15 +88,15 @@ taking the sum of the length in bytes of all of the unencrypted keys and values.
 Writes the data to the path "secret/creds":
 
 ```shell-session
-$ nomad var put secret/creds passcode=my-long-passcode
+$ wonton var put secret/creds passcode=my-long-passcode
 ```
 
 The data can also be consumed from a file on disk by prefixing with the "@"
 symbol. For example, you can store a variable using a specification created with
-the `nomad var init` command.
+the `wonton var init` command.
 
 ```shell-session
-$ nomad var put secret/foo @spec.nv.json
+$ wonton var put secret/foo @spec.nv.json
 ```
 
 Or it can be read from standard input using the "-" symbol:

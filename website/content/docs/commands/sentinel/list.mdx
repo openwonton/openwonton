@@ -10,13 +10,13 @@ description: |
 The `sentinel list` command is used to display all the installed Sentinel
 policies.
 
-~> Sentinel commands are new in Nomad 0.7 and are only available with Nomad
+~> Sentinel commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad sentinel list [options]
+wonton sentinel list [options]
 ```
 
 The `sentinel list` command requires no arguments.
@@ -33,7 +33,7 @@ requires a management token.
 List all policies:
 
 ```shell-session
-$ nomad sentinel list
+$ wonton sentinel list
 Name  Scope       Enforcement Level  Description
 foo   submit-job  advisory           my test policy
 ```

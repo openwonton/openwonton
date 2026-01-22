@@ -14,7 +14,7 @@ is connected to. This is useful for troubleshooting and performance monitoring.
 ## Usage
 
 ```plaintext
-nomad agent-info [options]
+wonton agent-info [options]
 ```
 
 When ACLs are enabled, this command requires a token with the `agent:read`
@@ -34,8 +34,8 @@ capability.
 Depending on the agent queried, information from different subsystems is
 returned. These subsystems are described below:
 
-- client - Status of the local Nomad client
-- nomad - Status of the local Nomad server
+- client - Status of the local OpenWonton client
+- nomad - Status of the local OpenWonton server
 - serf - Gossip protocol metrics and information
 - raft - Status information about the Raft consensus protocol
 - runtime - Various metrics from the runtime environment
@@ -43,7 +43,7 @@ returned. These subsystems are described below:
 ## Examples
 
 ```shell-session
-$ nomad agent-info
+$ wonton agent-info
 raft
   commit_index = 0
   fsm_pending = 0
@@ -79,8 +79,7 @@ client
   known_servers = 0
   last_heartbeat = 9223372036854775807
   num_allocations = 0
-nomad
-  bootstrap = false
+wonton   bootstrap = false
   known_regions = 1
   leader = false
   server = true

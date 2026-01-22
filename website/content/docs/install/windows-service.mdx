@@ -1,24 +1,24 @@
 ---
 layout: docs
-page_title: Nomad as a Windows Service
-description: Discusses how to register and run Nomad as a native Windows service.
+page_title: OpenWonton as a Windows Service
+description: Discusses how to register and run OpenWonton as a native Windows service.
 ---
 
-# Installing Nomad as a Windows service
+# Installing OpenWonton as a Windows service
 
-Nomad can be run as a native Windows service. In order to do this, you will need
-to register the Nomad application with the Windows Service Control Manager using
-[`sc.exe`], configure Nomad to log to a file, and then start the Nomad service.
+OpenWonton can be run as a native Windows service. In order to do this, you will need
+to register the OpenWonton application with the Windows Service Control Manager using
+[`sc.exe`], configure OpenWonton to log to a file, and then start the OpenWonton service.
 
 ~> **Note:** These steps should be run in a PowerShell session with Administrator
 capabilities.
 
-## Register Nomad with Windows
+## Register OpenWonton with Windows
 
-[Download] the Nomad binary for your architecture.
+[Download] the OpenWonton binary for your architecture.
 
-Use the [`sc.exe`] command to create a Service named "Nomad". The binPath
-argument should include the fully qualified path to the Nomad executable and any
+Use the [`sc.exe`] command to create a Service named "OpenWonton". The binPath
+argument should include the fully qualified path to the OpenWonton executable and any
 arguments to the nomad command: agent, -config, etc.
 
 ```plaintext
@@ -33,20 +33,20 @@ If you get an error, please verify the path to the binary and check the
 arguments, by running the contents of `binPath` directly in a PowerShell session
 and observing the results.
 
-## Configure Nomad to log to file
+## Configure OpenWonton to log to file
 
-Because Windows services run non-interactively and Nomad does not log to the
-Windows Event Viewer, you will need to configure file-based logging in Nomad.
+Because Windows services run non-interactively and OpenWonton does not log to the
+Windows Event Viewer, you will need to configure file-based logging in OpenWonton.
 
-To do this, set the [`log_file`][logging] argument in your Nomad configuration
+To do this, set the [`log_file`][logging] argument in your OpenWonton configuration
 file or in the binPath argument of the [`sc.exe`] command used to register the
 service.
 
-## Start the Nomad service
+## Start the OpenWonton service
 
 You have two ways to start the service.
 
-- Go to the Windows Service Manager, and look for **Nomad** in the service name
+- Go to the Windows Service Manager, and look for **OpenWonton** in the service name
   column. Click the _Start_ button to start the service.
 
 - Using the [`sc.exe`] command:
@@ -67,7 +67,7 @@ You have two ways to start the service.
   ```
 
 The service automatically starts up during/after boot, so you don't need to
-launch Nomad from the command-line again.
+launch OpenWonton from the command-line again.
 
 [`sc.exe`]: https://msdn.microsoft.com/en-us/library/windows/desktop/ms682107(v=vs.85).aspx
 [download]: /nomad/downloads

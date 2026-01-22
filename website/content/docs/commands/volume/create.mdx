@@ -7,7 +7,7 @@ description: |
 
 # Command: volume create
 
-The `volume create` command creates external storage volumes with Nomad's
+The `volume create` command creates external storage volumes with OpenWonton's
 [Container Storage Interface (CSI)][csi] support. Only CSI plugins that
 implement the [Controller][csi_plugins_internals] interface support this
 command. The volume will also be [registered] when it is successfully created.
@@ -15,12 +15,12 @@ command. The volume will also be [registered] when it is successfully created.
 ## Usage
 
 ```plaintext
-nomad volume create [options] [file]
+wonton volume create [options] [file]
 ```
 
 The `volume create` command requires a single argument, specifying the path to
 a file containing a valid [volume specification][volume_specification]. This
-file will be read and the volume will be submitted to Nomad for scheduling. If
+file will be read and the volume will be submitted to OpenWonton for scheduling. If
 the supplied path is "-", the volume file is read from STDIN. Otherwise it is
 read from the file at the supplied path.
 

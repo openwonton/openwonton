@@ -15,14 +15,14 @@ endpoint to restart the tasks inside allocations, so the allocations themselves
 are not modified but rather restarted in-place.
 
 Rescheduling the job uses the [Stop Allocation][api_alloc_stop] API endpoint to
-stop the allocations and trigger the Nomad scheduler to compute new placements.
+stop the allocations and trigger the OpenWonton scheduler to compute new placements.
 This may cause the new allocations to be scheduled in different clients from
 the originals.
 
 ## Usage
 
 ```plaintext
-nomad job restart [options] <job>
+wonton job restart [options] <job>
 ```
 
 The `job restart` command requires a single argument, specifying the job ID to
@@ -39,7 +39,7 @@ that have already run. Allocations can also be targeted by groups and tasks.
 When both groups and tasks are defined only the tasks for the allocations of
 those groups are restarted.
 
-When rescheduling, the current allocations are stopped triggering the Nomad
+When rescheduling, the current allocations are stopped triggering the OpenWonton
 scheduler to create replacement allocations that may be placed in different
 clients. The command waits until the new allocations have client status `ready`
 before proceeding with the remaining batches. Services health checks are not
@@ -114,7 +114,7 @@ of the exact job ID.
 Restart running tasks of all allocations.
 
 ```shell-session
-$ nomad job restart example
+$ wonton job restart example
 ==> 2023-02-28T17:36:31-05:00: Restarting 5 allocations
     2023-02-28T17:36:31-05:00: Restarting running tasks in allocation "32e143f8" for group "proxy"
     2023-02-28T17:36:31-05:00: Restarting running tasks in allocation "388129e0" for group "web"
@@ -129,7 +129,7 @@ All allocations restarted successfully!
 Target allocations of a specific group to restart.
 
 ```shell-session
-$ nomad job restart -group=web example
+$ wonton job restart -group=web example
 ==> 2023-02-28T17:37:36-05:00: Restarting 2 allocations
     2023-02-28T17:37:36-05:00: Restarting running tasks in allocation "388129e0" for group "web"
     2023-02-28T17:37:37-05:00: Restarting running tasks in allocation "d4303a30" for group "web"
@@ -153,7 +153,7 @@ All allocations restarted successfully!
 Batch allocations to restart them 2 at a time.
 
 ```shell-session
-$ nomad job restart -batch-size=2 example
+$ wonton job restart -batch-size=2 example
 ==> 2023-02-28T17:40:58-05:00: Restarting 5 allocations
 ==> 2023-02-28T17:40:58-05:00: Restarting 1st batch of 2 allocations
     2023-02-28T17:40:58-05:00: Restarting running tasks in allocation "653f983e" for group "web"
@@ -171,7 +171,7 @@ All allocations restarted successfully!
 Batch allocations as a percentage of total running allocations.
 
 ```shell-session
-$ nomad job restart -batch-size=50% example
+$ wonton job restart -batch-size=50% example
 ==> 2023-02-28T18:52:47-05:00: Restarting 5 allocations
 ==> 2023-02-28T18:52:47-05:00: Restarting 1st batch of 3 allocations
     2023-02-28T18:52:47-05:00: Restarting running tasks in allocation "d28f6f60" for group "proxy"
@@ -188,7 +188,7 @@ All allocations restarted successfully!
 Pause between batches of restart and wait for user input on how to proceed.
 
 ```shell-session
-$ nomad job restart -batch-size=2 -batch-wait=ask example
+$ wonton job restart -batch-size=2 -batch-wait=ask example
 ==> 2023-02-28T18:04:19-05:00: Restarting 5 allocations
 ==> 2023-02-28T18:04:19-05:00: Restarting 1st batch of 2 allocations
     2023-02-28T18:04:19-05:00: Restarting running tasks in allocation "4d18e545" for group "web"
@@ -210,7 +210,7 @@ All allocations restarted successfully!
 Wait 10 seconds before each restart batch.
 
 ```shell-session
-$ nomad job restart -batch-size=2 -batch-wait=10s example
+$ wonton job restart -batch-size=2 -batch-wait=10s example
 ==> 2023-02-28T18:03:43-05:00: Restarting 5 allocations
 ==> 2023-02-28T18:03:43-05:00: Restarting 1st batch of 2 allocations
     2023-02-28T18:03:43-05:00: Restarting running tasks in allocation "653f983e" for group "web"

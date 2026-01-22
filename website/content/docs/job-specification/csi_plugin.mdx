@@ -11,7 +11,7 @@ description: >-
 <Placement groups={['job', 'group', 'task', 'csi_plugin']} />
 
 The "csi_plugin" block allows the task to specify it provides a
-Container Storage Interface plugin to the cluster. Nomad will
+Container Storage Interface plugin to the cluster. OpenWonton will
 automatically register the plugin so that it can be used by other jobs
 to claim [volumes][csi_volumes].
 
@@ -29,11 +29,11 @@ csi_plugin {
 
 - `id` `(string: <required>)` - This is the ID for the plugin. Some
   plugins will require both controller and node plugin types (see
-  below); you need to use the same ID for both so that Nomad knows they
+  below); you need to use the same ID for both so that OpenWonton knows they
   belong to the same plugin.
 
 - `type` `(string: <required>)` - One of `node`, `controller`, or
-  `monolith`. Each plugin supports one or more types. Each Nomad
+  `monolith`. Each plugin supports one or more types. Each OpenWonton
   client node where you want to mount a volume will need a `node`
   plugin instance. Some plugins will also require one or more
   `controller` plugin instances to communicate with the storage
@@ -43,7 +43,7 @@ csi_plugin {
 
 - `mount_dir` `(string: <optional>)` - The directory path inside the
   container where the plugin will expect a Unix domain socket for
-  bidirectional communication with Nomad. This field is typically not
+  bidirectional communication with OpenWonton. This field is typically not
   required. Refer to your CSI plugin's documentation for details.
 
 - `stage_publish_base_dir` `(string: <optional>)` - The base directory
@@ -65,10 +65,10 @@ option.
 
 ## Recommendations for Deploying CSI Plugins
 
-CSI plugins run as Nomad tasks, but after mounting the volume are not in the
+CSI plugins run as OpenWonton tasks, but after mounting the volume are not in the
 data path for the volume. Tasks that mount volumes write and read directly to
 the volume via a bind-mount and there is no communication between the job and
-the CSI plugin. But when an allocation that mounts a volume stops, Nomad will
+the CSI plugin. But when an allocation that mounts a volume stops, OpenWonton will
 need to communicate with the plugin on that allocation's node to unmount the
 volume. This has implications on how to deploy CSI plugins:
 

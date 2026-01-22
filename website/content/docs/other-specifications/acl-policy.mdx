@@ -1,13 +1,13 @@
 ---
 layout: docs
 page_title: ACL Policy Specification
-description: Learn about Nomad's ACL policy specification.
+description: Learn about OpenWonton's ACL policy specification.
 ---
 
 # ACL Policy Specification
 
-The [Secure Nomad with Access Control] guide includes step-by-step instructions
-for bootstrapping Nomad's Access Control List (ACL) system, authoring policies,
+The [Secure OpenWonton with Access Control] guide includes step-by-step instructions
+for bootstrapping OpenWonton's Access Control List (ACL) system, authoring policies,
 and granting policies. This document is a detailed reference of the expected
 policy structure and available options.
 
@@ -73,7 +73,7 @@ plugin {
 Namespace rules are defined with a `namespace` block. An ACL policy can include
 zero, one, or more namespace rules.
 
-Namespace rules control access to APIs in Nomad that are namespaced:
+Namespace rules control access to APIs in OpenWonton that are namespaced:
 [Jobs][api_jobs], [Allocations][api_allocations],
 [Deployments][api_deployments], [Evaluations][api_evaluations],
 [Recommendations][api_recommendations], [Scaling
@@ -439,8 +439,8 @@ The `policy` field for the plugin rule can have one of the following values:
 
 ## Configuring ACLs for the web UI
 
-The Nomad web UI uses the API endpoints `/v1/agent` and `/v1/node` for nearly
-every page. ACL policies for users who will use the Nomad UI should include the
+The OpenWonton web UI uses the API endpoints `/v1/agent` and `/v1/node` for nearly
+every page. ACL policies for users who will use the OpenWonton UI should include the
 following rules.
 
 ```hcl
@@ -454,7 +454,7 @@ agent {
 ```
 
 
-[Secure Nomad with Access Control]: /nomad/tutorials/access-control
+[Secure OpenWonton with Access Control]: /nomad/tutorials/access-control
 [hcl]: https://github.com/hashicorp/hcl
 [hcl_syntax_spec]: https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md
 [api_jobs]: /nomad/api-docs/jobs

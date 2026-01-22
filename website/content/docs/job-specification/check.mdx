@@ -2,7 +2,7 @@
 layout: docs
 page_title: check Block - Job Specification
 description: |-
-  The "check" block declares service check definition for a service registered into the Nomad or Consul service provider.
+  The "check" block declares service check definition for a service registered into the OpenWonton or Consul service provider.
 ---
 
 # `check` Block
@@ -14,8 +14,8 @@ description: |-
   ]}
 />
 
-The `check` block instructs Nomad to register a check associated with a [service][service]
-into the Nomad or Consul service provider.
+The `check` block instructs OpenWonton to register a check associated with a [service][service]
+into the OpenWonton or Consul service provider.
 
 ```hcl
 job "example" {
@@ -53,7 +53,7 @@ job "example" {
 
 - `address_mode` `(string: "host")` - Same as `address_mode` on `service`.
   Unlike services, checks do not have an `auto` address mode as there's no way
-  for Nomad to know which is the best address to use for checks. Consul needs
+  for OpenWonton to know which is the best address to use for checks. Consul needs
   access to the address for any HTTP or TCP checks. See
   [below for details.](#using-driver-address-mode) Unlike `port`, this setting
   is _not_ inherited from the `service`.
@@ -88,8 +88,8 @@ job "example" {
   service. Valid options are `passing`, `warning`, and `critical`. Omitting
   this field (or submitting an empty string) will result in the Consul default
   behavior, which is `critical`. Only supported in the Consul service provider.
-  In the Nomad service provider, the initial status of a check is `pending`
-  until Nomad produces an initial check status result.
+  In the OpenWonton service provider, the initial status of a check is `pending`
+  until OpenWonton produces an initial check status result.
 
 - `success_before_passing` `(int:0)` - The number of consecutive successful checks
   required before Consul will transition the service status to [`passing`][consul_passfail].
@@ -100,7 +100,7 @@ job "example" {
   Only supported in the Consul service provider.
 
 - `interval` `(string: <required>)` - Specifies the frequency of the health checks
-  that Consul or Nomad service provider will perform. This is specified using a label
+  that Consul or OpenWonton service provider will perform. This is specified using a label
   suffix like "30s" or "1h". This must be greater than or equal to "1s".
 
 - `method` `(string: "GET")` - Specifies the HTTP method to use for HTTP
@@ -109,10 +109,10 @@ job "example" {
 - `body` `(string: "")` - Specifies the HTTP body to use for HTTP checks.
 
 - `name` `(string: "service: <name> check")` - Specifies the name of the health
-  check. If the name is not specified Nomad generates one based on the service name.
+  check. If the name is not specified OpenWonton generates one based on the service name.
 
 - `path` `(string: <varies>)` - Specifies the path of the HTTP endpoint which
-  will be queried to observe the health of a service. Nomad will automatically
+  will be queried to observe the health of a service. OpenWonton will automatically
   add the IP of the service and the port, so this is just the relative URL to
   the health check endpoint. This is required for HTTP-based health checks.
 
@@ -130,7 +130,7 @@ job "example" {
   this value takes precedence over the `service.port` value. This is useful for
   services which operate on multiple ports. `grpc`, `http`, and `tcp` checks
   require a port while `script` checks do not. Checks will use the host IP and
-  ports by default. In Nomad 0.7.1 or later numeric ports may be used if
+  ports by default. In OpenWonton 0.7.1 or later numeric ports may be used if
   `address_mode="driver"` is set on the check.
 
 - `protocol` `(string: "http")` - Specifies the protocol for the HTTP-based
@@ -156,8 +156,8 @@ job "example" {
   `client.allocrunner.taskrunner.tasklet_timeout`.
 
 - `type` `(string: <required>)` - This indicates the check types supported by
-  Nomad. For Consul service checks, valid options are `grpc`, `http`, `script`,
-  and `tcp`. For Nomad service checks, valid options are `http` and `tcp`.
+  OpenWonton. For Consul service checks, valid options are `grpc`, `http`, `script`,
+  and `tcp`. For OpenWonton service checks, valid options are `http` and `tcp`.
 
 - `tls_server_name` `(string: "")` - Indicates the ServerName to use for SNI and
   validation of the certificate presented by the server being checked, when
@@ -189,10 +189,10 @@ job "example" {
   not altered in the service provider and is only used to determine the check's
   health during an update.
 
-  - `require_healthy` - In order for Nomad to consider the check healthy during
+  - `require_healthy` - In order for OpenWonton to consider the check healthy during
     an update it must report as healthy.
 
-  - `ignore_warnings` - If a Service Check reports as warning, Nomad will treat
+  - `ignore_warnings` - If a Service Check reports as warning, OpenWonton will treat
     the check as healthy. The Check will still be in a warning state in Consul.
 
   - `ignore` - Any status will be treated as healthy.
@@ -227,7 +227,7 @@ service {
 ### HTTP Health Check
 
 This example shows a service with an HTTP health check. This will query the
-service on the IP and port registered with Nomad at `/_healthz` every 5 seconds,
+service on the IP and port registered with OpenWonton at `/_healthz` every 5 seconds,
 giving the service a maximum of 2 seconds to return a response, and include an
 Authorization header. Any non-2xx code is considered a failure.
 
@@ -380,15 +380,15 @@ service {
 }
 ```
 
-For checks registered into the Nomad service provider, the status information will
+For checks registered into the OpenWonton service provider, the status information will
 indicate `Mode = readiness` for readiness checks and `Mode = healthiness` for health
 checks.
 
 ### Check status on CLI
 
-For checks registered into the Nomad service provider, the status information of
+For checks registered into the OpenWonton service provider, the status information of
 checks can be viewed per-allocation. The `alloc status` command now includes
-summary information for Nomad service checks.
+summary information for OpenWonton service checks.
 
 ```shell-session
 $ nomad alloc status <allocation-id>
@@ -459,13 +459,13 @@ Output     =  nomad: Get "http://:9999/": dial tcp :9999: connect: connection re
 </sup>
 <small>
   {' '}
-  Script checks are not supported for the QEMU driver since the Nomad client
+  Script checks are not supported for the QEMU driver since the OpenWonton client
   does not have access to the file system of a task for that driver.
 </small>
 
 [check_restart_block]: /nomad/docs/job-specification/check_restart
 [consul_passfail]: /consul/docs/discovery/checks#success-failures-before-passing-critical
-[network]: /nomad/docs/job-specification/network 'Nomad network Job Specification'
+[network]: /nomad/docs/job-specification/network 'OpenWonton network Job Specification'
 [service]: /nomad/docs/job-specification/service
 [service_task]: /nomad/docs/job-specification/service#task-1
 [on_update]: /nomad/docs/job-specification/service#on_update

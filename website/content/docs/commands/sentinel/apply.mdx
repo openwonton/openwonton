@@ -11,13 +11,13 @@ description: >
 The `sentinel apply` command is used to write a new, or update an existing,
 Sentinel policy.
 
-~> Sentinel commands are new in Nomad 0.7 and are only available with Nomad
+~> Sentinel commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad sentinel apply [options] <Policy Name> <Policy File>
+wonton sentinel apply [options] <Policy Name> <Policy File>
 ```
 
 The `sentinel apply` command requires two arguments, the policy name and the
@@ -46,6 +46,6 @@ requires a management token.
 Write a policy:
 
 ```shell-session
-$ nomad sentinel write -description "My test policy" foo test.sentinel
+$ wonton sentinel write -description "My test policy" foo test.sentinel
 Successfully wrote "foo" Sentinel policy!
 ```

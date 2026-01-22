@@ -13,7 +13,7 @@ an entire allocation or individual task.
 ## Usage
 
 ```plaintext
-nomad alloc restart [options] <allocation> <task>
+wonton alloc restart [options] <allocation> <task>
 ```
 
 This command accepts a single allocation ID and a task name. The task name must
@@ -50,9 +50,9 @@ allocation's namespace.
 ## Examples
 
 ```shell-session
-$ nomad alloc restart eb17e557
+$ wonton alloc restart eb17e557
 
-$ nomad alloc restart eb17e557 foo
+$ wonton alloc restart eb17e557 foo
 Could not find task named: foo, found:
 * test
 <blocking>
@@ -61,12 +61,12 @@ Could not find task named: foo, found:
 Specifying task name with the `-task` option:
 
 ```shell-session
-$ nomad alloc restart -task redis eb17e557
+$ wonton alloc restart -task redis eb17e557
 ```
 
 If task name is specified using both options, the command argument is ignored.
 The following will restart the "redis" task only, not the "api" task:
 
 ```shell-session
-$ nomad alloc restart -task redis eb17e557 api
+$ wonton alloc restart -task redis eb17e557 api
 ```

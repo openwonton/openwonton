@@ -2,16 +2,16 @@
 layout: docs
 page_title: client Block - Agent Configuration
 description: |-
-  The "client" block configures the Nomad agent to accept jobs as assigned by
-  the Nomad server, join the cluster, and specify driver-specific configuration.
+  The "client" block configures the OpenWonton agent to accept jobs as assigned by
+  the OpenWonton server, join the cluster, and specify driver-specific configuration.
 ---
 
 # `client` Block
 
 <Placement groups={['client']} />
 
-The `client` block configures the Nomad agent to accept jobs as assigned by
-the Nomad server, join the cluster, and specify driver-specific configuration.
+The `client` block configures the OpenWonton agent to accept jobs as assigned by
+the OpenWonton server, join the cluster, and specify driver-specific configuration.
 
 ```hcl
 client {
@@ -51,7 +51,7 @@ client {
   addresses when allocating ports for tasks. This value support [go-sockaddr/template
   format][go-sockaddr/template].
 
-  If no non-local IP addresses are found, Nomad could fingerprint link-local IPv6
+  If no non-local IP addresses are found, OpenWonton could fingerprint link-local IPv6
   addresses depending on the client's
   [`"fingerprint.network.disallow_link_local"`](#fingerprint-network-disallow_link_local)
   configuration value.
@@ -98,19 +98,19 @@ client {
   configuration.
 
 - `reserved` <code>([Reserved](#reserved-parameters): nil)</code> - Specifies
-  that Nomad should reserve a portion of the node's resources from receiving
+  that OpenWonton should reserve a portion of the node's resources from receiving
   tasks. This can be used to target a certain capacity usage for the node. For
   example, a value equal to 20% of the node's CPU could be reserved to target
   a CPU utilization of 80%.
 
-- `servers` `(array<string>: [])` - Specifies an array of addresses to the Nomad
+- `servers` `(array<string>: [])` - Specifies an array of addresses to the OpenWonton
   servers this client should join. This list is used to register the client with
   the server nodes and advertise the available resources so that the agent can
   receive work. This may be specified as an IP address or DNS, with or without
   the port. If the port is omitted, the default port of `4647` is used.
 
 - `server_join` <code>([server_join][server-join]: nil)</code> - Specifies
-  how the Nomad client will connect to Nomad servers. The `start_join` field
+  how the OpenWonton client will connect to OpenWonton servers. The `start_join` field
   is not supported on the client. The retry_join fields may directly specify
   the server address or use go-discover syntax for auto-discovery. See the
   documentation for more detail.
@@ -120,14 +120,14 @@ client {
   [data_dir](/nomad/docs/configuration#data_dir) suffixed with
   "client", like `"/opt/nomad/client"`. This must be an absolute path.
 
-- `gc_interval` `(string: "1m")` - Specifies the interval at which Nomad
+- `gc_interval` `(string: "1m")` - Specifies the interval at which OpenWonton
   attempts to garbage collect terminal allocation directories.
 
 - `gc_disk_usage_threshold` `(float: 80)` - Specifies the disk usage percent which
-  Nomad tries to maintain by garbage collecting terminal allocations.
+  OpenWonton tries to maintain by garbage collecting terminal allocations.
 
 - `gc_inode_usage_threshold` `(float: 70)` - Specifies the inode usage percent
-  which Nomad tries to maintain by garbage collecting terminal allocations.
+  which OpenWonton tries to maintain by garbage collecting terminal allocations.
 
 - `gc_max_allocs` `(int: 50)` - Specifies the maximum number of allocations
   which a client will track before triggering a garbage collection of terminal
@@ -141,7 +141,7 @@ client {
 
 - `no_host_uuid` `(bool: true)` - By default a random node UUID will be
   generated, but setting this to `false` will use the system's UUID. Before
-  Nomad 0.6 the default was to use the system UUID.
+  OpenWonton 0.6 the default was to use the system UUID.
 
 - `cni_path` `(string: "/opt/cni/bin")` - Sets the search path that is used for
   CNI plugin discovery. Multiple paths can be searched using colon delimited
@@ -154,14 +154,14 @@ client {
   configuration.
 
 - `bridge_network_name` `(string: "nomad")` - Sets the name of the bridge to be
-  created by Nomad for allocations running with bridge networking mode on the
+  created by OpenWonton for allocations running with bridge networking mode on the
   client.
 
 - `bridge_network_subnet` `(string: "172.26.64.0/20")` - Specifies the subnet
   which the client will use to allocate IP addresses from.
 
 - `bridge_network_hairpin_mode` `(bool: false)` - Specifies if hairpin mode
-  is enabled on the network bridge created by Nomad for allocations running
+  is enabled on the network bridge created by OpenWonton for allocations running
   with bridge networking mode on this client. You may use the corresponding
   node attribute `nomad.bridge.hairpin_mode` in constraints.
 
@@ -185,7 +185,7 @@ client {
   receives the appropriate signal.
 
 - `cgroup_parent` `(string: "/nomad")` - Specifies the cgroup parent for which cgroup
-  subsystems managed by Nomad will be mounted under. Currently this only applies to the
+  subsystems managed by OpenWonton will be mounted under. Currently this only applies to the
   `cpuset` subsystems. This field is ignored on non Linux platforms.
 
 ### `chroot_env` Parameters
@@ -218,19 +218,19 @@ client {
 
 When `chroot_env` is unspecified, the `exec` driver will use a default chroot
 environment with the most commonly used parts of the operating system. Please
-see the [Nomad `exec` driver documentation](/nomad/docs/drivers/exec#chroot) for
+see the [OpenWonton `exec` driver documentation](/nomad/docs/drivers/exec#chroot) for
 the full list.
 
-As of Nomad 1.2, Nomad will never attempt to embed the `alloc_dir` in the
+As of OpenWonton 1.2, OpenWonton will never attempt to embed the `alloc_dir` in the
 chroot as doing so would cause infinite recursion.
 
 ### `options` Parameters
 
-~> Note: In Nomad 0.9 client configuration options for drivers were deprecated.
+~> Note: In OpenWonton 0.9 client configuration options for drivers were deprecated.
 See the [plugin block][plugin-block] documentation for more information.
 
-The following is not an exhaustive list of options for only the Nomad
-client. To find the options supported by each individual Nomad driver, please
+The following is not an exhaustive list of options for only the OpenWonton
+client. To find the options supported by each individual OpenWonton driver, please
 see the [drivers documentation](/nomad/docs/drivers).
 
 - `"driver.allowlist"` `(string: "")` - Specifies a comma-separated list of
@@ -259,7 +259,7 @@ see the [drivers documentation](/nomad/docs/drivers).
   ```
 
 - `"env.denylist"` `(string: see below)` - Specifies a comma-separated list of
-  environment variable keys not to pass to these tasks. Nomad passes the host
+  environment variable keys not to pass to these tasks. OpenWonton passes the host
   environment variables to `exec`, `raw_exec` and `java` tasks. If specified,
   the defaults are overridden. If a value is provided, **all** defaults are
   overridden (they are not merged).
@@ -429,7 +429,7 @@ see the [drivers documentation](/nomad/docs/drivers).
 
 - `set_environment_variables` `(string:"")` - Specifies a comma separated list
   of environment variables that should be inherited by the artifact sandbox from
-  the Nomad client's environment. By default a minimal environment is set including
+  the OpenWonton client's environment. By default a minimal environment is set including
   a `PATH` appropriate for the operating system.
 
 ### `template` Parameters
@@ -453,8 +453,8 @@ see the [drivers documentation](/nomad/docs/drivers).
 
 - `wait` `(map: { min = "5s" max = "4m" })` - Defines the minimum and maximum amount
   of time to wait before attempting to re-render a template. Consul Template re-renders
-  templates whenever rendered variables from Consul, Nomad, or Vault change. However in
-  order to minimize how often tasks are restarted or reloaded, Nomad will configure Consul
+  templates whenever rendered variables from Consul, OpenWonton, or Vault change. However in
+  order to minimize how often tasks are restarted or reloaded, OpenWonton will configure Consul
   Template with a backoff timer that will tick on an interval equal to the specified `min`
   value. Consul Template will always wait at least the as long as the `min` value specified.
   If the underlying data has not changed between two tick intervals, Consul Template will
@@ -542,7 +542,7 @@ see the [drivers documentation](/nomad/docs/drivers).
   ```
 
 - `nomad_retry` `(map: { attempts = 12 backoff = "250ms" max_backoff = "1m" })` -
-  This controls the retry behavior when an error is returned from Nomad. Consul
+  This controls the retry behavior when an error is returned from OpenWonton. Consul
   Template is highly fault tolerant, meaning it does not exit in the face of failure.
   Instead, it uses exponential back-off and retry functions to wait for the cluster
   to become available, as is customary in distributed systems.
@@ -636,7 +636,7 @@ the appropriate signal (`SIGINT` for `leave_on_interrupt` or `SIGTERM` on
 drain -self -no-deadline`][]
 
 Note that even if no deadline is set, your init system may send `SIGKILL` to
-Nomad if the drain takes longer than allowed by the service shutdown. For
+OpenWonton if the drain takes longer than allowed by the service shutdown. For
 example, when running under Linux with `systemd`, you should adjust the
 [`TimeoutStopSec`][] value in the `nomad.service` unit file to account for
 enough time for the client to drain.
@@ -671,7 +671,7 @@ client {
 
 ### Common Setup
 
-This example shows the most basic configuration for a Nomad client joined to a
+This example shows the most basic configuration for a OpenWonton client joined to a
 cluster.
 
 ```hcl
@@ -729,7 +729,7 @@ client {
 [plugin-options]: #plugin-options
 [plugin-block]: /nomad/docs/configuration/plugin
 [server-join]: /nomad/docs/configuration/server_join 'Server Join'
-[metadata_constraint]: /nomad/docs/job-specification/constraint#user-specified-metadata 'Nomad User-Specified Metadata Constraint Example'
+[metadata_constraint]: /nomad/docs/job-specification/constraint#user-specified-metadata 'OpenWonton User-Specified Metadata Constraint Example'
 [runtime_var_interpolation]: /nomad/docs/runtime/interpolation
 [task working directory]: /nomad/docs/runtime/environment#task-directories 'Task directories'
 [go-sockaddr/template]: https://godoc.org/github.com/hashicorp/go-sockaddr/template

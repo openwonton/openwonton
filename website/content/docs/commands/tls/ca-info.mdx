@@ -14,7 +14,7 @@ provided certificate file.
 ## Usage
 
 ```plaintext
-nomad tls ca info <CA file>
+wonton tls ca info <CA file>
 ```
 
 ## Example
@@ -22,7 +22,7 @@ nomad tls ca info <CA file>
 Display default CA:
 
 ```shell-session
-$ nomad tls ca info nomad-agent-ca.pem
+$ wonton tls ca info nomad-agent-ca.pem
 Serial Number          314623649437549144006237783956683542664
 Issuer CN              Nomad Agent CA 314623649437549144006237783956683542664
 Common Name            CN=Nomad Agent CA 314623649437549144006237783956683542664,O=HashiCorp Inc.,POSTALCODE=94105,STREET=101 Second Street,L=San Francisco,ST=CA,C=US
@@ -33,7 +33,7 @@ Permitted DNS Domains  []
 Display CA with a custom domain "foo.com":
 
 ```shell-session
-$ nomad tls ca info foo.com-agent-ca.pem
+$ wonton tls ca info foo.com-agent-ca.pem
 Serial Number          189027561135335847320487296530900061259
 Issuer CN              Nomad Agent CA 189027561135335847320487296530900061259
 Common Name            CN=Nomad Agent CA 189027561135335847320487296530900061259,O=HashiCorp Inc.,POSTALCODE=94105,STREET=101 Second Street,L=San Francisco,ST=CA,C=US

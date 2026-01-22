@@ -8,16 +8,16 @@ description: |
 # Command: license get
 
 The `license get` command is used to retrieve the current Nomad Enterprise
-license. The command is not forwarded to the Nomad leader, and will return
+license. The command is not forwarded to the OpenWonton leader, and will return
 the license from the specific server being contacted.
 
-~> License commands are new in Nomad 0.12.0 and are only available with Nomad
+~> License commands are new in OpenWonton 0.12.0 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad license get [options]
+wonton license get [options]
 ```
 
 When ACLs are enabled, this command requires a token with the 'operator:read'
@@ -30,7 +30,7 @@ capability.
 ## Examples
 
 ```shell-session
-$ nomad license get
+$ wonton license get
 
 Product        = nomad
 License Status = valid
@@ -54,7 +54,7 @@ Licensed Features:
 ```
 
 ```shell-session
-$ nomad license get -stale=true
+$ wonton license get -stale=true
 
 Product        = nomad
 License Status = valid

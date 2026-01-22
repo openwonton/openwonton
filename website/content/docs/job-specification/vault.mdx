@@ -3,7 +3,7 @@ layout: docs
 page_title: vault Block - Job Specification
 description: |-
   The "vault" block allows the task to specify that it requires a token from a
-  HashiCorp Vault server. Nomad will automatically retrieve a Vault token for
+  HashiCorp Vault server. OpenWonton will automatically retrieve a Vault token for
   the task and handle token renewal for the task.
 ---
 
@@ -18,7 +18,7 @@ description: |-
 />
 
 The `vault` block allows a task to specify that it requires a token from a
-[HashiCorp Vault][vault] server. Nomad will automatically retrieve a Vault token
+[HashiCorp Vault][vault] server. OpenWonton will automatically retrieve a Vault token
 for the task and handle token renewal for the task. If specified at the `group`
 level, the configuration will apply to all tasks within the group. If specified
 at the `job` level, the configuration will apply to all tasks within the job. If
@@ -40,14 +40,14 @@ job "docs" {
 }
 ```
 
-The Nomad client will make the Vault token available to the task by writing it
+The OpenWonton client will make the Vault token available to the task by writing it
 to the secret directory at `secrets/vault_token` and by injecting a `VAULT_TOKEN`
-environment variable. If the Nomad cluster is [configured](/nomad/docs/configuration/vault#namespace)
+environment variable. If the OpenWonton cluster is [configured](/nomad/docs/configuration/vault#namespace)
 to use [Vault Namespaces](/vault/docs/enterprise/namespaces),
 a `VAULT_NAMESPACE` environment variable will be injected whenever `VAULT_TOKEN` is set.
 This behavior can be altered using the `env` and `file` parameters.
 
-If Nomad is unable to renew the Vault token (perhaps due to a Vault outage or
+If OpenWonton is unable to renew the Vault token (perhaps due to a Vault outage or
 network error), the client will attempt to retrieve a new Vault token. If successful, the
 contents of the secrets file are updated on disk, and action will be taken
 according to the value set in the `change_mode` parameter.
@@ -57,7 +57,7 @@ with Vault as well.
 
 ## `vault` Parameters
 
-- `change_mode` `(string: "restart")` - Specifies the behavior Nomad should take
+- `change_mode` `(string: "restart")` - Specifies the behavior OpenWonton should take
   if the Vault token changes. The possible values are:
 
   - `"noop"` - take no action (continue running the task)
@@ -85,11 +85,11 @@ with Vault as well.
 
 
 - `namespace` `(string: "")` <EnterpriseAlert inline/> - Specifies the Vault Namespace
-  to use for the task. The Nomad client will retrieve a Vault token that is scoped to
+  to use for the task. The OpenWonton client will retrieve a Vault token that is scoped to
   this particular namespace.
 
 - `policies` `(array<string>: [])` - Specifies the set of Vault policies that
-  the task requires. The Nomad client will retrieve a Vault token that is
+  the task requires. The OpenWonton client will retrieve a Vault token that is
   limited to those policies.
 
 ## `vault` Examples
@@ -99,7 +99,7 @@ The following examples only show the `vault` blocks. Remember that the
 
 ### Retrieve Token
 
-This example tells the Nomad client to retrieve a Vault token. The token is
+This example tells the OpenWonton client to retrieve a Vault token. The token is
 available to the task via the canonical environment variable `VAULT_TOKEN` and
 written to disk at `secrets/vault_token`. The resulting token will have the
 "frontend" Vault policy attached.
@@ -128,7 +128,7 @@ vault {
 This example retrieves a Vault token that is not shared with the task when using
 a driver that provides `image` isolation like [Docker][docker].
 
-This allows Nomad to use a powerful Vault token that interacts with the task's
+This allows OpenWonton to use a powerful Vault token that interacts with the task's
 [`template`][template] stanzas to issue all kinds of secrets (e.g., database
 secrets, other vault tokens, etc.), without sharing that issuing power with
 the task itself:
@@ -170,7 +170,7 @@ EOH
 The example above uses `change_mode = "noop"` in the `template` stanza for
 `examplepolicy.token`, which means that the task's workload is responsible for
 detecting and handling changes to that file. In contrast, the `template` stanza
-for `client.crt` is configured so that Nomad will restart the task whenever
+for `client.crt` is configured so that OpenWonton will restart the task whenever
 the certificate is reissued, as indicated by `change_mode = "restart"`
 (which is the default value for `change_mode`).
 
@@ -192,6 +192,6 @@ vault {
 ```
 
 [docker]: /nomad/docs/drivers/docker "Docker Driver"
-[restart]: /nomad/docs/job-specification/restart "Nomad restart Job Specification"
-[template]: /nomad/docs/job-specification/template "Nomad template Job Specification"
+[restart]: /nomad/docs/job-specification/restart "OpenWonton restart Job Specification"
+[template]: /nomad/docs/job-specification/template "OpenWonton template Job Specification"
 [vault]: https://www.vaultproject.io/ "Vault by HashiCorp"

@@ -4,7 +4,7 @@ page_title: search Block - Agent Configuration
 sidebar_title: search
 description: >-
   The "search" block specifies configuration for the search API provided
-  by the Nomad servers.
+  by the OpenWonton servers.
 ---
 
 # `search` Block
@@ -16,7 +16,7 @@ description: >-
 />
 
 The `search` block specifies configuration for the search API provided by the
-Nomad servers.
+OpenWonton servers.
 
 ```hcl
 server {
@@ -35,9 +35,9 @@ server {
   is enabled. If not enabled, requests to the fuzzy search API endpoint will return
   an error response.
 
-- `limit_query` `(int: 20)` - Specifies the maximum number of Nomad objects to
-  search through per context type in the Nomad server before truncating results.
-  Setting this parameter to a high value may degrade Nomad server performance.
+- `limit_query` `(int: 20)` - Specifies the maximum number of OpenWonton objects to
+  search through per context type in the OpenWonton server before truncating results.
+  Setting this parameter to a high value may degrade OpenWonton server performance.
 
 - `limit_results` `(int: 100)` - Specifies the maximum number of matching results
   to accumulate per context type in the API response before truncating results.
@@ -45,6 +45,6 @@ server {
 
 - `min_term_length` `(int: 2)` - Specifies the minimum size of the search term
   allowed for matching with the fuzzy search API. Setting this value higher can
-  prevent unnecessary load on the Nomad server from broad queries.
+  prevent unnecessary load on the OpenWonton server from broad queries.
 
 [fuzzy]: /nomad/api-docs/search#fuzzy-searching

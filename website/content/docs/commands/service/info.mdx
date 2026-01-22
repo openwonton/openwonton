@@ -2,21 +2,21 @@
 layout: docs
 page_title: 'Commands: service info'
 description: |
-  The service info command is used to read the specified Nomad registered
+  The service info command is used to read the specified OpenWonton registered
   service by name.
 ---
 
 # Command: service info
 
-The `service info` command is used to read the specified Nomad registered
+The `service info` command is used to read the specified OpenWonton registered
 service by name.
 
-~> Service commands are new in Nomad 1.3.
+~> Service commands are new in OpenWonton 1.3.
 
 ## Usage
 
 ```plaintext
-nomad service info [options] <service_name>
+wonton service info [options] <service_name>
 ```
 
 The `service info` command requires a single argument, a service name.
@@ -47,7 +47,7 @@ capability for the service's namespace.
 View the information of a specific service:
 
 ```shell-session
-$ nomad service info example-cache-redis
+$ wonton service info example-cache-redis
 Job ID   Address          Tags        Node ID   Alloc ID
 example  127.0.0.1:22686  [db,cache]  7406e90b  5f0730ca
 example  127.0.0.1:25854  [db,cache]  7406e90b  a831f7f2
@@ -56,7 +56,7 @@ example  127.0.0.1:25854  [db,cache]  7406e90b  a831f7f2
 View the verbose information of a specific service:
 
 ```shell-session
-$ nomad service info -verbose example-cache-redis
+$ wonton service info -verbose example-cache-redis
 ID           = _nomad-task-5f0730ca-b055-52ac-f56e-358f3f7412f6-redis-example-cache-redis-db
 Service Name = example-cache-redis
 Namespace    = default

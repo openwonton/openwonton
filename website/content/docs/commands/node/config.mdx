@@ -14,7 +14,7 @@ the running client configurations it supports.
 ## Usage
 
 ```plaintext
-nomad node config [options]
+wonton node config [options]
 ```
 
 The arguments behave differently depending on the flags given. See each flag's
@@ -49,7 +49,7 @@ description below for specific usage information and requirements.
 Query the currently known servers:
 
 ```shell-session
-$ nomad node config -servers
+$ wonton node config -servers
 server1:4647
 server2:4647
 ```
@@ -57,7 +57,7 @@ server2:4647
 Update the list of servers:
 
 ```shell-session
-$ nomad node config -update-servers server1:4647 server2:4647 server3:4647 server4
+$ wonton node config -update-servers server1:4647 server2:4647 server3:4647 server4
 
 ```
 

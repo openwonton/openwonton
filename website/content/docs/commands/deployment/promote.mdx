@@ -19,7 +19,7 @@ version or failed backwards by reverting to an older version using the
 ## Usage
 
 ```plaintext
-nomad deployment promote [options] <deployment id>
+wonton deployment promote [options] <deployment id>
 ```
 
 The `deployment promote` command requires a single argument, a deployment ID or
@@ -52,7 +52,7 @@ Promote canaries in all groups:
 
 ```shell-session
 # Have two task groups waiting for promotion.
-$ nomad status example
+$ wonton status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 18:35:05 UTC
@@ -88,7 +88,7 @@ e0a2441b  a8dcce2d  cache       0        run      running  07/25/17 18:31:34 UTC
 f2409f7d  a8dcce2d  web         0        run      running  07/25/17 18:31:34 UTC
 
 # Promote all groups within the deployment
-$ nomad deployment promote 9fa81f27
+$ wonton deployment promote 9fa81f27
 ==> Monitoring evaluation "6c6e64ae"
     Evaluation triggered by job "example"
     Evaluation within deployment: "9fa81f27"
@@ -98,7 +98,7 @@ $ nomad deployment promote 9fa81f27
 ==> Evaluation "6c6e64ae" finished with status "complete"
 
 # Inspect the status and see both groups have been promoted.
-$ nomad status example
+$ wonton status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 18:35:05 UTC
@@ -140,7 +140,7 @@ Promote canaries in a particular group:
 
 ```shell-session
 # Have two task groups waiting for promotion.
-$ nomad status example
+$ wonton status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 18:37:14 UTC
@@ -176,7 +176,7 @@ cee52788  6240eed6  web         0        run      running  07/25/17 18:37:08 UTC
 ee8f972e  6240eed6  web         0        run      running  07/25/17 18:37:08 UTC
 
 # Promote only the cache canaries
-$ nomad deployment promote -group cache a6b87a6c
+$ wonton deployment promote -group cache a6b87a6c
 ==> Monitoring evaluation "37383564"
     Evaluation triggered by job "example"
     Evaluation within deployment: "a6b87a6c"
@@ -185,7 +185,7 @@ $ nomad deployment promote -group cache a6b87a6c
 ==> Evaluation "37383564" finished with status "complete"
 
 # Inspect the status and see that only the cache canaries are promoted
-$ nomad status example
+$ wonton status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 18:37:14 UTC

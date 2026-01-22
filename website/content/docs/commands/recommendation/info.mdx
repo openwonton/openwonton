@@ -9,13 +9,13 @@ description: |
 
 The `recommendation info` command is used to read the specified recommendation.
 
-~> Recommendation commands are new in Nomad 1.0 and are only available with
+~> Recommendation commands are new in OpenWonton 1.0 and are only available with
 Nomad Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad recommendation info [options] <recommendation_id>
+wonton recommendation info [options] <recommendation_id>
 ```
 
 The `recommendation info` command requires a single argument, a recommendation ID.
@@ -38,7 +38,7 @@ capability for the recommendation's namespace.
 View the information of a specific recommendation:
 
 ```shell-session
-$ nomad recommendation info 68236421-c90f-efa6-fc02-37ae2d59bf03
+$ wonton recommendation info 68236421-c90f-efa6-fc02-37ae2d59bf03
 ID         = 68236421-c90f-efa6-fc02-37ae2d59bf03
 Namespace  = default
 Job ID     = example

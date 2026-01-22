@@ -54,9 +54,9 @@ The following examples only show the `resources` blocks. Remember that the
 
 ### Cores
 
-This example specifies that the task requires 2 reserved cores. With this block, Nomad will find
+This example specifies that the task requires 2 reserved cores. With this block, OpenWonton will find
 a client with enough spare capacity to reserve 2 cores exclusively for the task. Unlike the `cpu` field, the
-task will not share cpu time with any other tasks managed by Nomad on the client.
+task will not share cpu time with any other tasks managed by OpenWonton on the client.
 
 ```hcl
 resources {
@@ -97,17 +97,17 @@ the task may exceed the limit and be interrupted; if the task memory is too
 high, the cluster is left underutilized.
 
 To help maximize cluster memory utilization while allowing a safety margin for
-unexpected load spikes, Nomad allows job authors to set two separate memory
+unexpected load spikes, OpenWonton allows job authors to set two separate memory
 limits:
 
 * `memory`: the reserve limit to represent the task’s typical memory usage —
-  this number is used by the Nomad scheduler to reserve and place the task
+  this number is used by the OpenWonton scheduler to reserve and place the task
 
 * `memory_max`: the maximum memory the task may use, if the client has excess
   available memory, and may be terminated if it exceeds
 
 If a client's memory becomes contended or low, the operating system will
-pressure the running tasks to free up memory. If the contention persists, Nomad
+pressure the running tasks to free up memory. If the contention persists, OpenWonton
 may kill oversubscribed tasks and reschedule them to other clients. The exact
 mechanism for memory pressure is specific to the task driver, operating system,
 and application runtime.
@@ -116,7 +116,7 @@ The `memory_max` limit attribute is currently supported by the official
 `docker`, `exec`, and `java` task drivers.  Consult the documentation of
 community-supported task drivers for their memory oversubscription support.
 
-Memory oversubscription is opt-in. Nomad operators can enable [Memory
+Memory oversubscription is opt-in. OpenWonton operators can enable [Memory
 Oversubscription in the scheduler configuration][api_sched_config]. Enterprise
 customers can use [Resource Quotas][tutorial_quota] to limit the memory
 oversubscription and enable or disable memory oversubscription per [node
@@ -125,20 +125,20 @@ pool][np_sched_config].
 To avoid degrading the cluster experience, we recommend examining and monitoring
 resource utilization and considering the following suggestions:
 
-* Set `oom_score_adj` for Linux host services that aren't managed by Nomad, e.g.
-  Docker, logging services, and the Nomad agent itself. For Systemd services, you can use the [`OOMScoreAdj` field](https://github.com/openwonton/openwonton/blob/v1.0.0/dist/systemd/nomad.service#L25).
+* Set `oom_score_adj` for Linux host services that aren't managed by OpenWonton, e.g.
+  Docker, logging services, and the OpenWonton agent itself. For Systemd services, you can use the [`OOMScoreAdj` field](https://github.com/openwonton/openwonton/blob/v1.0.0/dist/systemd/nomad.service#L25).
 
 * Monitor hosts for memory utilization and set alerts on Out-Of-Memory errors
 
 * Set the [client `reserved`](/nomad/docs/configuration/client#reserved) with enough
-  memory for host services that aren't managed by Nomad as well as a buffer
+  memory for host services that aren't managed by OpenWonton as well as a buffer
   for the memory excess. For example, if the client reserved memory is 1GB,
   the allocations on the host may exceed their soft memory limit by almost
   1GB in aggregate before the memory becomes contended and allocations get
   killed.
 
 [api_sched_config]: /nomad/api-docs/operator/scheduler#update-scheduler-configuration
-[device]: /nomad/docs/job-specification/device 'Nomad device Job Specification'
+[device]: /nomad/docs/job-specification/device 'OpenWonton device Job Specification'
 [docker_cpu]: /nomad/docs/drivers/docker#cpu
 [exec_cpu]: /nomad/docs/drivers/exec#cpu
 [np_sched_config]: /nomad/docs/other-specifications/node-pool#memory_oversubscription_enabled

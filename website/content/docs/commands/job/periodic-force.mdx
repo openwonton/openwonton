@@ -14,7 +14,7 @@ The `job periodic force` command is used to [force the evaluation] of a
 ## Usage
 
 ```plaintext
-nomad job periodic force [options] <job id>
+wonton job periodic force [options] <job id>
 ```
 
 The `job periodic force` command requires a single argument, specifying the ID
@@ -49,7 +49,7 @@ not used.
 Force the evaluation of the job `example`, monitoring placement:
 
 ```shell-session
-$ nomad job periodic force example
+$ wonton job periodic force example
 ==> Monitoring evaluation "54b2d6d9"
     Evaluation triggered by job "example/periodic-1555094493"
     Allocation "637aee17" created: node "a35ab8fc", group "cache"
@@ -61,7 +61,7 @@ $ nomad job periodic force example
 Force the evaluation of the job `example` and return immediately:
 
 ```shell-session
-$ nomad job periodic force -detach example
+$ wonton job periodic force -detach example
 Force periodic successful
 Evaluation ID: 0865fbf3-30de-5f53-0811-821e73e63178
 ```

@@ -1,26 +1,26 @@
 ---
 layout: docs
 page_title: Key Management
-description: Learn about the key management in Nomad.
+description: Learn about the key management in OpenWonton.
 ---
 
 # Key Management
 
-Nomad servers maintain an encryption keyring used to encrypt [Variables][] and
+OpenWonton servers maintain an encryption keyring used to encrypt [Variables][] and
 sign task [workload identities][]. The servers store key metadata in raft, but
 the encryption key material is stored in a separate file in the `keystore`
-subdirectory of the Nomad [data directory][]. These files have the extension
+subdirectory of the OpenWonton [data directory][]. These files have the extension
 `.nks.json`. The key material in each file is wrapped in a unique key encryption
 key (KEK) that is not shared between servers.
 
-Under normal operations the keyring is entirely managed by Nomad, but this
+Under normal operations the keyring is entirely managed by OpenWonton, but this
 section provides administrators additional context around key replication and
 recovery.
 
 ## Key Rotation
 
 Only one key in the keyring is "active" at any given time, and all encryption
-and signing operations happen on the leader. Nomad automatically rotates the
+and signing operations happen on the leader. OpenWonton automatically rotates the
 active encryption key every 30 days. When a key is rotated, the existing keys
 are marked as "inactive" but not deleted, so they can be used for decrypting
 previously encrypted variables and verifying workload identities for existing
@@ -28,7 +28,7 @@ allocations.
 
 If you believe key material has been compromised, you can execute [`nomad
 operator root keyring rotate -full`][]. A new "active" key will be created and
-"inactive" keys will be marked "rekeying". Nomad will asynchronously decrypt and
+"inactive" keys will be marked "rekeying". OpenWonton will asynchronously decrypt and
 re-encrypt all variables with the new key. As each key's variables are encrypted
 with the new key, the old key will marked as "deprecated".
 

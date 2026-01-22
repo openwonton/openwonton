@@ -13,24 +13,24 @@ Nomad's HTTP API uses JSON formatted job specifications except for the
 
 The Nomad CLI includes a number of useful commands for working with JSON jobs.
 
-The [`nomad job run -output`][job-output] flag converts HCL jobs to JSON
+The [`wonton job run -output`][job-output] flag converts HCL jobs to JSON
 without submitting the job:
 
 ```shell-session
-$ nomad job run -output my-job.nomad
+$ wonton job run -output my-job.nomad
 ```
 
-The [`nomad job inspect`][job-inspect] command retrieves the JSON specification
+The [`wonton job inspect`][job-inspect] command retrieves the JSON specification
 for an existing job:
 
 ```shell-session
-$ nomad job inspect example
+$ wonton job inspect example
 ```
 
-The [`nomad job run -json`][job-run-json] flag submits a JSON formatted job:
+The [`wonton job run -json`][job-run-json] flag submits a JSON formatted job:
 
 ```shell-session
-$ nomad job run -json example.json
+$ wonton job run -json example.json
 ```
 
 [job-inspect]: /nomad/docs/commands/job/inspect
@@ -44,9 +44,9 @@ Below is the JSON representation of the example job as well as the commands to
 reproduce it:
 
 ```shell-session
-$ nomad init
+$ wonton init
 Example job file written to example.nomad.hcl
-$ nomad job run -output example.nomad.hcl
+$ wonton job run -output example.nomad.hcl
 ```
 
 ```json
@@ -547,7 +547,7 @@ The `Task` object supports the following keys:
     dynamic or a static port.
 
   - `Provider`: Specifies the service registration provider to use for service
-    registrations. Valid options are either `consul` or `nomad`. All services
+    registrations. Valid options are either `consul` or `wonton`. All services
     within a single task group must utilise the same provider value.
 
   - `Address`: Specifies a custom address to advertise in Consul or Nomad

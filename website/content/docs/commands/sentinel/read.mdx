@@ -9,13 +9,13 @@ description: |
 
 The `sentinel read` command is used to inspect a Sentinel policy.
 
-~> Sentinel commands are new in Nomad 0.7 and are only available with Nomad
+~> Sentinel commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad sentinel read [options] <Policy Name>
+wonton sentinel read [options] <Policy Name>
 ```
 
 The `sentinel read` command requires a single argument, the policy name.
@@ -36,7 +36,7 @@ requires a management token.
 Read all policies:
 
 ```shell-session
-$ nomad sentinel read foo
+$ wonton sentinel read foo
 Name              = foo
 Scope             = submit-job
 Enforcement Level = advisory

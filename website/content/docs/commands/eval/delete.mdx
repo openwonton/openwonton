@@ -10,7 +10,7 @@ description: |
 The `eval delete` command is used to delete evaluations. It should be used
 cautiously and only in outage situations where there is a large backlog of
 evaluations not being processed. During most normal and outage scenarios,
-Nomad's reconciliation and state management will handle evaluations as needed.
+OpenWonton's reconciliation and state management will handle evaluations as needed.
 
 The eval broker is expected to be paused prior to running this command and
 un-paused after. These actions can be performed by the
@@ -20,7 +20,7 @@ and [`operator scheduler set-config`][scheduler_set_config] commands respectivel
 ## Usage
 
 ```plaintext
-nomad eval delete [options] [args]
+wonton eval delete [options] [args]
 ```
 
 It takes an optional argument which is the ID of the evaluation to delete. If
@@ -48,14 +48,14 @@ When ACLs are enabled, this command requires a `management` token.
 Delete an evaluation using its ID:
 
 ```shell-session
-$ nomad eval delete 9ecffbba-73be-d909-5d7e-ac2694c10e0c
+$ wonton eval delete 9ecffbba-73be-d909-5d7e-ac2694c10e0c
 Successfuly deleted 1 evaluation
 ```
 
 Delete all evaluations with status `pending` for the `example` job:
 
 ```shell-session
-$ nomad eval delete -filter='Status == "pending" and JobID == "example"'
+$ wonton eval delete -filter='Status == "pending" and JobID == "example"'
 Are you sure you want to delete 3 evals? [y/N] y
 
 Successfuly deleted 3 evaluations
@@ -65,7 +65,7 @@ Delete all evaluations for the `system` and `service` whilst skipping all
 prompts:
 
 ```shell-session
-$ nomad eval delete -filter='Scheduler == "system" or Scheduler == "service"' -yes
+$ wonton eval delete -filter='Scheduler == "system" or Scheduler == "service"' -yes
 Successfuly deleted 23 evaluations
 ```
 

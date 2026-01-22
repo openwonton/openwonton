@@ -11,7 +11,10 @@ Status (2026-01-18)
 	•	Packaging: build now ships both `wonton` and `nomad`; dist artifacts named `wonton_*`.
 	•	Docker: entrypoint execs `wonton` and warns with OpenWonton branding.
 	•	Version output: `OpenWonton v...`.
-	•	Docs/migration guide and CI/release pipeline updates still pending.
+	•	Docs/migration guide updated; CLI examples largely converted to `wonton` in docs and API docs. CI/release pipeline updates still pending.
+
+Status (2026-01-22)
+	•	Hetzner Terraform module added; end-to-end cluster provision and sample job run validated.
 
 Goals
 	1.	Establish a clear, consistent OpenWonton brand across code, binaries, docs, and releases.
@@ -206,6 +209,7 @@ Phase 0: Decision & prep
 Phase 1: Brand + docs
 	•	README, docs landing, badges, project description
 	•	Add Migration doc: docs/migration/nomad-to-wonton.md
+	•	Sweep docs for `nomad` CLI usage; keep `Nomad Enterprise` and upstream attribution references
 
 Phase 1.5: Codebase naming sweep
 	•	Inventory `nomad` references in code and docs.
@@ -227,6 +231,7 @@ Phase 4: Validation + hardening
 	•	Integration tests (agent + job run)
 	•	Upgrade/migration test (run old scripts via shim)
 	•	Docs link checking
+	•	Cloud smoke test: provision cluster and run a sample job (Hetzner Terraform path)
 
 Phase 5: Release & comms
 	•	Tag first release: e.g., vX.Y.Z-openwonton.1 (or your scheme)
@@ -240,6 +245,7 @@ Testing Plan
 	•	wonton agent -dev
 	•	submit sample job, verify allocation
 	•	wonton status, wonton node status, wonton alloc status
+	•	Hetzner Terraform E2E: provision cluster and run a sample docker job
 	•	Compatibility test (if shim):
 	•	run same commands via nomad and confirm identical behavior
 	•	Packaging tests:

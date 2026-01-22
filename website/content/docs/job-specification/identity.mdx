@@ -2,7 +2,7 @@
 layout: docs
 page_title: identity Block - Job Specification
 description: |-
-  The "identity" block allows tasks to use their Nomad Workload Identity via an
+  The "identity" block allows tasks to use their OpenWonton Workload Identity via an
   environment variable or file.
 ---
 
@@ -15,7 +15,7 @@ description: |-
 />
 
 The `identity` block allows a task access to its [Workload Identity][] via an
-environment variable or file. By default Nomad will create an identity for all
+environment variable or file. By default OpenWonton will create an identity for all
 workloads, but it is *not* exposed to a task.
 
 The following will expose the Workload Identity as an environment variable and
@@ -47,5 +47,5 @@ job "docs" {
   readable by that user. Otherwise the file is readable by everyone but is
   protected by parent directory permissions.
 
-[taskuser]: /nomad/docs/job-specification/task#user "Nomad task Block"
-[Workload Identity]: /nomad/docs/concepts/workload-identity "Nomad Workload Identity"
+[taskuser]: /nomad/docs/job-specification/task#user "OpenWonton task Block"
+[Workload Identity]: /nomad/docs/concepts/workload-identity "OpenWonton Workload Identity"

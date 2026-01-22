@@ -12,7 +12,7 @@ The `eval list` command is used list all evaluations.
 ## Usage
 
 ```plaintext
-nomad eval list [options]
+wonton eval list [options]
 ```
 
 The `eval list` command requires no arguments.
@@ -40,7 +40,7 @@ capability for the requested namespace.
 List all tracked evaluations:
 
 ```shell-session
-$ nomad eval list -per-page 3 -status complete
+$ wonton eval list -per-page 3 -status complete
 ID        Priority  Triggered By        Job ID   Namespace  Node ID  Status    Placement Failures
 456e37aa  50        deployment-watcher  example  default    <none>   complete  false
 1a1eafe6  50        alloc-stop          example  default    <node>   complete  false
@@ -48,5 +48,5 @@ ID        Priority  Triggered By        Job ID   Namespace  Node ID  Status    P
 
 Results have been paginated. To get the next page run:
 
-nomad eval list -page-token 9ecffbba-73be-d909-5d7e-ac2694c10e0c
+wonton eval list -page-token 9ecffbba-73be-d909-5d7e-ac2694c10e0c
 ```

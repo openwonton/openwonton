@@ -1,41 +1,41 @@
 ---
 layout: docs
 page_title: Consul Integration
-description: Learn how to integrate Nomad with Consul and add service discovery to jobs
+description: Learn how to integrate OpenWonton with Consul and add service discovery to jobs
 ---
 
 # Consul Integration
 
 [Consul][] is a tool for discovering and configuring services in your
 infrastructure. Consul's key features include service discovery, health checking,
-a KV store, and robust support for multi-datacenter deployments. Nomad's integration
+a KV store, and robust support for multi-datacenter deployments. OpenWonton's integration
 with Consul enables automatic clustering, built-in service registration, and
 dynamic rendering of configuration files and environment variables. The sections
 below describe the integration in more detail.
 
 ## Configuration
 
-In order to use Consul with Nomad, you will need to configure and
-install Consul on your nodes alongside Nomad, or schedule it as a system job.
-Nomad does not currently run Consul for you.
+In order to use Consul with OpenWonton, you will need to configure and
+install Consul on your nodes alongside OpenWonton, or schedule it as a system job.
+OpenWonton does not currently run Consul for you.
 
 To enable Consul integration, please see the
-[Nomad agent Consul integration](/nomad/docs/configuration/consul)
+[OpenWonton agent Consul integration](/nomad/docs/configuration/consul)
 configuration.
 
 ## Automatic Clustering with Consul
 
-Nomad servers and clients will be automatically informed of each other's
+OpenWonton servers and clients will be automatically informed of each other's
 existence when a running Consul cluster already exists and the Consul agent is
 installed and configured on each host. Please see the [Automatic Clustering with
 Consul](/nomad/tutorials/manage-clusters/clustering) guide for more information.
 
 ## Service Discovery
 
-Nomad schedules workloads of various types across a cluster of generic hosts.
+OpenWonton schedules workloads of various types across a cluster of generic hosts.
 Because of this, placement is not known in advance and you will need to use
 service discovery to connect tasks to other services deployed across your
-cluster. Nomad integrates with Consul to provide service discovery and
+cluster. OpenWonton integrates with Consul to provide service discovery and
 monitoring.
 
 To configure a job to register with service discovery, please see the
@@ -43,27 +43,27 @@ To configure a job to register with service discovery, please see the
 
 ## Dynamic Configuration
 
-Nomad's job specification includes a [`template` block](/nomad/docs/job-specification/template)
+OpenWonton's job specification includes a [`template` block](/nomad/docs/job-specification/template)
 that utilizes a Consul ecosystem tool called [Consul Template](https://github.com/hashicorp/consul-template). This mechanism creates a convenient way to ship configuration files
 that are populated from environment variables, Consul data, Vault secrets, or just
-general configurations within a Nomad task.
+general configurations within a OpenWonton task.
 
-For more information on Nomad's template block and how it leverages Consul Template,
+For more information on OpenWonton's template block and how it leverages Consul Template,
 please see the [`template` job specification documentation](/nomad/docs/job-specification/template).
 
 ## Consul Namespaces
 
-Nomad provides integration with [Consul Namespaces][consul_namespaces] for service
+OpenWonton provides integration with [Consul Namespaces][consul_namespaces] for service
 registrations specified in `service` blocks and Consul KV reads in `template`
 blocks.
 
-By default, Nomad will not specify a Consul namespace on service registrations or
+By default, OpenWonton will not specify a Consul namespace on service registrations or
 KV store reads, which Consul then implicitly resolves to the `"default"` namespace.
 This default namespace behavior can be modified by setting the [`namespace`][consul_agent_namespace] field
-in the Nomad agent Consul configuration block.
+in the OpenWonton agent Consul configuration block.
 
 For more control over Consul namespaces, Nomad Enterprise supports configuring the
-Consul namespace at the [group level][consul_group_namespace] in the Nomad job spec
+Consul namespace at the [group level][consul_group_namespace] in the OpenWonton job spec
 as well as the [`-consul-namespace`][consul_run_namespace] command line argument for `job run`.
 
 The Consul namespace used for a set of group or task service registrations within
@@ -73,13 +73,13 @@ hierarchy from lowest to highest precedence:
 - Consul default: If no Consul namespace options are configured, Consul will automatically
   make use of the `"default"` namespace.
 
-- agent configuration: If the [`namespace`][consul_agent_namespace] Nomad agent
+- agent configuration: If the [`namespace`][consul_agent_namespace] OpenWonton agent
   Consul configuration parameter is set, this namespace will be used instead of
   the Consul default.
 
 - job run command: <EnterpriseAlert inline/> If the [`-consul-namespace`][consul_run_namespace]
   command line argument is specified on job submission, this namespace will take
-  precedence over the namespace set in Nomad agent configuration.
+  precedence over the namespace set in OpenWonton agent configuration.
 
 - group configuration: <EnterpriseAlert inline/> If the [group level][consul_group_namespace]
   Consul namespace is configured, this namespace will take precedence over all other
@@ -109,10 +109,10 @@ service_prefix "" {
 
 - Consul 0.6.0 or later is needed for using the TCP checks.
 
-- The service discovery feature in Nomad depends on operators making sure that
-  the Nomad client can reach the Consul agent.
+- The service discovery feature in OpenWonton depends on operators making sure that
+  the OpenWonton client can reach the Consul agent.
 
-- Tasks running inside Nomad also need to reach out to the Consul agent if
+- Tasks running inside OpenWonton also need to reach out to the Consul agent if
   they want to use any of the Consul APIs. Ex: A task running inside a docker
   container in the bridge mode won't be able to talk to a Consul Agent running
   on the loopback interface of the host since the container in the bridge mode
@@ -135,4 +135,4 @@ service_prefix "" {
 
 [consul_run_namespace]: /nomad/docs/commands/job/run#consul-namespace
 
-[service]: /nomad/docs/job-specification/service "Nomad service Job Specification"
+[service]: /nomad/docs/job-specification/service "OpenWonton service Job Specification"

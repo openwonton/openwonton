@@ -2,12 +2,12 @@
 layout: docs
 page_title: 'Commands: operator snapshot save'
 description: |
-  Saves snapshot of Nomad server state
+  Saves snapshot of OpenWonton server state
 ---
 
 # Command: operator snapshot save
 
-Retrieves an atomic, point-in-time snapshot of the state of the Nomad servers
+Retrieves an atomic, point-in-time snapshot of the state of the OpenWonton servers
 which includes jobs, nodes, allocations, periodic jobs, and ACLs for [outage
 recovery].
 
@@ -24,20 +24,20 @@ cluster, you will also need to [restore the keyring][] onto at least one server.
 To create a snapshot from the leader server and save it to "backup.snap":
 
 ```shell-session
-$ nomad operator snapshot save backup.snap
+$ wonton operator snapshot save backup.snap
 ```
 
 To create a potentially stale snapshot from any available server (useful if no
 leader is available):
 
 ```shell-session
-$ nomad operator snapshot save -stale backup.snap
+$ wonton operator snapshot save -stale backup.snap
 ```
 
 ## Usage
 
 ```plaintext
-nomad operator snapshot save [options] <file>
+wonton operator snapshot save [options] <file>
 ```
 
 ## General Options

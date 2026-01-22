@@ -55,7 +55,7 @@ job "docs" {
   the task.
 
 - `kill_timeout` `(string: "5s")` - Specifies the duration to wait for an
-  application to gracefully quit before force-killing. Nomad first sends a
+  application to gracefully quit before force-killing. OpenWonton first sends a
   [`kill_signal`][kill_signal]. If the task does not exit before the configured
   timeout, `SIGKILL` is sent to the task. Note that the value set here is capped
   at the value set for [`max_kill_timeout`][max_kill] on the agent running the
@@ -77,7 +77,7 @@ job "docs" {
   of task lifecycle management.
 
 - `lifecycle` <code>([Lifecycle][]: nil)</code> - Specifies when a task is run
-  within the lifecycle of a task group. Added in Nomad v0.11.
+  within the lifecycle of a task group. Added in OpenWonton v0.11.
 
 - `logs` <code>([Logs][]: nil)</code> - Specifies logging configuration for the
   `stdout` and `stderr` of the task.
@@ -88,12 +88,12 @@ job "docs" {
 - `resources` <code>([Resources][]: &lt;required&gt;)</code> - Specifies the minimum
   resource requirements such as RAM, CPU and devices.
 
-- `service` <code>([Service][]: nil)</code> - Specifies integrations with Nomad
-  or [Consul][] for service discovery. Nomad automatically registers when a task
+- `service` <code>([Service][]: nil)</code> - Specifies integrations with OpenWonton
+  or [Consul][] for service discovery. OpenWonton automatically registers when a task
   is started and de-registers it when the task dies.
 
 - `shutdown_delay` `(string: "0s")` - Specifies the duration to wait when
-  killing a task between removing its service registrations from Consul or Nomad,
+  killing a task between removing its service registrations from Consul or OpenWonton,
   and sending it a shutdown signal. Ideally services would fail health checks
   once they receive a shutdown signal. Alternatively, `shutdown_delay` may be
   set to give in flight requests time to complete before shutting down. This
@@ -132,8 +132,8 @@ The following examples only show the `task` blocks. Remember that the
 ### Docker Container
 
 This example defines a task that starts a Docker container as a service. Docker
-is just one of many drivers supported by Nomad. Read more about drivers in the
-[Nomad drivers documentation](/nomad/docs/drivers).
+is just one of many drivers supported by OpenWonton. Read more about drivers in the
+[OpenWonton drivers documentation](/nomad/docs/drivers).
 
 ```hcl
 task "server" {
@@ -178,7 +178,7 @@ task "server" {
 ### Service Discovery
 
 This example creates a service in Consul. To read more about service discovery
-in Nomad, please see the [Nomad service discovery documentation][service_discovery].
+in OpenWonton, please see the [OpenWonton service discovery documentation][service_discovery].
 
 ```hcl
 task "server" {
@@ -204,28 +204,28 @@ task "server" {
 }
 ```
 
-[artifact]: /nomad/docs/job-specification/artifact 'Nomad artifact Job Specification'
+[artifact]: /nomad/docs/job-specification/artifact 'OpenWonton artifact Job Specification'
 [consul]: https://www.consul.io/ 'Consul by HashiCorp'
-[constraint]: /nomad/docs/job-specification/constraint 'Nomad constraint Job Specification'
-[affinity]: /nomad/docs/job-specification/affinity 'Nomad affinity Job Specification'
-[dispatchpayload]: /nomad/docs/job-specification/dispatch_payload 'Nomad dispatch_payload Job Specification'
-[env]: /nomad/docs/job-specification/env 'Nomad env Job Specification'
-[Identity]: /nomad/docs/job-specification/identity 'Nomad identity Job Specification'
-[meta]: /nomad/docs/job-specification/meta 'Nomad meta Job Specification'
-[resources]: /nomad/docs/job-specification/resources 'Nomad resources Job Specification'
-[lifecycle]: /nomad/docs/job-specification/lifecycle 'Nomad lifecycle Job Specification'
-[logs]: /nomad/docs/job-specification/logs 'Nomad logs Job Specification'
-[service]: /nomad/docs/job-specification/service 'Nomad service Job Specification'
-[vault]: /nomad/docs/job-specification/vault 'Nomad vault Job Specification'
-[volumemount]: /nomad/docs/job-specification/volume_mount 'Nomad volume_mount Job Specification'
-[exec]: /nomad/docs/drivers/exec 'Nomad exec Driver'
-[java]: /nomad/docs/drivers/java 'Nomad Java Driver'
-[docker]: /nomad/docs/drivers/docker 'Nomad Docker Driver'
-[rkt]: /nomad/plugins/drivers/community/rkt 'Nomad rkt Driver'
-[service_discovery]: /nomad/docs/integrations/consul-integration#service-discovery 'Nomad Service Discovery'
-[template]: /nomad/docs/job-specification/template 'Nomad template Job Specification'
+[constraint]: /nomad/docs/job-specification/constraint 'OpenWonton constraint Job Specification'
+[affinity]: /nomad/docs/job-specification/affinity 'OpenWonton affinity Job Specification'
+[dispatchpayload]: /nomad/docs/job-specification/dispatch_payload 'OpenWonton dispatch_payload Job Specification'
+[env]: /nomad/docs/job-specification/env 'OpenWonton env Job Specification'
+[Identity]: /nomad/docs/job-specification/identity 'OpenWonton identity Job Specification'
+[meta]: /nomad/docs/job-specification/meta 'OpenWonton meta Job Specification'
+[resources]: /nomad/docs/job-specification/resources 'OpenWonton resources Job Specification'
+[lifecycle]: /nomad/docs/job-specification/lifecycle 'OpenWonton lifecycle Job Specification'
+[logs]: /nomad/docs/job-specification/logs 'OpenWonton logs Job Specification'
+[service]: /nomad/docs/job-specification/service 'OpenWonton service Job Specification'
+[vault]: /nomad/docs/job-specification/vault 'OpenWonton vault Job Specification'
+[volumemount]: /nomad/docs/job-specification/volume_mount 'OpenWonton volume_mount Job Specification'
+[exec]: /nomad/docs/drivers/exec 'OpenWonton exec Driver'
+[java]: /nomad/docs/drivers/java 'OpenWonton Java Driver'
+[docker]: /nomad/docs/drivers/docker 'OpenWonton Docker Driver'
+[rkt]: /nomad/plugins/drivers/community/rkt 'OpenWonton rkt Driver'
+[service_discovery]: /nomad/docs/integrations/consul-integration#service-discovery 'OpenWonton Service Discovery'
+[template]: /nomad/docs/job-specification/template 'OpenWonton template Job Specification'
 [user_drivers]: /nomad/docs/configuration/client#user-checked_drivers
 [user_denylist]: /nomad/docs/configuration/client#user-denylist
 [max_kill]: /nomad/docs/configuration/client#max_kill_timeout
 [kill_signal]: /nomad/docs/job-specification/task#kill_signal
-[Workload Identity]: /nomad/docs/concepts/workload-identity 'Nomad Workload Identity'
+[Workload Identity]: /nomad/docs/concepts/workload-identity 'OpenWonton Workload Identity'

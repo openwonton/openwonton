@@ -41,7 +41,7 @@ endpoint-specific authorization is applied when ACLs are enabled.
 The Workload Identity should be used by tasks accessing the Task API.
 
 An ACL Token should be used when an operator is accessing the Task API via
-[`nomad alloc exec`][alloc-exec] or when a task is proxying Nomad HTTP requests
+[`wonton alloc exec`][alloc-exec] or when a task is proxying Nomad HTTP requests
 on behalf of an authenticated user. The Task API could be used by a proxy
 presenting Nomad's UI with a standard TLS certificate for browsers.
 
@@ -89,7 +89,7 @@ If the job was able to run successfully after about 10 seconds you can observe
 the outcome by searching for the updated Node's metadata:
 
 ```shell-session
-$ nomad node status -filter 'Meta.example == "Hello World!"'
+$ wonton node status -filter 'Meta.example == "Hello World!"'
 ```
 
 [acl]: /nomad/docs/concepts/acl

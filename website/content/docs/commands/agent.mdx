@@ -2,27 +2,27 @@
 layout: docs
 page_title: 'Commands: agent'
 description: |
-  The agent command is the main entrypoint to running a Nomad client or server.
+  The agent command is the main entrypoint to running a OpenWonton client or server.
 ---
 
 # Command: agent
 
-The agent command is the heart of Nomad: it runs the agent that handles client
+The agent command is the heart of OpenWonton: it runs the agent that handles client
 or server functionality, including exposing interfaces for client consumption
 and running jobs.
 
-Due to the power and flexibility of this command, the Nomad agent is documented
-in its own section. See the [Nomad Agent] guide and the [Configuration]
+Due to the power and flexibility of this command, the OpenWonton agent is documented
+in its own section. See the [OpenWonton Agent] guide and the [Configuration]
 documentation section for more information on how to use this command and the
 options it has.
 
--> **Note:** If you are running Nomad on Linux, you'll need to run client agents
+-> **Note:** If you are running OpenWonton on Linux, you'll need to run client agents
 as root (or with `sudo`) so that cpuset accounting and network namespaces work
 correctly.
 
 ## Command-line Options
 
-A subset of the available Nomad agent configuration can optionally be passed in
+A subset of the available OpenWonton agent configuration can optionally be passed in
 via CLI arguments. The `agent` command accepts the following arguments:
 
 - `-alloc-dir=<path>`: Equivalent to the Client [alloc_dir] config
@@ -94,7 +94,7 @@ via CLI arguments. The `agent` command accepts the following arguments:
 
 - `-dev`: Start the agent in development mode. This enables a pre-configured
   dual-role agent (client + server) which is useful for developing or testing
-  Nomad. No other configuration is required to start the agent in this mode,
+  OpenWonton. No other configuration is required to start the agent in this mode,
   but you may pass an optional comma-separated list of mode configurations:
 
 - `-dev-connect`: Start the agent in development mode, but bind to a public
@@ -138,7 +138,7 @@ via CLI arguments. The `agent` command accepts the following arguments:
   attempt fails.
 
   ```shell-session
-  $ nomad agent -retry-join "127.0.0.1:4648"
+  $ wonton agent -retry-join "127.0.0.1:4648"
   ```
 
   `retry-join` can be defined as a command line flag only for servers. Clients
@@ -212,7 +212,7 @@ via CLI arguments. The `agent` command accepts the following arguments:
 [network_interface]: /nomad/docs/configuration/client#network_interface
 [node_class]: /nomad/docs/configuration/client#node_class
 [node_pool]: /nomad/docs/configuration/client#node_pool
-[nomad agent]: /nomad/docs/operations/nomad-agent
+[wonton agent]: /nomad/docs/operations/nomad-agent
 [plugin_dir]: /nomad/docs/configuration#plugin_dir
 [region]: /nomad/docs/configuration#region
 [rejoin_after_leave]: /nomad/docs/configuration/server#rejoin_after_leave

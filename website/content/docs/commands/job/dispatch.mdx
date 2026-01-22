@@ -20,7 +20,7 @@ programming languages.
 ## Usage
 
 ```plaintext
-nomad job dispatch [options] <parameterized job> [input source]
+wonton job dispatch [options] <parameterized job> [input source]
 ```
 
 Dispatch creates an instance of a parameterized job. A data payload to the
@@ -105,7 +105,7 @@ Dispatch against a parameterized job with the ID "video-encode" and
 passing in a configuration payload via a file:
 
 ```shell-session
-$ nomad job dispatch video-encode video-config.json
+$ wonton job dispatch video-encode video-config.json
 Dispatched Job ID = video-encode/dispatch-1485379325-cb38d00d
 Evaluation ID     = 31199841
 
@@ -120,7 +120,7 @@ Dispatch against a parameterized job with the ID "video-encode" using the detach
 flag:
 
 ```shell-session
-$ nomad job dispatch -detach video-encode video-config.json
+$ wonton job dispatch -detach video-encode video-config.json
 Dispatched Job ID = example/dispatch-1485380684-c37b3dba
 Evaluation ID     = d9034c4e
 ```
@@ -128,7 +128,7 @@ Evaluation ID     = d9034c4e
 Dispatch with an idempotency token for the first time:
 
 ```shell-session
-$ nomad job dispatch -idempotency-token=prod video-encode video-config.json
+$ wonton job dispatch -idempotency-token=prod video-encode video-config.json
 Dispatched Job ID = video-encode/dispatch-1485379325-cb38d00d
 Evaluation ID     = 31199841
 
@@ -142,14 +142,14 @@ Evaluation ID     = 31199841
 Dispatch with the same idempotency token:
 
 ```shell-session
-$ nomad job dispatch -idempotency-token=prod video-encode video-config.json
+$ wonton job dispatch -idempotency-token=prod video-encode video-config.json
 Job "video-encode/dispatch-1485379325-cb38d00d" already dispatched with idempotency token "prod".
 ```
 
 Dispatch with an id prefix:
 
 ```shell-session
-$ nomad job dispatch -id-prefix-template=config1 video-encode video-config1.json
+$ wonton job dispatch -id-prefix-template=config1 video-encode video-config1.json
 Jb
 Dispatched Job ID = video-encode/dispatch-config1-1485379325-cb38d00d
 Evaluation ID     = 31199841
@@ -162,5 +162,5 @@ Evaluation ID     = 31199841
 ```
 
 [eval status]: /nomad/docs/commands/eval/status
-[parameterized job]: /nomad/docs/job-specification/parameterized 'Nomad parameterized Job Specification'
+[parameterized job]: /nomad/docs/job-specification/parameterized 'OpenWonton parameterized Job Specification'
 [multiregion]: /nomad/docs/job-specification/multiregion#parameterized-dispatch

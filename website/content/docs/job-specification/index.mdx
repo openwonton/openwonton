@@ -1,20 +1,20 @@
 ---
 layout: docs
 page_title: Job Specification
-description: Learn about the Job specification used to submit jobs to Nomad.
+description: Learn about the Job specification used to submit jobs to OpenWonton.
 ---
 
 # Job Specification
 
-The Nomad job specification (or "jobspec" for short) defines the schema for
-Nomad jobs. Nomad jobs are specified in [HCL][], which aims to strike a balance
+The OpenWonton job specification (or "jobspec" for short) defines the schema for
+OpenWonton jobs. OpenWonton jobs are specified in [HCL][], which aims to strike a balance
 between human readable and editable, and machine-friendly.
 
 The job specification is broken down into smaller pieces, which you will find
 expanded in the navigation menu. We recommend getting started at the [job][]
 block. Alternatively, you can keep reading to see a few examples.
 
-Nomad HCL is parsed in the command line and sent to Nomad in JSON format via
+OpenWonton HCL is parsed in the command line and sent to OpenWonton in JSON format via
 the HTTP API.
 
 The general hierarchy for a job is:
@@ -32,12 +32,12 @@ job
 
 Each job file has only a single job, however a job may have multiple groups, and
 each group may have multiple tasks. Groups contain a set of tasks that are
-co-located on the same Nomad client.
+co-located on the same OpenWonton client.
 
 ## Example
 
 This example shows a sample job file. We tried to keep it as simple as possible,
-while still showcasing the power of Nomad. For a more detailed explanation of
+while still showcasing the power of OpenWonton. For a more detailed explanation of
 any of these fields, please use the navigation to dive deeper.
 
 ```hcl
@@ -132,7 +132,7 @@ job "docs" {
 }
 ```
 
-Note that starting with Nomad 0.10, the `service` block can also be specified at the group level. This
+Note that starting with OpenWonton 0.10, the `service` block can also be specified at the group level. This
 allows job specification authors to create and register services with Consul Connect support. A service
 block specified at the group level must include a [connect][] block, like the following snippet.
 
@@ -148,5 +148,5 @@ service {
 ```
 
 [hcl]: https://github.com/hashicorp/hcl 'HashiCorp Configuration Language'
-[job]: /nomad/docs/job-specification/job 'Nomad job Job Specification'
+[job]: /nomad/docs/job-specification/job 'OpenWonton job Job Specification'
 [connect]: /nomad/docs/job-specification/connect 'Connect Block Specification'

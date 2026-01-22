@@ -1,15 +1,15 @@
 ---
 layout: docs
-page_title: Nomad Agent
+page_title: OpenWonton Agent
 description: |-
-  The Nomad agent is a long running process which can be used either in
+  The OpenWonton agent is a long running process which can be used either in
   a client or server mode.
 ---
 
-# Operating Nomad Agents
+# Operating OpenWonton Agents
 
-The Nomad agent is a long running process which runs on every machine that
-is part of the Nomad cluster. The behavior of the agent depends on if it is
+The OpenWonton agent is a long running process which runs on every machine that
+is part of the OpenWonton cluster. The behavior of the agent depends on if it is
 running in client or server mode. Clients are responsible for running tasks,
 while servers are responsible for managing the cluster.
 
@@ -34,34 +34,34 @@ thousands of clients.
 
 ## Running an Agent
 
-The agent is started with the [`nomad agent` command](/nomad/docs/commands/agent). This
+The agent is started with the [`wonton agent` command](/nomad/docs/commands/agent). This
 command blocks, running forever or until told to quit. The agent command takes a variety
 of configuration options, but most have sane defaults.
 
--> **Note:** If you are running Nomad on Linux, you'll need to run client agents
+-> **Note:** If you are running OpenWonton on Linux, you'll need to run client agents
 as root (or with `sudo`) so that cpuset accounting and network namespaces work
 correctly.
 
-When running `nomad agent`, you should see output similar to this:
+When running `wonton agent`, you should see output similar to this:
 
 ```shell-session
-$ sudo nomad agent -dev
-==> Starting Nomad agent...
-==> Nomad agent configuration:
+$ sudo wonton agent -dev
+==> Starting OpenWonton agent...
+==> OpenWonton agent configuration:
 
                 Client: true
              Log Level: INFO
                 Region: global (DC: dc1)
                 Server: true
 
-==> Nomad agent started! Log data will stream in below:
+==> OpenWonton agent started! Log data will stream in below:
 
     [INFO] serf: EventMemberJoin: server-1.node.global 127.0.0.1
-    [INFO] nomad: starting 4 scheduling worker(s) for [service batch _core]
+    [INFO] openwonton: starting 4 scheduling worker(s) for [service batch _core]
 ...
 ```
 
-There are several important messages that `nomad agent` outputs:
+There are several important messages that `wonton agent` outputs:
 
 - **Client**: This indicates whether the agent has enabled client mode.
   Client nodes fingerprint their host environment, register with servers,
@@ -72,7 +72,7 @@ There are several important messages that `nomad agent` outputs:
   verbosity for debugging, or reduced to avoid noisy logging.
 
 - **Region**: This is the region and datacenter in which the agent is configured
-  to run. Nomad has first-class support for multi-datacenter and multi-region
+  to run. OpenWonton has first-class support for multi-datacenter and multi-region
   configurations. The `-region` and `-dc` flags can be used to set the region
   and datacenter. The default is the `global` region in `dc1`.
 
@@ -103,21 +103,21 @@ workloads before shutting down.
 ## Signal Handling
 
 In addition to the optional handling of interrupt (`SIGINT`) and terminate
-signals (`SIGTERM`) described in [Stopping an Agent](#stopping-an-agent), Nomad
+signals (`SIGTERM`) described in [Stopping an Agent](#stopping-an-agent), OpenWonton
 supports special behavior for several other signals useful for debugging.
 
-* `SIGHUP` will cause Nomad to [reload its configuration][].
-* `SIGUSR1` will cause Nomad to print its [metrics][] without stopping the
+* `SIGHUP` will cause OpenWonton to [reload its configuration][].
+* `SIGUSR1` will cause OpenWonton to print its [metrics][] without stopping the
   agent.
 * `SIGQUIT`, `SIGILL`, `SIGTRAP`, `SIGABRT`, `SIGSTKFLT`, `SIGEMT`, or `SIGSYS`
-  signals are handled by the Go runtime and will cause the Nomad agent to exit
+  signals are handled by the Go runtime and will cause the OpenWonton agent to exit
   and print its stack trace.
 
 When using the official HashiCorp packages on Linux, you can send these signals
-via `systemctl`. For example, to print the Nomad agent's metrics:
+via `systemctl`. For example, to print the OpenWonton agent's metrics:
 
 ```shell-session
-$ sudo systemctl kill nomad -s SIGUSR1
+$ sudo systemctl kill wonton -s SIGUSR1
 ```
 
 You can then read those metrics in the service logs:
@@ -128,7 +128,7 @@ $ journalctl -u nomad
 
 ## Lifecycle
 
-Every agent in the Nomad cluster goes through a lifecycle. Understanding
+Every agent in the OpenWonton cluster goes through a lifecycle. Understanding
 this lifecycle is useful for building a mental model of an agent's interactions
 with a cluster and how the cluster treats a node.
 
@@ -146,7 +146,7 @@ It is impossible to distinguish between a network failure and an agent crash,
 so both cases are handled the same. Once the network recovers or a crashed agent
 restarts the node status will be updated and normal operation resumed.
 
-To prevent an accumulation of nodes in a terminal state, Nomad does periodic
+To prevent an accumulation of nodes in a terminal state, OpenWonton does periodic
 garbage collection of nodes. By default, if a node is in a failed or 'down'
 state for over 24 hours it will be garbage collected from the system.
 
@@ -166,16 +166,16 @@ will attempt to make progress to recover from a software or network failure.
 
 ## Permissions
 
-Nomad servers and Nomad clients have different requirements for permissions.
+OpenWonton servers and OpenWonton clients have different requirements for permissions.
 
-Nomad servers should be run with the lowest possible permissions. They need
+OpenWonton servers should be run with the lowest possible permissions. They need
 access to their own data directory and the ability to bind to their ports. You
 should create a `nomad` user with the minimal set of required privileges.
 
-Nomad clients should be run as `root` due to the OS isolation mechanisms that
-require root privileges. While it is possible to run Nomad as an unprivileged
+OpenWonton clients should be run as `root` due to the OS isolation mechanisms that
+require root privileges. While it is possible to run OpenWonton as an unprivileged
 user, careful testing must be done to ensure the task drivers and features
-you use function as expected. The Nomad client's data directory should be
+you use function as expected. The OpenWonton client's data directory should be
 owned by `root` with filesystem permissions set to `0700`.
 
 

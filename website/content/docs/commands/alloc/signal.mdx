@@ -13,7 +13,7 @@ an entire allocation or individual task.
 ## Usage
 
 ```plaintext
-nomad alloc signal [options] <allocation> <task>
+wonton alloc signal [options] <allocation> <task>
 ```
 
 This command accepts a single allocation ID and a task name. The task name must
@@ -43,9 +43,9 @@ allocation's namespace.
 ## Examples
 
 ```shell-session
-$ nomad alloc signal eb17e557
+$ wonton alloc signal eb17e557
 
-$ nomad alloc signal eb17e557 redis
+$ wonton alloc signal eb17e557 redis
 Could not find task named: redis, found:
 * test
 <blocking>
@@ -54,12 +54,12 @@ Could not find task named: redis, found:
 Specifying task name with the `-task` option:
 
 ```shell-session
-$ nomad alloc signal -task redis eb17e557
+$ wonton alloc signal -task redis eb17e557
 ```
 
 If task name is specified using both options, the command argument is ignored.
 The following will signal the "redis" task only, not the "api" task:
 
 ```shell-session
-$ nomad alloc signal -task redis eb17e557 api
+$ wonton alloc signal -task redis eb17e557 api
 ```

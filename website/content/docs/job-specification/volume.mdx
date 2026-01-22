@@ -3,7 +3,7 @@ layout: docs
 page_title: volume Block - Job Specification
 description: >-
   The "volume" block allows the group to specify that it requires a given
-  volume from the cluster. Nomad will automatically handle ensuring that the
+  volume from the cluster. OpenWonton will automatically handle ensuring that the
   volume is available and mounted into the task.
 ---
 
@@ -50,13 +50,13 @@ job "docs" {
 ```
 
 
-The Nomad server will ensure that the allocations are only scheduled
+The OpenWonton server will ensure that the allocations are only scheduled
 on hosts that have a set of volumes that meet the criteria specified
 in the `volume` blocks. These may be [host volumes][host_volume]
 configured on the client, or [CSI volumes][csi_volume] dynamically
 mounted by [CSI plugins][csi_plugin].
 
-The Nomad client will make the volumes available to tasks according to
+The OpenWonton client will make the volumes available to tasks according to
 the [volume_mount][volume_mount] block in the `task` configuration.
 
 ## `volume` Parameters
@@ -200,7 +200,7 @@ ID        Node ID   Task Group  Version  Desired  Status   Created  Modified
 81d32909  352c6926  cache-0     0        run      running  29s ago  18s ago
 ```
 
-[volume_mount]: /nomad/docs/job-specification/volume_mount 'Nomad volume_mount Job Specification'
+[volume_mount]: /nomad/docs/job-specification/volume_mount 'OpenWonton volume_mount Job Specification'
 [host_volume]: /nomad/docs/configuration/client#host_volume-block
 [csi_volume]: /nomad/docs/commands/volume/register
 [csi_plugin]: /nomad/docs/job-specification/csi_plugin

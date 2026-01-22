@@ -3,7 +3,7 @@ layout: docs
 page_title: job Block - Job Specification
 description: |-
   The "job" block is the top-most configuration option in the job
-  specification. A job is a declarative specification of tasks that Nomad
+  specification. A job is a declarative specification of tasks that OpenWonton
   should run.
 ---
 
@@ -12,7 +12,7 @@ description: |-
 <Placement groups={['job']} />
 
 The `job` block is the top-most configuration option in the job specification.
-A job is a declarative specification of tasks that Nomad should run. Jobs have
+A job is a declarative specification of tasks that OpenWonton should run. Jobs have
 one or more task groups, which are themselves collections of one or more tasks.
 Job names are unique per [region][region] or [namespace][namespace].
 
@@ -66,17 +66,17 @@ job "docs" {
 
 - `constraint` <code>([Constraint][constraint]: nil)</code> -
   This can be provided multiple times to define additional constraints. See the
-  [Nomad constraint reference][constraint] for more
+  [OpenWonton constraint reference][constraint] for more
   details.
 
 - `affinity` <code>([Affinity][affinity]: nil)</code> -
   This can be provided multiple times to define preferred placement criteria. See the
-  [Nomad affinity reference][affinity] for more
+  [OpenWonton affinity reference][affinity] for more
   details.
 
 - `spread` <code>([Spread][spread]: nil)</code> - This can be provided multiple times
   to define criteria for spreading allocations across a node attribute or metadata.
-  See the [Nomad spread reference][spread] for more details.
+  See the [OpenWonton spread reference][spread] for more details.
 
 - `datacenters` `(array<string>: ["*"])` - A list of datacenters in the region
   which are eligible for task placement. This field allows wildcard globbing
@@ -101,7 +101,7 @@ job "docs" {
   applied. Only service jobs with a count greater than 1 support migrate blocks.
 
 - `namespace` `(string: "default")` - The namespace in which to execute the job.
-  Prior to Nomad 1.0 namespaces were Enterprise-only.
+  Prior to OpenWonton 1.0 namespaces were Enterprise-only.
 
 - `parameterized` <code>([Parameterized][parameterized]: nil)</code> - Specifies
   the job as a parameterized job such that it can be dispatched against.
@@ -120,12 +120,12 @@ job "docs" {
 - `region` `(string: "global")` - The region in which to execute the job.
 
 - `reschedule` <code>([Reschedule][]: nil)</code> - Allows to specify a
-  rescheduling strategy. Nomad will then attempt to schedule the task on another
+  rescheduling strategy. OpenWonton will then attempt to schedule the task on another
   node if any of its allocation statuses become "failed".
 
-- `type` `(string: "service")` - Specifies the [Nomad scheduler][scheduler] to
-  use. Nomad provides the `service`, `system`, `batch`, and `sysbatch` (new in
-  Nomad 1.2) schedulers.
+- `type` `(string: "service")` - Specifies the [OpenWonton scheduler][scheduler] to
+  use. OpenWonton provides the `service`, `system`, `batch`, and `sysbatch` (new in
+  OpenWonton 1.2) schedulers.
 
 - `update` <code>([Update][update]: nil)</code> - Specifies the task's update
   strategy. When omitted, a default update strategy is applied.
@@ -183,7 +183,7 @@ job "docs" {
 
 ### Batch Job
 
-This example job executes the `uptime` command on 10 Nomad clients in the fleet,
+This example job executes the `uptime` command on 10 OpenWonton clients in the fleet,
 restricting the eligible nodes to Linux machines.
 
 ```hcl
@@ -210,7 +210,7 @@ job "docs" {
 ### Consuming Secrets
 
 This example shows a job which retrieves secrets from Vault and writes those
-secrets to a file on disk, which the application then consumes. Nomad handles
+secrets to a file on disk, which the application then consumes. OpenWonton handles
 all interactions with Vault.
 
 ```hcl
@@ -243,20 +243,20 @@ When submitting this job, you would run:
 $ VAULT_TOKEN="..." nomad job run example.nomad.hcl
 ```
 
-[affinity]: /nomad/docs/job-specification/affinity 'Nomad affinity Job Specification'
-[constraint]: /nomad/docs/job-specification/constraint 'Nomad constraint Job Specification'
-[group]: /nomad/docs/job-specification/group 'Nomad group Job Specification'
-[meta]: /nomad/docs/job-specification/meta 'Nomad meta Job Specification'
-[migrate]: /nomad/docs/job-specification/migrate 'Nomad migrate Job Specification'
+[affinity]: /nomad/docs/job-specification/affinity 'OpenWonton affinity Job Specification'
+[constraint]: /nomad/docs/job-specification/constraint 'OpenWonton constraint Job Specification'
+[group]: /nomad/docs/job-specification/group 'OpenWonton group Job Specification'
+[meta]: /nomad/docs/job-specification/meta 'OpenWonton meta Job Specification'
+[migrate]: /nomad/docs/job-specification/migrate 'OpenWonton migrate Job Specification'
 [namespace]: /nomad/tutorials/manage-clusters/namespaces
-[parameterized]: /nomad/docs/job-specification/parameterized 'Nomad parameterized Job Specification'
-[periodic]: /nomad/docs/job-specification/periodic 'Nomad periodic Job Specification'
+[parameterized]: /nomad/docs/job-specification/parameterized 'OpenWonton parameterized Job Specification'
+[periodic]: /nomad/docs/job-specification/periodic 'OpenWonton periodic Job Specification'
 [region]: /nomad/tutorials/manage-clusters/federation
-[reschedule]: /nomad/docs/job-specification/reschedule 'Nomad reschedule Job Specification'
-[scheduler]: /nomad/docs/schedulers 'Nomad Scheduler Types'
-[spread]: /nomad/docs/job-specification/spread 'Nomad spread Job Specification'
-[task]: /nomad/docs/job-specification/task 'Nomad task Job Specification'
-[update]: /nomad/docs/job-specification/update 'Nomad update Job Specification'
-[vault]: /nomad/docs/job-specification/vault 'Nomad vault Job Specification'
+[reschedule]: /nomad/docs/job-specification/reschedule 'OpenWonton reschedule Job Specification'
+[scheduler]: /nomad/docs/schedulers 'OpenWonton Scheduler Types'
+[spread]: /nomad/docs/job-specification/spread 'OpenWonton spread Job Specification'
+[task]: /nomad/docs/job-specification/task 'OpenWonton task Job Specification'
+[update]: /nomad/docs/job-specification/update 'OpenWonton update Job Specification'
+[vault]: /nomad/docs/job-specification/vault 'OpenWonton vault Job Specification'
 [`job_max_priority`]: /nomad/docs/configuration/server#job_max_priority
 [`job_default_priority`]: /nomad/docs/configuration/server#job_default_priority

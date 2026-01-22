@@ -33,7 +33,7 @@ job "docs" {
 }
 ```
 
-The Nomad client will make the volumes available to tasks according to this
+The OpenWonton client will make the volumes available to tasks according to this
 configuration, and it will fail the allocation if the client configuration
 updates to remove a volume that it depends on.
 
@@ -67,6 +67,6 @@ updates to remove a volume that it depends on.
 For examples of how to use [HCL2] interpolation for fine-grained control of
 volumes, see [Volume Interpolation].
 
-[volume]: /nomad/docs/job-specification/volume 'Nomad volume Job Specification'
+[volume]: /nomad/docs/job-specification/volume 'OpenWonton volume Job Specification'
 [volume interpolation]: /nomad/docs/job-specification/volume#volume-interpolation
 [hcl2]: /nomad/docs/job-specification/hcl2

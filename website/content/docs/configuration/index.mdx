@@ -1,19 +1,19 @@
 ---
 layout: docs
 page_title: Agent Configuration
-description: Learn about the configuration options available for the Nomad agent.
+description: Learn about the configuration options available for the OpenWonton agent.
 ---
 
-# Nomad Configuration
+# OpenWonton Configuration
 
-Nomad agents have a variety of parameters that can be specified via
+OpenWonton agents have a variety of parameters that can be specified via
 configuration files or command-line flags. Configuration files are written in
-[HCL][hcl]. Nomad can read and combine parameters from multiple configuration
-files or directories to configure the Nomad agent.
+[HCL][hcl]. OpenWonton can read and combine parameters from multiple configuration
+files or directories to configure the OpenWonton agent.
 
 ## Load Order and Merging
 
-The Nomad agent supports multiple configuration files, which can be provided
+The OpenWonton agent supports multiple configuration files, which can be provided
 using the `-config` CLI flag. The flag can accept either a file or folder. In
 the case of a folder, any `.hcl` and `.json` files in the folder will be loaded
 and merged in lexicographical order. Directories are not loaded recursively.
@@ -21,7 +21,7 @@ and merged in lexicographical order. Directories are not loaded recursively.
 For example:
 
 ```shell-session
-$ nomad agent -config=server.conf -config=/etc/nomad -config=extra.json
+$ wonton agent -config=server.conf -config=/etc/nomad -config=extra.json
 ```
 
 This will load configuration from `server.conf`, from `.hcl` and `.json` files
@@ -37,7 +37,7 @@ booleans. Since empty values are ignored you cannot disable a parameter like
 Please note that `plugin` blocks for a given plugin always replace and
 override each other, rather than being merged.
 
-Here is an example Nomad agent configuration that runs in both client and server
+Here is an example OpenWonton agent configuration that runs in both client and server
 mode.
 
 ```hcl
@@ -113,25 +113,25 @@ testing.
   The values support [go-sockaddr/template format][go-sockaddr/template].
 
   - `http` - The address to advertise for the HTTP interface. This should be
-    reachable by all the nodes from which end users are going to use the Nomad
+    reachable by all the nodes from which end users are going to use the OpenWonton
     CLI tools.
 
-  - `rpc` - The address used to advertise to Nomad clients for connecting to Nomad
-    servers for RPC. This allows Nomad clients to connect to Nomad servers from
-    behind a NAT gateway. This address much be reachable by all Nomad client nodes.
-    When set, the Nomad servers will use the `advertise.serf` address for RPC
-    connections amongst themselves. Setting this value on a Nomad client has no
+  - `rpc` - The address used to advertise to OpenWonton clients for connecting to OpenWonton
+    servers for RPC. This allows OpenWonton clients to connect to OpenWonton servers from
+    behind a NAT gateway. This address much be reachable by all OpenWonton client nodes.
+    When set, the OpenWonton servers will use the `advertise.serf` address for RPC
+    connections amongst themselves. Setting this value on a OpenWonton client has no
     effect.
 
   - `serf` - The address advertised for the gossip layer. This address must be
     reachable from all server nodes. It is not required that clients can reach
-    this address. Nomad servers will communicate to each other over RPC using
+    this address. OpenWonton servers will communicate to each other over RPC using
     the advertised Serf IP and advertised RPC Port.
 
 - `audit` `(`[`Audit`]`: nil)` - Enterprise-only. Specifies audit logging
   configuration.
 
-- `bind_addr` `(string: "0.0.0.0")` - Specifies which address the Nomad
+- `bind_addr` `(string: "0.0.0.0")` - Specifies which address the OpenWonton
   agent should bind to for network services, including the HTTP interface as
   well as the internal gossip protocol and RPC mechanism. This should be
   specified in IP format, and can be used to easily bind all network services to
@@ -141,7 +141,7 @@ testing.
   The value supports [go-sockaddr/template format][go-sockaddr/template].
 
 - `client` `(`[`Client`]`: nil)` - Specifies configuration which is specific
-  to the Nomad client.
+  to the OpenWonton client.
 
 - `consul` `(`[`Consul`]`: nil)` - Specifies configuration for
   connecting to Consul.
@@ -154,19 +154,19 @@ testing.
   directory to store cluster state, including the replicated log and snapshot
   data. This must be specified as an absolute path.
 
-- `disable_anonymous_signature` `(bool: false)` - Specifies if Nomad should
+- `disable_anonymous_signature` `(bool: false)` - Specifies if OpenWonton should
   provide an anonymous signature for de-duplication with the update check.
 
-- `disable_update_check` `(bool: false)` - Specifies if Nomad should not check
+- `disable_update_check` `(bool: false)` - Specifies if OpenWonton should not check
   for updates and security bulletins. _This defaults to `true` in Nomad Enterprise._
 
 - `enable_debug` `(bool: false)` - Specifies if the debugging HTTP endpoints
   should be enabled. These endpoints can be used with profiling tools to dump
-  diagnostic information about Nomad's internals.
+  diagnostic information about OpenWonton's internals.
 
 - `enable_syslog` `(bool: false)` - Specifies if the agent should log to syslog.
   This option only works on Unix based systems. The log level inherits from
-  the Nomad agent log set in `log_level`
+  the OpenWonton agent log set in `log_level`
 
 - `http_api_response_headers` `(map<string|string>: nil)` - Specifies
   user-defined headers to add to the HTTP API responses.
@@ -193,7 +193,7 @@ testing.
   [`drain_on_shutdown`][], the client will drain its workloads before shutting
   down.
 
-- `limits` - Available in Nomad 0.10.3 and later, this is a nested object that
+- `limits` - Available in OpenWonton 0.10.3 and later, this is a nested object that
   configures limits that are enforced by the agent. The following parameters
   are available:
 
@@ -213,7 +213,7 @@ testing.
     long servers will wait after a client TCP connection is established before
     they complete the connection handshake. When TLS is used, the same timeout
     applies to the TLS handshake separately from the initial protocol
-    negotiation. All Nomad clients should perform this immediately on
+    negotiation. All OpenWonton clients should perform this immediately on
     establishing a new connection. This should be kept conservative as it
     limits how many connections an unauthenticated attacker can open if
     TLS is being using to authenticate clients (strongly recommended in
@@ -226,13 +226,13 @@ testing.
     many concurrent TCP connections a single source IP address is allowed
     to open to a single server. Client agents do not accept RPC TCP connections
     directly and therefore are not affected. It affects both clients connections
-    and other server connections. Nomad clients multiplex many RPC calls over a
+    and other server connections. OpenWonton clients multiplex many RPC calls over a
     single TCP connection, except for streaming endpoints such as [log
     streaming][log-api] which require their own connection when routed through
     servers. A server needs at least 2 TCP connections (1 Raft, 1 RPC) per peer
     server locally and in any federated region. Servers also need a TCP connection
     per routed streaming endpoint concurrently in use. Only operators use streaming
-    endpoints; as of 0.10.3 Nomad client code does not. A reasonably low limit
+    endpoints; as of 0.10.3 OpenWonton client code does not. A reasonably low limit
     significantly reduces the ability of an unauthenticated attacker to consume
     unbounded resources by holding open many connections. You may need to
     increase this if WAN federated servers connect via proxies or NAT gateways
@@ -244,7 +244,7 @@ testing.
     lowered in the future when streaming RPCs no longer require their own TCP
     connection.
 
-- `log_level` `(string: "INFO")` - Specifies the verbosity of logs the Nomad
+- `log_level` `(string: "INFO")` - Specifies the verbosity of logs the OpenWonton
   agent will output. Valid log levels include `WARN`, `INFO`, or `DEBUG` in
   increasing order of verbosity.
 
@@ -287,7 +287,7 @@ testing.
   the [plugin_dir](#plugin_dir).
 
 - `ports` `(Port: see below)` - Specifies the network ports used for different
-  services required by the Nomad agent.
+  services required by the OpenWonton agent.
 
   - `http` - The port used to run the HTTP server.
 
@@ -309,7 +309,7 @@ testing.
     }
     ```
 
-- `region` `(string: "global")` - Specifies the region the Nomad agent is a
+- `region` `(string: "global")` - Specifies the region the OpenWonton agent is a
   member of. A region typically maps to a geographic region, for example `us`,
   with potentially multiple zones, which map to [datacenters](#datacenter) such
   as `us-west` and `us-east`.
@@ -324,7 +324,7 @@ testing.
   policies.
 
 - `server` `(`[`Server`]`: nil)` - Specifies configuration which is specific
-  to the Nomad server.
+  to the OpenWonton server.
 
 - `syslog_facility` `(string: "LOCAL0")` - Specifies the syslog facility to
   write to. This has no effect unless `enable_syslog` is true.
@@ -336,18 +336,18 @@ testing.
 
 ## Configuration Reload
 
-You can send the Nomad process a `SIGHUP` signal to reload a limited subset of
+You can send the OpenWonton process a `SIGHUP` signal to reload a limited subset of
 its configuration. The fields that currently support reloading are:
 
 - [`log_level`](#log_level): the log level is reloaded but not any other
   logging configuration value.
 - [`tls`][tls-reload]: note this only reloads the TLS configuration between
-  Nomad agents (servers and clients), and not the TLS configuration for
+  OpenWonton agents (servers and clients), and not the TLS configuration for
   communication with Consul or Vault.
 - [`vault`][vault-reload]: note this only reloads the TLS configuration
-  between Nomad and Vault, but not other configuration values.
+  between OpenWonton and Vault, but not other configuration values.
 
-In order to reload any other configuration values, you must restart the Nomad
+In order to reload any other configuration values, you must restart the OpenWonton
 agent.
 
 <EnterpriseAlert>
@@ -356,15 +356,15 @@ configuration or NOMAD_LICENSE_PATH environment variable are set, the
 license will be reloaded from the file on a configuration reload.
 </EnterpriseAlert>
 
-If the Nomad agent receives a `SIGHUP` during initialization, it may crash
-(see [GH-3885]). Ensure that the Nomad agent is able to receive RPC traffic
+If the OpenWonton agent receives a `SIGHUP` during initialization, it may crash
+(see [GH-3885]). Ensure that the OpenWonton agent is able to receive RPC traffic
 before attempting to reload its configuration.
 
 ## Examples
 
 ### Custom Region and Datacenter
 
-This example shows configuring a custom region and data center for the Nomad
+This example shows configuring a custom region and data center for the OpenWonton
 agent:
 
 ```hcl
@@ -382,15 +382,15 @@ http_api_response_headers {
 }
 ```
 
-[`acl`]: /nomad/docs/configuration/acl 'Nomad Agent ACL Configuration'
-[`audit`]: /nomad/docs/configuration/audit 'Nomad Agent Audit Logging Configuration'
-[`client`]: /nomad/docs/configuration/client 'Nomad Agent client Configuration'
-[`consul`]: /nomad/docs/configuration/consul 'Nomad Agent consul Configuration'
-[`plugin`]: /nomad/docs/configuration/plugin 'Nomad Agent Plugin Configuration'
-[`sentinel`]: /nomad/docs/configuration/sentinel 'Nomad Agent sentinel Configuration'
-[`server`]: /nomad/docs/configuration/server 'Nomad Agent server Configuration'
-[tls]: /nomad/docs/configuration/tls 'Nomad Agent tls Configuration'
-[`vault`]: /nomad/docs/configuration/vault 'Nomad Agent vault Configuration'
+[`acl`]: /nomad/docs/configuration/acl 'OpenWonton Agent ACL Configuration'
+[`audit`]: /nomad/docs/configuration/audit 'OpenWonton Agent Audit Logging Configuration'
+[`client`]: /nomad/docs/configuration/client 'OpenWonton Agent client Configuration'
+[`consul`]: /nomad/docs/configuration/consul 'OpenWonton Agent consul Configuration'
+[`plugin`]: /nomad/docs/configuration/plugin 'OpenWonton Agent Plugin Configuration'
+[`sentinel`]: /nomad/docs/configuration/sentinel 'OpenWonton Agent sentinel Configuration'
+[`server`]: /nomad/docs/configuration/server 'OpenWonton Agent server Configuration'
+[tls]: /nomad/docs/configuration/tls 'OpenWonton Agent tls Configuration'
+[`vault`]: /nomad/docs/configuration/vault 'OpenWonton Agent vault Configuration'
 [go-sockaddr/template]: https://godoc.org/github.com/hashicorp/go-sockaddr/template
 [log-api]: /nomad/api-docs/client#stream-logs
 [hcl]: https://github.com/hashicorp/hcl 'HashiCorp Configuration Language'

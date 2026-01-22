@@ -1,12 +1,12 @@
 ---
 layout: docs
 page_title: Workload Identity
-description: Learn about Nomad's workload identity feature
+description: Learn about OpenWonton's workload identity feature
 ---
 
 # Workload Identity
 
-Every workload running in Nomad is given an identity. When an [allocation][] is
+Every workload running in OpenWonton is given an identity. When an [allocation][] is
 accepted by the [plan applier][], the leader generates a Workload Identity for
 each task in the allocation. This workload identity is a [JSON Web Token
 (JWT)][] that has been signed by the leader's keyring. The workload identity
@@ -23,7 +23,7 @@ includes the following identity claims:
 
 ## Using Workload Identity
 
-While Nomad always creates and uses workload identities internally, the JWT is
+While OpenWonton always creates and uses workload identities internally, the JWT is
 not exposed to tasks by default.
 
 To expose Workload Identity to tasks, add an [`identity`][identity-block] block
@@ -46,15 +46,15 @@ task "example" {
 ## Default Workload ACL Policy
 
 By default, a Workload Identity has access to a implicit ACL policy. This policy
-grants access to Nomad Variables associated with the job, group, and task, as
+grants access to OpenWonton Variables associated with the job, group, and task, as
 described in [Task Access to Variables][]. The implicit policy also allows
-access to list or read any Nomad service registration as with the [List Services
+access to list or read any OpenWonton service registration as with the [List Services
 API][] or [Read Service API][].
 
 ## Workload Associated ACL Policies
 
 You can associate additional ACL policies with workload identities by passing
-the `-job`, `-group`, and `-task` flags to `nomad acl policy apply`. When Nomad
+the `-job`, `-group`, and `-task` flags to `nomad acl policy apply`. When OpenWonton
 resolves a workload identity claim, it will automatically include policies that
 match. If no matching policies exist, the workload identity does not have any
 additional capabilities.

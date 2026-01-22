@@ -2,15 +2,15 @@
 layout: docs
 page_title: 'Commands: operator'
 description: |
-  The operator command provides cluster-level tools for Nomad operators.
+  The operator command provides cluster-level tools for OpenWonton operators.
 ---
 
 # Command: operator
 
-The `operator` command provides cluster-level tools for Nomad operators, such
-as interacting with the Raft subsystem. This was added in Nomad 0.5.5.
+The `operator` command provides cluster-level tools for OpenWonton operators, such
+as interacting with the Raft subsystem. This was added in OpenWonton 0.5.5.
 
-~> Use this command with extreme caution, as improper use could lead to a Nomad
+~> Use this command with extreme caution, as improper use could lead to a OpenWonton
 outage and even loss of data.
 
 See the [Outage Recovery guide] guide for some examples of how this command is
@@ -19,9 +19,9 @@ documentation for the [Operator] endpoint.
 
 ## Usage
 
-Usage: `nomad operator <subcommand> <subcommand> [options]`
+Usage: `wonton operator <subcommand> <subcommand> [options]`
 
-Run `nomad operator <subcommand>` with no arguments for help on that subcommand.
+Run `wonton operator <subcommand>` with no arguments for help on that subcommand.
 The following subcommands are available:
 
 - [`operator autopilot get-config`][get-config] - Display the current Autopilot
@@ -45,7 +45,7 @@ The following subcommands are available:
 - [`operator raft list-peers`][list] - Display the current Raft peer
   configuration
 
-- [`operator raft remove-peer`][remove] - Remove a Nomad server from the Raft
+- [`operator raft remove-peer`][remove] - Remove a OpenWonton server from the Raft
   configuration
 
 - [`operator root keyring list`][root_keyring_list] - List available root encryption keys
@@ -60,13 +60,13 @@ The following subcommands are available:
 - [`operator scheduler set-config`][scheduler-set-config] - Modify the scheduler
   configuration
 
-- [`operator snapshot agent`][snapshot-agent] <EnterpriseAlert inline /> - Inspects a snapshot of the Nomad server state
+- [`operator snapshot agent`][snapshot-agent] <EnterpriseAlert inline /> - Inspects a snapshot of the OpenWonton server state
 
-- [`operator snapshot save`][snapshot-save] - Saves a snapshot of the Nomad server state
+- [`operator snapshot save`][snapshot-save] - Saves a snapshot of the OpenWonton server state
 
-- [`operator snapshot restore`][snapshot-restore] - Restores a snapshot of the Nomad server state
+- [`operator snapshot restore`][snapshot-restore] - Restores a snapshot of the OpenWonton server state
 
-- [`operator snapshot inspect`][snapshot-inspect] - Inspects a snapshot of the Nomad server state
+- [`operator snapshot inspect`][snapshot-inspect] - Inspects a snapshot of the OpenWonton server state
 
 [debug]: /nomad/docs/commands/operator/debug 'Builds an archive of configuration and state'
 [get-config]: /nomad/docs/commands/operator/autopilot/get-config 'Autopilot Get Config command'

@@ -3,7 +3,7 @@ layout: docs
 page_title: periodic Block - Job Specification
 description: |-
   The "periodic" block allows a job to run at fixed times, dates, or intervals.
-  The easiest way to think about the periodic scheduler is "Nomad cron" or
+  The easiest way to think about the periodic scheduler is "OpenWonton cron" or
   "distributed cron".
 ---
 
@@ -12,7 +12,7 @@ description: |-
 <Placement groups={['job', 'periodic']} />
 
 The `periodic` block allows a job to run at fixed times, dates, or intervals.
-The easiest way to think about the periodic scheduler is "Nomad cron" or
+The easiest way to think about the periodic scheduler is "OpenWonton cron" or
 "distributed cron".
 
 ```hcl
@@ -25,7 +25,7 @@ job "docs" {
 ```
 
 The periodic expression by default evaluates in the **UTC timezone** to ensure
-consistent evaluation when Nomad spans multiple time zones.
+consistent evaluation when OpenWonton spans multiple time zones.
 
 ## `periodic` Requirements
 
@@ -100,7 +100,7 @@ periodic {
 
 ## Daylight Saving Time
 
-Though Nomad supports configuring `time_zone`, we strongly recommend that periodic
+Though OpenWonton supports configuring `time_zone`, we strongly recommend that periodic
 jobs are specified with respect to UTC `time_zone`. Only customize `time_zone`
 when the following daylight saving time behavior is _desired:_
 

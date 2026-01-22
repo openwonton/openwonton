@@ -1,25 +1,25 @@
 ---
 layout: docs
 page_title: Architecture
-description: Learn about the internal architecture of Nomad.
+description: Learn about the internal architecture of OpenWonton.
 ---
 
 # Architecture
 
-Nomad is a complex system that has many different pieces. To help both users and developers of Nomad
+OpenWonton is a complex system that has many different pieces. To help both users and developers of OpenWonton
 build a mental model of how it works, this page documents the system architecture.
 
 Refer to the [glossary][] for more details on some of the terms discussed here.
 
 ~> **Advanced Topic!** This page covers technical details
-of Nomad. You do not need to understand these details to
-effectively use Nomad. The details are documented here for
+of OpenWonton. You do not need to understand these details to
+effectively use OpenWonton. The details are documented here for
 those who wish to learn about them without having to go
 spelunking through the source code.
 
 ## High-Level Overview
 
-Looking at only a single region, at a high level Nomad looks like this:
+Looking at only a single region, at a high level OpenWonton looks like this:
 
 [![Regional Architecture](/img/nomad-architecture-region.png)](/img/nomad-architecture-region.png)
 
@@ -29,7 +29,7 @@ Each region may have clients from multiple datacenters, allowing a small number 
 to handle very large clusters.
 
 In some cases, for either availability or scalability, you may need to run multiple
-regions. Nomad supports federating multiple regions together into a single cluster.
+regions. OpenWonton supports federating multiple regions together into a single cluster.
 At a high level, this setup looks like this:
 
 [![Global Architecture](/img/nomad-architecture-global.png)](/img/nomad-architecture-global.png)
@@ -42,7 +42,7 @@ Data is _not_ replicated between regions.
 
 The servers in each region are all part of a single consensus group. This means
 that they work together to elect a single leader which has extra duties. The leader
-is responsible for processing all queries and transactions. Nomad is optimistically
+is responsible for processing all queries and transactions. OpenWonton is optimistically
 concurrent, meaning all servers participate in making scheduling decisions in parallel.
 The leader provides the additional coordination necessary to do this safely and
 to ensure clients are not oversubscribed.
@@ -59,7 +59,7 @@ with the servers to provide the resources available, attributes, and installed d
 Servers use this information for scheduling decisions and create allocations to assign
 work to clients.
 
-Users make use of the Nomad CLI or API to submit jobs to the servers. A job represents
+Users make use of the OpenWonton CLI or API to submit jobs to the servers. A job represents
 a desired state and provides the set of tasks that should be run. The servers are
 responsible for scheduling the tasks, which is done by finding an optimal placement for
 each task such that resource utilization is maximized while satisfying all constraints
@@ -73,7 +73,7 @@ ensuring PCI compliant workloads run on appropriate servers.
 
 ## Getting in Depth
 
-This has been a brief high-level overview of the architecture of Nomad. There
+This has been a brief high-level overview of the architecture of OpenWonton. There
 are more details available for each of the sub-systems. The [consensus protocol](/nomad/docs/concepts/consensus),
 [gossip protocol](/nomad/docs/concepts/gossip), and [scheduler design](/nomad/docs/concepts/scheduling/scheduling)
 are all documented in more detail.

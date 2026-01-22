@@ -4,7 +4,7 @@ page_title: reschedule Block - Job Specification
 description: >-
   The "reschedule" block specifies the group's rescheduling strategy upon
 
-  allocation failures. Nomad will only attempt to reschedule failed allocations
+  allocation failures. OpenWonton will only attempt to reschedule failed allocations
   on
 
   to another node only after any local
@@ -27,7 +27,7 @@ level, the configuration will apply to all groups within the job. If the
 reschedule block is present on both the job and the group, they are merged with
 the group block taking the highest precedence and then the job.
 
-Nomad will attempt to schedule the allocation on another node if any of its
+OpenWonton will attempt to schedule the allocation on another node if any of its
 task statuses become `failed`. The scheduler prefers to create a replacement
 allocation on a node that was not used by a previous allocation.
 
@@ -59,7 +59,7 @@ they run on every node.
 - `interval` `(string: <varies>)` - Specifies the sliding window which begins
   when the first reschedule attempt starts and ensures that only `attempts`
   number of reschedule happen within it. If more than `attempts` number of
-  failures happen with this interval, Nomad will not reschedule any more.
+  failures happen with this interval, OpenWonton will not reschedule any more.
 
 - `delay` `(string: <varies>)` - Specifies the duration to wait before attempting
   to reschedule a failed task. This is specified using a label suffix like "30s" or "1h".

@@ -11,7 +11,7 @@ The `acl auth-method create` command is used to create new ACL Auth Methods.
 ## Usage
 
 ```plaintext
-nomad acl auth-method create [options]
+wonton acl auth-method create [options]
 ```
 
 The `acl auth-method create` command requires the correct setting of the create options
@@ -53,7 +53,7 @@ via flags detailed below.
 Create a new ACL Auth Method:
 
 ```shell-session
-$ nomad acl auth-method create -name "example-acl-auth-method" -type "OIDC" -max-token-ttl "1h" -token-locality "local" -config "@config.json"
+$ wonton acl auth-method create -name "example-acl-auth-method" -type "OIDC" -max-token-ttl "1h" -token-locality "local" -config "@config.json"
 Name           = example-acl-auth-method
 Type           = OIDC
 Locality       = local

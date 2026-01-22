@@ -2,7 +2,7 @@
 layout: docs
 page_title: "Command: var list"
 description: |-
-  The "var list" command lists data from Nomad's variables datastore at
+  The "var list" command lists data from OpenWonton's variables datastore at
   or beginning with the given prefix.
 ---
 
@@ -23,7 +23,7 @@ standard output contains the variables from the specifically requested page.
 ## Usage
 
 ```plaintext
-nomad var list [options] [<prefix>]
+wonton var list [options] [<prefix>]
 ```
 
 If ACLs are enabled, this command requires the `variables:list` capability for
@@ -57,7 +57,7 @@ documentation for details.
 List values under the key "nomad/jobs":
 
 ```shell-session
-$ nomad var list nomad/jobs
+$ wonton var list nomad/jobs
 Namespace  Path                           Last Updated
 default    nomad/jobs/example             2022-08-23T10:35:47-04:00
 default    nomad/jobs/variable            2022-08-23T10:24:45-04:00
@@ -68,7 +68,7 @@ default    nomad/jobs/variable/www/nginx  2022-08-23T10:24:46-04:00
 List values under the key "nomad/jobs/variable/www" in JSON format:
 
 ```shell-session
-$ nomad var list -out=json -namespace="*" nomad/jobs/variable/www
+$ wonton var list -out=json -namespace="*" nomad/jobs/variable/www
 [
   {
     "Namespace": "default",
@@ -92,7 +92,7 @@ $ nomad var list -out=json -namespace="*" nomad/jobs/variable/www
 Perform a paginated query:
 
 ```shell-session
-$ nomad var list -per-page=3
+$ wonton var list -per-page=3
 Namespace  Path                           Last Updated
 default    nomad/jobs/example             2022-08-23T10:35:47-04:00
 default    nomad/jobs/variable            2022-08-23T10:24:45-04:00
@@ -103,7 +103,7 @@ Next page token: default.nomad/jobs/variable/www/nginx
 To fetch the next page :
 
 ```shell-session
-$ nomad var list -per-page=3 \
+$ wonton var list -per-page=3 \
   -page-token=default.nomad/jobs/variable/www/nginx
 Namespace  Path                 Last Updated
 default    nomad/jobs/variable/www/nginx  2022-08-23T10:24:46-04:00
@@ -112,7 +112,7 @@ default    nomad/jobs/variable/www/nginx  2022-08-23T10:24:46-04:00
 Perform a paginated query with JSON formatting:
 
 ```shell-session
-$ nomad var list -out=json -namespace="*" -per-page=1 nomad/jobs/variable/www
+$ wonton var list -out=json -namespace="*" -per-page=1 nomad/jobs/variable/www
 {
     "Data": [
         {

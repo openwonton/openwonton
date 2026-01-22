@@ -17,10 +17,10 @@ The `multiregion` block specifies that a job will be deployed to multiple
 one specified by the `region` field or the `-region` command line flag to
 `nomad job run`.
 
-Federated Nomad clusters are members of the same gossip cluster but not the
+Federated OpenWonton clusters are members of the same gossip cluster but not the
 same raft cluster; they don't share their data stores. Each region in a
 multiregion deployment gets an independent copy of the job, parameterized with
-the values of the `region` block. Nomad regions coordinate to rollout each
+the values of the `region` block. OpenWonton regions coordinate to rollout each
 region's deployment using rules determined by the `strategy` block.
 
 ```hcl
@@ -61,7 +61,7 @@ automatically revert to the previous version of the job if its `update`
 block has the [`auto_revert`][update-auto-revert] setting.
 
 In a multiregion deployment, regions begin in the `pending` state. This allows
-Nomad to determine that all regions have accepted the job before
+OpenWonton to determine that all regions have accepted the job before
 continuing. At this point up to `max_parallel` regions will enter `running` at
 a time. When each region completes its local deployment, it enters a `blocked`
 state where it waits until the last region has completed the deployment. The
@@ -92,7 +92,7 @@ if one of the target regions is set to Tokyo time.
 - `region` <code>([Region](#region-parameters): nil)</code> - Specifies the
   parameters for a specific region. This can be specified multiple times to
   define the set of regions for the multiregion deployment. Regions are
-  ordered; depending on the rollout strategy Nomad may roll out to each region
+  ordered; depending on the rollout strategy OpenWonton may roll out to each region
   in order or to several at a time.
 
 ~> **Note:** Regions can be added, but regions that are removed will not be
@@ -103,7 +103,7 @@ multiregion deployments are considered GA.
 
 - `max_parallel` `(int: <optional>)` - Specifies the maximum number
   of region deployments that a multiregion will have in a running state at a
-  time. By default, Nomad will deploy all regions simultaneously.
+  time. By default, OpenWonton will deploy all regions simultaneously.
 
 - `on_failure` `(string: <optional>)` - Specifies the behavior when a region
   deployment fails. Available options are `"fail_all"`, `"fail_local"`, or
@@ -112,7 +112,7 @@ multiregion deployments are considered GA.
 
   Each region within a multiregion deployment follows the `auto_revert`
   strategy of its own `update` block (if any). The multiregion `on_failure`
-  field tells Nomad how many other regions should be marked as failed when one
+  field tells OpenWonton how many other regions should be marked as failed when one
   region's deployment fails:
 
   - The default behavior is that the failed region and all regions that come

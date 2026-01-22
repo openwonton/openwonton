@@ -12,7 +12,7 @@ The `node pool apply` command is used to create or update a node pool.
 ## Usage
 
 ```plaintext
-nomad node pool apply [options] <input>
+wonton node pool apply [options] <input>
 ```
 
 Apply is used to create or update a node pool. The specification file is read
@@ -52,7 +52,7 @@ node_pool "prod" {
 ```
 
 ```shell-session
-$ nomad node pool apply prod_pool.nomad.hcl
+$ wonton node pool apply prod_pool.nomad.hcl
 Successfully applied node pool "prod"!
 ```
 

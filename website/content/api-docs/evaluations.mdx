@@ -388,8 +388,8 @@ $ curl \
 This endpoint counts evaluations. Note that Nomad's state store architecture
 makes calculating this count unexpectedly expensive (similar in cost to the List
 API), and this API was designed for use during recovery operations with the
-`nomad eval delete` command. It is not recommended to use this API for
-monitoring. The `nomad.nomad.broker.*`  metrics are better for that use
+`wonton eval delete` command. It is not recommended to use this API for
+monitoring. The `wonton.nomad.broker.*`  metrics are better for that use
 case. See the [metrics reference][] for details.
 
 

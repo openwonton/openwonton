@@ -9,7 +9,7 @@ description: The Java task driver is used to run Jars using the JVM.
 Name: `java`
 
 The `java` driver is used to execute Java applications packaged into a Java Jar
-file. The driver requires the Jar file to be accessible from the Nomad
+file. The driver requires the Jar file to be accessible from the OpenWonton
 client via the [`artifact` downloader](/nomad/docs/job-specification/artifact).
 
 ## Task Configuration
@@ -40,12 +40,12 @@ The `java` driver supports the following configuration in the job spec:
   (`subdir/from_archive/my.jar`).
 
 - `args` - (Optional) A list of arguments to the Jar's main method. References
-  to environment variables or any [interpretable Nomad
+  to environment variables or any [interpretable OpenWonton
   variables](/nomad/docs/runtime/interpolation) will be interpreted before
   launching the task.
 
 - `jvm_options` - (Optional) A list of JVM options to be passed while invoking
-  java. These options are passed without being validated in any way by Nomad.
+  java. These options are passed without being validated in any way by OpenWonton.
 
 - `pid_mode` - (Optional) Set to `"private"` to enable PID namespace isolation for
   this task, or `"host"` to disable isolation. If left unset, the behavior is
@@ -179,7 +179,7 @@ host system.
 ## Client Requirements
 
 The `java` driver requires Java to be installed and in your system's `$PATH`. On
-Linux, Nomad must run as root since it will use `chroot` and `cgroups` which
+Linux, OpenWonton must run as root since it will use `chroot` and `cgroups` which
 require root privileges. The task must also specify at least one artifact to
 download, as this is the only way to retrieve the Jar being run.
 
@@ -187,7 +187,7 @@ download, as this is the only way to retrieve the Jar being run.
 
 The `java` driver will set the following client attributes:
 
-- `driver.java` - Set to `1` if Java is found on the host node. Nomad determines
+- `driver.java` - Set to `1` if Java is found on the host node. OpenWonton determines
   this by executing `java -version` on the host and parsing the output
 - `driver.java.version` - Version of Java, ex: `1.6.0_65`
 - `driver.java.runtime` - Runtime version, ex: `Java(TM) SE Runtime Environment (build 1.6.0_65-b14-466.1-11M4716)`
@@ -211,8 +211,8 @@ job "docs" {
 The resource isolation provided varies by the operating system of
 the client and the configuration.
 
-On Linux, Nomad will attempt to use cgroups, namespaces, and chroot
-to isolate the resources of a process. If the Nomad agent is not
+On Linux, OpenWonton will attempt to use cgroups, namespaces, and chroot
+to isolate the resources of a process. If the OpenWonton agent is not
 running as root, many of these mechanisms cannot be used.
 
 As a baseline, the Java jars will be run inside a Java Virtual Machine,
@@ -237,7 +237,7 @@ directories from the host machine:
 ```
 
 The task's chroot is populated by linking or copying the data from the host into
-the chroot. Note that this can take considerable disk space. Since Nomad v0.5.3,
+the chroot. Note that this can take considerable disk space. Since OpenWonton v0.5.3,
 the client manages garbage collection locally which mitigates any issue this may
 create.
 

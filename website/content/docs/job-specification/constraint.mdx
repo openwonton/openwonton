@@ -65,7 +65,7 @@ all groups (and tasks) in the job.
 ## `constraint` Parameters
 
 - `attribute` `(string: "")` - Specifies the name or reference of the attribute
-  to examine for the constraint. This can be any of the [Nomad interpolated
+  to examine for the constraint. This can be any of the [OpenWonton interpolated
   values](/nomad/docs/runtime/interpolation#interpreted_node_vars).
 
 - `operator` `(string: "=")` - Specifies the comparison operator. If the operator
@@ -95,13 +95,13 @@ all groups (and tasks) in the job.
 
 - `value` `(string: "")` - Specifies the value to compare the attribute against
   using the specified operation. This can be a literal value, another attribute,
-  or any [Nomad interpolated
+  or any [OpenWonton interpolated
   values](/nomad/docs/runtime/interpolation#interpreted_node_vars).
 
 ### `operator` Values
 
 This section details the specific values for the "operator" parameter in the
-Nomad job specification for constraints. The operator is always specified as a
+OpenWonton job specification for constraints. The operator is always specified as a
 string, but the string can take on different values which change the behavior of
 the overall constraint evaluation.
 
@@ -218,7 +218,7 @@ constraint {
   [Semantic Versioning 2.0][semver2] compliant versions and comparison
   operators are supported, so there is no pessimistic operator. Unlike `version`,
   this operator considers prereleases (eg `1.6.0-beta`) sufficient to satisfy
-  non-prerelease constraints (eg `>= 1.0`). _Added in Nomad v0.10.2._
+  non-prerelease constraints (eg `>= 1.0`). _Added in OpenWonton v0.10.2._
 
   ```hcl
   constraint {
@@ -288,7 +288,7 @@ constraint {
 
 ### Cloud Metadata
 
-When possible, Nomad populates node attributes from the cloud environment. These
+When possible, OpenWonton populates node attributes from the cloud environment. These
 values are accessible as filters in constraints. This example constrains this
 task to only run on nodes that are memory-optimized on AWS.
 
@@ -312,11 +312,11 @@ constraint {
 }
 ```
 
-[job]: /nomad/docs/job-specification/job 'Nomad job Job Specification'
-[group]: /nomad/docs/job-specification/group 'Nomad group Job Specification'
-[client-meta]: /nomad/docs/configuration/client#meta 'Nomad meta Job Specification'
-[task]: /nomad/docs/job-specification/task 'Nomad task Job Specification'
-[interpolation]: /nomad/docs/runtime/interpolation 'Nomad interpolation'
-[node-variables]: /nomad/docs/runtime/interpolation#node-variables- 'Nomad interpolation-Node variables'
-[client-meta]: /nomad/docs/configuration/client#custom-metadata-network-speed-and-node-class 'Nomad Custom Metadata, Network Speed, and Node Class'
+[job]: /nomad/docs/job-specification/job 'OpenWonton job Job Specification'
+[group]: /nomad/docs/job-specification/group 'OpenWonton group Job Specification'
+[client-meta]: /nomad/docs/configuration/client#meta 'OpenWonton meta Job Specification'
+[task]: /nomad/docs/job-specification/task 'OpenWonton task Job Specification'
+[interpolation]: /nomad/docs/runtime/interpolation 'OpenWonton interpolation'
+[node-variables]: /nomad/docs/runtime/interpolation#node-variables- 'OpenWonton interpolation-Node variables'
+[client-meta]: /nomad/docs/configuration/client#custom-metadata-network-speed-and-node-class 'OpenWonton Custom Metadata, Network Speed, and Node Class'
 [semver2]: https://semver.org/spec/v2.0.0.html 'Semantic Versioning 2.0'

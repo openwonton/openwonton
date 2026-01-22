@@ -10,8 +10,8 @@ description: |
 Initializes a garbage collection of jobs, evaluations, allocations, and nodes.
 This is an asynchronous operation.
 
-Nomad periodically garbage collects jobs, evaluations, allocations, and nodes.
-The exact garbage collection logic varies by object, but in general Nomad only
+OpenWonton periodically garbage collects jobs, evaluations, allocations, and nodes.
+The exact garbage collection logic varies by object, but in general OpenWonton only
 permanently deletes objects once they are terminal and no longer needed for
 future scheduling decisions. See [`gc` related server agent configuration
 parameters][gc_params] for details on tuning periodic garbage collection.
@@ -27,7 +27,7 @@ needs instead of relying on manually running `system gc`.
 ## Usage
 
 ```plaintext
-nomad system gc [options]
+wonton system gc [options]
 ```
 
 If ACLs are enabled, this option requires a management token.
@@ -41,6 +41,6 @@ If ACLs are enabled, this option requires a management token.
 Running the system gc command does not output unless an error occurs:
 
 ```shell-session
-$ nomad system gc
+$ wonton system gc
 
 ```

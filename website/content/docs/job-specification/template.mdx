@@ -5,7 +5,7 @@ description: |-
   The "template" block instantiates an instance of a template renderer. This
   creates a convenient way to ship configuration files that are populated from
   environment variables, Consul data, Vault secrets, or just general
-  configurations within a Nomad task.
+  configurations within a OpenWonton task.
 ---
 
 # `template` Block
@@ -15,7 +15,7 @@ description: |-
 The `template` block instantiates an instance of a template renderer. This
 creates a convenient way to ship configuration files that are populated from
 environment variables, Consul data, Vault secrets, or just general
-configurations within a Nomad task.
+configurations within a OpenWonton task.
 
 ```hcl
 job "docs" {
@@ -32,11 +32,11 @@ job "docs" {
 }
 ```
 
-Nomad utilizes [Go template][gt] and a tool called [Consul Template][ct], which
+OpenWonton utilizes [Go template][gt] and a tool called [Consul Template][ct], which
 adds a set of new functions that can be used to retrieve data from Consul and
-Vault. Nomad templates can reference [Nomad's runtime
+Vault. OpenWonton templates can reference [OpenWonton's runtime
 environment variables][env], [node attributes and metadata][nodevars],
-[Nomad service registrations][ct_api_nsvc], and [Nomad variables][nvars].
+[OpenWonton service registrations][ct_api_nsvc], and [OpenWonton variables][nvars].
 Templates can also be used to provide environment variables to your workload.
 
 For a full list of the API template functions, please refer to the [Consul
@@ -45,10 +45,10 @@ refer to the [Learn Go Template Syntax][gt_learn] guide.
 
 ## `template` Parameters
 
-- `change_mode` `(string: "restart")` - Specifies the behavior Nomad should take
-  if the rendered template changes. Nomad will always write the new contents of
+- `change_mode` `(string: "restart")` - Specifies the behavior OpenWonton should take
+  if the rendered template changes. OpenWonton will always write the new contents of
   the template to the specified destination. The following possible values describe
-  Nomad's action after writing the template to disk.
+  OpenWonton's action after writing the template to disk.
 
   - `"noop"` - take no action (continue running the task)
   - `"restart"` - restart the task
@@ -102,7 +102,7 @@ refer to the [Learn Go Template Syntax][gt_learn] guide.
   File permissions are given as octal of the Unix file permissions `rwxrwxrwx`.
 
 - `uid` `(int: nil)` - Specifies the rendered template owner's user ID. If
-  negative or not specified (`nil`) the ID of the Nomad agent user will be used.
+  negative or not specified (`nil`) the ID of the OpenWonton agent user will be used.
 
   ~> **Caveat:** Works only on Unix-based systems. Be careful when using
   containerized drivers, such as `docker` or `podman`, as groups and users
@@ -110,7 +110,7 @@ refer to the [Learn Go Template Syntax][gt_learn] guide.
   feature will also **not** work with Docker Desktop.
 
 - `gid` `(int: nil)` - Specifies the rendered template owner's group ID. If
-  negative or not specified (`nil`) the ID of the Nomad agent group will be
+  negative or not specified (`nil`) the ID of the OpenWonton agent group will be
   used.
 
   ~> **Caveat:** Works only on Unix-based systems. Be careful when using
@@ -272,14 +272,14 @@ API_KEY=12345678-1234-1234-1234-1234-123456789abc
 
 This allows [12factor app](https://12factor.net/config) style environment
 variable based configuration while keeping all the familiar features and
-semantics of Nomad templates.
+semantics of OpenWonton templates.
 
 Secrets or certificates may contain a wide variety of characters such as
 newlines, quotes, and backslashes which may be difficult to quote or escape
 properly.
 
 Whenever a templated variable may include special characters, use the `toJSON`
-function to ensure special characters are properly parsed by Nomad.
+function to ensure special characters are properly parsed by OpenWonton.
 
 ```hcl
 CERT_PEM={{ file "path/to/cert.pem" | toJSON }}
@@ -289,7 +289,7 @@ The parser will read the JSON string, so the `$CERT_PEM` environment variable
 will be identical to the contents of the file.
 
 Likewise, when evaluating a password that may contain quotes or `#`, use the
-`toJSON` function to ensure Nomad passes the password to the task unchanged.
+`toJSON` function to ensure OpenWonton passes the password to the task unchanged.
 
 ```hcl
 # Passwords may contain any character including special characters like:
@@ -331,13 +331,13 @@ task "task" {
 }
 ```
 
-## Nomad Integration
+## OpenWonton Integration
 
-### Nomad Services
+### OpenWonton Services
 
-~> Nomad Services are new in Nomad 1.3.
+~> OpenWonton Services are new in OpenWonton 1.3.
 
-Nomad service registrations can be queried using the `nomadService` and
+OpenWonton service registrations can be queried using the `nomadService` and
 `nomadServices` functions. The requests are tied to the same namespace as the
 job which contains the template block.
 
@@ -365,9 +365,9 @@ EOF
   }
 ```
 
-### Simple Load Balancing with Nomad Services
+### Simple Load Balancing with OpenWonton Services
 
-~> Simple load balancing with Nomad Services is new in Nomad 1.3.2.
+~> Simple load balancing with OpenWonton Services is new in OpenWonton 1.3.2.
 
 The `nomadService` function now supports simple load balancing by selecting
 instances of a service via [rendezvous hashing][rhash].
@@ -382,7 +382,7 @@ mostly stable for the allocation. Each time the template is run, `nomadService`
 will return the same set of instances for each allocation - unless N instances of
 the service are added or removed, in which case there is a 1/N chance of a selected
 instance being replaced. This helps maintain a more consistent output when rendering
-configuration files, triggering fewer restarts and signaling of Nomad tasks.
+configuration files, triggering fewer restarts and signaling of OpenWonton tasks.
 
 ```hcl
 template {
@@ -396,14 +396,14 @@ EOH
 }
 ```
 
-### Nomad Variables
+### OpenWonton Variables
 
-Nomad [variables] can be queried using the `nomadVar`, `nomadVarList`,
+OpenWonton [variables] can be queried using the `nomadVar`, `nomadVarList`,
 `nomadVarListSafe`, and `nomadVarExists` functions.
 
 #### `nomadVarList` and `nomadVarListSafe`
 
-These functions can be used to list the paths of Nomad variables available to
+These functions can be used to list the paths of OpenWonton variables available to
 the task based on its [workload identity]. You can provide an optional prefix to
 filter the path list by as a parameter.
 
@@ -474,7 +474,7 @@ to render the template if the variable list query returns blank/empty data.
 
 #### `nomadVar`
 
-These functions can be used to a read Nomad variable, assuming the task has
+These functions can be used to a read OpenWonton variable, assuming the task has
 access rights to the variable based on the task's [workload identity]. If the
 path does not exist or the caller does not have access to it, the `template`
 renderer will block until the path is available. To avoid blocking, wrap
@@ -545,7 +545,7 @@ EOH
 
 #### `nomadVarExists`
 
-This function can be used to check if a Nomad variable exists at the provided
+This function can be used to check if a OpenWonton variable exists at the provided
 path, assuming the task has access rights to the variable based on the task's
 [workload identity]. If a variable exists, this will return true, false
 otherwise. Unlike [`nomadVar`](#nomadvar), this function will not block if the
@@ -675,7 +675,7 @@ EOH
 }
 ```
 
-These are three different input templates, but when run under the Nomad job,
+These are three different input templates, but when run under the OpenWonton job,
 they are compressed into a single call, sharing the resulting data.
 
 #### As a PEM formatted file
@@ -738,7 +738,7 @@ metadata in addition to key/value data. This secret was set using
 
 Notice the addition of `data` in both the path and the field accessor string.
 Additionally, when using the Vault v2 API, the Vault policies applied to your
-Nomad jobs will need to grant permissions to `read` under `secret/data/...`
+OpenWonton jobs will need to grant permissions to `read` under `secret/data/...`
 rather than `secret/...`.
 
 Like KV API v1, if the name of a secret includes the `-` character, you must
@@ -761,13 +761,13 @@ options](/nomad/docs/configuration/client#options):
 - `function_denylist` `([]string: ["plugin"])` - Specifies a list of template
   rendering functions that should be disallowed in job specs. By default, the
   `plugin` function is disallowed as it allows running arbitrary commands on
-  the host as root (unless Nomad is configured to run as a non-root user).
+  the host as root (unless OpenWonton is configured to run as a non-root user).
 
 - `disable_file_sandbox` `(bool: false)` - Allows templates access to arbitrary
   files on the client host via the `file` function. By default, templates can
   access files only within the [task working directory].
 
-[`changescript`]: /nomad/docs/job-specification/change_script 'Nomad change_script Job Specification'
+[`changescript`]: /nomad/docs/job-specification/change_script 'OpenWonton change_script Job Specification'
 [ct]: https://github.com/hashicorp/consul-template 'Consul Template by HashiCorp'
 [ct_api]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md 'Consul Template API by HashiCorp'
 [ct_api_connect]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#connect 'Consul Template API by HashiCorp - connect'
@@ -776,13 +776,13 @@ options](/nomad/docs/configuration/client#options):
 [ct_api_service]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#service 'Consul Template API by HashiCorp - service'
 [ct_api_services]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#services 'Consul Template API by HashiCorp - services'
 [ct_api_nsvc]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#nomadService 'Consul Template API by HashiCorp - nomadService'
-[nvars]: /nomad/docs/concepts/variables 'Nomad Variables'
+[nvars]: /nomad/docs/concepts/variables 'OpenWonton Variables'
 [ct_api_tree]: https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#tree 'Consul Template API by HashiCorp - tree'
 [gt]: https://pkg.go.dev/text/template 'Go template package'
 [gt_learn]: /nomad/tutorials/templates/go-template-syntax
-[artifact]: /nomad/docs/job-specification/artifact 'Nomad artifact Job Specification'
-[env]: /nomad/docs/runtime/environment 'Nomad Runtime Environment'
-[nodevars]: /nomad/docs/runtime/interpolation#interpreted_node_vars 'Nomad Node Variables'
+[artifact]: /nomad/docs/job-specification/artifact 'OpenWonton artifact Job Specification'
+[env]: /nomad/docs/runtime/environment 'OpenWonton Runtime Environment'
+[nodevars]: /nomad/docs/runtime/interpolation#interpreted_node_vars 'OpenWonton Node Variables'
 [go-envparse]: https://github.com/hashicorp/go-envparse#readme 'The go-envparse Readme'
 [task working directory]: /nomad/docs/runtime/environment#task-directories 'Task Directories'
 [filesystem internals]: /nomad/docs/concepts/filesystem#templates-artifacts-and-dispatch-payloads

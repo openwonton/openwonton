@@ -35,7 +35,7 @@ documentation][] for more information.
 
 ## `ephemeral_disk` Parameters
 
-- `migrate` `(bool: false)` - This specifies that the Nomad client should make a
+- `migrate` `(bool: false)` - This specifies that the OpenWonton client should make a
   best-effort attempt to migrate the data from the previous allocation, even if
   the previous allocation was on another client. Enabling `migrate`
   automatically enables `sticky` as well. During data migration, the task will
@@ -46,10 +46,10 @@ documentation][] for more information.
   alloc stop`, because the original allocation has already been removed.
 
 - `size` `(int: 300)` - Specifies the size of the ephemeral disk in MB. The
-  current Nomad ephemeral storage implementation does not enforce this limit;
+  current OpenWonton ephemeral storage implementation does not enforce this limit;
   however, it is used during job placement.
 
-- `sticky` `(bool: false)` - Specifies that Nomad should make a best-effort
+- `sticky` `(bool: false)` - Specifies that OpenWonton should make a best-effort
   attempt to place the updated allocation on the same machine. This will move
   the `local/` and `alloc/data` directories to the new allocation.
 
@@ -60,7 +60,7 @@ The following examples only show the `ephemeral_disk` blocks. Remember that the
 
 ### Sticky Volumes
 
-This example shows enabling sticky volumes with Nomad using ephemeral disks:
+This example shows enabling sticky volumes with OpenWonton using ephemeral disks:
 
 ```hcl
 ephemeral_disk {
@@ -68,6 +68,6 @@ ephemeral_disk {
 }
 ```
 
-[resources]: /nomad/docs/job-specification/resources 'Nomad resources Job Specification'
+[resources]: /nomad/docs/job-specification/resources 'OpenWonton resources Job Specification'
 [filesystem internals]: /nomad/docs/concepts/filesystem#templates-artifacts-and-dispatch-payloads 'Filesystem internals documentation'
-[logs documentation]: /nomad/docs/job-specification/logs 'Nomad logs Job Specification'
+[logs documentation]: /nomad/docs/job-specification/logs 'OpenWonton logs Job Specification'

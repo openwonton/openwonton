@@ -2,7 +2,7 @@
 layout: docs
 page_title: acl Block - Agent Configuration
 description: >-
-  The "acl" block configures the Nomad agent to enable ACLs and tune various
+  The "acl" block configures the OpenWonton agent to enable ACLs and tune various
   parameters.
 ---
 
@@ -10,9 +10,9 @@ description: >-
 
 <Placement groups={['acl']} />
 
-The `acl` block configures the Nomad agent to enable ACLs and tunes various
-ACL parameters. Learn more about configuring Nomad's ACL system in the [Secure
-Nomad with Access Control guide][secure-guide].
+The `acl` block configures the OpenWonton agent to enable ACLs and tunes various
+ACL parameters. Learn more about configuring OpenWonton's ACL system in the [Secure
+OpenWonton with Access Control guide][secure-guide].
 
 ```hcl
 acl {
@@ -27,8 +27,8 @@ acl {
 
 - `enabled` `(bool: false)` - Specifies if ACL enforcement is enabled. All other
   ACL configuration options depend on this value. All agents should have the
-  same value for this parameter. For example the Nomad command line will
-  send requests for client endpoints such as `alloc exec` directly to Nomad
+  same value for this parameter. For example the OpenWonton command line will
+  send requests for client endpoints such as `alloc exec` directly to OpenWonton
   clients whenever they are accessible. In this scenario, the client will
   enforce ACLs, so both servers and clients should have ACLs enabled.
 
@@ -55,11 +55,11 @@ acl {
   region to mirror the policies and tokens into the local region from [authoritative_region][authoritative-region].
 
 - `token_min_expiration_ttl` `(string: "1m")` - Specifies the lowest acceptable
-  TTL value for an ACL token when setting expiration. This is used by the Nomad
+  TTL value for an ACL token when setting expiration. This is used by the OpenWonton
   servers to validate ACL tokens and ACL authentication methods.
 
 - `token_max_expiration_ttl` `(string: "24h")` - Specifies the highest acceptable
-  TTL value for an ACL token when setting expiration. This is used by the Nomad
+  TTL value for an ACL token when setting expiration. This is used by the OpenWonton
   servers to validate ACL tokens and ACL authentication methods.
 
 [secure-guide]: /nomad/tutorials/access-control

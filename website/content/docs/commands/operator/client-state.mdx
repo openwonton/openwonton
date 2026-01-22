@@ -14,7 +14,7 @@ stored client state in JSON format.
 ## Usage
 
 ```plaintext
-nomad operator client-state
+wonton operator client-state
 ```
 
 ## Example
@@ -22,7 +22,7 @@ nomad operator client-state
 The output of this command can be piped to `jq` for further filtering and analysis:
 
 ```shell-session
-$ nomad operator client-state | jq
+$ wonton operator client-state | jq
 {
   "Allocations": {
     "3b0ed734-f721-45d3-420a-3d96926b3f1d": {

@@ -258,7 +258,7 @@ If the file is text based, the UI will render the text inline and the stream the
 
 ## Exec Job
 
-This page will show a side bar navigation to traverse the job's task groups and tasks. The majority of this page is a latent terminal window. Using the side bar navigation will transition to the exec task page which establishes a `nomad exec` connection.
+This page will show a side bar navigation to traverse the job's task groups and tasks. The majority of this page is a latent terminal window. Using the side bar navigation will transition to the exec task page which establishes a `wonton exec` connection.
 
 This page is meant to be rendered in a popup window.
 
@@ -272,7 +272,7 @@ This page is meant to be rendered in a popup window.
 
 ## Exec Task Group
 
-This page will show a side bar navigation to traverse the job's task groups and tasks with the selected task group already open. The majority of this page is a latent terminal window. Using the side bar navigation will transition to the exec task page which establishes a `nomad exec` connection.
+This page will show a side bar navigation to traverse the job's task groups and tasks with the selected task group already open. The majority of this page is a latent terminal window. Using the side bar navigation will transition to the exec task page which establishes a `wonton exec` connection.
 
 This page is meant to be rendered in a popup window.
 
@@ -286,7 +286,7 @@ This page is meant to be rendered in a popup window.
 
 ## Exec Task
 
-This page will show a side bar navigation to traverse the job's task group's tasks. The majority of this page is a terminal window. The terminal window will be prepopulated with a `nomad exec` command. The specific command used to establish an interactive connection can be modified (e.g., changing `/bin/bash` to `/bin/sh`). Upon submitting the command, a websocket connection is opened to facilitate bidirectional communication between this terminal window and the task running on a Nomad client.
+This page will show a side bar navigation to traverse the job's task group's tasks. The majority of this page is a terminal window. The terminal window will be prepopulated with a `wonton exec` command. The specific command used to establish an interactive connection can be modified (e.g., changing `/bin/bash` to `/bin/sh`). Upon submitting the command, a websocket connection is opened to facilitate bidirectional communication between this terminal window and the task running on a Nomad client.
 
 This page is meant to be rendered in a popup window.
 
@@ -354,7 +354,7 @@ address, port, datacenter, allocations, and attributes.
 
 ## Client Monitor
 
-This page streams log messages from a client's agent. It is the equivalent to the `nomad monitor` command with `-node-id` set to the client specified in the URL.
+This page streams log messages from a client's agent. It is the equivalent to the `wonton monitor` command with `-node-id` set to the client specified in the URL.
 
 | Path                             | Produces    |
 | -------------------------------- | ----------- |
@@ -395,7 +395,7 @@ This page lists all tags associated with a server.
 
 ## Server Monitor
 
-This page streams log messages from a server's agent. It is the equivalent to the `nomad monitor` command with `-server-id` set to the server specified in the URL.
+This page streams log messages from a server's agent. It is the equivalent to the `wonton monitor` command with `-server-id` set to the server specified in the URL.
 
 | Path                             | Produces    |
 | -------------------------------- | ----------- |

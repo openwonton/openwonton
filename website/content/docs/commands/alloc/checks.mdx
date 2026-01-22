@@ -13,11 +13,11 @@ The `alloc checks` command outputs the latest health check status information fo
 ## Usage
 
 ```plaintext
-nomad alloc checks [options] <allocation>
+wonton alloc checks [options] <allocation>
 ```
 
 Outputs the latest health check status information for services in the allocation
-using the Nomad service discovery provider. This command accepts an allocation
+using the OpenWonton service discovery provider. This command accepts an allocation
 ID or prefix as the sole argument.
 
 When ACLs are enabled, this command requires a token with the 'read-job' capability 
@@ -41,7 +41,7 @@ command with an allocation ID prefix instead of the exact allocation ID.
 Show checks of an alloc health check using its short ID:
 
 ```shell-session
-$ nomad alloc checks e0fdbd85
+$ wonton alloc checks e0fdbd85
 
 Status of 1 Nomad Service Checks
 
@@ -59,7 +59,7 @@ Output     =  nomad: tcp ok
 The `-json` flag can be used to get the health checks status in json format:
 
 ```shell-session
-nomad alloc checks -json 54fde4f8
+wonton alloc checks -json 54fde4f8
 
 {
     "9810e90177a4c21ce3bfe04dc7da6131": {
@@ -80,7 +80,7 @@ nomad alloc checks -json 54fde4f8
 Or use the `-t` flag to format and display the health checks using a Go template:
 
 ```shell-session
-$ nomad alloc checks -t '{{range .}}{{ printf "%s: %s\n" .ID  .Status }}{{end}}' 54
+$ wonton alloc checks -t '{{range .}}{{ printf "%s: %s\n" .ID  .Status }}{{end}}' 54
 
 9810e90177a4c21ce3bfe04dc7da6131: success
 ```

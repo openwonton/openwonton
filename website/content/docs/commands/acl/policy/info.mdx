@@ -14,7 +14,7 @@ policy.
 ## Usage
 
 ```plaintext
-nomad acl policy info <name>
+wonton acl policy info <name>
 ```
 
 The `acl policy info` command requires the policy name.
@@ -31,7 +31,7 @@ associated policy.
 Fetch information on an existing ACL Policy:
 
 ```shell-session
-$ nomad acl policy info my-policy
+$ wonton acl policy info my-policy
 Name        = my-policy
 Description = <none>
 CreateIndex = 749
@@ -49,7 +49,7 @@ Rules
 If the ACL Policy is associated with a [Workload Identity][], additional information will be shown:
 
 ```shell-session
-$ nomad acl policy info my-policy
+$ wonton acl policy info my-policy
 Name        = my-policy
 Description = <none>
 CreateIndex = 749
@@ -70,4 +70,4 @@ Rules
 }
 ```
 
-[Workload Identity]: /nomad/docs/concepts/workload-identity 'Nomad Workload Identity'
+[Workload Identity]: /nomad/docs/concepts/workload-identity 'OpenWonton Workload Identity'

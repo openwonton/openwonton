@@ -11,7 +11,7 @@ The `acl binding-rule update` command is used to update existing ACL Binding Rul
 ## Usage
 
 ```plaintext
-nomad acl binding-rule update [options] <binding-rule_ID>
+wonton acl binding-rule update [options] <binding-rule_ID>
 ```
 
 The `acl binding-rule update` command requires an existing rule's ID.
@@ -29,7 +29,7 @@ The `acl binding-rule update` command requires an existing rule's ID.
   attributes returned from the binding rule during login.
 
 - `-bind-type`: Specifies adjusts how this binding rule is applied at login time
-  to internal Nomad objects. Valid options are `role`, `policy`, and `management`.
+  to internal OpenWonton objects. Valid options are `role`, `policy`, and `management`.
 
 - `-bind-name`: Specifies is the target of the binding used on selector match.
   This can be lightly templated using HIL `${foo}` syntax. If the bind type is
@@ -44,7 +44,7 @@ The `acl binding-rule update` command requires an existing rule's ID.
 Update an existing ACL binding rule:
 
 ```shell-session
-$ nomad acl binding-rule update -description "new description" dc0e494d-0878-4e56-37d4-482e371e5bdb
+$ wonton acl binding-rule update -description "new description" dc0e494d-0878-4e56-37d4-482e371e5bdb
 ID           = dc0e494d-0878-4e56-37d4-482e371e5bdb
 Description  = new description
 Auth Method  = auth0

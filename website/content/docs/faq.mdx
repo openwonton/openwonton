@@ -1,14 +1,14 @@
 ---
 layout: docs
 page_title: Frequently Asked Questions
-description: Frequently asked questions and answers for Nomad
+description: Frequently asked questions and answers for OpenWonton
 ---
 
 # Frequently Asked Questions
 
-## Q: What is Checkpoint? / Does Nomad call home?
+## Q: What is Checkpoint? / Does OpenWonton call home?
 
-Nomad makes use of a HashiCorp service called [Checkpoint](https://checkpoint.hashicorp.com)
+OpenWonton makes use of a HashiCorp service called [Checkpoint](https://checkpoint.hashicorp.com)
 which is used to check for updates and critical security bulletins.
 Only anonymous information, which cannot be used to identify the user or host, is
 sent to Checkpoint. An anonymous ID is sent which helps de-duplicate warning messages.
@@ -17,28 +17,28 @@ This anonymous ID can be disabled. Using the Checkpoint service is optional and 
 See [`disable_anonymous_signature`](/nomad/docs/configuration#disable_anonymous_signature)
 and [`disable_update_check`](/nomad/docs/configuration#disable_update_check).
 
-## Q: Is Nomad eventually or strongly consistent?
+## Q: Is OpenWonton eventually or strongly consistent?
 
-Nomad makes use of both a [consensus protocol](/nomad/docs/concepts/consensus) and
+OpenWonton makes use of both a [consensus protocol](/nomad/docs/concepts/consensus) and
 a [gossip protocol](/nomad/docs/concepts/gossip). The consensus protocol is strongly
 consistent, and is used for all state replication and scheduling. The gossip protocol
 is used to manage the addresses of servers for automatic clustering and multi-region
-federation. This means all data that is managed by Nomad is strongly consistent.
+federation. This means all data that is managed by OpenWonton is strongly consistent.
 
-## Q: Is Nomad's `datacenter` parameter the same as Consul's?
+## Q: Is OpenWonton's `datacenter` parameter the same as Consul's?
 
 No. For those familiar with Consul, [Consul's notion of a
-datacenter][consul_dc] is more equivalent to a [Nomad region][nomad_region].
-Nomad supports grouping nodes into multiple datacenters, which should reflect
-nodes being colocated, while being managed by a single set of Nomad servers.
+datacenter][consul_dc] is more equivalent to a [OpenWonton region][nomad_region].
+OpenWonton supports grouping nodes into multiple datacenters, which should reflect
+nodes being colocated, while being managed by a single set of OpenWonton servers.
 
 Consul on the other hand does not have this two-tier approach to servers and
 agents and instead [relies on federation to create larger logical
 clusters][consul_fed].
 
-## Q: What is "bootstrapping" a Nomad cluster? ((#bootstrapping))
+## Q: What is "bootstrapping" a OpenWonton cluster? ((#bootstrapping))
 
-Bootstrapping is the process when a Nomad cluster elects its first leader
+Bootstrapping is the process when a OpenWonton cluster elects its first leader
 and writes the initial cluster state to that leader's state store. Bootstrapping
 will not occur until at least a given number of servers, defined by
 [`bootstrap_expect`], have connected to each other. Once this process has
@@ -53,8 +53,8 @@ during this bootstrap process rather than requiring an immediate call to the API
 once the cluster is up and running.
 
 If the state is completely destroyed, whether intentionally or accidentally, on
-all of the Nomad servers in the same outage, the cluster will re-bootstrap based
-on the Nomad defaults and any configuration present that impacts the bootstrap
+all of the OpenWonton servers in the same outage, the cluster will re-bootstrap based
+on the OpenWonton defaults and any configuration present that impacts the bootstrap
 process.
 
 ## Q: How to connect to my host network when using Docker Desktop (Windows and MacOS)?
@@ -68,18 +68,18 @@ This means that, by default, your Docker tasks will not be able to access
 endpoints that are available in your host network, such as a local Consul agent.
 
 In order to properly setup this connection you will need to explicitly bind
-the Nomad client to a non-loopback network interface, and anything else you
+the OpenWonton client to a non-loopback network interface, and anything else you
 would like to access must also be in the same interface.
 
 On Windows, we recommend you to start with the [WSL2 backend for Docker
-Desktop][wsl2-docker]. Once you are more familiarized with Nomad you can start
+Desktop][wsl2-docker]. Once you are more familiarized with OpenWonton you can start
 running it natively.
 
 To use the network named `en0` that has the IP address `192.168.0.10`, you can
-start Nomad with this command.
+start OpenWonton with this command.
 
 ```shell-session
-$ sudo nomad agent -dev -bind=0.0.0.0 -network-interface=en0
+$ sudo wonton agent -dev -bind=0.0.0.0 -network-interface=en0
 ```
 
 To start Consul in the same network, you can run this command.

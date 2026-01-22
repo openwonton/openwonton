@@ -21,7 +21,7 @@ This command uses the [`/v1/client/metadata` HTTP API][api].
 ## Usage
 
 ```plaintext
-nomad node meta read [-json] [-node-id ...]
+wonton node meta read [-json] [-node-id ...]
 ```
 
 ## General Options
@@ -40,7 +40,7 @@ nomad node meta read [-json] [-node-id ...]
 ## Example
 
 ```shell-session
-$ nomad node meta read -node-id 3b58b0a6
+$ wonton node meta read -node-id 3b58b0a6
 
 All Meta
 connect.gateway_image     = docker.io/envoyproxy/envoy:v${NOMAD_envoy_version}

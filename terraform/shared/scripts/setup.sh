@@ -35,7 +35,7 @@ CONSULTEMPLATEDIR=/opt/consul-template
 # Dependencies
 sudo apt-get install -y software-properties-common
 sudo apt-get update
-sudo apt-get install -y unzip tree redis-tools jq curl tmux gnupg-curl
+sudo apt-get install -y unzip tree redis-tools jq curl tmux gnupg net-tools
 
 # Disable the firewall
 
@@ -86,7 +86,7 @@ sudo chmod 755 $NOMADCONFIGDIR
 sudo mkdir -p $NOMADDIR
 sudo chmod 755 $NOMADDIR
 
-# Consul Template 
+# Consul Template
 
 curl -L $CONSULTEMPLATEDOWNLOAD > consul-template.zip
 
@@ -104,15 +104,15 @@ sudo chmod 755 $CONSULTEMPLATEDIR
 
 # Docker
 distro=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
-sudo apt-get install -y apt-transport-https ca-certificates gnupg2 
+sudo apt-get install -y apt-transport-https ca-certificates gnupg
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/${distro} $(lsb_release -cs) stable"
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/${distro} $(lsb_release -cs) stable"
 sudo apt-get update
 sudo apt-get install -y docker-ce
 
 # Needs testing, updating and fixing
-if [[ ! -z ${INSTALL_NVIDIA_DOCKER+x} ]]; then 
-  
+if [[ ! -z ${INSTALL_NVIDIA_DOCKER+x} ]]; then
+
   # Install official NVIDIA driver package
   # This is why we added gnupg-curl, otherwise, the following fails with "gpgkeys: protocol `https' not supported"
   sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub
@@ -133,7 +133,7 @@ if [[ ! -z ${INSTALL_NVIDIA_DOCKER+x} ]]; then
 fi
 
 # rkt
-# Note: rkt has been ended and archived. This should likely be removed. 
+# Note: rkt has been ended and archived. This should likely be removed.
 # See https://github.com/rkt/rkt/issues/4024
 VERSION=1.30.0
 DOWNLOAD=https://github.com/rkt/rkt/releases/download/v${VERSION}/rkt-v${VERSION}.tar.gz
@@ -170,6 +170,8 @@ configure_rkt_networking
 
 # Java
 sudo add-apt-repository -y ppa:openjdk-r/ppa
-sudo apt-get update 
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get update
+if ! sudo apt-get install -y openjdk-8-jdk; then
+  sudo apt-get install -y openjdk-11-jdk
+fi
 JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")

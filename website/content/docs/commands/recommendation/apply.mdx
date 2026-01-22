@@ -9,13 +9,13 @@ description: |
 
 The `recommendation apply` command is used to apply recommendations.
 
-~> Recommendation commands are new in Nomad 1.0 and are only available with
+~> Recommendation commands are new in OpenWonton 1.0 and are only available with
 Nomad Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad recommendation apply [options] <recommendation_ids>
+wonton recommendation apply [options] <recommendation_ids>
 ```
 
 The `recommendation apply` command requires at least one recommendation ID to
@@ -48,7 +48,7 @@ namespace.
 Apply a single recommendation and enter monitor mode:
 
 ```shell-session
-$ nomad recommendation apply a9c041c5-3c04-aa24-bd55-0a80cded4f10
+$ wonton recommendation apply a9c041c5-3c04-aa24-bd55-0a80cded4f10
 ==> Monitoring evaluation "529cc88e"
     Evaluation triggered by job "job1"
     Evaluation within deployment: "28a3378f"
@@ -60,7 +60,7 @@ $ nomad recommendation apply a9c041c5-3c04-aa24-bd55-0a80cded4f10
 Apply multiple recommendations for different jobs:
 
 ```shell-session
-$ nomad recommendation apply a9c041c5-3c04-aa24-bd55-0a80cded4f10 811900b6-da11-ef08-f515-f5e6684007a8
+$ wonton recommendation apply a9c041c5-3c04-aa24-bd55-0a80cded4f10 811900b6-da11-ef08-f515-f5e6684007a8
 Errors
 None
 

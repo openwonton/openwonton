@@ -9,13 +9,13 @@ description: |
 
 The `quota apply` command is used to create or update quota specifications.
 
-~> Quota commands are new in Nomad 0.7 and are only available with Nomad
+~> Quota commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad quota apply [options] <path>
+wonton quota apply [options] <path>
 ```
 
 The `quota apply` command requires the path to the specification file. The
@@ -37,6 +37,6 @@ capability.
 Create a new quota specification:
 
 ```shell-session
-$ nomad quota apply my-quota.hcl
+$ wonton quota apply my-quota.hcl
 Successfully applied quota specification "my-quota"!
 ```

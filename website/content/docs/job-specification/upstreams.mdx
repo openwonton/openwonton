@@ -81,7 +81,7 @@ job "countdash" {
 
 ## `upstreams` Parameters
 
-- `config` `(map: nil)` - Upstream configuration that is opaque to Nomad and passed
+- `config` `(map: nil)` - Upstream configuration that is opaque to OpenWonton and passed
   directly to Consul. See [Consul Connect documentation](/consul/docs/connect/registration/service-registration#upstream-configuration-reference)
   for details. Keys and values support [runtime variable interpolation][interpolation].
 - `destination_name` `(string: <required>)` - Name of the upstream service.
@@ -99,7 +99,7 @@ job "countdash" {
 - `local_bind_socket_path` - `(string: "")` - The path at which to bind a Unix domain socket listener.
 - `mesh_gateway` <code>([mesh_gateway][mesh_gateway_param]: nil)</code> - Configures the mesh gateway
   behavior for connecting to this upstream.
-- `config` `(map: nil)` - Upstream configuration that is opaque to Nomad and passed
+- `config` `(map: nil)` - Upstream configuration that is opaque to OpenWonton and passed
   directly to Consul. See [Consul Connect documentation](/consul/docs/connect/registration/service-registration#upstream-configuration-reference)
   for details. Keys and values support [runtime variable interpolation][interpolation].
 
@@ -137,12 +137,12 @@ and a local bind port.
     }
 ```
 
-[job]: /nomad/docs/job-specification/job 'Nomad job Job Specification'
-[group]: /nomad/docs/job-specification/group 'Nomad group Job Specification'
-[task]: /nomad/docs/job-specification/task 'Nomad task Job Specification'
-[interpolation]: /nomad/docs/runtime/interpolation 'Nomad interpolation'
-[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'Nomad sidecar service Specification'
-[upstreams]: /nomad/docs/job-specification/upstreams 'Nomad upstream config Specification'
+[job]: /nomad/docs/job-specification/job 'OpenWonton job Job Specification'
+[group]: /nomad/docs/job-specification/group 'OpenWonton group Job Specification'
+[task]: /nomad/docs/job-specification/task 'OpenWonton task Job Specification'
+[interpolation]: /nomad/docs/runtime/interpolation 'OpenWonton interpolation'
+[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'OpenWonton sidecar service Specification'
+[upstreams]: /nomad/docs/job-specification/upstreams 'OpenWonton upstream config Specification'
 [service_defaults_mode]: /consul/docs/connect/config-entries/service-defaults#meshgateway
 [mesh_gateway_param]: /nomad/docs/job-specification/upstreams#mesh_gateway-parameters
 [mesh_gateways]: /consul/docs/connect/gateways/mesh-gateway/service-to-service-traffic-datacenters#mesh-gateways

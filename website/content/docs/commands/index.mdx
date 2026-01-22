@@ -2,22 +2,22 @@
 layout: docs
 page_title: Commands (CLI)
 description: >
-  Nomad can be controlled via a command-line interface. This page documents all
-  the commands Nomad accepts.
+  OpenWonton can be controlled via a command-line interface. This page documents
+  all the commands OpenWonton accepts.
 ---
 
-# Nomad Commands (CLI)
+# OpenWonton Commands (CLI)
 
-Nomad is controlled via a very easy to use command-line interface (CLI).
-Nomad is only a single command-line application: `nomad`, which
+OpenWonton is controlled via a very easy to use command-line interface (CLI).
+OpenWonton is only a single command-line application: `wonton`, which
 takes a subcommand such as "agent" or "status". The complete list of
 subcommands is in the navigation to the left.
 
-The Nomad CLI is a well-behaved command line application. In erroneous cases,
+The OpenWonton CLI is a well-behaved command line application. In erroneous cases,
 a non-zero exit status will be returned. It also responds to `-h` and `--help`
 as you would most likely expect.
 
-To view a list of the available commands at any time, just run Nomad
+To view a list of the available commands at any time, just run OpenWonton
 with no arguments. To get help for any specific subcommand, run the subcommand
 with the `-h` argument.
 
@@ -26,36 +26,36 @@ command can be found on the left.
 
 ## Autocomplete
 
-Nomad's CLI supports command autocomplete. Autocomplete can be installed or
+OpenWonton's CLI supports command autocomplete. Autocomplete can be installed or
 uninstalled by running the following on bash, zsh or fish shells:
 
 ```shell-session
-$ nomad -autocomplete-install
-$ nomad -autocomplete-uninstall
+$ wonton -autocomplete-install
+$ wonton -autocomplete-uninstall
 ```
 
 ## Command Contexts
 
-Nomad's CLI commands have implied contexts in their naming convention. Because
+OpenWonton's CLI commands have implied contexts in their naming convention. Because
 the CLI is most commonly used to manipulate or query jobs, you can assume that
 any given command is working in that context unless the command name implies
 otherwise.
 
-For example, the `nomad job run` command is used to run a new job, the `nomad status` command queries information about existing jobs, etc. Conversely,
+For example, the `wonton job run` command is used to run a new job, the `wonton status` command queries information about existing jobs, etc. Conversely,
 commands with a prefix in their name likely operate in a different context.
-Examples include the `nomad agent-info` or `nomad node drain` commands,
+Examples include the `wonton agent-info` or `wonton node drain` commands,
 which operate in the agent or node contexts respectively.
 
 ### Remote Usage
 
-The Nomad CLI may be used to interact with a remote Nomad cluster, even when the
-local machine does not have a running Nomad agent. To do so, set the
+The OpenWonton CLI may be used to interact with a remote OpenWonton cluster, even when the
+local machine does not have a running OpenWonton agent. To do so, set the
 `NOMAD_ADDR` environment variable or use the `-address=<addr>` flag when running
 commands.
 
 ```shell-session
-$ NOMAD_ADDR=https://remote-address:4646 nomad status
-$ nomad status -address=https://remote-address:4646
+$ NOMAD_ADDR=https://remote-address:4646 wonton status
+$ wonton status -address=https://remote-address:4646
 ```
 
 The provided address must be reachable from your local machine. There are a
@@ -64,16 +64,16 @@ exposed to the public internet it is highly recommended to configure TLS.
 
 ### Environment Variables
 
-Nomad can use environment variables to configure command-line tool options.
+OpenWonton can use environment variables to configure command-line tool options.
 These environment variables can be overridden as needed using individual
 flags.
 
 #### Connection Environment Variables
 
-- `NOMAD_ADDR` - The address of the Nomad server. Defaults to
+- `NOMAD_ADDR` - The address of the OpenWonton server. Defaults to
   `http://127.0.0.1:4646`.
 
-- `NOMAD_REGION` - The region of the Nomad server to forward commands to.
+- `NOMAD_REGION` - The region of the OpenWonton server to forward commands to.
   Defaults to the Agent's local region
 
 - `NOMAD_NAMESPACE` - The target namespace for queries and actions bound to a
@@ -82,7 +82,7 @@ flags.
 
 - `NOMAD_HTTP_AUTH` - (Optional) This allows users to supply "Basic" HTTP
   authentication scheme ([RFC 7617](https://tools.ietf.org/html/rfc7617))
-  information in environments where the Nomad API is behind an authenticating
+  information in environments where the OpenWonton API is behind an authenticating
   proxy server.
 
 #### ACL Environment Variables
@@ -97,16 +97,16 @@ flags.
 #### mTLS Environment Variables
 
 - `NOMAD_CLIENT_CERT` - Path to a PEM encoded client certificate for TLS
-  authentication to the Nomad server. Must also specify `NOMAD_CLIENT_KEY`.
+  authentication to the OpenWonton server. Must also specify `NOMAD_CLIENT_KEY`.
 
 - `NOMAD_CLIENT_KEY` - Path to an unencrypted PEM encoded private key matching
   the client certificate from `NOMAD_CLIENT_CERT`.
 
 - `NOMAD_CACERT` - Path to a PEM encoded CA cert file to use to verify the
-  Nomad server SSL certificate.
+  OpenWonton server SSL certificate.
 
 - `NOMAD_CAPATH` - Path to a directory of PEM encoded CA cert files to verify
-  the Nomad server SSL certificate. If both `NOMAD_CACERT` and `NOMAD_CAPATH`
+  the OpenWonton server SSL certificate. If both `NOMAD_CACERT` and `NOMAD_CAPATH`
   are specified, `NOMAD_CACERT` is used.
 
 - `NOMAD_SKIP_VERIFY` - Do not verify TLS certificate. **This is highly not

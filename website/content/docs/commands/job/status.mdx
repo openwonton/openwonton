@@ -12,7 +12,7 @@ The `job status` command displays status information for a job.
 ## Usage
 
 ```plaintext
-nomad job status [options] [job]
+wonton job status [options] [job]
 ```
 
 This command accepts an optional job ID or prefix as the sole argument. If there
@@ -21,7 +21,7 @@ the specific job is queried and displayed. Otherwise, a list of matching jobs
 and information will be displayed.
 
 If the ID is omitted, the command lists out all of the existing jobs and a few
-of the most useful status fields for each. As of Nomad 0.7.1, alloc status also
+of the most useful status fields for each. As of OpenWonton 0.7.1, alloc status also
 shows allocation modification time in addition to create time. When the
 `-verbose` flag is not set, allocation creation and modify times are shown in a
 shortened relative time format like `5m ago`.
@@ -52,7 +52,7 @@ run the command with a job prefix instead of the exact job ID.
 List of all jobs:
 
 ```shell-session
-$ nomad job status
+$ wonton job status
 ID       Type     Priority  Status          Submit Date
 job1     service  80        running         07/25/17 15:47:11 UTC
 job2     batch    40        complete        07/24/17 19:22:11 UTC
@@ -62,7 +62,7 @@ job3     service  50        dead (stopped)  07/22/17 16:34:48 UTC
 Short view of a specific job:
 
 ```shell-session
-$ nomad job status -short job1
+$ wonton job status -short job1
 ID            = job1
 Name          = Test Job
 Submit Date   = 07/25/17 15:47:11 UTC
@@ -77,7 +77,7 @@ Parameterized = false
 Full status information of a job:
 
 ```shell-session
-$ nomad job status example
+$ wonton job status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 15:53:04 UTC
@@ -109,7 +109,7 @@ ID        Node ID   Task Group  Version  Desired  Status   Created   Modified
 Full status information of a periodic job:
 
 ```shell-session
-$ nomad job status example
+$ wonton job status example
 ID                   = example
 Name                 = example
 Submit Date          = 07/25/17 15:59:52 UTC
@@ -135,7 +135,7 @@ example/periodic-1500998420  running
 Full status information of a parameterized job:
 
 ```shell-session
-$ nomad job status example
+$ wonton job status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 15:59:52 UTC
@@ -164,7 +164,7 @@ example/dispatch-1485411499-fa2ee40e  running
 Full status information of a job with placement failures:
 
 ```shell-session
-$ nomad job status example
+$ wonton job status example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 15:55:27 UTC
@@ -202,11 +202,11 @@ a17b7d3d  3f38ecb4  cache       0        run      running  5m ago    5m ago
 ```
 
 Full status information showing evaluations with a placement failure. The in
-progress evaluation denotes that Nomad is blocked waiting for resources to
+progress evaluation denotes that OpenWonton is blocked waiting for resources to
 become available so that it can place the remaining allocations.
 
 ```shell-session
-$ nomad job status -evals example
+$ wonton job status -evals example
 ID            = example
 Name          = example
 Submit Date   = 07/25/17 15:55:27 UTC

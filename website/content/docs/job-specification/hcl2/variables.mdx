@@ -2,22 +2,22 @@
 layout: docs
 page_title: Input Variables - HCL Configuration Language
 description: |-
-  Input variables are parameters for Nomad jobs.
+  Input variables are parameters for OpenWonton jobs.
   This page covers configuration syntax for variables.
 ---
 
 # Input Variables
 
-Input variables serve as parameters for a Nomad job, allowing aspects of the
+Input variables serve as parameters for a OpenWonton job, allowing aspects of the
 job to be customized without altering the job's own source code.
 
 When you declare variables in the same file as the job specification, you
 can set their values using CLI options and environment variables.
 
 -> **Note:** For brevity, input variables are often referred to as just
-"variables" or "Nomad variables" when it is clear from context what sort of
-variable is being discussed. Other kinds of variables in Nomad include
-_environment variables_ (set by the shell where Nomad runs) and _expression
+"variables" or "OpenWonton variables" when it is clear from context what sort of
+variable is being discussed. Other kinds of variables in OpenWonton include
+_environment variables_ (set by the shell where OpenWonton runs) and _expression
 variables_ (used to indirectly represent a value in an
 [expression](/nomad/docs/job-specification/hcl2/expressions)).
 
@@ -72,7 +72,7 @@ section.
 
 The `variable` declaration can also include a `default` argument. If present,
 the variable is considered to be _optional_ and the default value will be used
-if no value is set when calling the job or running Nomad. The `default`
+if no value is set when calling the job or running OpenWonton. The `default`
 argument requires a literal value and cannot reference other objects in the
 configuration.
 
@@ -102,7 +102,7 @@ accepted as the value for a variable. If no type constraint is set then a
 value of any type is accepted.
 
 While type constraints are optional, we recommend specifying them; they serve
-as easy reminders for users of the job, and allow Nomad to return a helpful
+as easy reminders for users of the job, and allow OpenWonton to return a helpful
 error message if the wrong type is used.
 
 Type constraints are created from a mixture of type keywords and type
@@ -175,7 +175,7 @@ The condition argument is an expression that must use the value of the variable 
 return true if the value is valid, or false if it is invalid. The expression can
 refer only to the variable that the condition applies to, and _must_ not produce errors.
 
-If condition evaluates to false, Nomad will produce an error message that includes
+If condition evaluates to false, OpenWonton will produce an error message that includes
 the sentences given in `error_message`. The error message string should be at least
 one full sentence explaining the constraint that failed, starting with an uppercase
 letter ( if the alphabet permits it ) and ending with a period or question mark.
@@ -242,12 +242,12 @@ corresponding to variable names:
 
 ### Environment Variables
 
-As a fallback for the other ways of defining variables, Nomad searches the
+As a fallback for the other ways of defining variables, OpenWonton searches the
 environment of its own process for environment variables named `NOMAD_VAR_`
 followed by the name of a declared variable.
 
-This can be useful when running Nomad in automation, or when running a
-sequence of Nomad commands in succession with the same variables. For example,
+This can be useful when running OpenWonton in automation, or when running a
+sequence of OpenWonton commands in succession with the same variables. For example,
 at a `bash` prompt on a Unix system:
 
 ```shell-session
@@ -257,18 +257,18 @@ $ nomad job run example.nomad.hcl
 ```
 
 On operating systems where environment variable names are case-sensitive,
-Nomad matches the variable name exactly as given in configuration, and so the
+OpenWonton matches the variable name exactly as given in configuration, and so the
 required environment variable name will usually have a mix of upper and lower
 case letters as in the above example.
 
 ### Complex-typed Values
 
-When variable values are provided in a variable definitions file, Nomad's
+When variable values are provided in a variable definitions file, OpenWonton's
 [usual syntax](/nomad/docs/job-specification/hcl2/expressions) can be used to assign
 complex-typed values, like lists and maps.
 
 Some special rules apply to the `-var` command line option and to environment
-variables. For convenience, Nomad defaults to interpreting `-var` and
+variables. For convenience, OpenWonton defaults to interpreting `-var` and
 environment variable values as literal strings, which do not need to be quoted:
 
 ```shell-session
@@ -276,7 +276,7 @@ $ export NOMAD_VAR_image_id=nginx:1.19
 ```
 
 However, if an input variable uses a [type constraint](#type-constraints) to
-require a complex value (list, set, map, object, or tuple), Nomad will instead
+require a complex value (list, set, map, object, or tuple), OpenWonton will instead
 attempt to parse its value using the same syntax used within variable
 definitions files, which requires careful attention to the string escaping
 rules in your shell:
@@ -294,7 +294,7 @@ files.
 The above mechanisms for setting variables can be used together in any
 combination.
 
-Nomad loads variables in the following order, with later sources taking
+OpenWonton loads variables in the following order, with later sources taking
 precedence over earlier ones:
 
 - Environment variables (lowest priority)
@@ -302,7 +302,7 @@ precedence over earlier ones:
   provided. (highest priority)
 
 If the same variable is assigned multiple values using different mechanisms,
-Nomad uses the _last_ value it finds, overriding any previous values. Note
+OpenWonton uses the _last_ value it finds, overriding any previous values. Note
 that the same variable cannot be assigned multiple values within a single source.
 
 ~> **Important:** Variables with map and object values behave the same way as

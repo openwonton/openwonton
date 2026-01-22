@@ -11,14 +11,14 @@ The `namespace apply` command is used create or update a namespace.
 
 <Tip>
   Visit the <a href="https://developer.hashicorp.com/nomad/tutorials/manage-clusters/namespaces">
-    Nomad Namespaces tutorial
+    OpenWonton Namespaces tutorial
   </a> for more information.
 </Tip>
 
 ## Usage
 
 ```plaintext
-nomad namespace apply [options] <input>
+wonton namespace apply [options] <input>
 ```
 
 Apply is used to create or update a namespace. The HCL specification file
@@ -49,14 +49,14 @@ replicated to all federated regions.
 Create a namespace with a quota:
 
 ```shell-session
-$ nomad namespace apply -description "Prod API servers" -quota prod api-prod
+$ wonton namespace apply -description "Prod API servers" -quota prod api-prod
 Successfully applied namespace "api-prod"!
 ```
 
 Remove a quota from a namespace:
 
 ```shell-session
-$ nomad namespace apply -quota= api-prod
+$ wonton namespace apply -quota= api-prod
 ```
 
 Create a namespace from a file:
@@ -74,5 +74,5 @@ meta {
   owner        = "John Doe"
   contact_mail = "john@mycompany.com"
 }
-$ nomad namespace apply namespace.hcl
+$ wonton namespace apply namespace.hcl
 ```

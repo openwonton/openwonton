@@ -1,25 +1,25 @@
 ---
 layout: docs
 page_title: Metrics Reference
-description: Learn about the different metrics available in Nomad.
+description: Learn about the different metrics available in OpenWonton.
 ---
 
 # Metrics Reference
 
-The Nomad agent collects various runtime metrics about the performance of
+The OpenWonton agent collects various runtime metrics about the performance of
 different libraries and subsystems. These metrics are aggregated on a ten
 second interval and are retained for one minute.
 
 This data can be accessed via an HTTP endpoint or via sending a signal to the
-Nomad process. This data is available via HTTP at `/metrics`. See
+OpenWonton process. This data is available via HTTP at `/metrics`. See
 [Metrics](/nomad/api-docs/metrics) for more information.
 
-To view this data via sending a signal to the Nomad process: on Unix,
-this is `USR1` while on Windows it is `BREAK`. Once Nomad receives the signal,
+To view this data via sending a signal to the OpenWonton process: on Unix,
+this is `USR1` while on Windows it is `BREAK`. Once OpenWonton receives the signal,
 it will dump the current telemetry information to the agent's `stderr`.
 
 This telemetry information can be used for debugging or otherwise
-getting a better view of what Nomad is doing.
+getting a better view of what OpenWonton is doing.
 
 Telemetry information can be streamed to both [statsite](https://github.com/armon/statsite)
 as well as statsd based on providing the appropriate configuration options.
@@ -77,15 +77,15 @@ Below is sample output of a telemetry dump:
 
 ### Tagged Metrics
 
-Nomad emits metrics in a tagged format. Each metric can support more than one
+OpenWonton emits metrics in a tagged format. Each metric can support more than one
 tag, meaning that it is possible to do a match over metrics for datapoints
-such as a particular datacenter, and return all metrics with this tag. Nomad
+such as a particular datacenter, and return all metrics with this tag. OpenWonton
 supports labels for namespaces as well.
 
 ## Key Metrics
 
 The metrics in the table below are the most important metrics for monitoring
-the overall health of a Nomad cluster.
+the overall health of a OpenWonton cluster.
 
 When telemetry is being streamed to statsite or statsd, `interval` in the
 table below is defined to be their flush interval. Otherwise, the interval can
@@ -100,8 +100,8 @@ signals.
 | `nomad.nomad.broker.total_pending`           | Evaluations that are pending until an existing evaluation for the same job completes                                                                                                                              | # of evaluations               | Gauge   |
 | `nomad.nomad.broker.total_ready`             | Number of evaluations ready to be processed                                                                                                                                                                       | # of evaluations               | Gauge   |
 | `nomad.nomad.broker.total_unacked`           | Evaluations dispatched for processing but incomplete                                                                                                                                                              | # of evaluations               | Gauge   |
-| `nomad.nomad.heartbeat.active`               | Number of active heartbeat timers. Each timer represents a Nomad Client connection                                                                                                                                | # of heartbeat timers          | Gauge   |
-| `nomad.nomad.heartbeat.invalidate`           | The length of time it takes to invalidate a Nomad Client due to failed heartbeats                                                                                                                                 | ms / Heartbeat Invalidation    | Timer   |
+| `nomad.nomad.heartbeat.active`               | Number of active heartbeat timers. Each timer represents a OpenWonton Client connection                                                                                                                                | # of heartbeat timers          | Gauge   |
+| `nomad.nomad.heartbeat.invalidate`           | The length of time it takes to invalidate a OpenWonton Client due to failed heartbeats                                                                                                                                 | ms / Heartbeat Invalidation    | Timer   |
 | `nomad.nomad.plan.evaluate`                  | Time to validate a scheduler Plan. Higher values cause lower scheduling throughput. Similar to `nomad.plan.submit` but does not include RPC time or time in the Plan Queue                                        | ms / Plan Evaluation           | Timer   |
 | `nomad.nomad.plan.node_rejected`             | Number of times a node has had a plan rejected. A node with a high rate of rejections may have an underlying issue causing it to be unschedulable. Refer to [this link][s_port_plan_failure] for more information | # of rejected plans            | Counter |
 | `nomad.nomad.plan.queue_depth`               | Number of scheduler Plans waiting to be evaluated                                                                                                                                                                 | # of plans                     | Gauge   |
@@ -120,7 +120,7 @@ signals.
 
 ## Client Metrics
 
-The Nomad client emits metrics related to the resource usage of the allocations
+The OpenWonton client emits metrics related to the resource usage of the allocations
 and tasks running on it and the node itself. Operators have to explicitly turn
 on publishing host and allocation metrics. Publishing allocation and host
 metrics can be turned on by setting the value of `publish_allocation_metrics`
@@ -134,7 +134,7 @@ Please see the [agent configuration](/nomad/docs/configuration/telemetry)
 page for more details.
 
 Additional labels are emitted for [parameterized](/nomad/docs/job-specification/parameterized) and
-[periodic](/nomad/docs/job-specification/parameterized) jobs. Nomad
+[periodic](/nomad/docs/job-specification/parameterized) jobs. OpenWonton
 emits the parent job id as a new label `parent_id`. Also, the labels `dispatch_id`
 and `periodic_id` are emitted, containing the ID of the specific invocation of the
 parameterized or periodic job respectively. For example, a dispatch job with the id
@@ -148,7 +148,7 @@ parameterized or periodic job respectively. For example, a dispatch job with the
 
 ## Host Metrics
 
-Nomad will emit [tagged metrics][tagged-metrics], in the below format:
+OpenWonton will emit [tagged metrics][tagged-metrics], in the below format:
 
 | Metric                                    | Description                                                                          | Unit       | Type    | Labels                                                                                           |
 |-------------------------------------------|--------------------------------------------------------------------------------------|------------|---------|--------------------------------------------------------------------------------------------------|
@@ -180,7 +180,7 @@ Nomad will emit [tagged metrics][tagged-metrics], in the below format:
 | `nomad.client.unallocated.cpu`            | Total amount of CPU shares free for the scheduler to allocate to tasks               | Mhz        | Gauge   | datacenter, host, node_class, node_id, node_pool, node_scheduling_eligibility, node_status       |
 | `nomad.client.unallocated.disk`           | Total amount of disk space free for the scheduler to allocate to tasks               | Megabytes  | Gauge   | datacenter, host, node_class, node_id, node_pool, node_scheduling_eligibility, node_status       |
 | `nomad.client.unallocated.memory`         | Total amount of memory free for the scheduler to allocate to tasks                   | Megabytes  | Gauge   | datacenter, host, node_class, node_id, node_pool, node_scheduling_eligibility, node_status       |
-| `nomad.client.uptime`                     | Uptime of the host running the Nomad client                                          | Seconds    | Gauge   | datacenter, host, node_class, node_id, node_pool, node_scheduling_eligibility, node_status       |
+| `nomad.client.uptime`                     | Uptime of the host running the OpenWonton client                                          | Seconds    | Gauge   | datacenter, host, node_class, node_id, node_pool, node_scheduling_eligibility, node_status       |
 
 
 ## Allocation Metrics
@@ -216,7 +216,7 @@ such as the task driver and control group (cgroup) version in use.
 
 ## Job Summary Metrics
 
-Job summary metrics are emitted by the Nomad leader server.
+Job summary metrics are emitted by the OpenWonton leader server.
 
 | Metric                             | Description                              | Unit    | Type  | Labels                           |
 | ---------------------------------- | ---------------------------------------- | ------- | ----- | -------------------------------- |
@@ -230,7 +230,7 @@ Job summary metrics are emitted by the Nomad leader server.
 
 ## Job Status Metrics
 
-Job status metrics are emitted by the Nomad leader server.
+Job status metrics are emitted by the OpenWonton leader server.
 
 | Metric                           | Description            | Unit    | Type  | Labels |
 | -------------------------------- | ---------------------- | ------- | ----- | ------ |
@@ -499,7 +499,7 @@ Raft database metrics are emitted by the `raft-boltdb` library.
 
 ## Agent Metrics
 
-Agent metrics are emitted by all Nomad agents running in either client or server mode.
+Agent metrics are emitted by all OpenWonton agents running in either client or server mode.
 
 | Metric                                    | Description                                           | Unit        | Type    |
 | ----------------------------------------- | ----------------------------------------------------- | ----------- | ------- |

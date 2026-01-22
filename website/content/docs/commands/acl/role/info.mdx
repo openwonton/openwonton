@@ -13,7 +13,7 @@ The `acl role info` command is used to fetch information about an existing ACL R
 ## Usage
 
 ```plaintext
-nomad acl role info [options] <role_id> or <role_name>
+wonton acl role info [options] <role_id> or <role_name>
 ```
 
 The `acl role info` command requires an existing role's ID or name.
@@ -36,7 +36,7 @@ The `acl role info` command requires an existing role's ID or name.
 Fetch information about an existing ACL Role using its ID:
 
 ```shell-session
-$ nomad acl role info a53b0095-c28a-6181-0586-807b82e665e4
+$ wonton acl role info a53b0095-c28a-6181-0586-807b82e665e4
 ID           = a53b0095-c28a-6181-0586-807b82e665e4
 Name         = example-acl-role
 Description  = <none>
@@ -48,7 +48,7 @@ Modify Index = 71
 Fetch information about an existing ACL Role using its name:
 
 ```shell-session
-$ nomad acl role info -by-name example-acl-role
+$ wonton acl role info -by-name example-acl-role
 ID           = a53b0095-c28a-6181-0586-807b82e665e4
 Name         = example-acl-role
 Description  = <none>

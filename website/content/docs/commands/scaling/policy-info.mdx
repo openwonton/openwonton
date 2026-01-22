@@ -2,7 +2,7 @@
 layout: docs
 page_title: 'Commands: scaling policy info'
 description: |
-  Display an individual Nomad scaling policy.
+  Display an individual OpenWonton scaling policy.
 ---
 
 # Command: scaling policy info
@@ -12,7 +12,7 @@ Info is used to return detailed information on the specified scaling policy.
 ## Usage
 
 ```plaintext
-nomad scaling policy info [options] <policy_id>
+wonton scaling policy info [options] <policy_id>
 ```
 
 If ACLs are enabled, this command requires a token with the `read-job` and
@@ -32,7 +32,7 @@ If ACLs are enabled, this command requires a token with the `read-job` and
 Inspect an individual scaling policy:
 
 ```shell-session
-$ nomad scaling policy info 31a53813-24df-b2ad-77dc-1b4bad4e7dca
+$ wonton scaling policy info 31a53813-24df-b2ad-77dc-1b4bad4e7dca
 
 ID      = 31a53813-24df-b2ad-77dc-1b4bad4e7dca
 Enabled = true

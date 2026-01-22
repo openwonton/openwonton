@@ -2,8 +2,8 @@
 layout: docs
 page_title: vault Block - Agent Configuration
 description: |-
-  The "vault" block configures Nomad's integration with HashiCorp's Vault.
-  When configured, Nomad can create and distribute Vault tokens to tasks
+  The "vault" block configures OpenWonton's integration with HashiCorp's Vault.
+  When configured, OpenWonton can create and distribute Vault tokens to tasks
   automatically.
 ---
 
@@ -11,10 +11,10 @@ description: |-
 
 <Placement groups={['vault']} />
 
-The `vault` block configures Nomad's integration with [HashiCorp's
-Vault][vault]. When configured, Nomad can create and distribute Vault tokens to
+The `vault` block configures OpenWonton's integration with [HashiCorp's
+Vault][vault]. When configured, OpenWonton can create and distribute Vault tokens to
 tasks automatically. For more information on the architecture and setup, please
-see the [Nomad and Vault integration documentation][nomad-vault].
+see the [OpenWonton and Vault integration documentation][nomad-vault].
 
 ```hcl
 vault {
@@ -31,7 +31,7 @@ vault {
   behind a load balancer, this should be the address of the load balancer.
 
 - `allow_unauthenticated` `(bool: true)` - Specifies if users submitting jobs to
-  the Nomad server should be required to provide their own Vault token, proving
+  the OpenWonton server should be required to provide their own Vault token, proving
   they have access to the policies listed in the job. This option should be
   disabled in an untrusted environment.
 
@@ -39,11 +39,11 @@ vault {
   activated.
 
 - `create_from_role` `(string: "")` - Specifies the role to create tokens from.
-  The token given to Nomad does not have to be created from this role but must
+  The token given to OpenWonton does not have to be created from this role but must
   have "`update`" capability on "`auth/token/create/<create_from_role>`" path in
   Vault. If this value is unset and the token is created from a role, the value
   is defaulted to the role the token is from. This is largely for backwards
-  compatibility. It is recommended to set the `create_from_role` field if Nomad
+  compatibility. It is recommended to set the `create_from_role` field if OpenWonton
   is deriving child tokens from a role.
 
 - `task_token_ttl` `(string: "72h")` - Specifies the TTL of created tokens when
@@ -84,8 +84,8 @@ vault {
   verification can allow an attacker to easily compromise your cluster.
 
 - `token` `(string: "")` - Specifies the parent Vault token to use to derive
-  child tokens for jobs requesting tokens. Only required on Nomad servers.
-  Nomad client agents use the allocation's token when contacting Vault.
+  child tokens for jobs requesting tokens. Only required on OpenWonton servers.
+  OpenWonton client agents use the allocation's token when contacting Vault.
   Visit the [Vault Integration Guide](/nomad/docs/integrations/vault-integration)
   to see how to generate an appropriate token in Vault.
 
@@ -99,9 +99,9 @@ vault {
 The following examples only show the `vault` blocks. Remember that the
 `vault` block is only valid in the placements listed above.
 
-### Nomad Server
+### OpenWonton Server
 
-This example shows an example Vault configuration for a Nomad server:
+This example shows an example Vault configuration for a OpenWonton server:
 
 ```hcl
 vault {
@@ -126,9 +126,9 @@ vault {
 }
 ```
 
-### Nomad Client
+### OpenWonton Client
 
-This example shows an example Vault configuration for a Nomad client:
+This example shows an example Vault configuration for a OpenWonton client:
 
 ```hcl
 vault {
@@ -149,4 +149,4 @@ token needs to be given to the servers without having to restart them. A reload
 can be accomplished by sending the process a `SIGHUP` signal.
 
 [vault]: https://www.vaultproject.io/ 'Vault by HashiCorp'
-[nomad-vault]: /nomad/docs/integrations/vault-integration 'Nomad Vault Integration'
+[nomad-vault]: /nomad/docs/integrations/vault-integration 'OpenWonton Vault Integration'

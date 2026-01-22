@@ -8,14 +8,14 @@ description: The base64encode function applies Base64 encoding to a string.
 
 `base64encode` applies Base64 encoding to a string.
 
-Nomad uses the "standard" Base64 alphabet as defined in
+OpenWonton uses the "standard" Base64 alphabet as defined in
 [RFC 4648 section 4](https://tools.ietf.org/html/rfc4648#section-4).
 
-Strings in the Nomad language are sequences of unicode characters rather
+Strings in the OpenWonton language are sequences of unicode characters rather
 than bytes, so this function will first encode the characters from the string
 as UTF-8, and then apply Base64 encoding to the result.
 
-The Nomad language applies Unicode normalization to all strings, and so
+The OpenWonton language applies Unicode normalization to all strings, and so
 passing a string through `base64decode` and then `base64encode` may not yield
 the original result exactly.
 

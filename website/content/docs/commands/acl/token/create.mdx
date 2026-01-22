@@ -12,7 +12,7 @@ The `acl token create` command is used to create new ACL tokens.
 ## Usage
 
 ```plaintext
-nomad acl token create [options]
+wonton acl token create [options]
 ```
 
 The `acl token create` command requires no arguments.
@@ -53,7 +53,7 @@ The `acl token create` command requires no arguments.
 Create a new ACL token linked to an ACL Policy and Role:
 
 ```shell-session
-$ nomad acl token create -name="example-acl-token" -policy=example-acl-policy -role-name=example-acl-role
+$ wonton acl token create -name="example-acl-token" -policy=example-acl-policy -role-name=example-acl-role
 Accessor ID  = ef851ca0-b331-da5d-bbeb-7ede8f7c9151
 Secret ID    = 11d5348a-8768-5baa-6185-c154980e1488
 Name         = example-acl-token
@@ -73,7 +73,7 @@ ID                                    Name
 Create a new ACL token with an expiry:
 
 ```shell-session
-$ nomad acl token create -name="example-acl-token" -policy=example-acl-policy -ttl=8h
+$ wonton acl token create -name="example-acl-token" -policy=example-acl-policy -ttl=8h
 Accessor ID  = 1b60edc8-e4ed-08ef-208d-ecc18a90ccc3
 Secret ID    = e4c7c80e-870b-c6a6-43d2-dbfa90130c06
 Name         = example-acl-token

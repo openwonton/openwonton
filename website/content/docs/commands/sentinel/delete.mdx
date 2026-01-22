@@ -9,13 +9,13 @@ description: |
 
 The `sentinel delete` command is used to delete a Sentinel policy.
 
-~> Sentinel commands are new in Nomad 0.7 and are only available with Nomad
+~> Sentinel commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad sentinel delete [options] <Policy Name>
+wonton sentinel delete [options] <Policy Name>
 ```
 
 The `sentinel delete` command requires a single argument, the policy name.
@@ -32,6 +32,6 @@ requires a management token.
 Delete a policy:
 
 ```shell-session
-$ nomad sentinel delete foo
+$ wonton sentinel delete foo
 Successfully deleted "foo" Sentinel policy!
 ```

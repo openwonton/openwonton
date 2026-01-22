@@ -2,7 +2,7 @@
 layout: docs
 page_title: Service Discovery
 description: |-
-  Learn about how service discovery works in Nomad to connect workloads.
+  Learn about how service discovery works in OpenWonton to connect workloads.
 ---
 
 # Service discovery
@@ -12,9 +12,9 @@ necessary to access a service, such as its IP and port, via a high-level
 identifier, such as a human-friendly service name.
 
 The service information is stored in a service catalog which provide interfaces
-that can be used to query data. In Nomad there are two service catalogs:
+that can be used to query data. In OpenWonton there are two service catalogs:
 
-- The **native service discovery** catalog is embedded in Nomad and requires no
+- The **native service discovery** catalog is embedded in OpenWonton and requires no
   additional infrastructure.
 
 - The [**Consul service discovery catalog**][consul_sd] requires access to a
@@ -22,7 +22,7 @@ that can be used to query data. In Nomad there are two service catalogs:
   interface][consul_dns] and [service mesh][] capabilities.
 
 Services are registered using the [`service`][] block, with the [`provider`][]
-parameter defining which catalog to use. Nomad stores the IP and port of all
+parameter defining which catalog to use. OpenWonton stores the IP and port of all
 allocations associated with the service in the catalog and keeps these entries
 updated as you schedule new workloads or deploy new versions of your
 applications.
@@ -45,7 +45,7 @@ job "..." {
 To access services, other allocations can query the catalog using
 [`template`][] blocks with the [`service`][ct_service_fn] function to query the
 Consul catalog or the [`nomadService`][ct_nomad_service_fn] function when using
-Nomad native service discovery. The `template` can then be used as a
+OpenWonton native service discovery. The `template` can then be used as a
 configuration file or have its content loaded as environment variables to
 configure connection information in applications.
 
@@ -71,7 +71,7 @@ EOF
 
 ## Health checks
 
-Both Nomad and Consul services can define health checks to make sure that only
+Both OpenWonton and Consul services can define health checks to make sure that only
 healthy instances are returned by the service catalog. Health checks are
 specified using the [`check`][] block.
 

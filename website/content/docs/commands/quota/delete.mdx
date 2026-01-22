@@ -9,13 +9,13 @@ description: |
 
 The `quota delete` command is used to delete an existing quota specification.
 
-~> Quota commands are new in Nomad 0.7 and are only available with Nomad
+~> Quota commands are new in OpenWonton 0.7 and are only available with OpenWonton
 Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad quota delete <quota_name>
+wonton quota delete <quota_name>
 ```
 
 The `quota delete` command requires the quota specification name as an argument.
@@ -32,6 +32,6 @@ capability.
 Delete a quota specification:
 
 ```shell-session
-$ nomad quota delete my-quota
+$ wonton quota delete my-quota
 Successfully deleted quota "my-quota"!
 ```

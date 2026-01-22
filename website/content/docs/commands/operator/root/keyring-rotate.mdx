@@ -15,7 +15,7 @@ If ACLs are enabled, this command requires a management token.
 ## Usage
 
 ```plaintext
-nomad operator root keyring rotate [options]
+wonton operator root keyring rotate [options]
 ```
 
 ## General Options
@@ -33,11 +33,11 @@ nomad operator root keyring rotate [options]
 ## Examples
 
 ```shell-session
-$ nomad operator root keyring rotate
+$ wonton operator root keyring rotate
 Key       State   Create Time
 f19f6029  active  2022-07-11T19:14:36Z
 
-$ nomad operator root keyring rotate -verbose
+$ wonton operator root keyring rotate -verbose
 Key                                   State   Create Time
 53186ac1-9002-c4b6-216d-bb19fd37a791  active  2022-07-11T19:14:47Z
 ```

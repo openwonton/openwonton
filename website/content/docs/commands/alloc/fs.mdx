@@ -2,32 +2,32 @@
 layout: docs
 page_title: 'Commands: alloc fs'
 description: |
-  Introspect an allocation directory on a Nomad client
+  Introspect an allocation directory on a OpenWonton client
 ---
 
 # Command: alloc fs
 
-**Alias: `nomad fs`**
+**Alias: `wonton fs`**
 
 The `alloc fs` command allows a user to navigate an [allocation working
-directory] on a Nomad client. The following functionalities are available -
+directory] on a OpenWonton client. The following functionalities are available -
 `cat`, `tail`, `ls` and `stat`.
 
-- `cat`: If the target path is a file, Nomad will `cat` the file.
+- `cat`: If the target path is a file, OpenWonton will `cat` the file.
 
-- `tail`: If the target path is a file and `-tail` flag is specified, Nomad will
+- `tail`: If the target path is a file and `-tail` flag is specified, OpenWonton will
   `tail` the file.
 
-- `ls`: If the target path is a directory, Nomad displays the name of a file and
+- `ls`: If the target path is a directory, OpenWonton displays the name of a file and
   directories and their associated information.
 
-- `stat`: If the `-stat` flag is used, Nomad will display information about a
+- `stat`: If the `-stat` flag is used, OpenWonton will display information about a
   file.
 
 ## Usage
 
 ```plaintext
-nomad alloc fs [options] <allocation> <path>
+wonton alloc fs [options] <allocation> <path>
 ```
 
 This command accepts a single allocation ID (unless the `-job` flag is
@@ -68,29 +68,29 @@ When ACLs are enabled, this command requires a token with the `read-fs`,
 ## Examples
 
 ```shell-session
-$ nomad alloc fs eb17e557
+$ wonton alloc fs eb17e557
 Mode        Size  Modified Time        Name
 drwxrwxr-x  4096  28 Jan 16 05:39 UTC  alloc/
 drwxrwxr-x  4096  28 Jan 16 05:39 UTC  redis/
 -rw-rw-r--  0     28 Jan 16 05:39 UTC  redis_exit_status
 
 
-$ nomad alloc fs eb17e557 redis/local
+$ wonton alloc fs eb17e557 redis/local
 Mode        Size  Modified Time        Name
 -rw-rw-rw-  0     28 Jan 16 05:39 UTC  redis.stderr
 -rw-rw-rw-  17    28 Jan 16 05:39 UTC  redis.stdout
 
 
-$ nomad alloc fs -stat eb17e557 redis/local/redis.stdout
+$ wonton alloc fs -stat eb17e557 redis/local/redis.stdout
 Mode        Size  Modified Time        Name
 -rw-rw-rw-  17    28 Jan 16 05:39 UTC  redis.stdout
 
 
-$ nomad alloc fs eb17e557 redis/local/redis.stdout
+$ wonton alloc fs eb17e557 redis/local/redis.stdout
 foobar
 baz
 
-$ nomad alloc fs -tail -f -n 3 eb17e557 redis/local/redis.stdout
+$ wonton alloc fs -tail -f -n 3 eb17e557 redis/local/redis.stdout
 foobar
 baz
 bam
@@ -100,12 +100,12 @@ bam
 ## Using Job ID instead of Allocation ID
 
 Setting the `-job` flag causes a random allocation of the specified job to be
-selected. Nomad will prefer to select a running allocation ID for the job, but
-if no running allocations for the job are found, Nomad will use a dead
+selected. OpenWonton will prefer to select a running allocation ID for the job, but
+if no running allocations for the job are found, OpenWonton will use a dead
 allocation.
 
 ```plaintext
-nomad alloc fs -job <job-id> <path>
+wonton alloc fs -job <job-id> <path>
 ```
 
 This can be useful for debugging a job that has multiple allocations, and it is

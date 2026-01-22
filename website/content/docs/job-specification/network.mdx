@@ -12,9 +12,9 @@ description: |-
 
 The `network` block specifies the networking requirements for the task group,
 including the network mode and port allocations. When scheduling jobs in
-Nomad they are provisioned across your fleet of machines along with other jobs
+OpenWonton they are provisioned across your fleet of machines along with other jobs
 and services. Because you don't know in advance what host your job will be
-provisioned on, Nomad will provide your tasks with network configuration when
+provisioned on, OpenWonton will provide your tasks with network configuration when
 they start up.
 
 Note that this document only applies to services that want to _listen_ on a
@@ -75,7 +75,7 @@ All other operating systems use the `host` networking mode.
     currently supported for the `docker`, `exec`, `raw_exec`, and `java` task
     drivers.
   - `host` - Each task will join the host network namespace and a shared network
-    namespace is not created. This matches the current behavior in Nomad 0.9.
+    namespace is not created. This matches the current behavior in OpenWonton 0.9.
   - `cni/<cni network name>` - Task group will have an isolated network namespace
     with the network configured by CNI.
 
@@ -116,7 +116,7 @@ When the task starts, it will be passed the following environment variables:
 - <tt>NOMAD_PORT_foo</tt> - The port value for the given port label.
 - <tt>NOMAD_ADDR_foo</tt> - A combined <tt>ip:port</tt> that can be used for convenience.
 
-The label of the port is just text - it has no special meaning to Nomad.
+The label of the port is just text - it has no special meaning to OpenWonton.
 
 ## `dns` Parameters
 
@@ -205,7 +205,7 @@ bound to.
 
 ### Bridge Mode
 
-Bridge mode allows compatible tasks to share a networking stack and interfaces. Nomad
+Bridge mode allows compatible tasks to share a networking stack and interfaces. OpenWonton
 can then do port mapping without relying on individual task drivers to implement port
 mapping configuration.
 
@@ -225,7 +225,7 @@ network {
 Using bridge mode can result in failing outbound network requests on hosts that have
 [firewalld](https://firewalld.org) enabled. This includes most RHEL-based Linux distributions
 like CentOS, Rocky Linux or Oracle Linux. One solution for firewalld to allow network
-requsts coming from Nomad jobs is to mark the `nomad` bridge interface as trusted.
+requsts coming from OpenWonton jobs is to mark the `nomad` bridge interface as trusted.
 
 ```shell-session
 $ sudo firewall-cmd --zone=trusted --add-interface=nomad
@@ -249,7 +249,7 @@ network {
 
 ### Container Network Interface (CNI)
 
-Nomad supports CNI by fingerprinting each node for [CNI network configurations](https://github.com/containernetworking/cni/blob/v0.8.0/SPEC.md#network-configuration).
+OpenWonton supports CNI by fingerprinting each node for [CNI network configurations](https://github.com/containernetworking/cni/blob/v0.8.0/SPEC.md#network-configuration).
 These are associated to the node by the `name` field of the CNI configuration.
 The `name` can then be used when setting the network `mode` field in the form of `cni/<name>`.
 
@@ -290,16 +290,16 @@ network {
 }
 ```
 
-The Nomad client will build the correct [capabilities arguments](https://github.com/containernetworking/cni/blob/v0.8.0/CONVENTIONS.md#well-known-capabilities) for the portmap plugin based on the defined port blocks.
+The OpenWonton client will build the correct [capabilities arguments](https://github.com/containernetworking/cni/blob/v0.8.0/CONVENTIONS.md#well-known-capabilities) for the portmap plugin based on the defined port blocks.
 
 ### Host Networks
 
 In some cases a port should only be allocated to a specific interface or address on the host.
 The `host_network` field of a port will constrain port allocation to a single named host network.
-If `host_network` is set for a port, Nomad will schedule the allocations on a node which has defined a `host_network` with the given name.
+If `host_network` is set for a port, OpenWonton will schedule the allocations on a node which has defined a `host_network` with the given name.
 If not set the "default" host network is used which is commonly the address with a default route associated with it.
 
-When Nomad does port mapping for ports with a defined `host_network`, the port mapping rule will use the host address as the destination address.
+When OpenWonton does port mapping for ports with a defined `host_network`, the port mapping rule will use the host address as the destination address.
 
 ```hcl
 network {
@@ -326,7 +326,7 @@ network {
   variables are set for group network ports.
 
 [docs_networking_bridge]: /nomad/docs/networking#bridge-networking
-[docker-driver]: /nomad/docs/drivers/docker 'Nomad Docker Driver'
-[qemu-driver]: /nomad/docs/drivers/qemu 'Nomad QEMU Driver'
-[connect]: /nomad/docs/job-specification/connect 'Nomad Consul Connect Integration'
+[docker-driver]: /nomad/docs/drivers/docker 'OpenWonton Docker Driver'
+[qemu-driver]: /nomad/docs/drivers/qemu 'OpenWonton QEMU Driver'
+[connect]: /nomad/docs/job-specification/connect 'OpenWonton Consul Connect Integration'
 [`cni_path`]: /nomad/docs/configuration/client#cni_path

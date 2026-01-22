@@ -2,7 +2,7 @@
 layout: docs
 page_title: Vault Integration
 description: >-
-  Learn how to integrate Nomad with HashiCorp Vault and retrieve Vault tokens
+  Learn how to integrate OpenWonton with HashiCorp Vault and retrieve Vault tokens
   for
 
   tasks.
@@ -12,61 +12,61 @@ description: >-
 
 Many workloads require access to tokens, passwords, certificates, API keys, and
 other secrets. To enable secure, auditable and easy access to your secrets,
-Nomad integrates with HashiCorp's [Vault][]. Nomad servers and clients
+OpenWonton integrates with HashiCorp's [Vault][]. OpenWonton servers and clients
 coordinate with Vault to derive a Vault token that has access to only the Vault
-policies the tasks needs. Nomad clients make the token available to the task and
-handle the tokens renewal. Further, Nomad's [`template` block][template] can
+policies the tasks needs. OpenWonton clients make the token available to the task and
+handle the tokens renewal. Further, OpenWonton's [`template` block][template] can
 retrieve secrets from Vault making it easier than ever to secure your
 infrastructure.
 
-Note that in order to use Vault with Nomad, you will need to configure and
-install Vault separately from Nomad. Nomad does not run Vault for you.
+Note that in order to use Vault with OpenWonton, you will need to configure and
+install Vault separately from OpenWonton. OpenWonton does not run Vault for you.
 
 -> **Note:** Vault integration requires Vault version 0.6.2 or higher.
 
 ## Vault Configuration
 
-To use the Vault integration, Nomad servers must be provided a Vault token. This
+To use the Vault integration, OpenWonton servers must be provided a Vault token. This
 token can either be a root token or a periodic token with permissions to create
 from a token role. The root token is the easiest way to get started, but we
-recommend a token role based token for production installations. Nomad servers
-will renew the token automatically. **Note that the Nomad clients do not need to
+recommend a token role based token for production installations. OpenWonton servers
+will renew the token automatically. **Note that the OpenWonton clients do not need to
 be provided with a Vault token.**
 
 -> **Note:** See the [Enterprise specific section][ent] for configuring Vault Enterprise
 
 ### Root Token Integration
 
-If Nomad is given a [root
+If OpenWonton is given a [root
 token](/vault/docs/concepts/tokens#root-tokens), no
-further configuration is needed as Nomad can derive a token for jobs using any
+further configuration is needed as OpenWonton can derive a token for jobs using any
 Vault policies. Best practices recommend using a periodic token with the minimal
-permissions necessary instead of providing Nomad the root vault token.
+permissions necessary instead of providing OpenWonton the root vault token.
 
 ### Token Role based Integration
 
 Vault's [Token Authentication Backend][auth] supports a concept called "roles".
 Token roles allow policies to be grouped together and token creation to be
-delegated to a trusted service such as Nomad. By creating a token role, the set
-of policies that tasks managed by Nomad can access may be limited compared to
-giving Nomad a root token. Token roles allow both allowlist and denylist
+delegated to a trusted service such as OpenWonton. By creating a token role, the set
+of policies that tasks managed by OpenWonton can access may be limited compared to
+giving OpenWonton a root token. Token roles allow both allowlist and denylist
 management of policies accessible to the role.
 
-To configure Nomad and Vault to create tokens against a role, the following must
+To configure OpenWonton and Vault to create tokens against a role, the following must
 occur:
 
-1. Create a "nomad-server" policy used by Nomad to create and manage tokens.
+1. Create a "nomad-server" policy used by OpenWonton to create and manage tokens.
 
 2. Create a Vault token role with the configuration described below.
 
-3. Configure Nomad to use the created token role.
+3. Configure OpenWonton to use the created token role.
 
-4. Give Nomad servers a periodic token with the "nomad-server" policy created
+4. Give OpenWonton servers a periodic token with the "nomad-server" policy created
    above.
 
 #### Required Vault Policies
 
-The token Nomad receives must have the capabilities listed below. An explanation
+The token OpenWonton receives must have the capabilities listed below. An explanation
 for the use of each capability is given.
 
 ```hcl
@@ -127,8 +127,8 @@ $ vault policy write nomad-server nomad-server-policy.hcl
 
 #### Vault Token Role Configuration
 
-A Vault token role must be created for use by Nomad. The token role can be used
-to manage what Vault policies are accessible by jobs submitted to Nomad. The
+A Vault token role must be created for use by OpenWonton. The token role can be used
+to manage what Vault policies are accessible by jobs submitted to OpenWonton. The
 policies can be managed as a allowlist by using `allowed_policies` in the token
 role definition or as a denylist by using `disallowed_policies`.
 
@@ -153,26 +153,26 @@ An example token role definition is given below:
 
 ##### Token Role Requirements
 
-Nomad checks that token role has an appropriate configuration for use by the
+OpenWonton checks that token role has an appropriate configuration for use by the
 cluster. Fields that are checked are documented below as well as descriptions of
 the important fields. See Vault's [Token Authentication Backend][auth]
 documentation for all possible fields and more complete documentation.
 
 - `allowed_policies` - Specifies the list of allowed policies as a
   comma-separated string. This list should contain all policies that jobs running
-  under Nomad should have access to.
+  under OpenWonton should have access to.
 
 - `disallowed_policies` - Specifies the list of disallowed policies as a
   comma-separated string. This list should contain all policies that jobs running
-  under Nomad should **not** have access to. The policy created above that
-  grants Nomad the ability to generate tokens from the token role should be
+  under OpenWonton should **not** have access to. The policy created above that
+  grants OpenWonton the ability to generate tokens from the token role should be
   included in list of disallowed policies. This prevents tokens created by
-  Nomad from generating new tokens with different policies than those granted
-  by Nomad.
+  OpenWonton from generating new tokens with different policies than those granted
+  by OpenWonton.
 
   A regression occurred in Vault 0.6.4 when validating token creation using a
   token role with `disallowed_policies` such that it is not usable with
-  Nomad. This was remedied in 0.6.5 and does not effect earlier versions
+  OpenWonton. This was remedied in 0.6.5 and does not effect earlier versions
   of Vault.
 
 - `token_explicit_max_ttl` - Specifies the max TTL of a token. **Must be set to `0`** to
@@ -183,20 +183,20 @@ documentation for all possible fields and more complete documentation.
   above policy.
 
 - `orphan` - Specifies whether tokens created against this token role will be
-  orphaned and have no parents. Nomad does not enforce the value of this field
+  orphaned and have no parents. OpenWonton does not enforce the value of this field
   but understanding the implications of each value is important.
 
   If set to false, all tokens will be revoked when the Vault token given to
-  Nomad expires. This makes it easy to revoke all tokens generated by Nomad but
-  forces all Nomad servers to use the same Vault token, even through upgrades of
-  Nomad servers. If the Vault token that was given to Nomad and used to generate
+  OpenWonton expires. This makes it easy to revoke all tokens generated by OpenWonton but
+  forces all OpenWonton servers to use the same Vault token, even through upgrades of
+  OpenWonton servers. If the Vault token that was given to OpenWonton and used to generate
   a tasks token expires, the token used by the task will also be revoked which
   is not ideal.
 
   When set to true, the tokens generated for tasks will not be revoked when
-  Nomad's token is revoked. However Nomad will still revoke tokens when the
+  OpenWonton's token is revoked. However OpenWonton will still revoke tokens when the
   allocation is no longer running, minimizing the lifetime of any task's token.
-  With orphaned enabled, each Nomad server may also use a unique Vault token,
+  With orphaned enabled, each OpenWonton server may also use a unique Vault token,
   making bootstrapping and upgrading simpler. As such, **setting `orphan = true`
   is the recommended setting**.
 
@@ -206,7 +206,7 @@ documentation for all possible fields and more complete documentation.
   to a positive value**.
 
 - `renewable` - Specifies whether created tokens are renewable. **Must be set to
-  `true`**. This allows Nomad to renew tokens for tasks.
+  `true`**. This allows OpenWonton to renew tokens for tasks.
 
 The above [`nomad-cluster` token role](https://nomadproject.io/data/vault/nomad-cluster-role.json) is
 available for download. Below is an example of writing this role to Vault:
@@ -243,7 +243,7 @@ $ vault write /auth/token/roles/nomad-cluster @nomad-cluster-role.json
 
 #### Retrieving the Token Role based Token
 
-After the token role is created, a token suitable for the Nomad servers may be
+After the token role is created, a token suitable for the OpenWonton servers may be
 retrieved by issuing the following Vault command:
 
 ```shell-session
@@ -257,16 +257,16 @@ token_renewable true
 token_policies  [default nomad-server]
 ```
 
-The `-orphan` flag is included when generating the Nomad server token above to
+The `-orphan` flag is included when generating the OpenWonton server token above to
 prevent revocation of the token when its parent expires. Vault typically
 creates tokens with a parent-child relationship. When an ancestor token is
 revoked, all of its descendant tokens and their associated leases are revoked
 as well.
 
-When generating Nomad's Vault token, we need to ensure that revocation of the
-parent token does not revoke Nomad's token. To prevent this behavior we
-specify the `-orphan` flag when we create the Nomad's Vault token. All
-other tokens generated by Nomad for jobs will be generated using the policy
+When generating OpenWonton's Vault token, we need to ensure that revocation of the
+parent token does not revoke OpenWonton's token. To prevent this behavior we
+specify the `-orphan` flag when we create the OpenWonton's Vault token. All
+other tokens generated by OpenWonton for jobs will be generated using the policy
 default of `orphan = false`.
 
 More information about creating orphan tokens can be found in
@@ -279,11 +279,11 @@ The token can then be set in the server configuration's
 variable.
 
 ```shell-session
-$ VAULT_TOKEN=f02f01c2-c0d1-7cb7-6b88-8a14fada58c0 nomad agent -config /path/to/config
+$ VAULT_TOKEN=f02f01c2-c0d1-7cb7-6b88-8a14fada58c0 wonton agent -config /path/to/config
 ```
 
 An example of what may be contained in the configuration is shown below. For
-complete documentation please see the [Nomad agent Vault integration][config]
+complete documentation please see the [OpenWonton agent Vault integration][config]
 configuration.
 
 ```hcl
@@ -299,7 +299,7 @@ vault {
 
 ## Agent Configuration
 
-To enable Vault integration, please see the [Nomad agent Vault
+To enable Vault integration, please see the [OpenWonton agent Vault
 integration][config] configuration.
 
 ## Vault Definition Syntax
@@ -311,14 +311,14 @@ specification documentation][vault-spec].
 
 ### Invalid Vault token
 
-Upon startup, Nomad will attempt to connect to the specified Vault server. Nomad
+Upon startup, OpenWonton will attempt to connect to the specified Vault server. OpenWonton
 will lookup the passed token and if the token is from a token role, the token
-role will be validated. Nomad will not shutdown if given an invalid Vault token,
+role will be validated. OpenWonton will not shutdown if given an invalid Vault token,
 but will log the reasons the token is invalid and disable Vault integration.
 
 ### Permission Denied errors
 
-If you are using a Vault version less than 0.7.1 with a Nomad version greater than or equal to 0.6.1, you will need to update your task's policy (listed in [the `vault` block of the job specification][vault-spec]) to add the following:
+If you are using a Vault version less than 0.7.1 with a OpenWonton version greater than or equal to 0.6.1, you will need to update your task's policy (listed in [the `vault` block of the job specification][vault-spec]) to add the following:
 
 ```hcl
 path "sys/leases/renew" {
@@ -326,7 +326,7 @@ path "sys/leases/renew" {
 }
 ```
 
-This is included in Vault's "default" policy beginning with Vault 0.7.1 and is relied upon by Nomad's Vault integration beginning with Nomad 0.6.1. If you're using a newer Nomad version with an older Vault version, your default policy may not automatically include this and you will see "permission denied" errors in your Nomad logs similar to the following:
+This is included in Vault's "default" policy beginning with Vault 0.7.1 and is relied upon by OpenWonton's Vault integration beginning with OpenWonton 0.6.1. If you're using a newer OpenWonton version with an older Vault version, your default policy may not automatically include this and you will see "permission denied" errors in your OpenWonton logs similar to the following:
 
 ```plaintext
 Code: 403. Errors:
@@ -337,7 +337,7 @@ URL: PUT https://vault:8200/v1/sys/leases/renew
 ### No Secret Exists
 
 Vault has two APIs for secrets, [`v1` and `v2`][vault-secrets-version]. Each version
-has different paths, and Nomad does not abstract this for you. As such you will
+has different paths, and OpenWonton does not abstract this for you. As such you will
 need to specify the path as reflected by Vault's HTTP API, rather than the path
 used in the `vault kv` command.
 
@@ -385,8 +385,8 @@ $ vault write -namespace=engineering /auth/token/roles/nomad-cluster @nomad-clus
 $ vault write -namespace=engineering/frontend /auth/token/roles/nomad-cluster @nomad-cluster-role.json
 ```
 
-The [Nomad agent Vault integration][config] configuration supports specifying a Vault Namespace, but since
-we will be using multiple it can be left blank. By default Nomad will interact with Vault's root Namespace, but individual jobs may specify other Vault Namespaces to use.
+The [OpenWonton agent Vault integration][config] configuration supports specifying a Vault Namespace, but since
+we will be using multiple it can be left blank. By default OpenWonton will interact with Vault's root Namespace, but individual jobs may specify other Vault Namespaces to use.
 
 ```hcl
 vault {
@@ -464,11 +464,11 @@ $ VAULT_TOKEN=s.H39hfS7eHSbb1GpkdzOQLTmz.fvuLy nomad job run vault.nomad
 ```
 
 [auth]: /vault/docs/auth/token 'Vault Authentication Backend'
-[config]: /nomad/docs/configuration/vault 'Nomad Vault Configuration Block'
-[createfromrole]: /nomad/docs/configuration/vault#create_from_role 'Nomad vault create_from_role Configuration Flag'
-[template]: /nomad/docs/job-specification/template 'Nomad template Job Specification'
+[config]: /nomad/docs/configuration/vault 'OpenWonton Vault Configuration Block'
+[createfromrole]: /nomad/docs/configuration/vault#create_from_role 'OpenWonton vault create_from_role Configuration Flag'
+[template]: /nomad/docs/job-specification/template 'OpenWonton template Job Specification'
 [vault]: https://www.vaultproject.io/ 'Vault by HashiCorp'
-[vault-spec]: /nomad/docs/job-specification/vault 'Nomad Vault Job Specification'
+[vault-spec]: /nomad/docs/job-specification/vault 'OpenWonton Vault Job Specification'
 [tokenhierarchy]: /vault/docs/concepts/tokens#token-hierarchies-and-orphan-tokens 'Vault Tokens - Token Hierarchies and Orphan Tokens'
 [vault-secrets-version]: /vault/docs/secrets/kv 'KV Secrets Engine'
 [vault-kv-templates]: /nomad/docs/job-specification/template#vault-kv-api-v1 'Vault KV API v1'

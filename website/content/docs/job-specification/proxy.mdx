@@ -13,7 +13,7 @@ description: |-
 />
 
 The `proxy` block allows configuring various options for the sidecar proxy
-managed by Nomad for [Consul
+managed by OpenWonton for [Consul
 Connect](/nomad/docs/integrations/consul-connect). It is valid only
 within the context of a `sidecar_service` block.
 
@@ -60,7 +60,7 @@ job "countdash" {
 - `expose` <code>([expose]: nil)</code> - Used to configure expose path configuration for Envoy.
   See Consul's [Expose Paths Configuration Reference](/consul/docs/connect/registration/service-registration#expose-paths-configuration-reference)
   for more information.
-- `config` `(map: nil)` - Proxy configuration that is opaque to Nomad and
+- `config` `(map: nil)` - Proxy configuration that is opaque to OpenWonton and
   passed directly to Consul. See [Consul Connect documentation](/consul/docs/connect/proxies/envoy#dynamic-configuration)
   for details. Keys and values support [runtime variable interpolation][interpolation].
 
@@ -79,10 +79,10 @@ sidecar_service {
 }
 ```
 
-[job]: /nomad/docs/job-specification/job 'Nomad job Job Specification'
-[group]: /nomad/docs/job-specification/group 'Nomad group Job Specification'
-[task]: /nomad/docs/job-specification/task 'Nomad task Job Specification'
-[interpolation]: /nomad/docs/runtime/interpolation 'Nomad interpolation'
-[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'Nomad sidecar service Specification'
-[upstreams]: /nomad/docs/job-specification/upstreams 'Nomad upstream config Specification'
-[expose]: /nomad/docs/job-specification/expose 'Nomad proxy expose configuration'
+[job]: /nomad/docs/job-specification/job 'OpenWonton job Job Specification'
+[group]: /nomad/docs/job-specification/group 'OpenWonton group Job Specification'
+[task]: /nomad/docs/job-specification/task 'OpenWonton task Job Specification'
+[interpolation]: /nomad/docs/runtime/interpolation 'OpenWonton interpolation'
+[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'OpenWonton sidecar service Specification'
+[upstreams]: /nomad/docs/job-specification/upstreams 'OpenWonton upstream config Specification'
+[expose]: /nomad/docs/job-specification/expose 'OpenWonton proxy expose configuration'

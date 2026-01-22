@@ -1,11 +1,11 @@
-# Provision a Nomad cluster in the cloud
+# Provision an OpenWonton cluster in the cloud
 
-Use this repo to easily provision a Nomad sandbox environment on AWS, Azure, or GCP with 
+Use this repo to easily provision an OpenWonton sandbox environment on AWS, Azure, GCP, or Hetzner Cloud with
 [Packer](https://packer.io) and [Terraform](https://terraform.io). 
 [Consul](https://www.consul.io/intro/index.html) and 
 [Vault](https://www.vaultproject.io/intro/index.html) are also installed 
 (colocated for convenience). The intention is to allow easy exploration of 
-Nomad and its integrations with the HashiCorp stack. This is *not* meant to be
+OpenWonton and its integrations with the HashiCorp stack. This is *not* meant to be
 a production ready environment. 
 
 ## Setup
@@ -14,8 +14,8 @@ Clone the repo and optionally use [Vagrant](https://www.vagrantup.com/intro)
 to bootstrap a local staging environment:
 
 ```bash
-$ git clone git@github.com:hashicorp/nomad.git
-$ cd nomad/terraform
+$ git clone git@github.com:openwonton/openwonton.git
+$ cd openwonton/terraform
 $ vagrant up && vagrant ssh
 ```
 
@@ -27,18 +27,19 @@ Azure CLI.
 - Follow the steps [here](aws/README.md) to provision a cluster on AWS.
 - Follow the steps [here](azure/README.md) to provision a cluster on Azure.
 - Follow the steps [here](gcp/README.md) to provision a cluster on GCP.
+- Follow the steps [here](hetzner/README.md) to provision a cluster on Hetzner Cloud.
 
 Continue with the steps below after a cluster has been provisioned.
 
 ## Test
 
-Run a few basic status commands to verify that Consul and Nomad are up and running 
+Run a few basic status commands to verify that Consul and OpenWonton are up and running
 properly:
 
 ```bash
 $ consul members
-$ nomad server members
-$ nomad node status
+$ wonton server members
+$ wonton node status
 ```
 
 ## Unseal the Vault cluster (optional)
@@ -69,12 +70,11 @@ $ dig standby.vault.service.consul
 See the [Getting Started guide](https://www.vaultproject.io/intro/getting-started/first-secret.html) 
 for an introduction to Vault.
 
-## Getting started with Nomad & the HashiCorp stack
+## Getting started with OpenWonton & the HashiCorp stack
 
-Use the following links to get started with Nomad and its HashiCorp integrations:
+Use the following links to get started with OpenWonton and its HashiCorp integrations:
 
 * [Getting Started with Nomad](https://www.nomadproject.io/intro/getting-started/jobs.html)
 * [Consul integration](https://www.nomadproject.io/docs/service-discovery/index.html)
 * [Vault integration](https://www.nomadproject.io/docs/vault-integration/index.html)
 * [consul-template integration](https://www.nomadproject.io/docs/job-specification/template.html)
-

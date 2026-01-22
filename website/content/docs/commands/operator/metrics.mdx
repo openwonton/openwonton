@@ -3,7 +3,7 @@ layout: docs
 page_title: 'Commands: operator metrics'
 description: |-
   The `operator metrics` command queries the metrics API
-  endpoint for metrics data related to the current Nomad
+  endpoint for metrics data related to the current OpenWonton
   process.
 ---
 
@@ -14,7 +14,7 @@ The `operator metrics` command queries the [metrics API endpoint](/nomad/api-doc
 ## Usage
 
 ```plaintext
-nomad operator metrics [options]
+wonton operator metrics [options]
 ```
 
 ## General Options
@@ -30,11 +30,11 @@ nomad operator metrics [options]
 
 ## Output
 
-The output of `nomad operator metrics` is a JSON representation of the
+The output of `wonton operator metrics` is a JSON representation of the
 [metrics API endpoint](/nomad/api-docs/metrics).
 
 ```shell-session
-$ nomad operator metrics -pretty
+$ wonton operator metrics -pretty
 {
   "Counters": [
     {

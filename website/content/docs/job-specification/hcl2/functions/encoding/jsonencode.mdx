@@ -11,10 +11,10 @@ description: The jsonencode function encodes a given value as a JSON string.
 The JSON encoding is defined in [RFC 7159](https://tools.ietf.org/html/rfc7159).
 
 This function maps
-[Nomad language values](/nomad/docs/job-specification/hcl2/expressions#types-and-values)
+[OpenWonton language values](/nomad/docs/job-specification/hcl2/expressions#types-and-values)
 to JSON values in the following way:
 
-| Nomad type    | JSON type |
+| OpenWonton type    | JSON type |
 | ------------- | --------- |
 | `string`      | String    |
 | `number`      | Number    |
@@ -26,7 +26,7 @@ to JSON values in the following way:
 | `object(...)` | Object    |
 | Null value    | `null`    |
 
-Since the JSON format cannot fully represent all of the Nomad language
+Since the JSON format cannot fully represent all of the OpenWonton language
 types, passing the `jsonencode` result to `jsondecode` will not produce an
 identical value, but the automatic type conversion rules mean that this is
 rarely a problem in practice.

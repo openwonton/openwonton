@@ -14,7 +14,7 @@ applied changes.
 ## Usage
 
 ```plaintext
-nomad deployment status [options] <deployment id>
+wonton deployment status [options] <deployment id>
 ```
 
 The `deployment status` command requires a single argument, a deployment ID or
@@ -46,7 +46,7 @@ capability for the deployment's namespace.
 Inspect the status of a complete deployment:
 
 ```shell-session
-$ nomad deployment status 06ca68a2
+$ wonton deployment status 06ca68a2
 ID          = 06ca68a2
 Job ID      = example
 Job Version = 0
@@ -62,7 +62,7 @@ web         2        2       2        0          2021-06-09T15:20:27-07:00
 Inspect the status of a deployment that is waiting for canary promotion:
 
 ```shell-session
-$ nomad deployment status 0b
+$ wonton deployment status 0b
 ID          = 0b23b149
 Job ID      = example
 Job Version = 1
@@ -78,7 +78,7 @@ web         N/A       2        0         2       2        0          2021-06-09T
 Monitor the status of a deployment and its allocations:
 
 ```shell-session
-$ nomad deployment status -monitor -verbose dab
+$ wonton deployment status -monitor -verbose dab
 2021-06-09T15:10:38-07:00: Monitoring deployment "da9bfc23-576f-be32-61c9-0f9997fe70a6"
   ⠙ Deployment "da9bfc23-576f-be32-61c9-0f9997fe70a6" in progress...
 
@@ -104,7 +104,7 @@ $ nomad deployment status -monitor -verbose dab
 Monitor the status of a deployment that fails and has `auto_revert` set to `true`:
 
 ```shell-session
-$ nomad deployment status -monitor e45
+$ wonton deployment status -monitor e45
 2021-06-09T15:49:19-07:00: Monitoring deployment "e45cc3c1"
   ! Deployment "e45cc3c1" failed
 

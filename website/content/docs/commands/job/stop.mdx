@@ -7,7 +7,7 @@ description: |
 
 # Command: job stop
 
-**Alias: `nomad stop`**
+**Alias: `wonton stop`**
 
 The `job stop` command is used to stop a running job and signals the scheduler
 to cancel all the running allocations.
@@ -15,7 +15,7 @@ to cancel all the running allocations.
 ## Usage
 
 ```plaintext
-nomad job stop [options] <job 1> <job 2> ... <job N>
+wonton job stop [options] <job 1> <job 2> ... <job N>
 ```
 
 The `job stop` command requires at least one job ID or prefix to stop. If there
@@ -68,7 +68,7 @@ job IDs.
 Stop the job with ID "job1":
 
 ```shell-session
-$ nomad job stop job1
+$ wonton job stop job1
 ==> Monitoring evaluation "43bfe672"
     Evaluation status changed: "pending" -> "complete"
 ==> Evaluation "43bfe672" finished with status "complete"
@@ -77,7 +77,7 @@ $ nomad job stop job1
 Stop multiple jobs:
 
 ```shell-session
-$ nomad job stop job1 job2
+$ wonton job stop job1 job2
 ==> 2022-12-16T15:19:28-08:00: Monitoring evaluation "166c39c5"
 ==> 2022-12-16T15:19:28-08:00: Monitoring evaluation "049404c2"
     2022-12-16T15:19:28-08:00: Evaluation triggered by job "job1"
@@ -120,7 +120,7 @@ $ nomad job stop job1 job2
 Stop the job with ID "job1" and return immediately:
 
 ```shell-session
-$ nomad job stop -detach job1
+$ wonton job stop -detach job1
 507d26cb
 ```
 

@@ -10,12 +10,12 @@ description: |
 Displays a JSON representation of state in a raft snapshot on disk.
 
 ~> **Warning:** This is a low-level debugging tool and not subject to
-  Nomad's usual backward compatibility guarantees.
+  OpenWonton's usual backward compatibility guarantees.
 
 ## Usage
 
 ```plaintext
-nomad operator snapshot state <file>
+wonton operator snapshot state <file>
 ```
 
 ## Examples
@@ -25,6 +25,6 @@ you redirect the output to a file for later examination with other
 tools.
 
 ```shell-session
-$ nomad operator snapshot state backup.snap > ~/raft-state.json
+$ wonton operator snapshot state backup.snap > ~/raft-state.json
 $ jq . < ~/raft-state.json
 ```

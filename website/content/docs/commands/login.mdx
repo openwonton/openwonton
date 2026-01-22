@@ -2,22 +2,22 @@
 layout: docs
 page_title: 'Commands: login'
 description: |
-  Login to Nomad using an authentication method
+  Login to OpenWonton using an authentication method
 ---
 
 # Command: login
 
 The `login` command is used to log in to an SSO provider and exchange the third
-party credentials for a newly minted Nomad ACL token.
+party credentials for a newly minted OpenWonton ACL token.
 
 ## Usage
 
 ```plaintext
-nomad login [options]
+wonton login [options]
 ```
 
 The login command will exchange the provided third party credentials with the
-requested auth method for a newly minted Nomad ACL token.
+requested auth method for a newly minted OpenWonton ACL token.
 
 ## General Options
 
@@ -41,7 +41,7 @@ requested auth method for a newly minted Nomad ACL token.
 Login using an OIDC provider:
 
 ```shell-session
-$ nomad login -method=auth0
+$ wonton login -method=auth0
 Successfully logged in via OIDC and auth0
 
 Accessor ID  = 68123fee-1e8b-7ecc-5b34-505ecd2dcb80

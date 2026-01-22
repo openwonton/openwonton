@@ -17,7 +17,7 @@ deployment status to other regions to force a deployment to complete.
 ## Usage
 
 ```plaintext
-nomad deployment unblock [options] <deployment id>
+wonton deployment unblock [options] <deployment id>
 ```
 
 The `deployment unblock` command requires a single argument, a deployment ID or
@@ -44,7 +44,7 @@ Manually mark an ongoing deployment as unblocked. The deployment status shows
 an error on the unreachable "east" region.
 
 ```shell-session
-$ nomad deployment unblock 8990cfbc
+$ wonton deployment unblock 8990cfbc
 Deployment "8990cfbc-28c0-cb28-ca31-856cf691b987" unblocked
 
 ==> Monitoring evaluation "a2d97ad5"
@@ -53,7 +53,7 @@ Deployment "8990cfbc-28c0-cb28-ca31-856cf691b987" unblocked
     Evaluation status changed: "pending" -> "complete"
 ==> Evaluation "a2d97ad5" finished with status "complete"
 
-$ nomad deployment status 8990cfbc
+$ wonton deployment status 8990cfbc
 ID          = 8990cfbc
 Job ID      = example
 Job Version = 2

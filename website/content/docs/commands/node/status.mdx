@@ -14,7 +14,7 @@ output.
 ## Usage
 
 ```plaintext
-nomad node status [options] [node]
+wonton node status [options] [node]
 ```
 
 If no node ID is passed, then the command will enter "list mode" and dump a
@@ -24,7 +24,7 @@ but is a good way to get a bird's-eye view of things.
 If there is an exact match based on the provided node ID or prefix, then that
 particular node will be queried, and detailed information will be displayed,
 including resource usage statistics. Otherwise, a list of matching nodes and
-information will be displayed. If running the command on a Nomad Client, the
+information will be displayed. If running the command on a OpenWonton Client, the
 `-self` flag is useful to quickly access the status of the local node.
 
 If ACLs are enabled, this option requires a token with the 'node:read'
@@ -66,7 +66,7 @@ capability.
 List view:
 
 ```shell-session
-$ nomad node status
+$ wonton node status
 ID        Node Pool  DC   Name   Class   Drain  Eligibility  Status
 a72dfba2  default    dc1  node1  <none>  false  eligible     ready
 1f3f03ea  dev        dc1  node2  <none>  false  eligible     ready
@@ -75,7 +75,7 @@ a72dfba2  default    dc1  node1  <none>  false  eligible     ready
 List view, with operating system name:
 
 ```shell-session
-$ nomad node status -os
+$ wonton node status -os
 ID        Node Pool  DC   Name   Class   OS      Drain  Eligibility  Status
 a72dfba2  default    dc1  node1  <none>  ubuntu  false  eligible     ready
 f73e3993  dev        dc1  node2  <none>  centos  false  eligible     ready
@@ -84,7 +84,7 @@ f73e3993  dev        dc1  node2  <none>  centos  false  eligible     ready
 List view, with quiet:
 
 ```shell-session
-$ nomad node status -quiet
+$ wonton node status -quiet
 820561cf-830d-b089-cg03-f2cfc4cecff7
 07949e3a-4c25-e1bf-3dbh-984c2e28fec2
 8bc2c581-37ba-dj08-9f67-53bc217f36f8
@@ -96,7 +96,7 @@ f35be281-85a5-d1e6-d268-6e8a6f0684df
 List view, with running allocations:
 
 ```shell-session
-$ nomad node status -allocs
+$ wonton node status -allocs
 ID        Node Pool  DC   Name   Class   Drain  Eligibility  Status  Running Allocs
 4d2ba53b  default    dc1  node1  <none>  false  eligible     ready   1
 34dfba32  dev        dc1  node2  <none>  false  eligible     ready   3
@@ -105,7 +105,7 @@ ID        Node Pool  DC   Name   Class   Drain  Eligibility  Status  Running All
 Single-node view in short mode:
 
 ```shell-session
-$ nomad node status -short 1f3f03ea
+$ wonton node status -short 1f3f03ea
 ID        = c754da1f
 Name      = nomad
 Node Pool = default
@@ -123,7 +123,7 @@ ID        Eval ID   Job ID   Task Group  Desired Status  Client Status
 Full output for a single node:
 
 ```shell-session
-$ nomad node status 1f3f03ea
+$ wonton node status 1f3f03ea
 ID        = c754da1f
 Name      = nomad-server01
 Node Pool = default
@@ -164,10 +164,10 @@ ID        Eval ID   Job ID   Task Group  Desired Status  Client Status
 7bff7214  b3a6b9d2  example  cache       run             running
 ```
 
-Using `-self` when on a Nomad Client:
+Using `-self` when on a OpenWonton Client:
 
 ```shell-session
-$ nomad node status -self
+$ wonton node status -self
 ID        = c754da1f
 Name      = nomad-client01
 Node Pool = default
@@ -238,7 +238,7 @@ the following:
 Using `-stats` to see detailed to resource usage information on the node:
 
 ```shell-session
-$ nomad node status -stats c754da1f
+$ wonton node status -stats c754da1f
 ID        = c754da1f
 Name      = nomad-client01
 Node Pool = default
@@ -320,7 +320,7 @@ ed3665f5  8bf94335  example  cache       run             running
 To view verbose information about the node:
 
 ```shell-session
-$ nomad node status -verbose c754da1f
+$ wonton node status -verbose c754da1f
 ID        = c754da1f-6337-b86d-47dc-2ef4c71aca14
 Name      = nomad
 Node Pool = default

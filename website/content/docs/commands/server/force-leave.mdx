@@ -18,7 +18,7 @@ eventually rejoin the cluster again.
 ## Usage
 
 ```plaintext
-nomad server force-leave [options] <node>
+wonton server force-leave [options] <node>
 ```
 
 This command expects only one argument - the node which should be forced
@@ -44,13 +44,13 @@ capability.
 Force-leave the server "node1":
 
 ```shell-session
-$ nomad server force-leave node1
+$ wonton server force-leave node1
 
 ```
 
 Force-leave the server "node1" and prune it:
 
 ```shell-session
-$ nomad server force-leave -prune node1
+$ wonton server force-leave -prune node1
 
 ```

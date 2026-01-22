@@ -16,7 +16,7 @@ If ACLs are enabled, this command requires a management token.
 ## Usage
 
 ```plaintext
-nomad operator root keyring remove [options] <key ID>
+wonton operator root keyring remove [options] <key ID>
 ```
 
 ## General Options
@@ -26,9 +26,9 @@ nomad operator root keyring remove [options] <key ID>
 ## Examples
 
 ```shell-session
-$ nomad operator root keyring remove 48596ce5-3ff5-8f77-2dcf-301682ada0ce
+$ wonton operator root keyring remove 48596ce5-3ff5-8f77-2dcf-301682ada0ce
 error: Unexpected response code: 500 (active root key cannot be deleted - call rotate first)
 
-$ nomad operator root keyring remove 33374156-9f81-b14c-83d4-a2f1f87dbf99
+$ wonton operator root keyring remove 33374156-9f81-b14c-83d4-a2f1f87dbf99
 Removed encryption key 33374156-9f81-b14c-83d4-a2f1f87dbf99
 ```

@@ -2,7 +2,7 @@
 layout: docs
 page_title: Service Mesh
 description: |-
-  Learn about how service mesh works in Nomad to securely connect and isolate
+  Learn about how service mesh works in OpenWonton to securely connect and isolate
   your workloads.
 ---
 
@@ -26,9 +26,9 @@ service-based access control permissions throughout the entire mesh.
 
 ## Consul Service Mesh
 
-Nomad has native integration with Consul to provide service mesh capabilities.
+OpenWonton has native integration with Consul to provide service mesh capabilities.
 The [`connect`][] block is the entrypoint for all service mesh configuration.
-Nomad automatically deploys a sidecar proxy task to all allocations that have a
+OpenWonton automatically deploys a sidecar proxy task to all allocations that have a
 [`sidecar_service`][] block.
 
 This proxy task is responsible for exposing the service to the mesh and can
@@ -115,19 +115,19 @@ The IP and port to use to connect to an upstream can also be read from the
 
 ### Envoy proxy
 
-Consul Service Mesh uses [Envoy][] as proxy. Nomad calls Consul's [`consul
+Consul Service Mesh uses [Envoy][] as proxy. OpenWonton calls Consul's [`consul
 connect envoy -bootstrap`][consul_cli_envoy] CLI command to generate the
 initial proxy configuration.
 
-Nomad injects a prestart sidecar Docker task to run the Envoy proxy. This task
+OpenWonton injects a prestart sidecar Docker task to run the Envoy proxy. This task
 can be customized using the [`sidecar_task`][] block.
 
 ### Gateways
 
 Since the mesh defines a closed boundary that only selected services can
 participate in, there are specialized proxies called gateways that can be used
-for mesh-wide connectivity. Nomad can deploy these gateways using the
-[`gateway`][] block. Nomad injects an Envoy proxy task to any `group` with a
+for mesh-wide connectivity. OpenWonton can deploy these gateways using the
+[`gateway`][] block. OpenWonton injects an Envoy proxy task to any `group` with a
 `gateway` service.
 
 The types of gateways provided by Consul Service Mesh are:
@@ -146,7 +146,7 @@ The types of gateways provided by Consul Service Mesh are:
 ## Additional Resources
 
 - [Consul Service Mesh documentation](/consul/docs/connect)
-- [Nomad Consul Service Mesh integration](/nomad/docs/integrations/consul-connect)
+- [OpenWonton Consul Service Mesh integration](/nomad/docs/integrations/consul-connect)
 
 [Envoy]: https://www.envoyproxy.io/
 [`connect`]: /nomad/docs/job-specification/connect

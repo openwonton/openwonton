@@ -2,22 +2,22 @@
 layout: docs
 page_title: 'Commands: fmt'
 description: |
-  Rewrite Nomad config and job files to canonical format
+  Rewrite OpenWonton config and job files to canonical format
 ---
 
 # Command: fmt
 
-The `fmt` commands check the syntax and rewrites Nomad configuration and jobspec
+The `fmt` commands check the syntax and rewrites OpenWonton configuration and jobspec
 files to canonical format. It can be used to improve readability and enforce
-consistency of style in Nomad files.
+consistency of style in OpenWonton files.
 
 ## Usage
 
 ```plaintext
-nomad fmt [flags] paths ...
+wonton fmt [flags] paths ...
 ```
 
-Formats Nomad agent configuration and job file to a canonical format. If a path
+Formats OpenWonton agent configuration and job file to a canonical format. If a path
 is a directory, it will recursively format all files with .nomad and .hcl
 extensions in the directory.
 
@@ -55,7 +55,7 @@ client {
 ```
 
 ```shell-session
-$ nomad fmt
+$ wonton fmt
 agent.hcl
 ```
 

@@ -8,7 +8,7 @@ description: The Docker task driver is used to run Docker based tasks.
 
 Name: `docker`
 
-The `docker` driver provides a first-class Docker workflow on Nomad. The Docker
+The `docker` driver provides a first-class Docker workflow on OpenWonton. The Docker
 driver handles downloading containers, mapping ports, and starting, watching,
 and cleaning up after containers.
 
@@ -37,7 +37,7 @@ The `docker` driver supports the following configuration in the job spec. Only
   and should include `https://` if required. By default it will be fetched from
   Docker Hub. If the tag is omitted or equal to `latest` the driver will always
   try to pull the image. If the image to be pulled exists in a registry that
-  requires authentication credentials must be provided to Nomad. Please see the
+  requires authentication credentials must be provided to OpenWonton. Please see the
   [Authentication section](#authentication).
 
   ```hcl
@@ -46,13 +46,13 @@ The `docker` driver supports the following configuration in the job spec. Only
   }
   ```
 
-- `image_pull_timeout` - (Optional) A time duration that controls how long Nomad
+- `image_pull_timeout` - (Optional) A time duration that controls how long OpenWonton
   will wait before cancelling an in-progress pull of the Docker image as specified
   in `image`. Defaults to `"5m"`.
 
 - `args` - (Optional) A list of arguments to the optional `command`. If no
   `command` is specified, the arguments are passed directly to the container.
-  References to environment variables or any [interpretable Nomad
+  References to environment variables or any [interpretable OpenWonton
   variables](/nomad/docs/runtime/interpolation) will be interpreted before
   launching the task. For example:
 
@@ -70,7 +70,7 @@ The `docker` driver supports the following configuration in the job spec. Only
 - `auth` - (Optional) Provide authentication for a private registry (see below).
 
 - `auth_soft_fail` `(bool: false)` - Don't fail the task on an auth failure.
-  Attempt to continue without auth. If the Nomad client configuration has an
+  Attempt to continue without auth. If the OpenWonton client configuration has an
   [`auth.helper`](#plugin_auth_helper) block, the helper will be tried for
   all images, including public images. If you mix private and public images,
   you will need to include `auth_soft_fail=true` in every job using a public
@@ -188,15 +188,15 @@ config {
 
 - `privileged` - (Optional) `true` or `false` (default). Privileged mode gives
   the container access to devices on the host. Note that this also requires the
-  nomad agent and docker daemon to be configured to allow privileged
+  OpenWonton agent and docker daemon to be configured to allow privileged
   containers.
 
 - `ipc_mode` - (Optional) The IPC mode to be used for the container. The default
   is `none` for a private IPC namespace. Other values are `host` for sharing
   the host IPC namespace or the name or id of an existing container. Note that
-  it is not possible to refer to Docker containers started by Nomad since their
+  it is not possible to refer to Docker containers started by OpenWonton since their
   names are not known in advance. Note that setting this option also requires the
-  Nomad agent to be configured to allow privileged containers.
+  OpenWonton agent to be configured to allow privileged containers.
 
 - `ipv4_address` - (Optional) The IPv4 address to be used for the container when
   using user defined networks. Requires Docker 1.13 or greater.
@@ -219,7 +219,7 @@ config {
 - `load` - (Optional) Load an image from a `tar` archive file instead of from a
   remote repository. Equivalent to the `docker load -i <filename>` command. If
   you're using an `artifact` block to fetch the archive file, you'll need to
-  ensure that Nomad keeps the archive intact after download.
+  ensure that OpenWonton keeps the archive intact after download.
 
   ```hcl
   artifact {
@@ -279,7 +279,7 @@ config {
   order to support userspace networking plugins in Docker 1.9 this accepts any
   value. The default is `bridge` for all operating systems but Windows, which
   defaults to `nat`. Other networking modes may not work without additional
-  configuration on the host (which is outside the scope of Nomad). Valid values
+  configuration on the host (which is outside the scope of OpenWonton). Valid values
   pre-docker 1.9 are `default`, `bridge`, `host`, `none`, or `container:name`.
 
   The default `network_mode` for tasks that use group networking in [`bridge`]
@@ -298,7 +298,7 @@ config {
   network as trusted and can be resolved as described in the [network block] documentation.
 
 - `pid_mode` - (Optional) `host` or not set (default). Set to `host` to share
-  the PID namespace with the host. Note that this also requires the Nomad agent
+  the PID namespace with the host. Note that this also requires the OpenWonton agent
   to be configured to allow privileged containers.
   See below for more details.
 
@@ -332,14 +332,14 @@ config {
   }
   ```
 
-- `SSL` - (Optional) If this is set to true, Nomad uses SSL to talk to the
+- `SSL` - (Optional) If this is set to true, OpenWonton uses SSL to talk to the
   repository. The default value is `true`. **Deprecated as of 0.5.3**
 
 - `tty` - (Optional) `true` or `false` (default). Allocate a pseudo-TTY for the
   container.
 
 - `uts_mode` - (Optional) `host` or not set (default). Set to `host` to share
-  the UTS namespace with the host. Note that this also requires the Nomad agent
+  the UTS namespace with the host. Note that this also requires the OpenWonton agent
   to be configured to allow privileged containers.
 
 - `userns_mode` - (Optional) `host` or not set (default). Set to `host` to use
@@ -566,7 +566,7 @@ Additionally, the docker driver supports customization of the container's user t
 
 ### Container Name
 
-Nomad creates a container after pulling an image. Containers are named
+OpenWonton creates a container after pulling an image. Containers are named
 `{taskName}-{allocId}`. This is necessary in order to place more than one
 container from the same task on a host (e.g. with count > 1). This also means
 that each container's name is unique across the cluster.
@@ -651,18 +651,18 @@ plugin "docker" {
 }
 ```
 
-!> **Be Careful!** At this time these credentials are stored in Nomad in plain
+!> **Be Careful!** At this time these credentials are stored in OpenWonton in plain
 text. Secrets management will be added in a later release.
 
 ## Networking
 
 Docker supports a variety of networking configurations, including using host
-interfaces, SDNs, etc. Nomad uses `bridged` networking by default, like Docker.
+interfaces, SDNs, etc. OpenWonton uses `bridged` networking by default, like Docker.
 
 You can specify other networking options, including custom networking plugins
 in Docker 1.9. **You may need to perform additional configuration on the host
 in order to make these work.** This additional configuration is outside the
-scope of Nomad.
+scope of OpenWonton.
 
 ### Allocating Ports
 
@@ -690,7 +690,7 @@ A Docker container typically specifies which port a service will listen on by
 specifying the `EXPOSE` directive in the `Dockerfile`.
 
 Because dynamic ports will not match the ports exposed in your Dockerfile,
-Nomad will automatically expose any ports specified in the `ports` field.
+OpenWonton will automatically expose any ports specified in the `ports` field.
 
 These ports will be identified via environment variables. For example:
 
@@ -708,7 +708,7 @@ group {
 }
 ```
 
-If Nomad allocates port `23332` to your api task for `http`, `23332` will be
+If OpenWonton allocates port `23332` to your api task for `http`, `23332` will be
 automatically exposed and forwarded to your container, and the driver will set
 an environment variable `NOMAD_PORT_http` with the value `23332` that you can
 read inside your container.
@@ -737,7 +737,7 @@ group "example" {
 }
 ```
 
-If Nomad allocates port `23332` to your allocation, the Docker driver will
+If OpenWonton allocates port `23332` to your allocation, the Docker driver will
 automatically setup the port mapping from `23332` on the host to `6379` in your
 container, so it will just work.
 
@@ -747,7 +747,7 @@ expose and port forwarding.
 
 #### Deprecated `port_map` Syntax
 
-Up until Nomad 0.12, ports could be specified in a task's resource block and set using the docker
+Up until OpenWonton 0.12, ports could be specified in a task's resource block and set using the docker
 `port_map` field. As more features have been added to the group network resource allocation, task based
 network resources are deprecated. With it the `port_map` field is also deprecated and can only be used
 with task network resources.
@@ -757,7 +757,7 @@ a task maps with the `ports` field.
 
 ### Advertising Container IPs
 
-_New in Nomad 0.6._
+_New in OpenWonton 0.6._
 
 When using network plugins like `weave` that assign containers a routable IP
 address, that address will automatically be used in any `service`
@@ -774,8 +774,8 @@ This is not configurable.
 ### Other Networking Modes
 
 Some networking modes like `container` or `none` will require coordination
-outside of Nomad. First-class support for these options may be improved later
-through Nomad plugins or dynamic job configuration.
+outside of OpenWonton. First-class support for these options may be improved later
+through OpenWonton plugins or dynamic job configuration.
 
 ## Capabilities
 
@@ -791,16 +791,16 @@ The `docker` driver implements the following [capabilities](/nomad/docs/concepts
 
 ## Client Requirements
 
-Nomad requires Docker to be installed and running on the host alongside the
-Nomad agent. Nomad was developed against Docker `1.8.2` and `1.9`.
+OpenWonton requires Docker to be installed and running on the host alongside the
+OpenWonton agent. OpenWonton was developed against Docker `1.8.2` and `1.9`.
 
-By default Nomad communicates with the Docker daemon using the daemon's Unix
-socket. Nomad will need to be able to read/write to this socket. If you do not
-run Nomad as root, make sure you add the Nomad user to the Docker group so
-Nomad can communicate with the Docker daemon.
+By default OpenWonton communicates with the Docker daemon using the daemon's Unix
+socket. OpenWonton will need to be able to read/write to this socket. If you do not
+run OpenWonton as root, make sure you add the OpenWonton user to the Docker group so
+OpenWonton can communicate with the Docker daemon.
 
 For example, on Ubuntu you can use the `usermod` command to add the `nomad`
-user to the `docker` group so you can run Nomad without root:
+user to the `docker` group so you can run OpenWonton without root:
 
 ```shell-session
 $ sudo usermod -G docker -a nomad
@@ -810,7 +810,7 @@ For the best performance and security features you should use recent versions
 of the Linux Kernel and Docker daemon.
 
 If you would like to change any of the options related to the `docker` driver
-on a Nomad client, you can modify them with the [plugin block][plugin-block]
+on a OpenWonton client, you can modify them with the [plugin block][plugin-block]
 syntax. Below is an example of a configuration (many of the values are the
 default). See the next section for more information on the options.
 
@@ -859,7 +859,7 @@ plugin "docker" {
 ## Plugin Options
 
 - `endpoint` - If using a non-standard socket, HTTP or another location, or if
-  TLS is being used, docker.endpoint must be set. If unset, Nomad will attempt
+  TLS is being used, docker.endpoint must be set. If unset, OpenWonton will attempt
   to instantiate a Docker client using the `DOCKER_HOST` environment variable and
   then fall back to the default listen address for the given operating system.
   Defaults to `unix:///var/run/docker.sock` on Unix platforms and
@@ -870,12 +870,12 @@ plugin "docker" {
   the host's devices. Note that you must set a similar setting on the Docker
   daemon for this to work.
 
-- `pull_activity_timeout` - Defaults to `2m`. If Nomad receives no communication
-  from the Docker engine during an image pull within this timeframe, Nomad will
+- `pull_activity_timeout` - Defaults to `2m`. If OpenWonton receives no communication
+  from the Docker engine during an image pull within this timeframe, OpenWonton will
   time out the request that initiated the pull command. (Minimum of `1m`)
 
 - `pids_limit` - Defaults to unlimited (`0`). An integer value that specifies
-  the pid limit for all the Docker containers running on that Nomad client. You
+  the pid limit for all the Docker containers running on that OpenWonton client. You
   can override this limit by setting [`pids_limit`] in your task config. If
   this value is greater than `0`, your task `pids_limit` must be less than or
   equal to the value defined here.
@@ -935,7 +935,7 @@ host system.
     `endpoint` must also be specified or this setting will be ignored.
 
 - `disable_log_collection` - Defaults to `false`. Setting this to true will
-  disable Nomad logs collection of Docker tasks. If you don't rely on nomad log
+  disable OpenWonton logs collection of Docker tasks. If you don't rely on nomad log
   capabilities and exclusively use host based log aggregation, you may consider
   this option to disable nomad log collection overhead.
 
@@ -946,8 +946,8 @@ host system.
 - `logging` block:
 
   - `type` - Defaults to `"json-file"`. Specifies the logging driver docker
-    should use for all containers Nomad starts. Note that for older versions
-    of Docker, only `json-file` file or `journald` will allow Nomad to read
+    should use for all containers OpenWonton starts. Note that for older versions
+    of Docker, only `json-file` file or `journald` will allow OpenWonton to read
     the driver's logs via the Docker API, and this will prevent commands such
     as `nomad alloc logs` from functioning.
 
@@ -958,19 +958,19 @@ host system.
 
 - `gc` block:
 
-  - `image` - Defaults to `true`. Changing this to `false` will prevent Nomad
+  - `image` - Defaults to `true`. Changing this to `false` will prevent OpenWonton
     from removing images from stopped tasks.
 
   - `image_delay` - A time duration, as [defined
     here](https://golang.org/pkg/time/#ParseDuration), that defaults to `3m`.
-    The delay controls how long Nomad will wait between an image being unused
+    The delay controls how long OpenWonton will wait between an image being unused
     and deleting it. If a task is received that uses the same image within
     the delay, the image will be reused. If an image is referenced by more than
     one tag, `image_delay` may not work correctly.
 
-  - `container` - Defaults to `true`. This option can be used to disable Nomad
+  - `container` - Defaults to `true`. This option can be used to disable OpenWonton
     from removing a container when the task exits. Under a name conflict,
-    Nomad may still remove the dead container.
+    OpenWonton may still remove the dead container.
 
   - `dangling_containers` block for controlling dangling container detection
     and cleanup:
@@ -981,7 +981,7 @@ host system.
       cleaning them up.
 
     - `period` - Defaults to `"5m"`. A time duration that controls interval
-      between Nomad scans for dangling containers.
+      between OpenWonton scans for dangling containers.
 
     - `creation_grace` - Defaults to `"5m"`. Grace period after a container is
       created during which the GC ignores it. Only used to prevent the GC from
@@ -1006,7 +1006,7 @@ host system.
   `gcr.io/google_containers/pause-<goarch>:3.1`. The image will only be pulled from
   the container registry if its tag is `latest` or the image doesn't yet exist locally.
 
-- `infra_image_pull_timeout` - A time duration that controls how long Nomad will
+- `infra_image_pull_timeout` - A time duration that controls how long OpenWonton will
   wait before cancelling an in-progress pull of the Docker image as specified in
   `infra_image`. Defaults to `"5m"`.
 
@@ -1020,7 +1020,7 @@ The `docker` driver has the following [client configuration
 options](/nomad/docs/configuration/client#options):
 
 - `docker.endpoint` - If using a non-standard socket, HTTP or another location,
-  or if TLS is being used, `docker.endpoint` must be set. If unset, Nomad will
+  or if TLS is being used, `docker.endpoint` must be set. If unset, OpenWonton will
   attempt to instantiate a Docker client using the `DOCKER_HOST` environment
   variable and then fall back to the default listen address for the given
   operating system. Defaults to `unix:///var/run/docker.sock` on Unix platforms
@@ -1053,11 +1053,11 @@ options](/nomad/docs/configuration/client#options):
   will be ignored.
 
 - `docker.cleanup.image` Defaults to `true`. Changing this to `false` will
-  prevent Nomad from removing images from stopped tasks.
+  prevent OpenWonton from removing images from stopped tasks.
 
 - `docker.cleanup.image.delay` A time duration, as [defined
   here](https://golang.org/pkg/time/#ParseDuration), that defaults to `3m`. The
-  delay controls how long Nomad will wait between an image being unused and
+  delay controls how long OpenWonton will wait between an image being unused and
   deleting it. If a tasks is received that uses the same image within the delay,
   the image will be reused.
 
@@ -1085,14 +1085,14 @@ options](/nomad/docs/configuration/client#options):
   shortcut for allowlisting all capabilities.
 
 - `docker.cleanup.container`: Defaults to `true`. This option can be used to
-  disable Nomad from removing a container when the task exits. Under a name
-  conflict, Nomad may still remove the dead container.
+  disable OpenWonton from removing a container when the task exits. Under a name
+  conflict, OpenWonton may still remove the dead container.
 
 - `docker.nvidia_runtime`: Defaults to `nvidia`. This option allows operators to select the runtime that should be used in order to expose Nvidia GPUs to the container.
 
 Note: When testing or using the `-dev` flag you can use `DOCKER_HOST`,
-`DOCKER_TLS_VERIFY`, and `DOCKER_CERT_PATH` to customize Nomad's behavior. If
-`docker.endpoint` is set Nomad will **only** read client configuration from the
+`DOCKER_TLS_VERIFY`, and `DOCKER_CERT_PATH` to customize OpenWonton's behavior. If
+`docker.endpoint` is set OpenWonton will **only** read client configuration from the
 config file.
 
 An example is given below:
@@ -1134,7 +1134,7 @@ job "docs" {
 
 ### CPU
 
-Nomad limits containers' CPU based on CPU shares. CPU shares allow containers
+OpenWonton limits containers' CPU based on CPU shares. CPU shares allow containers
 to burst past their CPU limits. CPU limits will only be imposed when there is
 contention for resources. When the host is under load your process may be
 throttled to stabilize QoS depending on how many shares it has. You can see how
@@ -1142,7 +1142,7 @@ many CPU shares are available to your process by reading [`NOMAD_CPU_LIMIT`][run
 1000 shares are approximately equal to 1 GHz.
 
 Please keep the implications of CPU shares in mind when you load test workloads
-on Nomad.
+on OpenWonton.
 
 If resources [`cores`][cores] is set, the task is given an isolated reserved set of
 CPU cores to make use of. The total set of cores the task may run on is the private
@@ -1151,8 +1151,8 @@ is available to your process by reading [`NOMAD_CPU_CORES`][runtime_env].
 
 ### Memory
 
-Nomad limits containers' memory usage based on total virtual memory. This means
-that containers scheduled by Nomad cannot use swap. This is to ensure that a
+OpenWonton limits containers' memory usage based on total virtual memory. This means
+that containers scheduled by OpenWonton cannot use swap. This is to ensure that a
 swappy process does not degrade performance for other workloads on the same
 host.
 
@@ -1164,7 +1164,7 @@ usage. Memory limit is expressed in megabytes so 1024 = 1 GB.
 
 ### IO
 
-Nomad's Docker integration does not currently provide QoS around network or
+OpenWonton's Docker integration does not currently provide QoS around network or
 filesystem IO. These will be added in a later release.
 
 ### Security
@@ -1180,21 +1180,21 @@ reasons, it is recommended to use full virtualization like
 
 ### Dangling Containers
 
-Nomad 0.10.2 introduces a detector and a reaper for dangling Docker containers,
-containers that Nomad starts yet does not manage or track. Though rare, they
+OpenWonton 0.10.2 introduces a detector and a reaper for dangling Docker containers,
+containers that OpenWonton starts yet does not manage or track. Though rare, they
 lead to unexpectedly running services, potentially with stale versions.
 
-When Docker daemon becomes unavailable as Nomad starts a task, it is possible
+When Docker daemon becomes unavailable as OpenWonton starts a task, it is possible
 for Docker to successfully start the container but return a 500 error code from
-the API call. In such cases, Nomad retries and eventually aims to kill such
+the API call. In such cases, OpenWonton retries and eventually aims to kill such
 containers. However, if the Docker Engine remains unhealthy, subsequent retries
 and stop attempts may still fail, and the started container becomes a dangling
-container that Nomad no longer manages.
+container that OpenWonton no longer manages.
 
 The newly added reaper periodically scans for such containers. It only targets
-containers with a `com.hashicorp.nomad.allocation_id` label, or match Nomad's
+containers with a `com.hashicorp.nomad.allocation_id` label, or match OpenWonton's
 conventions for naming and bind-mounts (i.e. `/alloc`, `/secrets`, `local`).
-Containers that don't match Nomad container patterns are left untouched.
+Containers that don't match OpenWonton container patterns are left untouched.
 
 Operators can run the reaper in a dry-run mode, where it only logs dangling
 container ids without killing them, or disable it by setting the

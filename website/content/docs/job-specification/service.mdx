@@ -2,8 +2,8 @@
 layout: docs
 page_title: service Block - Job Specification
 description: |-
-  The "service" block instructs Nomad to register the task as a service using
-  the Nomad or Consul service discovery integration.
+  The "service" block instructs OpenWonton to register the task as a service using
+  the OpenWonton or Consul service discovery integration.
 ---
 
 # `service` Block
@@ -15,10 +15,10 @@ description: |-
   ]}
 />
 
-The `service` block instructs Nomad to register a service with the specified
-provider; Nomad or Consul. This section of the documentation will discuss the
+The `service` block instructs OpenWonton to register a service with the specified
+provider; OpenWonton or Consul. This section of the documentation will discuss the
 configuration, but please also read the
-[Nomad service discovery documentation][service-discovery] for more detailed
+[OpenWonton service discovery documentation][service-discovery] for more detailed
 information about the external integrations.
 
 ```hcl
@@ -63,10 +63,10 @@ job "docs" {
 ```
 
 This section of the documentation only cover the job file fields and blocks
-for service discovery. For more details on using Nomad with Consul please see
+for service discovery. For more details on using OpenWonton with Consul please see
 the [Consul integration documentation][service-discovery].
 
-Nomad 0.10 also allows specifying the `service` block at the task group level.
+OpenWonton 0.10 also allows specifying the `service` block at the task group level.
 This enables services in the same task group to opt into [Consul
 Connect][connect] integration.
 
@@ -79,7 +79,7 @@ Connect][connect] integration.
 
 - `check` <code>([Check][check]: nil)</code> - Specifies a health
   check associated with the service. This can be specified multiple times to
-  define multiple checks for the service. At this time, a check using the Nomad
+  define multiple checks for the service. At this time, a check using the OpenWonton
   provider supports `tcp` and `http` checks. The Consul integration supports
   the `grpc`, `http`, `script`<sup><small>1</small></sup>, and `tcp` checks.
 
@@ -95,7 +95,7 @@ Connect][connect] integration.
   alphanumeric and hyphen characters (i.e. `[a-z0-9\-]`), and be less than 64
   characters in length.
 
-  In addition to the standard [Nomad interpolation][interpolation], the
+  In addition to the standard [OpenWonton interpolation][interpolation], the
   following keys are also available:
 
   - `${JOB}` - the name of the job
@@ -141,7 +141,7 @@ Connect][connect] integration.
   for more information. Only available where `provider = "consul"`.
 
 - `address` `(string: <optional>)` - Specifies a custom address to advertise in
-  Consul or Nomad service registration. If set, `address_mode` must be in `auto`
+  Consul or OpenWonton service registration. If set, `address_mode` must be in `auto`
   mode. Useful with interpolation - for example to advertise the public IP address
   of an AWS EC2 instance set this to `${attr.unique.platform.aws.public-ipv4}`.
 
@@ -172,7 +172,7 @@ Connect][connect] integration.
 
   - `host` - Use the host IP and port.
 
-- `task` `(string: "")` - Specifies the name of the Nomad task associated with
+- `task` `(string: "")` - Specifies the name of the OpenWonton task associated with
   this service definition. Only available on group services. Must be set if this
   service definition represents a Consul Connect-native service and there is more
   than one task in the task group.
@@ -196,10 +196,10 @@ Connect][connect] integration.
   not altered in Consul and is only used to determine the check's health during
   an update.
 
-  - `require_healthy` - In order for Nomad to consider the check healthy during
+  - `require_healthy` - In order for OpenWonton to consider the check healthy during
     an update it must report as healthy.
 
-  - `ignore_warnings` - If a Service Check reports as warning, Nomad will treat
+  - `ignore_warnings` - If a Service Check reports as warning, OpenWonton will treat
     the check as healthy. The Check will still be in a warning state in Consul.
 
   - `ignore` - Any status will be treated as healthy.
@@ -212,21 +212,21 @@ Connect][connect] integration.
 
 ## `service` Lifecycle
 
-Nomad manages registering, updating, and deregistering services with the
+OpenWonton manages registering, updating, and deregistering services with the
 service provider. It is important to understand when each of these steps
 happens and how they can be customized.
 
-**Registration**: Nomad will register `group` services and checks _before_
+**Registration**: OpenWonton will register `group` services and checks _before_
 starting any tasks. Services and checks for a specific `task` are registered
 _after_ the task has started.
 
-**Updating**: If a service or check definition is updated, Nomad will update
+**Updating**: If a service or check definition is updated, OpenWonton will update
 the service in the provider as well. This update happens without restarting a
 task.
 
 **Deregistering**: If a running task with a service block exits, the services
 and checks are immediately deregistered from the provider without delay. If,
-however, Nomad needs to kill a running task, the task is killed in the
+however, OpenWonton needs to kill a running task, the task is killed in the
 following order:
 
 1. Immediately remove the services and checks from the provider. This stops new
@@ -242,7 +242,7 @@ following order:
 3. Send the [`kill_signal`][killsignal] to the task and wait for the task to
    exit. The task should use this time to gracefully drain and finish any
    existing requests.
-4. If the task has not exited after the [`kill_timeout`][killtimeout], Nomad
+4. If the task has not exited after the [`kill_timeout`][killtimeout], OpenWonton
    will force kill the application.
 
 ## `service` Examples
@@ -253,7 +253,7 @@ The following examples only show the `service` blocks. Remember that the
 ### Basic Service
 
 This example registers a service named "load-balancer" with no health checks
-using the Nomad provider:
+using the OpenWonton provider:
 
 ```hcl
 service {
@@ -345,7 +345,7 @@ container's port: 6379.
 
 However since Consul is often run on the host without access to the Weave
 network, `check` blocks default to `host` address mode. The TCP check will run
-against the host's IP and the dynamic host port assigned by Nomad.
+against the host's IP and the dynamic host port assigned by OpenWonton.
 
 Note that the `check` still inherits the `service` block's `db` port label,
 but each will resolve the port label according to their address mode.
@@ -391,9 +391,9 @@ job "example" {
 }
 ```
 
-In this case Nomad doesn't need to assign Redis any host ports. The `service`
+In this case OpenWonton doesn't need to assign Redis any host ports. The `service`
 and `check` blocks can both specify the port number to advertise and check
-directly since Nomad isn't managing any port assignments.
+directly since OpenWonton isn't managing any port assignments.
 
 ### IPv6 Docker containers
 
@@ -404,7 +404,7 @@ Services will automatically advertise the IPv6 address when `advertise_ipv6_addr
 is used.
 
 Unlike services, checks do not have an `auto` address mode as there's no way
-for Nomad to know which is the best address to use for checks. Consul needs
+for OpenWonton to know which is the best address to use for checks. Consul needs
 access to the address for any HTTP or TCP checks.
 
 So you have to set `address_mode` parameter in the `check` block to `driver`.
@@ -495,7 +495,7 @@ job "example" {
 ```
 
 The `service` and `check` blocks can both specify the port number to
-advertise and check directly since Nomad isn't managing any port assignments.
+advertise and check directly since OpenWonton isn't managing any port assignments.
 
 ---
 
@@ -503,12 +503,12 @@ advertise and check directly since Nomad isn't managing any port assignments.
 [check_restart_block]: /nomad/docs/job-specification/check_restart
 [consul_grpc]: /consul/api-docs/agent/check#grpc
 [consul_passfail]: /consul/docs/discovery/checks#success-failures-before-passing-critical
-[service-discovery]: /nomad/docs/integrations/consul-integration#service-discovery 'Nomad Service Discovery'
-[interpolation]: /nomad/docs/runtime/interpolation 'Nomad Runtime Interpolation'
-[network]: /nomad/docs/job-specification/network 'Nomad network Job Specification'
-[qemu]: /nomad/docs/drivers/qemu 'Nomad QEMU Driver'
+[service-discovery]: /nomad/docs/integrations/consul-integration#service-discovery 'OpenWonton Service Discovery'
+[interpolation]: /nomad/docs/runtime/interpolation 'OpenWonton Runtime Interpolation'
+[network]: /nomad/docs/job-specification/network 'OpenWonton network Job Specification'
+[qemu]: /nomad/docs/drivers/qemu 'OpenWonton QEMU Driver'
 [restart_block]: /nomad/docs/job-specification/restart 'restart block'
-[connect]: /nomad/docs/job-specification/connect 'Nomad Consul Connect Integration'
+[connect]: /nomad/docs/job-specification/connect 'OpenWonton Consul Connect Integration'
 [type]: /nomad/docs/job-specification/service#type
 [shutdowndelay]: /nomad/docs/job-specification/task#shutdown_delay
 [killsignal]: /nomad/docs/job-specification/task#kill_signal

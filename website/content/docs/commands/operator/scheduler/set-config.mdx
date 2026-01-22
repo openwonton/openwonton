@@ -13,7 +13,7 @@ configuration.
 ## Usage
 
 ```plaintext
-nomad operator scheduler set-config [options]
+wonton operator scheduler set-config [options]
 ```
 
 If ACLs are enabled, this command requires a token with the `operator:write`
@@ -68,14 +68,14 @@ capability.
 Modify the scheduler algorithm to spread:
 
 ```shell-session
-$ nomad operator scheduler set-config -scheduler-algorithm=spread
+$ wonton operator scheduler set-config -scheduler-algorithm=spread
 Scheduler configuration updated!
 ```
 
 Modify the scheduler algorithm to spread using the check index flag:
 
 ```shell-session
-$ nomad operator scheduler set-config -scheduler-algorithm=spread -check-index=5
+$ wonton operator scheduler set-config -scheduler-algorithm=spread -check-index=5
 Scheduler configuration updated!
 ```
 

@@ -7,20 +7,20 @@ description: |
 
 # Command: job inspect
 
-**Alias: `nomad inspect`**
+**Alias: `wonton inspect`**
 
 The `job inspect` command is used to inspect the content of a submitted job.
 
 ## Usage
 
 ```plaintext
-nomad job inspect [options] <job>
+wonton job inspect [options] <job>
 ```
 
 The `job inspect` command requires a single argument, a submitted job's name, and
 will retrieve the JSON version of the job. This JSON is valid to be submitted to
 the [Job HTTP API]. This command is useful to inspect what version of a job
-Nomad is running.
+OpenWonton is running.
 
 When ACLs are enabled, this command requires a token with the `read-job`
 capability for the job's namespace. The `list-jobs` capability is required to
@@ -41,7 +41,7 @@ run the command with a job prefix instead of the exact job ID.
 Inspect a submitted job:
 
 ```shell-session
-$ nomad job inspect redis
+$ wonton job inspect redis
 {
     "Job": {
         "Region": "global",

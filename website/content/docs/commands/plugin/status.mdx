@@ -13,7 +13,7 @@ Storage Interface (CSI)][csi] plugins.
 ## Usage
 
 ```plaintext
-nomad plugin status [options] [plugin]
+wonton plugin status [options] [plugin]
 ```
 
 This command accepts an optional plugin ID or prefix as the sole argument. If there
@@ -48,7 +48,7 @@ capability.
 List of all plugins:
 
 ```shell-session
-$ nomad plugin [-type csi] status
+$ wonton plugin [-type csi] status
 ID         Provider  Controllers Healthy / Expected  Nodes Healthy / Expected
 ebs-prod   aws.ebs   1 / 1                           1 / 1
 ```
@@ -56,7 +56,7 @@ ebs-prod   aws.ebs   1 / 1                           1 / 1
 Short view of a specific plugin:
 
 ```shell-session
-$ nomad plugin [-type csi] status ebs-prod
+$ wonton plugin [-type csi] status ebs-prod
 ID                   = ebs-prod
 Provider             = aws.ebs
 Version              = 1.0.1
@@ -71,7 +71,7 @@ shows a plugin that has all supported capabilities. Most plugins will support a
 subset of these capabilities. Topology fields are also controlled by the plugin.
 
 ```shell-session
-$ nomad plugin [-type csi] -verbose status ebs-prod
+$ wonton plugin [-type csi] -verbose status ebs-prod
 ID                   = ebs-prod
 Provider             = aws.ebs
 Version              = 1.0.1

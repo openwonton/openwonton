@@ -2,7 +2,7 @@
 layout: docs
 page_title: audit Block - Agent Configuration
 description: >-
-  The "audit" block configures the Nomad agent to configure Audit Logging
+  The "audit" block configures the OpenWonton agent to configure Audit Logging
   behavior. This is an Enterprise-only feature.
 ---
 
@@ -10,7 +10,7 @@ description: >-
 
 <Placement groups={['audit']} />
 
-The `audit` block configures the Nomad agent to configure Audit logging behavior.
+The `audit` block configures the OpenWonton agent to configure Audit logging behavior.
 Audit logging is an Enterprise-only feature.
 
 ```hcl
@@ -19,7 +19,7 @@ audit {
 }
 ```
 
-When enabled, each HTTP request made to a nomad agent (client or server) will
+When enabled, each HTTP request made to an OpenWonton agent (client or server) will
 generate two audit log entries. These two entries correspond to a stage,
 `OperationReceived` and `OperationComplete`. Audit logging will generate a
 `OperationReceived` event before the request is processed. An `OperationComplete`
@@ -102,7 +102,7 @@ audit {
    files using octal notation.
 
 - `path` `(string: "[data_dir]/audit/audit.log")` - Specifies the path and file
-  name to use for the audit log. By default Nomad will use its configured
+  name to use for the audit log. By default OpenWonton will use its configured
   [`data_dir`](/nomad/docs/configuration#data_dir) for a combined path of
   `/data_dir/audit/audit.log`. If `rotate_bytes` or `rotate_duration` are set
   file rotation will occur. In this case the filename will be post-fixed with

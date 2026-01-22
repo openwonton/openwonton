@@ -10,7 +10,7 @@ description: |-
 
 <Placement groups={['job', 'group', 'task', 'lifecycle']} />
 
-The `lifecycle` block is used to express task dependencies in Nomad by
+The `lifecycle` block is used to express task dependencies in OpenWonton by
 configuring when a task is run within the lifecycle of a task group.
 
 Main tasks are tasks that do not have a `lifecycle` block. Lifecycle task hooks
@@ -26,7 +26,7 @@ tasks or "sidecar" tasks that are expected to run for the duration of the main t
 The absence of the sidecar flag indicates that the task is ephemeral
 and should not be restarted if it completes successfully.
 
-Learn more about [Nomad's task dependencies][learn-taskdeps].
+Learn more about [OpenWonton's task dependencies][learn-taskdeps].
 
 ## `lifecycle` Parameters
 

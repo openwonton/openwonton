@@ -11,7 +11,7 @@ description: |-
 <Placement groups={['job', 'group', 'service', 'connect', 'sidecar_task']} />
 
 The `sidecar_task` block allows configuring various options for the proxy
-sidecar or Connect gateway managed by Nomad for the [Consul
+sidecar or Connect gateway managed by OpenWonton for the [Consul
 Connect](/nomad/docs/integrations/consul-connect) integration such as
 resource requirements, kill timeouts and more as defined below. It is valid
 only within the context of a [`connect`][connect] block.
@@ -54,7 +54,7 @@ job "countdash" {
 
 ## Default Envoy configuration
 
-Nomad automatically launches and manages an Envoy task for use as a proxy sidecar
+OpenWonton automatically launches and manages an Envoy task for use as a proxy sidecar
 or connect gateway, when [`sidecar_service`][sidecar_service] or [`gateway`][gateway]
 are configured.
 
@@ -117,7 +117,7 @@ variables with the following defaults:
   sidecar will run.
 
 Custom images can make use of Consul's preferred Envoy version by making use of
-Nomad's version interpolation, e.g.
+OpenWonton's version interpolation, e.g.
 
 ```hcl
 meta.connect.sidecar_image = custom/envoy-${NOMAD_envoy_version}:latest
@@ -131,7 +131,7 @@ meta.connect.sidecar_image = custom/envoy-${NOMAD_envoy_version}:latest
 - `driver` `(string: "docker")` - Driver used for the sidecar task.
 
 - `user` `(string: nil)` - Determines which user is used to run the task, defaults
-  to the same user the Nomad client is being run as.
+  to the same user the OpenWonton client is being run as.
 
 - `config` `(map: nil)` - Configuration provided to the driver for initialization.
   Keys and values support [runtime variable interpolation][interpolation].
@@ -140,7 +140,7 @@ meta.connect.sidecar_image = custom/envoy-${NOMAD_envoy_version}:latest
 
 - `resources` <code>([Resources][resources])</code> - Resources needed by the sidecar task.
 
-- `meta` `(map: nil)` - Arbitrary metadata associated with this task that's opaque to Nomad.
+- `meta` `(map: nil)` - Arbitrary metadata associated with this task that's opaque to OpenWonton.
 
 - `logs` <code>([Logs][]: nil)</code> - Specifies logging configuration for the
   `stdout` and `stderr` of the task.
@@ -173,14 +173,14 @@ The following example configures resources for the sidecar task and other config
 
 ```
 
-[connect]: /nomad/docs/job-specification/connect 'Nomad connect Job Specification'
+[connect]: /nomad/docs/job-specification/connect 'OpenWonton connect Job Specification'
 [gateway]: /nomad/docs/job-specification/gateway
-[group]: /nomad/docs/job-specification/group 'Nomad group Job Specification'
-[interpolation]: /nomad/docs/runtime/interpolation 'Nomad interpolation'
-[job]: /nomad/docs/job-specification/job 'Nomad job Job Specification'
-[logs]: /nomad/docs/job-specification/logs 'Nomad logs Job Specification'
-[resources]: /nomad/docs/job-specification/resources 'Nomad resources Job Specification'
-[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'Nomad sidecar service Specification'
-[task]: /nomad/docs/job-specification/task 'Nomad task Job Specification'
+[group]: /nomad/docs/job-specification/group 'OpenWonton group Job Specification'
+[interpolation]: /nomad/docs/runtime/interpolation 'OpenWonton interpolation'
+[job]: /nomad/docs/job-specification/job 'OpenWonton job Job Specification'
+[logs]: /nomad/docs/job-specification/logs 'OpenWonton logs Job Specification'
+[resources]: /nomad/docs/job-specification/resources 'OpenWonton resources Job Specification'
+[sidecar_service]: /nomad/docs/job-specification/sidecar_service 'OpenWonton sidecar service Specification'
+[task]: /nomad/docs/job-specification/task 'OpenWonton task Job Specification'
 [nodemeta]: /nomad/docs/configuration/client#meta
 [worker_threads]: https://www.envoyproxy.io/docs/envoy/latest/operations/cli#cmdoption-concurrency

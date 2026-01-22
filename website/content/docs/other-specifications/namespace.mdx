@@ -1,19 +1,19 @@
 ---
 layout: docs
 page_title: Namespace Specification
-description: Learn about Nomad's Namespace specification.
+description: Learn about OpenWonton's Namespace specification.
 ---
 
 # Namespace Specification
 
 <Tip>
   Visit the <a href="https://developer.hashicorp.com/nomad/tutorials/manage-clusters/namespaces">
-    Nomad Namespaces tutorial
+    OpenWonton Namespaces tutorial
   </a> for more information.
 </Tip>
 
 
-Nomad Namespaces may be specified as HCL files and submitted by the [`nomad
+OpenWonton Namespaces may be specified as HCL files and submitted by the [`nomad
 namespace apply`][cli_ns_apply] CLI command.
 
 Unlike [Job specifications][jobspecs], Namespace specifications do *not*
@@ -55,7 +55,7 @@ node_pool_config {
   attach to the namespace.
 
 - `meta` `(object: null)` - Optional object with string keys and values of
-  metadata to attach to the namespace. Namespace metadata is not used by Nomad
+  metadata to attach to the namespace. Namespace metadata is not used by OpenWonton
   and is intended for use by operators and third party tools.
 
 - `capabilities` <code>([Capabilities](#capabilities-parameters): &lt;optional&gt;)</code> -

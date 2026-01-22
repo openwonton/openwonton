@@ -1,29 +1,29 @@
 ---
 layout: docs
-page_title: Installing Nomad for QuickStart
-description: Learn how to install Nomad locally or in a sandbox.
+page_title: Installing OpenWonton for QuickStart
+description: Learn how to install OpenWonton locally or in a sandbox.
 ---
 
 # Quickstart
 
-This page lists multiple methods to installing Nomad locally or in a sandbox
+This page lists multiple methods to installing OpenWonton locally or in a sandbox
 environment.
 
-These installations are designed to get you started with Nomad easily and should
-be used only for experimentation purposes. If you are looking to install Nomad
+These installations are designed to get you started with OpenWonton easily and should
+be used only for experimentation purposes. If you are looking to install OpenWonton
 in production, please refer to the [Production Installation](/nomad/docs/install/production) guide here.
 
 <Tabs>
 <Tab heading="Interactive Online Environment">
 
-Experiment with Nomad in your browser via guides containing embedded interactive learning environments.
+Experiment with OpenWonton in your browser via guides containing embedded interactive learning environments.
 
 - [Interactive Labs](/nomad/tutorials/interactive)
 
 </Tab>
 <Tab heading="Create a Cloud Lab">
 
-Install Nomad on the public cloud.
+Install OpenWonton on the public cloud.
 
 - AWS
 
@@ -38,27 +38,27 @@ Install Nomad on the public cloud.
 </Tab>
 <Tab heading="Try it Locally">
 
-## Install Nomad on your machine
+## Install OpenWonton on your machine
 
-If you would like to try Nomad locally, you can install Nomad on your local
+If you would like to try OpenWonton locally, you can install OpenWonton on your local
 machine using the same steps that you would for a production environments and
-run a single-node development instance using the `sudo nomad agent -dev` command
+run a single-node development instance using the `sudo wonton agent -dev` command
 
-[Installing Nomad][installing-binary]
+[Installing OpenWonton][installing-binary]
 
 -> **Note:** If you are using Docker Desktop for Windows or MacOS, please check
 [our FAQ][faq-win-mac].
 
-## Run Nomad in Vagrant
+## Run OpenWonton in Vagrant
 
-Alternatively, you can use a Vagrant to set up a development environment for Nomad.
+Alternatively, you can use a Vagrant to set up a development environment for OpenWonton.
 Vagrant is a tool for building and managing virtual machine environments.
 
 -> **Note**: To use the Vagrant environment, first install Vagrant following
 these [instructions](/vagrant/docs/installation). You will
 also need a virtualization tool, such as [VirtualBox][].
 
-You can download a Vagrantfile which can start a small Nomad cluster. First
+You can download a Vagrantfile which can start a small OpenWonton cluster. First
 create a new directory for your Vagrant environment.
 
 ```shell-session
@@ -71,7 +71,7 @@ Change into the directory you made with the previous command.
 $ cd nomad-vagrant
 ```
 
-Now you can get the Nomad installation configuration.
+Now you can get the OpenWonton installation configuration.
 
 ```shell-session
 $ curl -O https://raw.githubusercontent.com/hashicorp/nomad/master/demo/vagrant/Vagrantfile
@@ -85,7 +85,7 @@ $ vagrant up
 ```
 
 This takes a few minutes as the base Ubuntu box must be downloaded
-and provisioned with both Docker and Nomad. Once this completes, you should
+and provisioned with both Docker and OpenWonton. Once this completes, you should
 see this output.
 
 ```plaintext

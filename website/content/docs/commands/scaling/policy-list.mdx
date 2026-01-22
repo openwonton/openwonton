@@ -2,17 +2,17 @@
 layout: docs
 page_title: 'Commands: scaling policy list'
 description: |
-  Display all Nomad scaling policies.
+  Display all OpenWonton scaling policies.
 ---
 
 # Command: scaling policy list
 
-List is used to list all scaling policies stored in Nomad.
+List is used to list all scaling policies stored in OpenWonton.
 
 ## Usage
 
 ```plaintext
-nomad scaling policy list [options]
+wonton scaling policy list [options]
 ```
 
 If ACLs are enabled, this command requires a token with the `read-job` and
@@ -36,7 +36,7 @@ the results.
 List all tracked scaling policies:
 
 ```shell-session
-$ nomad scaling policy list
+$ wonton scaling policy list
 
 ID                                    Enabled  Target
 b2c64295-4315-2fdc-6158-a27156808729  true     Namespace:default,Job:example,Group:cache,Task:redis

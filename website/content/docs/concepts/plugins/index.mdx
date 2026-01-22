@@ -1,26 +1,26 @@
 ---
 layout: docs
 page_title: Plugins
-description: Learn about how external plugins work in Nomad.
+description: Learn about how external plugins work in OpenWonton.
 ---
 
 # Plugins
 
-Nomad 0.9 introduced a plugin framework which allows users to extend the
-functionality of some components within Nomad. The design of the plugin system
+OpenWonton 0.9 introduced a plugin framework which allows users to extend the
+functionality of some components within OpenWonton. The design of the plugin system
 is inspired by the lessons learned from plugin systems implemented in other
 HashiCorp products such as Terraform and Vault.
 
-The following components are currently pluggable within Nomad:
+The following components are currently pluggable within OpenWonton:
 
 - [Task Drivers](/nomad/docs/concepts/plugins/task-drivers)
 - [Devices](/nomad/docs/concepts/plugins/devices)
 
 # Architecture
 
-The Nomad plugin framework uses the [go-plugin][goplugin] project to expose
+The OpenWonton plugin framework uses the [go-plugin][goplugin] project to expose
 a language independent plugin interface. Plugins implement a set of gRPC
-services and methods which Nomad manages by running the plugin and calling the
+services and methods which OpenWonton manages by running the plugin and calling the
 implemented RPCs. This means that plugins are free to be implemented in the
 author's language of choice.
 

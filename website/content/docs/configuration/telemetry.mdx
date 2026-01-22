@@ -2,7 +2,7 @@
 layout: docs
 page_title: telemetry Block - Agent Configuration
 description: |-
-  The "telemetry" block configures Nomad's publication of metrics and telemetry
+  The "telemetry" block configures OpenWonton's publication of metrics and telemetry
   to third-party systems.
 ---
 
@@ -10,7 +10,7 @@ description: |-
 
 <Placement groups={['telemetry']} />
 
-The `telemetry` block configures Nomad's publication of metrics and telemetry
+The `telemetry` block configures OpenWonton's publication of metrics and telemetry
 to third-party systems.
 
 ```hcl
@@ -37,16 +37,16 @@ The following options are available on all telemetry configurations.
   prefixed with the local hostname.
 
 - `collection_interval` `(duration: 1s)` - Specifies the time interval at which
-  the Nomad agent collects telemetry data.
+  the OpenWonton agent collects telemetry data.
 
 - `use_node_name` `(bool: false)` - Specifies if gauge values should be
   prefixed with the name of the node, instead of the hostname. If set it will
   override [disable_hostname](#disable_hostname) value.
 
-- `publish_allocation_metrics` `(bool: false)` - Specifies if Nomad should
+- `publish_allocation_metrics` `(bool: false)` - Specifies if OpenWonton should
   publish runtime metrics of allocations.
 
-- `publish_node_metrics` `(bool: false)` - Specifies if Nomad should publish
+- `publish_node_metrics` `(bool: false)` - Specifies if OpenWonton should publish
   runtime metrics of nodes.
 
 - `filter_default` `(bool: true)` - This controls whether to allow metrics that
@@ -65,7 +65,7 @@ The following options are available on all telemetry configurations.
 ['-nomad.raft', '+nomad.raft.apply', '-nomad.memberlist']
 ```
 
-- `disable_dispatched_job_summary_metrics` `(bool: false)` - Specifies if Nomad
+- `disable_dispatched_job_summary_metrics` `(bool: false)` - Specifies if OpenWonton
   should ignore jobs dispatched from a parameterized job when publishing job
   summary statistics. Since each job has a small memory overhead for tracking
   summary statistics, it is sometimes desired to trade these statistics for

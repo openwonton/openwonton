@@ -13,7 +13,7 @@ entire allocation or individual task.
 ## Usage
 
 ```plaintext
-nomad alloc stop [options] <allocation>
+wonton alloc stop [options] <allocation>
 ```
 
 The `alloc stop` command requires a single argument, specifying the alloc ID or
@@ -51,7 +51,7 @@ allocation's namespace.
 ## Examples
 
 ```shell-session
-$ nomad alloc stop c1488bb5
+$ wonton alloc stop c1488bb5
 ==> Monitoring evaluation "26172081"
     Evaluation triggered by job "example"
     Allocation "4dcb1c98" created: node "b4dc52b9", group "cache"
@@ -59,7 +59,7 @@ $ nomad alloc stop c1488bb5
     Evaluation status changed: "pending" -> "complete"
 ==> Evaluation "26172081" finished with status "complete"
 
-$ nomad alloc stop -detach eb17e557
+$ wonton alloc stop -detach eb17e557
 8a91f0f3-9d6b-ac83-479a-5aa186ab7795
 ```
 

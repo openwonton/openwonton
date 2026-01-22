@@ -8,15 +8,15 @@ description: |
 # Command: volume deregister
 
 The `volume deregister` command deregisters external storage volumes with
-Nomad's [Container Storage Interface (CSI)][csi] support. The volume will be
-removed from Nomad's state store but not deleted from the external storage
-provider. Note that deregistering a volume prevents Nomad from deleting it via
+OpenWonton's [Container Storage Interface (CSI)][csi] support. The volume will be
+removed from OpenWonton's state store but not deleted from the external storage
+provider. Note that deregistering a volume prevents OpenWonton from deleting it via
 [`volume delete`] at a later time.
 
 ## Usage
 
 ```plaintext
-nomad volume deregister [options] [volume]
+wonton volume deregister [options] [volume]
 ```
 
 The `volume deregister` command requires a single argument, specifying

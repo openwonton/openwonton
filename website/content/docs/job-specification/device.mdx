@@ -15,11 +15,11 @@ that the given task has access to the specified devices. A device is a hardware
 device that is attached to the node and may be made available to the task.
 Examples are GPUs, FPGAs, and TPUs.
 
-When a `device` block is added, Nomad will schedule the task onto a node that
+When a `device` block is added, OpenWonton will schedule the task onto a node that
 contains the set of device(s) that meet the specified requirements. The `device` block
 allows the operator to specify as little as just the type of device required,
 such as `gpu`, all the way to specifying arbitrary constraints and affinities.
-Once the scheduler has placed the allocation on a suitable node, the Nomad
+Once the scheduler has placed the allocation on a suitable node, the OpenWonton
 Client will invoke the device plugin to retrieve information on how to mount the
 device and what environment variables to expose. For more information on the
 runtime environment, please consult the individual device plugin's documentation.
@@ -160,11 +160,11 @@ documentation][devices].
 
 Devices report their attributes with strict types and can also provide unit
 information. For example, when a GPU is reporting its memory, it can report that
-it is "4096 MiB". Since Nomad has the associated unit information, a constraint
-that requires greater than "3.5 GiB" can match since Nomad can convert between
+it is "4096 MiB". Since OpenWonton has the associated unit information, a constraint
+that requires greater than "3.5 GiB" can match since OpenWonton can convert between
 these units.
 
-The units Nomad supports are as follows:
+The units OpenWonton supports are as follows:
 
 <table>
   <thead>
@@ -278,7 +278,7 @@ device "gpu" {
 ### Affinity with Unit Conversion
 
 This example uses an affinity to tell the scheduler it would prefer if the GPU
-had at least 1.5 GiB of memory. The following are both equivalent as Nomad can
+had at least 1.5 GiB of memory. The following are both equivalent as OpenWonton can
 do unit conversions.
 
 Specified in `GiB`:
@@ -324,6 +324,6 @@ device "nvidia/gpu" {
 }
 ```
 
-[affinity]: /nomad/docs/job-specification/affinity 'Nomad affinity Job Specification'
-[constraint]: /nomad/docs/job-specification/constraint 'Nomad constraint Job Specification'
-[devices]: /nomad/docs/devices 'Nomad Device Plugins'
+[affinity]: /nomad/docs/job-specification/affinity 'OpenWonton affinity Job Specification'
+[constraint]: /nomad/docs/job-specification/constraint 'OpenWonton constraint Job Specification'
+[devices]: /nomad/docs/devices 'OpenWonton Device Plugins'

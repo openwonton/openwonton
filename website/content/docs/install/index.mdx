@@ -1,31 +1,31 @@
 ---
 layout: docs
-page_title: Installing Nomad
-description: Learn how to install Nomad.
+page_title: Installing OpenWonton
+description: Learn how to install OpenWonton.
 ---
 
-# Installing Nomad
+# Installing OpenWonton
 
-Nomad is available as a pre-compiled binary or as a package for several
-operating systems. You can also [build Nomad from source](#from-source).
+OpenWonton is available as a pre-compiled binary or as a package for several
+operating systems. You can also [build OpenWonton from source](#from-source).
 
--> If you are interested in trialing Nomad without installing it locally, see the
-[Quickstart](/nomad/docs/install/quickstart) for options to get started with Nomad.
+-> If you are interested in trialing OpenWonton without installing it locally, see the
+[Quickstart](/nomad/docs/install/quickstart) for options to get started with OpenWonton.
 
 <Tabs>
 <Tab heading="Manual installation" group="manual">
 
 You can download a [precompiled binary](/nomad/downloads) and
 run it on your machine locally. You can also verify the binary using the
-available SHA-256 sums. After downloading Nomad, unzip the package. Make sure
-that the `nomad` binary is available on your `PATH` before continuing with the
-other guides.
+available SHA-256 sums. After downloading OpenWonton, unzip the package. Make sure
+that the `wonton` binary (or the `nomad` compatibility shim) is available on your
+`PATH` before continuing with the other guides.
 
 </Tab>
 <Tab heading="Homebrew on macOS" group="homebrew">
 
 [Homebrew](https://brew.sh) is a free and open source package management system
-for Mac OS X. Install the official [Nomad
+for Mac OS X. Install the official [OpenWonton
 formula](https://github.com/hashicorp/homebrew-tap) from the terminal.
 
 First, install the HashiCorp tap, a repository of all of the HashiCorp Homebrew
@@ -35,7 +35,7 @@ packages.
 $ brew tap hashicorp/tap
 ```
 
-Now, install Nomad with `hashicorp/tap/nomad`.
+Now, install OpenWonton with `hashicorp/tap/nomad`.
 
 ```shell-session
 $ brew install hashicorp/tap/nomad
@@ -54,15 +54,15 @@ $ brew upgrade hashicorp/tap/nomad
 <Tab heading="Chocolatey on Windows" group="chocolatey">
 
 [Chocolatey](https://chocolatey.org/) is a free and open-source package
-management system for Windows. Install the [Nomad
+management system for Windows. Install the [OpenWonton
 package](https://chocolatey.org/packages/nomad) from the command-line.
 
 ```shell-session
 $ choco install nomad
 ```
 
-~> **NOTE:** Chocolatey and the Nomad package are **NOT** directly maintained
-by HashiCorp. The latest version of Nomad is always available by manual
+~> **NOTE:** Chocolatey and the OpenWonton package are **NOT** directly maintained
+by HashiCorp. The latest version of OpenWonton is always available by manual
 installation.
 
 </Tab>
@@ -174,28 +174,28 @@ $ sudo yum -y install nomad
 
 ## Post-installation steps
 
-These steps are considered optional but can be helpful for running Nomad and to
-take advantage of additional Nomad functionalities.
+These steps are considered optional but can be helpful for running OpenWonton and to
+take advantage of additional OpenWonton functionalities.
 
 <Tabs>
 <Tab heading="Manual installation" group="manual">
 
 <Tabs>
 <Tab heading="Linux Packages">
-<h3>Add the Nomad binary to your system path</h3>
+<h3>Add the OpenWonton binary to your system path</h3>
 
 Permanently add a new location to your path by editing your shell's settings
 file (usually called something like `~/.bashrc`, where the part of the filename
 after the `.` and before `rc` is the name of your shell). In that file you
 should see a line that starts with `export PATH=`, followed by a
-colon-separated list of locations. Add the location of the Nomad binary to that
+colon-separated list of locations. Add the location of the OpenWonton binary to that
 list and save the file. Then reload your shell's configuration with the command
 `source ~/.bashrc`, replacing `bash` with the name of your shell.
 
 <h3>Install CNI plugins</h3>
 
-Nomad uses CNI plugins to configure network namespaces when using the `bridge`
-network mode. All Linux Nomad client nodes using network namespaces must have
+OpenWonton uses CNI plugins to configure network namespaces when using the `bridge`
+network mode. All Linux OpenWonton client nodes using network namespaces must have
 CNI plugins installed.
 
 The following commands install the CNI reference plugins.
@@ -232,47 +232,47 @@ net.bridge.bridge-nf-call-iptables = 1
 </Tab>
 
 <Tab heading="macOS">
-<h3>Add the Nomad binary to your system path</h3>
+<h3>Add the OpenWonton binary to your system path</h3>
 
 Permanently add a new location to your path by editing your shell's settings
 file (usually called something like `~/.bashrc`, where the part of the filename
 after the `.` and before `rc` is the name of your shell). In that file you
 should see a line that starts with `export PATH=`, followed by a
-colon-separated list of locations. Add the location of the Nomad binary to that
+colon-separated list of locations. Add the location of the OpenWonton binary to that
 list and save the file. Then reload your shell's configuration with the command
 `source ~/.bashrc`, replacing `bash` with the name of your shell.
 </Tab>
 
 <Tab heading="Windows">
 
-<h3>Add the Nomad binary to your system path</h3>
+<h3>Add the OpenWonton binary to your system path</h3>
 
 Add a location to your path via the GUI by navigating to `Environment
 Variables` in your system settings, and looking for the variable called `PATH`.
-You should see a semicolon-separated list of locations. Add the Nomad binary's
+You should see a semicolon-separated list of locations. Add the OpenWonton binary's
 location to that list and then launch a new console window.
 </Tab>
 </Tabs>
 </Tab>
 
 <Tab heading="Homebrew on macOS" group="homebrew">
-No additional steps necessary after installing Nomad using Homebrew.
+No additional steps necessary after installing OpenWonton using Homebrew.
 </Tab>
 
 <Tab heading="Chocolatey on Windows" group="chocolatey">
-No additional steps necessary after installing Nomad using Chocolatey.
+No additional steps necessary after installing OpenWonton using Chocolatey.
 </Tab>
 
 <Tab heading="Linux" group="linux">
 
-Note that if you are running Nomad on Linux, you'll need to run client agents as
+Note that if you are running OpenWonton on Linux, you'll need to run client agents as
 root (or with `sudo`) so that cpuset accounting and network namespaces work
 correctly.
 
 <h3>Install CNI plugins</h3>
 
-Nomad uses CNI plugins to configure network namespaces when using the `bridge`
-network mode. All Linux Nomad client nodes using network namespaces must have
+OpenWonton uses CNI plugins to configure network namespaces when using the `bridge`
+network mode. All Linux OpenWonton client nodes using network namespaces must have
 CNI plugins installed.
 
 The following commands install the CNI reference plugins.
@@ -311,16 +311,17 @@ net.bridge.bridge-nf-call-iptables = 1
 
 ## Verify the Installation
 
-To verify Nomad was installed correctly, try the `nomad` command.
+To verify OpenWonton was installed correctly, try the `wonton` command (or the
+`nomad` compatibility shim).
 
 ```shell-session
-$ nomad
+$ wonton
 ```
 
 You should see help output, similar to the following.
 
 ```plaintext
-Usage: nomad [-version] [-help] [-autocomplete-(un)install] <command> [args]
+Usage: wonton [-version] [-help] [-autocomplete-(un)install] <command> [args]
 
 Common commands:
     run         Run a new job or update an existing job
@@ -329,7 +330,7 @@ Common commands:
     alloc       Interact with allocations
     job         Interact with jobs
     node        Interact with nodes
-    agent       Runs a Nomad agent
+    agent       Runs an OpenWonton agent
 
 Other commands:
     acl                 Interact with ACL policies and tokens
@@ -338,24 +339,24 @@ Other commands:
     deployment          Interact with deployments
     eval                Interact with evaluations
     exec                Execute commands in task
-    fmt                 Rewrites Nomad config and job files to canonical format
+    fmt                 Rewrites OpenWonton config and job files to canonical format
     license             Interact with Nomad Enterprise License
-    login               Login to Nomad using an auth method
-    monitor             Stream logs from a Nomad agent
+    login               Login to OpenWonton using an auth method
+    monitor             Stream logs from an OpenWonton agent
     namespace           Interact with namespaces
-    operator            Provides cluster-level tools for Nomad operators
+    operator            Provides cluster-level tools for OpenWonton operators
     plugin              Inspect plugins
     quota               Interact with quotas
-    recommendation      Interact with the Nomad recommendation endpoint
-    scaling             Interact with the Nomad scaling endpoint
+    recommendation      Interact with the OpenWonton recommendation endpoint
+    scaling             Interact with the OpenWonton scaling endpoint
     sentinel            Interact with Sentinel policies
     server              Interact with servers
     service             Interact with registered services
     system              Interact with the system API
-    tls                 Generate Self Signed TLS Certificates for Nomad
-    ui                  Open the Nomad Web UI
+    tls                 Generate Self Signed TLS Certificates for OpenWonton
+    ui                  Open the OpenWonton Web UI
     var                 Interact with variables
-    version             Prints the Nomad version
+    version             Prints the OpenWonton version
     volume              Interact with volumes
 ```
 
@@ -369,7 +370,7 @@ configure your Go environment, including setting a `GOPATH` environment variable
 and ensuring `GOPATH/bin` is within your `PATH`. A copy of
 [`git`](https://www.git-scm.com/) is also needed in your `PATH`.
 
-1. Clone the Nomad repository from GitHub into your `GOPATH`:
+1. Clone the OpenWonton repository from GitHub into your `GOPATH`:
 
    ```shell-session
    $ mkdir -p $GOPATH/src/github.com/hashicorp && cd $_
@@ -378,13 +379,13 @@ and ensuring `GOPATH/bin` is within your `PATH`. A copy of
    ```
 
 1. Bootstrap the project. This will download and compile libraries and tools
-   needed to compile Nomad:
+   needed to compile OpenWonton:
 
    ```shell-session
    $ make bootstrap
    ```
 
-1. Build Nomad for your current system and put the
+1. Build OpenWonton for your current system and put the
    binary in `./bin/` (relative to the git checkout). The `make dev` target is
    just a shortcut that builds `nomad` for only your local build environment (no
    cross-compiled targets).

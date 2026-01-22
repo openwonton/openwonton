@@ -1,20 +1,20 @@
 ---
 layout: docs
 page_title: Glossary
-description: Learn the definition of important Nomad concepts.
+description: Learn the definition of important OpenWonton concepts.
 ---
 
 # Glossary
 
 This glossary provides definitions and explanations for important terms and
-concepts used in Nomad.
+concepts used in OpenWonton.
 
 ## Allocation
 
 An Allocation is a mapping between a task group in a job and a client node. A
 single job may have hundreds or thousands of task groups, meaning an
 equivalent number of allocations must exist to map the work to client
-machines. Allocations are created by the Nomad servers as part of scheduling
+machines. Allocations are created by the OpenWonton servers as part of scheduling
 decisions made during an evaluation.
 
 ## Authoritative and Non-Authoritative Regions
@@ -29,28 +29,28 @@ entities by pulling them from the authoritative region.
 ## Bin Packing
 
 Bin Packing is the process of filling bins with items in a way that maximizes
-the utilization of bins. This extends to Nomad, where the clients are "bins"
-and the items are task groups. Nomad optimizes resources by efficiently bin
+the utilization of bins. This extends to OpenWonton, where the clients are "bins"
+and the items are task groups. OpenWonton optimizes resources by efficiently bin
 packing tasks onto client machines.
 
 ## Client
 
-A Nomad client is an agent configured to run and manage tasks using available
+A OpenWonton client is an agent configured to run and manage tasks using available
 compute resources on a machine. The agent is responsible for registering with
 the servers, watching for any work to be assigned and executing tasks. The
-Nomad agent is a long lived process which interfaces with the servers.
+OpenWonton agent is a long lived process which interfaces with the servers.
 
 ## Datacenters
 
-Nomad models a datacenter as an abstract grouping of clients within a
-region. Nomad clients are not required to be in the same datacenter as the
+OpenWonton models a datacenter as an abstract grouping of clients within a
+region. OpenWonton clients are not required to be in the same datacenter as the
 servers they are joined with, but do need to be in the same
 region. Datacenters provide a way to express fault tolerance among jobs as
 well as isolation of infrastructure.
 
 ## Deployment
 
-Deployments are the mechanism by which Nomad rolls out changes to cluster state
+Deployments are the mechanism by which OpenWonton rolls out changes to cluster state
 in a step-by-step fashion. Deployments are only available for Jobs with the type
 `service`. When an Evaluation is processed, the scheduler creates only the
 number of Allocations permitted by the [`update`][] block and the current state
@@ -64,22 +64,22 @@ Drivers include Docker, QEMU, Java, and static binaries.
 
 ## Evaluation
 
-Evaluations are the mechanism by which Nomad makes scheduling decisions.  When
-either the _desired state_ (jobs) or _actual state_ (clients) changes, Nomad
+Evaluations are the mechanism by which OpenWonton makes scheduling decisions.  When
+either the _desired state_ (jobs) or _actual state_ (clients) changes, OpenWonton
 creates a new evaluation to determine if any actions must be taken. An
 evaluation may result in changes to allocations if necessary.
 
 ## Job
 
 A Job is a specification provided by users that declares a workload for
-Nomad. A Job is a form of _desired state_; the user is expressing that the
+OpenWonton. A Job is a form of _desired state_; the user is expressing that the
 job should be running, but not where it should be run. The responsibility of
-Nomad is to make sure the _actual state_ matches the user desired state. A
+OpenWonton is to make sure the _actual state_ matches the user desired state. A
 Job is composed of one or more task groups.
 
 ## Node
 
-A more generic term used to refer to machines running Nomad agents in client
+A more generic term used to refer to machines running OpenWonton agents in client
 mode. Despite being different concepts, you may find `node` being used
 interchangeably with [`client`](#client) in some materials and informal
 content.
@@ -94,16 +94,16 @@ support), or by functionality (databases, ingress proxy, applications).
 
 ## Regions
 
-Nomad models infrastructure as regions and datacenters. A region will contain
+OpenWonton models infrastructure as regions and datacenters. A region will contain
 one or more datacenters. A set of servers joined together will represent a
-single region. Servers federate across regions to make Nomad globally aware.
+single region. Servers federate across regions to make OpenWonton globally aware.
 
 In federated clusters one of the regions must be defined as the [authoritative
 region](#authoritative-and-non-authoritative-regions).
 
 ## Server
 
-Nomad servers are the brains of the cluster. There is a cluster of servers per
+OpenWonton servers are the brains of the cluster. There is a cluster of servers per
 region and they manage all jobs and clients, run evaluations, and create task
 allocations.  The servers replicate data between each other and perform leader
 election to ensure high availability. More information about latency
@@ -112,8 +112,8 @@ Topology](/nomad/docs/install/production/requirements#network-topology).
 
 ## Task
 
-A Task is the smallest unit of work in Nomad. Tasks are executed by drivers,
-which allow Nomad to be flexible in the types of tasks it supports. Tasks
+A Task is the smallest unit of work in OpenWonton. Tasks are executed by drivers,
+which allow OpenWonton to be flexible in the types of tasks it supports. Tasks
 specify their driver, configuration for the driver, constraints, and resources
 required.
 

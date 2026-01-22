@@ -46,15 +46,15 @@ The table below shows this endpoint's support for
 ### Sample Request
 
 ```shell-session
-$ nomad operator api '/v1/node/pools'
+$ wonton operator api '/v1/node/pools'
 ```
 
 ```shell-session
-$ nomad operator api '/v1/node/pools?prefix=prod'
+$ wonton operator api '/v1/node/pools?prefix=prod'
 ```
 
 ```shell-session
-$ nomad operator api -filter 'Meta.env == "production"' '/v1/node/pools?per_page=5'
+$ wonton operator api -filter 'Meta.env == "production"' '/v1/node/pools?per_page=5'
 ```
 
 ### Sample Response
@@ -100,7 +100,7 @@ The table below shows this endpoint's support for
 ### Sample Request
 
 ```shell-session
-$ nomad operator api /v1/node/pool/prod-eng
+$ wonton operator api /v1/node/pool/prod-eng
 ```
 
 ### Sample Response
@@ -207,7 +207,7 @@ The table below shows this endpoint's support for
 ### Sample Request
 
 ```shell-session
-$ nomad operator api -X DELETE /v1/node/pool/prod-eng
+$ wonton operator api -X DELETE /v1/node/pool/prod-eng
 ```
 
 ## List Node Pool Nodes
@@ -253,11 +253,11 @@ The table below shows this endpoint's support for
 ### Sample Request
 
 ```shell-session
-$ nomad operator api /v1/node/pool/prod-eng/nodes
+$ wonton operator api /v1/node/pool/prod-eng/nodes
 ```
 
 ```shell-session
-$ nomad operator api /v1/node/pool/prod-eng/nodes?os=true
+$ wonton operator api /v1/node/pool/prod-eng/nodes?os=true
 ```
 
 ### Sample Response
@@ -387,11 +387,11 @@ The table below shows this endpoint's support for
 ### Sample Request
 
 ```shell-session
-$ nomad operator api /v1/node/pool/prod-eng/jobs
+$ wonton operator api /v1/node/pool/prod-eng/jobs
 ```
 
 ```shell-session
-$ nomad operator api /v1/node/pool/prod-eng/jobs?namespace=prod
+$ wonton operator api /v1/node/pool/prod-eng/jobs?namespace=prod
 ```
 
 ### Sample Response

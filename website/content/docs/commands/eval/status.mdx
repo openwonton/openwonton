@@ -20,7 +20,7 @@ evaluation reaches a terminal state.
 ## Usage
 
 ```plaintext
-nomad eval status [options] <evaluation>
+wonton eval status [options] <evaluation>
 ```
 
 An evaluation ID or prefix must be provided. If there is an exact match, the
@@ -46,7 +46,7 @@ indicated by exit code 1.
 - `-monitor`: Monitor an outstanding evaluation
 - `-verbose`: Show full information.
 - `-json` : Output a list of all evaluations in JSON format. This
-  behavior is deprecated and has been replaced by `nomad eval list
+  behavior is deprecated and has been replaced by `wonton eval list
   -json`. In Nomad 1.4.0 the behavior of this option will change to
   output only the selected evaluation in JSON.
 - `-t` : Format and display evaluation using a Go template.
@@ -56,7 +56,7 @@ indicated by exit code 1.
 Show the status of an evaluation that has placement failures
 
 ```shell-session
-$ nomad eval status 2ae0e6a5
+$ wonton eval status 2ae0e6a5
 ID                 = 2ae0e6a5
 Status             = complete
 Status Description = complete
@@ -79,7 +79,7 @@ Evaluation "67493a64" waiting for additional capacity to place remainder
 Monitor an existing evaluation
 
 ```shell-session
-$ nomad eval status -monitor 8262bc83
+$ wonton eval status -monitor 8262bc83
 ==> Monitoring evaluation "8262bc83"
     Allocation "bd6bd0de" created: node "6f299da5", group "group1"
     Evaluation status changed: "pending" -> "complete"

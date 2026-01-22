@@ -13,7 +13,7 @@ configuration. See the [Autopilot Guide] for more information about Autopilot.
 ## Usage
 
 ```plaintext
-nomad operator autopilot set-config [options]
+wonton operator autopilot set-config [options]
 ```
 
 If ACLs are enabled, this command requires a token with the `operator:write`
@@ -41,7 +41,7 @@ capability.
   takes effect if all servers are running Raft protocol version 3 or higher. Must
   be a duration value such as `10s`.
 
-- `-disable-upgrade-migration` - (Enterprise-only) Controls whether Nomad will
+- `-disable-upgrade-migration` - (Enterprise-only) Controls whether OpenWonton will
   avoid promoting new servers until it can perform a migration. Must be one of
   `[true|false]`.
 
@@ -50,7 +50,7 @@ capability.
 
 - `-upgrade-version-tag` - (Enterprise-only) Controls the [`upgrade_version`] to
   use for version info when performing upgrade migrations. If left blank, the
-  Nomad version will be used.
+  OpenWonton version will be used.
 
 The output looks like this:
 

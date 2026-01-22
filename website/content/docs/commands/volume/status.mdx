@@ -13,7 +13,7 @@ Storage Interface (CSI)][csi] volumes.
 ## Usage
 
 ```plaintext
-nomad volume status [options] [volume]
+wonton volume status [options] [volume]
 ```
 
 This command accepts an optional volume ID or prefix as the sole argument. If there
@@ -47,8 +47,8 @@ namespace.
 
 - `-verbose`: Show full information. Allocation create and modify times are
   shown in `yyyy/mm/dd hh:mm:ss` format. When listing volumes, this flag will
-  cause Nomad to query the storage provider for volumes that are known to the
-  storage provider but not yet registered with Nomad. This may include volumes
+  cause OpenWonton to query the storage provider for volumes that are known to the
+  storage provider but not yet registered with OpenWonton. This may include volumes
   that have been created by the [`volume create`] command that are not yet
   schedulable.
 
@@ -57,7 +57,7 @@ namespace.
 List of all volumes:
 
 ```shell-session
-$ nomad volume [-type csi] status
+$ wonton volume [-type csi] status
 ID            Name      Namespace  Plugin ID  Schedulable  Access Mode
 ebs_prod_db1  database  default    ebs-prod   true         single-node-writer
 ```
@@ -65,7 +65,7 @@ ebs_prod_db1  database  default    ebs-prod   true         single-node-writer
 List of all volumes, with external provider info:
 
 ```shell-session
-$ nomad volume [-type csi] status -verbose
+$ wonton volume [-type csi] status -verbose
 ID            Name      Namespace  Plugin ID  Schedulable  Access Mode
 ebs_prod_db1  database  default    ebs-prod   true         single-node-writer
 
@@ -77,7 +77,7 @@ vol-cd46df    Abnormal (provider message here)  i-14a12df13
 Short view of a specific volume:
 
 ```shell-session
-$ nomad volume status [-verbose] [-plugin=ebs-prod] ebs_prod_db1
+$ wonton volume status [-verbose] [-plugin=ebs-prod] ebs_prod_db1
 ID                   = ebs_prod_db1
 Name                 = database
 Type                 = csi
@@ -99,7 +99,7 @@ Namespace            = default
 Full status information of a volume:
 
 ```shell-session
-$ nomad volume status [-verbose] [-plugin=ebs-prod] ebs_prod_db1
+$ wonton volume status [-verbose] [-plugin=ebs-prod] ebs_prod_db1
 ID                   = ebs_prod_db1
 Name                 = database
 Type                 = csi

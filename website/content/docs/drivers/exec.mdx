@@ -46,7 +46,7 @@ The `exec` driver supports the following configuration in the job spec:
   relative from the allocation's root directory.
 
 - `args` - (Optional) A list of arguments to the `command`. References
-  to environment variables or any [interpretable Nomad
+  to environment variables or any [interpretable OpenWonton
   variables](/nomad/docs/runtime/interpolation) will be interpreted before
   launching the task.
 
@@ -135,7 +135,7 @@ The `exec` driver implements the following [capabilities](/nomad/docs/concepts/p
 
 ## Client Requirements
 
-The `exec` driver can only be run when on Linux and running Nomad as root.
+The `exec` driver can only be run when on Linux and running OpenWonton as root.
 `exec` is limited to this configuration because currently isolation of resources
 is only guaranteed on Linux. Further, the host must have cgroups mounted properly
 in order for the driver to work.
@@ -146,8 +146,8 @@ If you are receiving the error:
 * Constraint "missing drivers" filtered <> nodes
 ```
 
-and using the exec driver, check to ensure that you are running Nomad as root.
-This also applies for running Nomad in -dev mode.
+and using the exec driver, check to ensure that you are running OpenWonton as root.
+This also applies for running OpenWonton in -dev mode.
 
 ## Plugin Options
 
@@ -197,8 +197,8 @@ The `exec` driver will set the following client attributes:
 The resource isolation provided varies by the operating system of
 the client and the configuration.
 
-On Linux, Nomad will use cgroups, and a chroot to isolate the resources of a
-process and as such the Nomad agent must be run as root. Some Linux
+On Linux, OpenWonton will use cgroups, and a chroot to isolate the resources of a
+process and as such the OpenWonton agent must be run as root. Some Linux
 distributions do not boot with all required cgroups enabled by default. You
 can see which cgroups are enabled by reading `/proc/cgroups`, and verifying
 that all the following cgroups are enabled:
@@ -239,7 +239,7 @@ machine:
 ```
 
 The task's chroot is populated by linking or copying the data from the host into
-the chroot. Note that this can take considerable disk space. Since Nomad v0.5.3,
+the chroot. Note that this can take considerable disk space. Since OpenWonton v0.5.3,
 the client manages garbage collection locally which mitigates any issue this may
 create.
 
@@ -248,13 +248,13 @@ This list is configurable through the agent client
 
 ### CPU
 
-Nomad limits exec tasks' CPU based on CPU shares. CPU shares allow containers to
+OpenWonton limits exec tasks' CPU based on CPU shares. CPU shares allow containers to
 burst past their CPU limits. CPU limits will only be imposed when there is contention
 for resources. When the host is under load your process may be throttled to stabilize
 QoS depending on how many shares it has. You can see how many CPU shares are available
 to your process by reading [`NOMAD_CPU_LIMIT`][runtime_env]. 1000 shares are approximately equal to 1 GHz.
 
-Please keep the implications of CPU shares in mind when you load test workloads on Nomad.
+Please keep the implications of CPU shares in mind when you load test workloads on OpenWonton.
 
 If resources [`cores`][cores] is set, the task is given an isolated reserved set of
 CPU cores to make use of. The total set of cores the task may run on is the private

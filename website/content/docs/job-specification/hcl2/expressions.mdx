@@ -18,7 +18,7 @@ values. Attribute value expressions must adhere to the attribute type. Block
 labels must be string literals without any interpolation. Each language
 feature's documentation describes any restrictions it places on expressions.
 
-The rest of this page describes all of the features of Nomad's
+The rest of this page describes all of the features of OpenWonton's
 expression syntax.
 
 ## Types and Values
@@ -48,7 +48,7 @@ types,_ or _collection types._
 Finally, there is one special value that has _no_ type:
 
 - `null`: a value that represents _absence_ or _omission._ If you set an
-  argument to `null`, Nomad behaves as though you
+  argument to `null`, OpenWonton behaves as though you
   had completely omitted it — it will use the argument's default value if it has
   one, or raise an error if the argument is mandatory. `null` is most useful in
   conditional expressions, so you can dynamically omit an argument if a
@@ -57,7 +57,7 @@ Finally, there is one special value that has _no_ type:
 ### Advanced Type Details
 
 In most situations, lists and tuples behave identically, as do maps and objects.
-Whenever the distinction isn't relevant, the Nomad documentation uses each
+Whenever the distinction isn't relevant, the OpenWonton documentation uses each
 pair of terms interchangeably (with a historical preference for "list" and
 "map").
 
@@ -67,12 +67,12 @@ Expressions are most often used to set values for arguments. In these cases,
 the argument has an expected type and the given expression must produce a value
 of that type.
 
-Where possible, Nomad automatically converts values from one type to
-another in order to produce the expected type. If this isn't possible, Nomad
+Where possible, OpenWonton automatically converts values from one type to
+another in order to produce the expected type. If this isn't possible, OpenWonton
 will produce a type mismatch error and you must update the configuration with a
 more suitable expression.
 
-Nomad automatically converts number and bool values to strings when needed.
+OpenWonton automatically converts number and bool values to strings when needed.
 It also converts strings to numbers or bools, as long as the string contains a
 valid representation of a number or bool value.
 
@@ -83,13 +83,13 @@ valid representation of a number or bool value.
 ## Literal Expressions
 
 A _literal expression_ is an expression that directly represents a particular
-constant value. Nomad has a literal expression syntax for each of the value
+constant value. OpenWonton has a literal expression syntax for each of the value
 types described above:
 
 - Strings are usually represented by a double-quoted sequence of Unicode
   characters, `"like this"`. There is also a "heredoc" syntax for more complex
   strings. String literals are the most complex kind of literal expression in
-  Nomad, and have additional documentation on this page:
+  OpenWonton, and have additional documentation on this page:
   - See [String Literals](#string-literals) below for information about escape
     sequences and the heredoc syntax.
   - See [String Templates](#string-templates) below for information about
@@ -297,7 +297,7 @@ job "example" {
 ```
 
 ~> **Caveat:** Dynamic blocks are not supported inside blocks that are opaque
-to Nomad, such as the `config` attributes in [`task`][task_config],
+to OpenWonton, such as the `config` attributes in [`task`][task_config],
 [`sidecar_task`][sidecar_task_config], [`proxy`][proxy_config], and
 [`gateway`][gateway_config], and the group scaling
 [`policy`][group_scaling_policy].
@@ -315,7 +315,7 @@ generates a nested block for each element of that complex value.
   the example above).
 - The `labels` argument (optional) is a list of strings that specifies the block
   labels, in order, to use for each generated block. You can use the temporary
-  iterator variable in this value. Nomad currently only has blocks that support
+  iterator variable in this value. OpenWonton currently only has blocks that support
   a single label such as `port`.
 - The nested `content` block defines the body of each generated block. You can
   use the temporary iterator variable inside this block.
@@ -377,7 +377,7 @@ EOF
 ```
 
 The `<<` marker followed by any identifier at the end of a line introduces the
-sequence. Nomad then processes the following lines until it finds one that
+sequence. OpenWonton then processes the following lines until it finds one that
 consists entirely of the identifier given in the introducer. In the above
 example, `EOF` is the identifier selected. Any identifier is allowed, but
 conventionally this identifier is in all-uppercase and begins with `EO`, meaning
@@ -396,7 +396,7 @@ EOF
 }
 ```
 
-To improve on this, Nomad also accepts an _indented_ heredoc string variant
+To improve on this, OpenWonton also accepts an _indented_ heredoc string variant
 that is introduced by the `<<-` sequence:
 
 ```hcl
@@ -408,7 +408,7 @@ block {
 }
 ```
 
-In this case, Nomad analyses the lines in the sequence to find the one
+In this case, OpenWonton analyses the lines in the sequence to find the one
 with the smallest number of leading spaces, and then trims that many spaces
 from the beginning of all of the lines, leading to the following result:
 
@@ -420,7 +420,7 @@ hello
 Backslash sequences are not interpreted in a heredoc string expression.
 Instead, the backslash character is interpreted literally.
 
-In both quoted and heredoc string expressions, Nomad supports template
+In both quoted and heredoc string expressions, OpenWonton supports template
 sequences that begin with `${` and `%{`. These are described in more detail
 in the following section. To include these sequences _literally_ without
 beginning a template sequence, double the leading character: `$${` or `%%{`.

@@ -2,28 +2,28 @@
 layout: docs
 page_title: Networking
 description: |-
-  Learn about Nomad's networking internals and how it compares with other
+  Learn about OpenWonton's networking internals and how it compares with other
   tools.
 ---
 
 # Networking
 
-Nomad is a workload orchestrator and so it focuses on the scheduling aspects of
+OpenWonton is a workload orchestrator and so it focuses on the scheduling aspects of
 a deployment, touching areas such as networking as little as possible.
 
-**Networking in Nomad is usually done via _configuration_ instead of
-_infrastructure_**. This means that Nomad provides ways for you to access the
+**Networking in OpenWonton is usually done via _configuration_ instead of
+_infrastructure_**. This means that OpenWonton provides ways for you to access the
 information you need to connect your workloads instead of running additional
 components behind the scenes, such as DNS servers and load balancers.
 
 This can be confusing at first since it is quite different from what you may
 be used to from other tools. This section explains how networking works in
-Nomad, some of the different patterns and configurations you are likely to find
-and use, and how Nomad differs from other tools in this aspect.
+OpenWonton, some of the different patterns and configurations you are likely to find
+and use, and how OpenWonton differs from other tools in this aspect.
 
 ## Allocation networking
 
-The base unit of scheduling in Nomad is an [allocation][], which means that all
+The base unit of scheduling in OpenWonton is an [allocation][], which means that all
 tasks in the same allocation run in the same client and share common resources,
 such as disk and networking. Allocations can request access to network
 resources, such as ports, using the [`network`][jobspec_network] block. At its
@@ -41,12 +41,12 @@ job "..." {
 }
 ```
 
-Nomad reserves a random port in the client between [`min_dynamic_port`][] and
+OpenWonton reserves a random port in the client between [`min_dynamic_port`][] and
 [`max_dynamic_port`][] that has not been allocated yet and creates a port
 mapping from the host network interface to the allocation.
 
 <!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![Nomad Port Mapping](/img/networking/port_mapping.png)](/img/networking/port_mapping.png)
+[![OpenWonton Port Mapping](/img/networking/port_mapping.png)](/img/networking/port_mapping.png)
 
 The selected port number can be accessed by tasks using the
 [`NOMAD_PORT_<label>`][runtime_environment] environment variable to bind and
@@ -86,7 +86,7 @@ access it directly using the client's IP and port, but first they need to find
 these values. This process is called [service discovery][].
 
 When using IP and port to connect allocations it is important to make sure your
-network topology and routing configuration allow the Nomad clients to
+network topology and routing configuration allow the OpenWonton clients to
 communicate with each other.
 
 ## Bridge networking
@@ -95,17 +95,17 @@ Linux clients support a network [`mode`][network_mode] called [`bridge`][]. A
 bridge network acts like a virtual network switch allowing processes connected
 to the bridge to reach each other while isolating them from others.
 
-When an allocation uses bridge networking, the Nomad agent creates a bridge
+When an allocation uses bridge networking, the OpenWonton agent creates a bridge
 called `nomad` (or the value set in [`bridge_network_name`][]) using the
 [`bridge` CNI plugin][cni_bridge] if one doesn't exist yet. Before using this
 mode you must first [install the CNI plugins][cni_install] into your clients.
-By default a single bridge is created in each Nomad client.
+By default a single bridge is created in each OpenWonton client.
 
 <!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![Nomad Bridge](/img/networking/bridge.png)](/img/networking/bridge.png)
+[![OpenWonton Bridge](/img/networking/bridge.png)](/img/networking/bridge.png)
 
 Allocations that use the `bridge` network mode run in an isolated network
-namespace and are connected to the bridge. This allows Nomad to map random
+namespace and are connected to the bridge. This allows OpenWonton to map random
 ports from the host to specific port numbers inside the allocation that are
 expected by the tasks.
 
@@ -128,7 +128,7 @@ job "..." {
 }
 ```
 
-To allow communication between allocations in different clients, Nomad creates
+To allow communication between allocations in different clients, OpenWonton creates
 an `iptables` rule to forward requests from the host network interface to the
 bridge. This results in three different network access scopes:
 
@@ -153,10 +153,10 @@ using [Consul Service Mesh][consul_service_mesh].
 The Docker daemon manages its own network configuration and creates its own
 [bridge network][docker_bridge], network namespaces, and [`iptable`
 rules][docker_iptables]. Tasks using the `docker` task driver connect to the
-Docker bridge instead of using the one created by Nomad and, by default, each
+Docker bridge instead of using the one created by OpenWonton and, by default, each
 container runs in its own Docker managed network namespace.
 
-When using `bridge` network mode, Nomad creates a placeholder container using
+When using `bridge` network mode, OpenWonton creates a placeholder container using
 the image defined in [`infra_image`][] to initialize a Docker network namespace
 that is shared by all tasks in the allocation to allow them to communicate with
 each other.
@@ -193,13 +193,13 @@ The diagram below illustrates what happens when a Docker task is configured
 incorrectly.
 
 <!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![Nomad Bridge](/img/networking/docker_bridge.png)](/img/networking/docker_bridge.png)
+[![OpenWonton Bridge](/img/networking/docker_bridge.png)](/img/networking/docker_bridge.png)
 
 The tasks in the rightmost allocation are not able to communicate with each
 other using their loopback interface because they were placed in different
 network namespaces.
 
-Since the group `network.mode` is `bridge`, Nomad creates the pause container
+Since the group `network.mode` is `bridge`, OpenWonton creates the pause container
 to establish a shared network namespace for all tasks, but setting the
 task-level `network_mode` to `bridge` places the task in a different namespace.
 This prevents, for example, a task from communicating with its sidecar proxy in
@@ -216,7 +216,7 @@ Refer to the [`network_mode`][docker_network_mode] documentation and the
 
 ### Kubernetes and Docker Compose
 
-Networking in Kubernetes and Docker Compose works differently than in Nomad. To
+Networking in Kubernetes and Docker Compose works differently than in OpenWonton. To
 access a container you use a fully qualified domain name such as `db` in Docker
 Compose or `db.prod.svc.cluster.local` in Kubernetes. This process relies on
 additional infrastructure to resolve the hostname and distribute the requests
@@ -268,20 +268,20 @@ service][k8s_dns] which is an add-on that runs in all nodes. Along with this
 service, each node also runs a [`kube-proxy`][k8s_kubeproxy] instance to
 distribute requests to all Pods matched by the Service.
 
-You can use the same FQDN networking style with Nomad using [Consul's DNS
+You can use the same FQDN networking style with OpenWonton using [Consul's DNS
 interface][consul_dns] and configuring your clients with [DNS
 forwarding][consul_dns_forwarding], and deploying a [load
 balancer][nomad_load_balancer].
 
-Another key difference from Nomad is that in Kubernetes and Docker Compose each
+Another key difference from OpenWonton is that in Kubernetes and Docker Compose each
 container has its own IP address, requiring a virtual network to map physical
 IP addresses to virtual ones. In case of Docker Compose in Swarm mode an
 [`overlay`][docker_overlay] is also required to enable traffic across multiple
 hosts. This allows multiple containers running the same service to listen on
 the same port number.
 
-In Nomad, allocations use the IP address of the client they are running and are
-assigned random port numbers and so Nomad service discovery with DNS uses
+In OpenWonton, allocations use the IP address of the client they are running and are
+assigned random port numbers and so OpenWonton service discovery with DNS uses
 [`SRV` records][dns_srv] instead of `A` or `AAAA` records.
 
 ## Next topics
@@ -292,8 +292,8 @@ assigned random port numbers and so Nomad service discovery with DNS uses
 
 ## Additional resources
 
-- [Understanding Networking in Nomad - Karan Sharma](https://mrkaran.dev/posts/nomad-networking-explained/)
-- [Understanding Nomad Networking Patterns - Luiz Aoqui, HashiTalks: Canada 2021](https://www.youtube.com/watch?v=wTA5HxB_uuk)
+- [Understanding Networking in OpenWonton - Karan Sharma](https://mrkaran.dev/posts/nomad-networking-explained/)
+- [Understanding OpenWonton Networking Patterns - Luiz Aoqui, HashiTalks: Canada 2021](https://www.youtube.com/watch?v=wTA5HxB_uuk)
 
 [`bridge_network_name`]: /nomad/docs/configuration/client#bridge_network_name
 [`bridge`]: /nomad/docs/job-specification/network#bridge

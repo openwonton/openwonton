@@ -7,7 +7,7 @@ description: |
 
 # Command: job init
 
-**Alias: `nomad init`**
+**Alias: `wonton init`**
 
 The `job init` command creates an example [job specification][jobspec] in the
 current directory that demonstrates some common configurations for tasks, task
@@ -16,7 +16,7 @@ groups, runtime constraints, and resource allocation.
 ## Usage
 
 ```plaintext
-nomad job init [options] [filename]
+wonton job init [options] [filename]
 ```
 
 You may optionally supply a filename for the example job to be written to. The
@@ -29,17 +29,17 @@ template.
 
 - `-short`: If set, a minimal jobspec without comments is emitted.
 - `-connect`: If set, the jobspec includes Consul Connect integration.
-- `-template=<template>`: Specifies a predefined template to emit. Must be a Nomad Variable that lives at `nomad/job-templates/<template>` These are commonly created via the UI, and accessible with the -list-templates flag.
-- `-list-templates`: Display a list of possible job templates to pass to -template. Reads from all variables pathed at `nomad/job-templates/<template>`.
+- `-template=<template>`: Specifies a predefined template to emit. Must be a OpenWonton Variable that lives at `wonton/job-templates/<template>` These are commonly created via the UI, and accessible with the -list-templates flag.
+- `-list-templates`: Display a list of possible job templates to pass to -template. Reads from all variables pathed at `wonton/job-templates/<template>`.
 
 ## Examples
 
 Generate an example job file:
 
 ```shell-session
-$ nomad job init
+$ wonton job init
 Example job file written to example.nomad.hcl
 ```
 
-[jobspec]: /nomad/docs/job-specification 'Nomad Job Specification'
-[drivers]: /nomad/docs/drivers 'Nomad Task Drivers documentation'
+[jobspec]: /nomad/docs/job-specification 'OpenWonton Job Specification'
+[drivers]: /nomad/docs/drivers 'OpenWonton Task Drivers documentation'

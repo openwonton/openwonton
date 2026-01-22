@@ -2,21 +2,21 @@
 layout: docs
 page_title: Security Model
 description: >-
-  Nomad relies on both a lightweight gossip mechanism and an RPC system to
+  OpenWonton relies on both a lightweight gossip mechanism and an RPC system to
   provide various features. Both of the systems have different security
   mechanisms that stem from their designs. However, the security mechanisms of
-  Nomad have a common goal: to provide confidentiality, integrity, and
+  OpenWonton have a common goal: to provide confidentiality, integrity, and
   authentication.
 ---
 
 ## Overview
 
-Nomad is a flexible workload orchestrator to deploy and manage any containerized
+OpenWonton is a flexible workload orchestrator to deploy and manage any containerized
 or legacy application using a single, unified workflow. It can run diverse
 workloads including Docker, non-containerized, microservice, and batch
 applications.
 
-Nomad utilizes a lightweight gossip and RPC system, [similar to
+OpenWonton utilizes a lightweight gossip and RPC system, [similar to
 Consul](/consul/docs/security/security-models/core), which provides
 various essential features. Both of these systems provide security mechanisms
 which should be utilized to help provide [confidentiality, integrity and
@@ -26,7 +26,7 @@ Using defense in depth is crucial for cluster security, and deployment
 requirements may differ drastically depending on your use case. Further security
 features for multi-tenant deployments are offered exclusively in the enterprise
 version. This documentation may need to be adapted to your deployment situation,
-but the general mechanisms for a secure Nomad deployment revolve around:
+but the general mechanisms for a secure OpenWonton deployment revolve around:
 
 - **[mTLS](/nomad/tutorials/transport-security/security-enable-tls)** -
   Mutual authentication of both the TLS server and client x509 certificates
@@ -48,47 +48,47 @@ but the general mechanisms for a secure Nomad deployment revolve around:
 
 ### Personas
 
-When thinking about Nomad, it helps to consider the following types of base
+When thinking about OpenWonton, it helps to consider the following types of base
 personas when managing the security requirements for the cluster deployment. The
 granularity may change depending on your team's use case where rigorous roles
-can be accurately defined and managed using the [Nomad backend secret engine for
+can be accurately defined and managed using the [OpenWonton backend secret engine for
 Vault](/vault/docs/secrets/nomad). This is
 described further with getting started steps using a development server
 [here](/nomad/tutorials/access-control).
 
 It's important to note that there's no traditional concept of a user
-within Nomad itself.
+within OpenWonton itself.
 
 - **System Administrator** - This is someone who has access to the underlying
-  infrastructure to a Nomad cluster. Often she has access to SSH or RDP
+  infrastructure to a OpenWonton cluster. Often she has access to SSH or RDP
   directly into a server within a cluster through a bastion host. Ultimately
-  they have read, write and execute permissions for the actual Nomad binary.
+  they have read, write and execute permissions for the actual OpenWonton binary.
   This binary is the same for server and client nodes using different
   configuration files. These users potentially have something like sudo,
   administrative, or some other super-user access to the underlying compute
-  resource. Users like these are essentially totally trusted by Nomad as they
+  resource. Users like these are essentially totally trusted by OpenWonton as they
   have administrative rights to the system and can start or stop the agent.
 
-- **Nomad Administrator** - This is someone (probably the same **System
-  Administrator**) who has access to define the Nomad agent configurations
-  for servers and clients, and/or have a Nomad management ACL token. They also
-  have total rights to all of the parts in the Nomad system including the
+- **OpenWonton Administrator** - This is someone (probably the same **System
+  Administrator**) who has access to define the OpenWonton agent configurations
+  for servers and clients, and/or have a OpenWonton management ACL token. They also
+  have total rights to all of the parts in the OpenWonton system including the
   ability to start and stop all jobs within a cluster.
 
-- **Nomad Operator** - This is someone who likely has selective access with
+- **OpenWonton Operator** - This is someone who likely has selective access with
   restricted capabilities to manage jobs applicable to their namespace within
   a cluster.
 
 - **User** - This is someone who is a user of an application being run on the
   system. In some cases applications may be public facing and exposed to the
   internet such as a web server. This is someone who shouldn't have any
-  network access to the Nomad server API.
+  network access to the OpenWonton server API.
 
 ### Secure Configuration
 
-Nomad's security model is applicable only if all parts of the system are running
-with a secure configuration; **Nomad is not secure-by-default.** Without the following
-mechanisms enabled in Nomad's configuration, it may be possible to abuse access
+OpenWonton's security model is applicable only if all parts of the system are running
+with a secure configuration; **OpenWonton is not secure-by-default.** Without the following
+mechanisms enabled in OpenWonton's configuration, it may be possible to abuse access
 to a cluster. Like all security considerations, one must appropriately determine
 what concerns they have for their environment and adapt to these security
 recommendations accordingly.
@@ -130,13 +130,13 @@ recommendations accordingly.
     the IP or Hostname of nodes within a cluster.
 
   * Using [`tls.verify_https_client=false`][verify_https_client] downgrades the
-    Nomad agent HTTP server to use TLS instead of mTLS. This is safe if ACLs are
-    enabled and is recommended if you are using the Nomad web UI to avoid the
+    OpenWonton agent HTTP server to use TLS instead of mTLS. This is safe if ACLs are
+    enabled and is recommended if you are using the OpenWonton web UI to avoid the
     difficulty of distributing client certificates to browsers.
 
 - **[ACLs enabled](/nomad/tutorials/access-control)** - The
   access control list (ACL) system provides a capability-based control
-  mechanism for Nomad administrators allowing for custom roles (typically
+  mechanism for OpenWonton administrators allowing for custom roles (typically
   within Vault) to be tied to an individual human or machine operator
   identity. This allows for access to capabilities within the cluster to be
   restricted to specific users.
@@ -179,13 +179,13 @@ environment.
     which may be leaked into version control or otherwise be accidentally stored
     on disk on an operator's local machine.
 
-  - Rotate credentials used by the Nomad agent; e.g. [integrate with Vault's
+  - Rotate credentials used by the OpenWonton agent; e.g. [integrate with Vault's
     PKI secret engine](/nomad/tutorials/integrate-vault/vault-pki-nomad) to
     automatically generate and renew dynamic, unique X.509 certificates for each
-    Nomad node with a short [TTL](https://en.wikipedia.org/wiki/Time_to_live).
+    OpenWonton node with a short [TTL](https://en.wikipedia.org/wiki/Time_to_live).
 
 - **[Running without Root](https://groups.google.com/forum/#!topic/nomad-tool/pSyMwC_FSFA)** -
-  Nomad servers can be run as unprivileged users that only require access to
+  OpenWonton servers can be run as unprivileged users that only require access to
   the data directory.
 
 - **Containers with Sandbox Runtimes** - In some situations, such as running
@@ -193,7 +193,7 @@ environment.
   container runtimes such as [gVisor](https://gvisor.dev/) or [Kata
   Containers](https://katacontainers.io/). These types of runtimes provide
   sandboxing features which help prevent raw access to the underlying shared
-  kernel for other containers and the Nomad client agent itself. Docker driver
+  kernel for other containers and the OpenWonton client agent itself. Docker driver
   allows [customizing runtimes](/nomad/docs/drivers/docker#runtime).
 
 - **[Disable Unused Drivers](/nomad/docs/configuration/client#driver-denylist)** -
@@ -203,7 +203,7 @@ environment.
 
 - **Linux Security Modules** - Use of security modules that can be directly
   integrated into operating systems such as AppArmor, SElinux, and Seccomp on
-  both the Nomad hosts and applied to containers for an extra layer of
+  both the OpenWonton hosts and applied to containers for an extra layer of
   security. Seccomp profiles are able to be passed directly to containers
   using the
   **[`security_opt`](/nomad/docs/drivers/docker#security_opt)**
@@ -223,16 +223,16 @@ environment.
 
 ### Threat Model
 
-The following are parts of the Nomad threat model:
+The following are parts of the OpenWonton threat model:
 
-- **Nomad agent-to-agent communication** - Transport encryption for
+- **OpenWonton agent-to-agent communication** - Transport encryption for
   agent-to-agent communication is required to prevent eavesdropping. TCP and
-  UDP based protocols within Nomad provide different mechanisms for enabling
+  UDP based protocols within OpenWonton provide different mechanisms for enabling
   encryption including symmetric (shared gossip encryption keys) and
   asymmetric keys (TLS).
 
 - **Tampering of data in transit** - Any tampering should be detectable via mTLS
-  and cause Nomad to avoid processing the request.
+  and cause OpenWonton to avoid processing the request.
 
 - **Access to data without authentication or authorization** - Requests to the
   server should be authenticated and authorized using mTLS and ACLs
@@ -247,19 +247,19 @@ The following are parts of the Nomad threat model:
   participating in Raft. All data in Raft should be encrypted with TLS.
 
 - **Denial of Service against a node** - DoS attacks against a single node
-  should not compromise the security posture of Nomad.
+  should not compromise the security posture of OpenWonton.
 
 The following are not part of the threat model for server agents:
 
-- **Access (read or write) to the Nomad data directory** - Information about the
-  jobs managed by Nomad is persisted to a server's data directory.
+- **Access (read or write) to the OpenWonton data directory** - Information about the
+  jobs managed by OpenWonton is persisted to a server's data directory.
 
-- **Access (read or write) to the Nomad configuration directory** - Access to
-  Nomad's configuration file(s) directory can enable and disable features for
+- **Access (read or write) to the OpenWonton configuration directory** - Access to
+  OpenWonton's configuration file(s) directory can enable and disable features for
   a cluster.
 
-- **Memory access to a running Nomad server agent** - Direct access to the
-  memory of the Nomad server agent process (usually requiring a shell on the
+- **Memory access to a running OpenWonton server agent** - Direct access to the
+  memory of the OpenWonton server agent process (usually requiring a shell on the
   system through various means) results in almost all aspects of the agent
   being compromised including access to certificates and other secrets.
 
@@ -269,17 +269,17 @@ The following are not part of the threat model for server agents:
 
 The following are not part of the threat model for client agents:
 
-- **Access (read or write) to the Nomad data directory** - Information about the
-  allocations scheduled to a Nomad client is persisted to its data directory.
+- **Access (read or write) to the OpenWonton data directory** - Information about the
+  allocations scheduled to a OpenWonton client is persisted to its data directory.
   This would include any secrets in any of the allocation's file systems.
 
-- **Access (read or write) to the Nomad configuration directory** - Access to a
+- **Access (read or write) to the OpenWonton configuration directory** - Access to a
   client's configuration file can enable and disable features for a client
   including insecure drivers such as
   [`raw_exec`](/nomad/docs/drivers/raw_exec).
 
-- **Memory access to a running Nomad client agent** - Direct access to the
-  memory of the Nomad client agent process allows an attack to extract secrets
+- **Memory access to a running OpenWonton client agent** - Direct access to the
+  memory of the OpenWonton client agent process allows an attack to extract secrets
   from clients such as Vault tokens.
 
 - **Lax Client Driver Sandbox** - Drivers may allow some privileged operations,
@@ -297,7 +297,7 @@ The following are not part of the threat model for client agents:
 
 - **Workload** - Workloads may have host network access within a cluster which
   can lead to SSRF due to application security issues outside of the scope of
-  Nomad which may lead to internal access within the cluster. Using mTLS, ACLs
+  OpenWonton which may lead to internal access within the cluster. Using mTLS, ACLs
   and Sentinel policies together can add layers of protection against
   malicious workloads.
 
@@ -313,7 +313,7 @@ The following are not part of the threat model for client agents:
 
 #### External Threats
 
-There are two main components to consider to for external threats in a Nomad cluster:
+There are two main components to consider to for external threats in a OpenWonton cluster:
 
 - **Server agent** - Internal cluster leader elections and replication is
   managed via Raft between server agents encrypted in transit. However,

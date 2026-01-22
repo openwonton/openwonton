@@ -13,7 +13,7 @@ node pool.
 ## Usage
 
 ```plaintext
-nomad node pool info [options] <node-pool>
+wonton node pool info [options] <node-pool>
 ```
 
 If ACLs are enabled, this command requires a token with the `read` capability
@@ -34,7 +34,7 @@ in a `node_pool` policy that matches the node pool being targeted.
 Retrieve information on a node pool:
 
 ```shell-session
-$ nomad node pool info prod
+$ wonton node pool info prod
 Name        = prod
 Description = Node pool for production workloads.
 
@@ -48,7 +48,7 @@ Scheduler Algorithm = spread
 Retrieve information in JSON format:
 
 ```shell-session
-$ nomad node pool info -json prod
+$ wonton node pool info -json prod
 {
     "CreateIndex": 39,
     "Description": "Node pool for production workloads.",
@@ -66,6 +66,6 @@ $ nomad node pool info -json prod
 Customize output with a Go template:
 
 ```shell-session
-$ nomad node pool info -t "{{.Name}} [{{.Meta.env}}] - {{.Description}}" prod
+$ wonton node pool info -t "{{.Name}} [{{.Meta.env}}] - {{.Description}}" prod
 prod [production] - Node pool for production workloads.
 ```

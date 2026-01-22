@@ -13,15 +13,15 @@ description: |
 
 The `license inspect` command is used to inspect and validate a Nomad Enterprise
 license. It will read the license from a file on disk or an environment variable
-and exit non-0 if the license is not valid with the Nomad binary.
+and exit non-0 if the license is not valid with the OpenWonton binary.
 
-This command should always be run with the new binary before upgrading Nomad on a server,
+This command should always be run with the new binary before upgrading OpenWonton on a server,
 as the server agent will not start with an invalid license.
 
 ## Usage
 
 ```plaintext
-nomad license inspect [/path/to/license.hclic]
+wonton license inspect [/path/to/license.hclic]
 ```
 
 ## Examples
@@ -29,7 +29,7 @@ nomad license inspect [/path/to/license.hclic]
 With a license file argument:
 
 ```shell-session
-$ nomad license inspect /path/to/nomad/license.hclic
+$ wonton license inspect /path/to/nomad/license.hclic
 Source: /path/to/nomad/license.hclic
 Product: nomad
 License ID: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
@@ -54,7 +54,7 @@ With a license file environment variable:
 
 ```shell-session
 $ export NOMAD_LICENSE_PATH=/path/to/nomad/license.hclic
-$ nomad license inspect
+$ wonton license inspect
 Source: /path/to/nomad/license.hclic (path from the NOMAD_LICENSE_PATH environment variable)
 Product: nomad
 .....
@@ -65,7 +65,7 @@ With a license string environment variable:
 
 ```shell-session
 $ export NOMAD_LICENSE=full-license-text-string
-$ nomad license inspect
+$ wonton license inspect
 Source: NOMAD_LICENSE environment variable
 .....
 License is valid
@@ -74,7 +74,7 @@ License is valid
 ## Example error
 
 ```shell-session
-$ nomad license inspect license.hclic
+$ wonton license inspect license.hclic
 ...
 Validation Errors:
    * license is no longer valid

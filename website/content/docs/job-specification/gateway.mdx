@@ -10,9 +10,9 @@ description: |-
 
 <Placement groups={['job', 'group', 'service', 'connect', 'gateway']} />
 
-The `gateway` block allows configuration of [Consul Connect Gateways](/consul/docs/connect/gateways). Nomad will
+The `gateway` block allows configuration of [Consul Connect Gateways](/consul/docs/connect/gateways). OpenWonton will
 automatically create the necessary Gateway [Configuration Entry](/consul/docs/agent/config-entries)
-as well as inject an Envoy proxy task into the Nomad job to serve as the Gateway.
+as well as inject an Envoy proxy task into the OpenWonton job to serve as the Gateway.
 
 The `gateway` configuration is valid within the context of a `connect` block.
 Additional information about Gateway configurations can be found in Consul's
@@ -132,7 +132,7 @@ envoy_gateway_bind_addresses "<service>" {
 - `name` `(string: required)` - The name of the service that should be exposed through
   this listener. This can be either a service registered in the catalog, or a
   service defined by other config entries, or a service that is going to be configured
-  by Nomad. If the wildcard specifier `*` is provided, then ALL services will be
+  by OpenWonton. If the wildcard specifier `*` is provided, then ALL services will be
   exposed through this listener. This is not supported for a listener with protocol `tcp`.
 - `hosts` `(array<string>: nil)` - A list of hosts that specify what requests will
   match this service. This cannot be used with a `tcp` listener, and cannot be
@@ -187,12 +187,12 @@ be applied. This can be done with the service [`meta`][meta] parameter.
 
 ### Gateway with host networking
 
-Nomad supports running gateways using host networking. A static port must be allocated
+OpenWonton supports running gateways using host networking. A static port must be allocated
 for use by the [Envoy admin interface](https://www.envoyproxy.io/docs/envoy/latest/operations/admin)
 and assigned to the proxy service definition.
 
 !> **Warning:** There is no way to disable the Envoy admin interface, which will be
-accessible to any workload running on the same Nomad client. The admin interface exposes
+accessible to any workload running on the same OpenWonton client. The admin interface exposes
 information about the proxy, including a Consul Service Identity token if Consul ACLs
 are enabled.
 
@@ -201,7 +201,7 @@ are enabled.
 The Docker image used for Connect gateway tasks defaults to the official [Envoy
 Docker] image, `docker.io/envoyproxy/envoy:v${NOMAD_envoy_version}`, where `${NOMAD_envoy_version}`
 is resolved automatically by a query to Consul. The image to use can be configured
-by setting `meta.connect.gateway_image` in the Nomad job. Custom images can still
+by setting `meta.connect.gateway_image` in the OpenWonton job. Custom images can still
 make use of the envoy version interpolation, e.g.
 
 ```hcl
@@ -458,9 +458,9 @@ Mesh gateways are useful when Connect services need to make cross-datacenter
 requests where not all nodes in each datacenter have full connectivity. This example
 demonstrates using mesh gateways to enable making requests between datacenters
 `one` and `two`, where each mesh gateway will bind to the `public` host network
-configured on at least one Nomad client in each datacenter.
+configured on at least one OpenWonton client in each datacenter.
 
-Job running where Nomad and Consul are in datacenter `one`.
+Job running where OpenWonton and Consul are in datacenter `one`.
 
 ```hcl
 job "countdash-mesh-one" {
@@ -569,7 +569,7 @@ job "countdash-mesh-one" {
 }
 ```
 
-Job running where Nomad and Consul are in datacenter `two`.
+Job running where OpenWonton and Consul are in datacenter `two`.
 
 ```hcl
 job "countdash-mesh-two" {

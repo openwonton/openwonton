@@ -28,7 +28,7 @@ without the risk of additional work being assigned to it.
 ## Usage
 
 ```plaintext
-nomad node eligibility [options] <node>
+wonton node eligibility [options] <node>
 ```
 
 A `-self` flag can be used to toggle eligibility of the local node. If this is
@@ -58,14 +58,14 @@ capability.
 Enable scheduling eligibility on node with ID prefix "574545c5":
 
 ```shell-session
-$ nomad node eligibility -enable 574545c5
+$ wonton node eligibility -enable 574545c5
 Node "574545c5-c2d7-e352-d505-5e2cb9fe169f" scheduling eligibility set: eligible for scheduling
 ```
 
 Disable scheduling eligibility on the local node:
 
 ```shell-session
-$ nomad node eligibility -disable -self
+$ wonton node eligibility -disable -self
 Node "574545c5-c2d7-e352-d505-5e2cb9fe169f" scheduling eligibility set: ineligible for scheduling
 ```
 

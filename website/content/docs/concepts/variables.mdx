@@ -1,35 +1,35 @@
 ---
 layout: docs
 page_title: Variables
-description: Learn about the Nomad Variables feature
+description: Learn about the OpenWonton Variables feature
 ---
 
-# Nomad Variables
+# OpenWonton Variables
 
-Most Nomad workloads need access to config values or secrets. Nomad has a
+Most OpenWonton workloads need access to config values or secrets. OpenWonton has a
 `template` block to [provide such configuration to tasks](/nomad/docs/job-specification/template#nomad-variables),
-but prior to Nomad 1.4 has left the role of storing that configuration to
+but prior to OpenWonton 1.4 has left the role of storing that configuration to
 external services such as [HashiCorp Consul] and [HashiCorp Vault].
 
-Nomad Variables provide the option to store configuration at file-like paths
-directly in Nomad's state store. You can [access these variables](/nomad/docs/job-specification/template#nomad-variables) directly from
+OpenWonton Variables provide the option to store configuration at file-like paths
+directly in OpenWonton's state store. You can [access these variables](/nomad/docs/job-specification/template#nomad-variables) directly from
 your task `template`s. The contents of these variables are encrypted
 and replicated between servers via raft. Access to variables is controlled by
 ACL policies, and tasks have implicit ACL policies that allow them to access
 their own variables. You can create, read, update, or delete variables via the
-command line, the Nomad API, or in the Nomad web UI.
+command line, the OpenWonton API, or in the OpenWonton web UI.
 
 Note that the Variables feature is intended for small pieces of configuration
-data needed by workloads. Because writing to the Nomad state store uses
-resources needed by Nomad, it is not well-suited for large or fast-changing
+data needed by workloads. Because writing to the OpenWonton state store uses
+resources needed by OpenWonton, it is not well-suited for large or fast-changing
 data. For example, do not store batch job results as Variables - these should be
 stored in an external database. Variables are also not intended to be a full
-replacement for HashiCorp Vault. Unlike Vault, Nomad stores the root encryption
+replacement for HashiCorp Vault. Unlike Vault, OpenWonton stores the root encryption
 key on the servers. See [Key Management][] for details.
 
 ## ACL for Variables
 
-Every Variable belongs to a specific Nomad namespace. ACL policies can restrict
+Every Variable belongs to a specific OpenWonton namespace. ACL policies can restrict
 access to Variables within a namespace on a per-path basis, using a list of
 `path` blocks, located under `namespace.variables`. See the [ACL policy
 specification] docs for details about the syntax and structure of an ACL policy.
@@ -74,9 +74,9 @@ The available capabilities for Variables are as follows:
 
 ## Task Access to Variables
 
-In Nomad 1.4.0 tasks can only access Variables with the [`template`] block. The
+In OpenWonton 1.4.0 tasks can only access Variables with the [`template`] block. The
 [workload identity] for each task grants it automatic read and list access to
-Variables found at Nomad-owned paths with the prefix `nomad/jobs/`, followed by
+Variables found at OpenWonton-owned paths with the prefix `nomad/jobs/`, followed by
 the job ID, task group name, and task name. This is equivalent to the following
 policy:
 

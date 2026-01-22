@@ -1,67 +1,67 @@
 ---
 layout: docs
-page_title: Monitoring Nomad
+page_title: Monitoring OpenWonton
 description: |-
-  Overview of runtime metrics available in Nomad along with monitoring and
+  Overview of runtime metrics available in OpenWonton along with monitoring and
   alerting.
 ---
 
-# Monitoring Nomad
+# Monitoring OpenWonton
 
-The Nomad client and server agents collect a wide range of runtime metrics.
-These metrics are useful for monitoring the health and performance of Nomad
+The OpenWonton client and server agents collect a wide range of runtime metrics.
+These metrics are useful for monitoring the health and performance of OpenWonton
 clusters. Careful monitoring can spot trends before they cause issues and help
 debug issues if they arise.
 
-All Nomad agents, both servers and clients, report basic system and Go runtime
+All OpenWonton agents, both servers and clients, report basic system and Go runtime
 metrics.
 
-Nomad servers all report many metrics, but some metrics are specific to the
+OpenWonton servers all report many metrics, but some metrics are specific to the
 leader server. Since leadership may change at any time, these metrics should be
 monitored on all servers. Missing (or 0) metrics from non-leaders may be safely
 ignored.
 
-Nomad clients have separate metrics for the host they are running on as well as
+OpenWonton clients have separate metrics for the host they are running on as well as
 for each allocation being run. Both of these metrics [must be explicitly
 enabled][telemetry-block].
 
-By default, the Nomad agent collects telemetry data at a [1 second
-interval][collection-interval]. Note that Nomad supports [gauges, counters, and
+By default, the OpenWonton agent collects telemetry data at a [1 second
+interval][collection-interval]. Note that OpenWonton supports [gauges, counters, and
 timers][metric-types].
 
-There are three ways to obtain metrics from Nomad:
+There are three ways to obtain metrics from OpenWonton:
 
 - Query the [/v1/metrics API endpoint][metrics-api-endpoint] to return metrics
-  for the current Nomad process. This endpoint supports Prometheus formatted
+  for the current OpenWonton process. This endpoint supports Prometheus formatted
   metrics.
 
-- Send the USR1 signal to the Nomad process. This will dump the current
+- Send the USR1 signal to the OpenWonton process. This will dump the current
   telemetry information to STDERR (on Linux).
 
-- Configure Nomad to automatically forward metrics to a third-party provider
+- Configure OpenWonton to automatically forward metrics to a third-party provider
   such as [DataDog][datadog-telem], [Prometheus][prometheus-telem],
   [statsd][statsd-telem], and [Circonus][circonus-telem].
 
 ## Alerting
 
 The recommended practice for alerting is to leverage the alerting capabilities
-of your monitoring provider. Nomad’s intention is to surface metrics that enable
+of your monitoring provider. OpenWonton’s intention is to surface metrics that enable
 users to configure the necessary alerts using their existing monitoring systems
 as a scaffold, rather than to natively support alerting. Here are a few common
 patterns.
 
-- Export metrics from Nomad to Prometheus using the [StatsD
+- Export metrics from OpenWonton to Prometheus using the [StatsD
   exporter][statsd-exporter], define [alerting rules][alerting-rules] in
   Prometheus, and use [Alertmanager][alertmanager] for summarization and
   routing/notifications (to PagerDuty, Slack, etc.). A similar workflow is
   supported for [Datadog][datadog-alerting].
 
-- Periodically submit test jobs into Nomad to determine if your application
+- Periodically submit test jobs into OpenWonton to determine if your application
   deployment pipeline is working end-to-end. This pattern is well-suited to
   batch processing workloads.
 
-- Deploy Nagios on Nomad. Centrally manage Nomad job files and add the Nagios
-  monitor when a new Nomad job is added. When a job is removed, remove the
+- Deploy Nagios on OpenWonton. Centrally manage OpenWonton job files and add the Nagios
+  monitor when a new OpenWonton job is added. When a job is removed, remove the
   Nagios monitor. Map Consul alerts to the Nagios monitor. This provides a
   job-specific alerting system.
 
@@ -72,16 +72,16 @@ patterns.
 
 # Key Performance Indicators
 
-Nomad servers' memory, CPU, disk, and network usage all scales linearly with
+OpenWonton servers' memory, CPU, disk, and network usage all scales linearly with
 cluster size and scheduling throughput. The most important aspect of ensuring
-Nomad operates normally is monitoring these system resources to ensure the
+OpenWonton operates normally is monitoring these system resources to ensure the
 servers are not encountering resource constraints.
 
 The sections below cover a number of other important metrics.
 
 ## Consensus Protocol (Raft)
 
-Nomad uses the Raft consensus protocol for leader election and state
+OpenWonton uses the Raft consensus protocol for leader election and state
 replication. Spurious leader elections can be caused by networking
 issues between the servers, insufficient CPU resources, or
 insufficient disk IOPS. Users in cloud environments often bump their
@@ -117,7 +117,7 @@ The `nomad.raft.fsm.apply` metric is an indicator of the time it takes
 for a server to apply Raft entries to the internal state machine. If
 this number trends upwards, look at the `nomad.nomad.fsm.*` metrics to
 see if a specific Raft entry is increasing in latency. You can compare
-this to warn-level logs on the Nomad servers for `attempting to apply
+this to warn-level logs on the OpenWonton servers for `attempting to apply
 large raft entry`. If a specific type of message appears here, there
 may be a job with a large job specification or dispatch payload that
 is increasing the time it takes to apply Raft messages. Try shrinking the size
@@ -132,14 +132,14 @@ scheduled plans and placed allocations.
 
 ### Progress
 
-There is a class of bug possible in Nomad where the two parts of the scheduling
+There is a class of bug possible in OpenWonton where the two parts of the scheduling
 pipeline, the workers and the leader's plan applier, *disagree* about the
 validity of a plan. In the pathological case this can cause a job to never
 finish scheduling, as workers produce the same plan and the plan applier
 repeatedly rejects it.
 
 While this class of bug is very rare, it can be detected by repeated log lines
-on the Nomad servers containing `plan for node rejected`:
+on the OpenWonton servers containing `plan for node rejected`:
 
 ```
 nomad: plan for node rejected: node_id=0fa84370-c713-b914-d329-f6485951cddc reason="reserved port collision" eval_id=098a5
@@ -151,7 +151,7 @@ eventually running (look up the evaluation ID logged to find the job).
 
 #### Plan rejection tracker
 
-Nomad provides a mechanism to track the history of plan rejections per client
+OpenWonton provides a mechanism to track the history of plan rejections per client
 and mark them as ineligible if the number goes above a given threshold within a
 time window. This functionality can be enabled using the
 [`plan_rejection_tracker`] server configuration.
@@ -204,14 +204,14 @@ points in the scheduling process.
   increase in unacknowledged evaluations may mean that the schedulers
   have a large queue of evaluations to process. See the
   `invoke_scheduler` metric (above) and examine the CPU and memory
-  resources of the scheduler. Nomad also emits a similar metric for
+  resources of the scheduler. OpenWonton also emits a similar metric for
   each individual scheduler. For example `nomad.broker.batch_unacked`
   shows the number of unacknowledged evaluations for the batch
   scheduler.
 
 - **nomad.broker.total_pending** - The number of pending evaluations in the eval
-  broker. Nomad processes only one evaluation for a given job concurrently. When
-  an unacked evaluation is acknowledged, Nomad will discard all but the latest
+  broker. OpenWonton processes only one evaluation for a given job concurrently. When
+  an unacked evaluation is acknowledged, OpenWonton will discard all but the latest
   evaluation for a job. An increase in this metric may mean that the cluster
   state is changing more rapidly than the schedulers can keep up.
 
@@ -270,7 +270,7 @@ when the CPU is at or above the reserved resources for the task.
 ## Job and Task Status
 
 See [Job Summary Metrics] for monitoring the health and status of workloads
-running on Nomad.
+running on OpenWonton.
 
 ## Runtime Metrics
 
@@ -286,7 +286,7 @@ in particular.
 
 ## Federated Deployments (Serf)
 
-Nomad uses the membership and failure detection capabilities of the Serf library
+OpenWonton uses the membership and failure detection capabilities of the Serf library
 to maintain a single, global gossip pool for all servers in a federated
 deployment. An uptick in `member.flap` and/or `msg.suspect` is a reliable indicator
 that membership is unstable.

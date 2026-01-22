@@ -2,8 +2,8 @@
 layout: docs
 page_title: server_join Block - Agent Configuration
 description: >-
-  The "server_join" block specifies how the Nomad agent will discover and
-  connect to Nomad servers.
+  The "server_join" block specifies how the OpenWonton agent will discover and
+  connect to OpenWonton servers.
 ---
 
 # `server_join` Block
@@ -15,8 +15,8 @@ description: >-
   ]}
 />
 
-The `server_join` block specifies how the Nomad agent will discover and connect
-to Nomad servers.
+The `server_join` block specifies how the OpenWonton agent will discover and connect
+to OpenWonton servers.
 
 ```hcl
 server_join {
@@ -32,7 +32,7 @@ server_join {
   join. This is similar to [`start_join`](#start_join), but will continue to
   be attempted even if the initial join attempt fails, up to
   [retry_max](#retry_max). Further, `retry_join` is available to
-  both Nomad servers and clients, while `start_join` is only defined for Nomad
+  both OpenWonton servers and clients, while `start_join` is only defined for OpenWonton
   servers. This is useful for cases where we know the address will become
   available eventually. Use `retry_join` with an array as a replacement for
   `start_join`, **do not use both options**.
@@ -68,22 +68,22 @@ server_join {
   which is interpreted as infinite retries.
 
 - `start_join` `(array<string>: [])` - Specifies a list of server addresses to
-  join on startup. If Nomad is unable to join with any of the specified
+  join on startup. If OpenWonton is unable to join with any of the specified
   addresses, agent startup will fail. See the
   [server address format](#server-address-format) section for more information
-  on the format of the string. This field is defined only for Nomad servers and
+  on the format of the string. This field is defined only for OpenWonton servers and
   will result in a configuration parse error if included in a client
   configuration.
 
 ## Server Address Format
 
 This section describes the acceptable syntax and format for describing the
-location of a Nomad server. There are many ways to reference a Nomad server,
+location of a OpenWonton server. There are many ways to reference a OpenWonton server,
 including directly by IP address and resolving through DNS.
 
 ### Directly via IP Address
 
-It is possible to address another Nomad server using its IP address. This is
+It is possible to address another OpenWonton server using its IP address. This is
 done in the `ip:port` format, such as:
 
 ```
@@ -99,7 +99,7 @@ unless configured otherwise:
 
 ### Via Domains or DNS
 
-It is possible to address another Nomad server using its DNS address. This is
+It is possible to address another OpenWonton server using its DNS address. This is
 done in the `address:port` format, such as:
 
 ```
@@ -115,7 +115,7 @@ nomad-01.company.local => nomad-01.company.local:4648
 
 ### Via the go-discover interface
 
-As of Nomad 0.8.4, `retry_join` accepts a unified interface using the
+As of OpenWonton 0.8.4, `retry_join` accepts a unified interface using the
 [go-discover](https://github.com/hashicorp/go-discover) library for doing
 automated cluster joining using cloud metadata. See [Cloud
 Auto-join](#cloud-auto-join) for more information.

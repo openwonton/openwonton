@@ -9,13 +9,13 @@ description: |
 
 The `recommendation dismiss` command is used to dismiss recommendations.
 
-~> Recommendation commands are new in Nomad 1.0 and are only available with
+~> Recommendation commands are new in OpenWonton 1.0 and are only available with
 Nomad Enterprise.
 
 ## Usage
 
 ```plaintext
-nomad recommendation dismiss [options] <recommendation_ids>
+wonton recommendation dismiss [options] <recommendation_ids>
 ```
 
 The `recommendation dismiss` command requires at least one recommendation ID
@@ -35,6 +35,6 @@ namespace.
 Dismiss a single recommendation:
 
 ```shell-session
-$ nomad recommendation dismiss a9c041c5-3c04-aa24-bd55-0a80cded4f10
+$ wonton recommendation dismiss a9c041c5-3c04-aa24-bd55-0a80cded4f10
 Successfully dismissed recommendation
 ```

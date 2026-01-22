@@ -2,14 +2,14 @@
 layout: docs
 page_title: 'Commands: operator api'
 description: |
-  operator api is a utility command for accessing Nomad's HTTP API similar to
+  operator api is a utility command for accessing OpenWonton's HTTP API similar to
   the popular open source program curl.
 ---
 
 # Command: operator api
 
-The `operator api` command allows easy access to Nomad's HTTP API similar to
-the popular [curl] program. Nomad's `operator api` command reads [environment
+The `operator api` command allows easy access to OpenWonton's HTTP API similar to
+the popular [curl] program. OpenWonton's `operator api` command reads [environment
 variables][envvars] to dramatically ease HTTP API access compared to trying to
 manually write the same command with the third party `curl` command.
 
@@ -24,11 +24,11 @@ NOMAD_TLS_SERVER_NAME=client.global.nomad
 NOMAD_ADDR=https://remote.client123.internal:4646
 ```
 
-Accessing Nomad's [`/v1/jobs`][jobs] HTTP endpoint with `nomad operator
+Accessing OpenWonton's [`/v1/jobs`][jobs] HTTP endpoint with `wonton operator
 api` would require:
 
 ```
-nomad operator api /v1/jobs
+wonton operator api /v1/jobs
 ```
 
 Performing the same request using the external `curl` tool would require:
@@ -52,13 +52,13 @@ curl \
 - `-dryrun`: output a curl command instead of performing the HTTP request
   immediately. Note that you do *not* need the 3rd party `curl` command
   installed to use `operator api`. The `curl` output from `-dryrun` is intended
-  for use in scripts or running in locations without a Nomad binary present.
+  for use in scripts or running in locations without a OpenWonton binary present.
 
 - `-filter`: Specifies an expression used to filter query results.
 
 - `-H`: Adds an additional HTTP header to the request. May be specified more
   than once. These headers take precedence over automatically set ones such as
-  X-Nomad-Token.
+  X-OpenWonton-Token.
 
 - `-verbose`: Output extra information to stderr similar to curl's --verbose
   flag.
@@ -69,7 +69,7 @@ curl \
 ## Examples
 
 ```shell-session
-$ nomad operator api -verbose /v1/agent/members?pretty
+$ wonton operator api -verbose /v1/agent/members?pretty
 > GET http://127.0.0.1:4646/v1/agent/members?pretty=
 * Sending request and receiving response...
 < HTTP/1.1 200 OK
@@ -81,7 +81,7 @@ $ nomad operator api -verbose /v1/agent/members?pretty
 ...
 
 
-$ nomad operator api -region eu-west -filter 'Status == "completed"' -dryrun /v1/evaluations
+$ wonton operator api -region eu-west -filter 'Status == "completed"' -dryrun /v1/evaluations
 curl \
   -X GET \
     http://127.0.0.1:4646/v1/evaluations?filter=.Status+%3D%3D+%22completed%22&region=eu-west

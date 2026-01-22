@@ -15,12 +15,12 @@ command.
 ## Usage
 
 ```plaintext
-nomad volume snapshot delete [plugin_id] [snapshot_id]
+wonton volume snapshot delete [plugin_id] [snapshot_id]
 ```
 
 The `volume snapshot delete` command requires both the plugin ID and the
 snapshot ID. The volume that was the source of the snapshot does not still
-need to be [registered] with Nomad in order to be deleted.
+need to be [registered] with OpenWonton in order to be deleted.
 
 When ACLs are enabled, this command requires a token with the `csi-write-
 volume` and `plugin:read` capabilities.
@@ -39,7 +39,7 @@ volume` and `plugin:read` capabilities.
 Delete a volume snapshot:
 
 ```shell-session
-$ nomad volume snapshot delete aws-ebs0 snap-12345
+$ wonton volume snapshot delete aws-ebs0 snap-12345
 Deleted snapshot snap-12345.
 ```
 

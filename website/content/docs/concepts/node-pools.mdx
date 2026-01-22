@@ -1,7 +1,7 @@
 ---
 layout: docs
 page_title: Node Pools
-description: Learn about the internal architecture of Nomad.
+description: Learn about the internal architecture of OpenWonton.
 ---
 
 # Node Pools
@@ -48,7 +48,7 @@ client {
 ```
 
 To help streamline this process, nodes can create node pools on demand. If a
-client configuration references a node pool that does not exist yet, Nomad
+client configuration references a node pool that does not exist yet, OpenWonton
 creates the node pool automatically on client registration.
 
 <Note>
@@ -88,10 +88,10 @@ created and replicated to all regions.
 
 ## Built-in Node Pools
 
-In addition to the user generated node pools Nomad automatically creates two
+In addition to the user generated node pools OpenWonton automatically creates two
 built-in node pools that cannot be deleted nor modified.
 
-- `default`: Node pools are an optional feature of Nomad. The `node_pool`
+- `default`: Node pools are an optional feature of OpenWonton. The `node_pool`
   attribute in both the client configuration and job files are optional. When
   not specified, these values are set to use the `default` built-in node pool.
 
@@ -108,7 +108,7 @@ powerful and easier to manage.
 
 ### Scheduler Configuration
 
-Node pools in Nomad Enterprise are able to customize some aspects of the Nomad
+Node pools in Nomad Enterprise are able to customize some aspects of the OpenWonton
 scheduler and override certain global configuration per node pool.
 
 This allows experimenting with with functionalities such as memory
@@ -226,7 +226,7 @@ This pattern illustrates an example where node pools are used to reserve nodes
 for a specific set of jobs while also allowing system jobs to cross node pools
 boundaries.
 
-It is common for Nomad clusters to have certain jobs that are focused on
+It is common for OpenWonton clusters to have certain jobs that are focused on
 providing the underlying infrastructure for more business focused applications.
 Some examples include reverse proxies for traffic ingress, CSI plugins, and
 periodic maintenance jobs.
@@ -326,7 +326,7 @@ namespace "infra" {
 This pattern illustrate an example where different scheduling algorithms are
 per node pool.
 
-Each of the scheduling algorithms provided by Nomad are best suited for
+Each of the scheduling algorithms provided by OpenWonton are best suited for
 different types of environments and workloads.
 
 The `binpack` algorithm aims to maximize resource usage and pack as much

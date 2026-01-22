@@ -2,18 +2,18 @@
 layout: docs
 page_title: 'Commands: job scale'
 description: |
-  The job scale command is used to change the count of a Nomad job group.
+  The job scale command is used to change the count of a OpenWonton job group.
 ---
 
 # Command: job scale
 
 The `job scale` command is used to alter the number of running allocations within
-a Nomad task group.
+a OpenWonton task group.
 
 ## Usage
 
 ```plaintext
-nomad job scale [options] <job> <group> <count>
+wonton job scale [options] <job> <group> <count>
 ```
 
 The `job scale` commands requires at least two arguments and potentially three
@@ -52,7 +52,7 @@ not used.
 Scale the job with ID "job1" which contains a single task group to a count of 8:
 
 ```shell-session
-$ nomad job scale job1 8
+$ wonton job scale job1 8
 ==> Monitoring evaluation "529cc88e"
     Evaluation triggered by job "job1"
     Evaluation within deployment: "28a3378f"
@@ -72,14 +72,14 @@ Scale the job with ID "job1" which contains a single task group to a count of 8
 and return immediately:
 
 ```shell-session
-$ nomad job scale -detach job1 8
+$ wonton job scale -detach job1 8
 Evaluation ID: b754d6b3-8960-5652-60d8-d47df6eaed13
 ```
 
 Scale the job with ID "job1" and the task group "group1" to a count of 8:
 
 ```shell-session
-$ nomad job scale job1 group1 8
+$ wonton job scale job1 group1 8
 ==> Monitoring evaluation "529cc88e"
     Evaluation triggered by job "job1"
     Evaluation within deployment: "28a3378f"
