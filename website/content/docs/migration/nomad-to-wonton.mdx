@@ -1,12 +1,12 @@
 ---
-page_title: "Migration: OpenWonton to OpenWonton"
+page_title: "Migration: Nomad to OpenWonton"
 description: |-
   This guide provides instructions for migrating from HashiCorp Nomad to OpenWonton.
 ---
 
-# Migration: OpenWonton to OpenWonton
+# Migration: Nomad to OpenWonton
 
-OpenWonton is a fork of HashiCorp Nomad with a focus on a smooth migration path for existing users. This guide outlines what changed, what stayed compatible, and the small set of updates you may want to make.
+OpenWonton is a fork of the MPL-2.0 licensed HashiCorp Nomad releases with a focus on a smooth migration path for existing users. This guide outlines what changed, what stayed compatible, and the small set of updates you may want to make.
 
 ## Quick Checklist
 
@@ -22,7 +22,7 @@ OpenWonton is a fork of HashiCorp Nomad with a focus on a smooth migration path 
 
 ## Compatibility
 
-OpenWonton maintains a high degree of compatibility with OpenWonton. Job files, APIs, and the overall architecture remain the same unless otherwise noted. We aim to keep OpenWonton defaults and behaviors intact so existing clusters can migrate with minimal change.
+OpenWonton maintains a high degree of compatibility with Nomad. Job files, APIs, and the overall architecture remain the same unless otherwise noted. We aim to keep Nomad-compatible defaults and behaviors intact so existing clusters can migrate with minimal change.
 
 ## Migrating to `wonton`
 
@@ -52,7 +52,7 @@ sed -i 's/nomad/wonton/g' your-script.sh
 
 ## Configuration and Data
 
-Your existing OpenWonton configuration files and data directory can be used with OpenWonton without any changes. The API surface is designed to remain compatible, so existing clients should continue to work.
+Your existing Nomad configuration files and data directory can be used with OpenWonton without any changes. The API surface is designed to remain compatible, so existing clients should continue to work.
 
 ## Environment Variables
 
@@ -60,7 +60,7 @@ OpenWonton-compatible environment variables (such as `NOMAD_ADDR`, `NOMAD_TOKEN`
 
 ## Go API Clients
 
-If you use the Go API client, update import paths from OpenWonton to OpenWonton:
+If you use the Go API client, update import paths from Nomad to OpenWonton:
 
 ```go
 import "github.com/openwonton/openwonton/api"

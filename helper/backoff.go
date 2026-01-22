@@ -1,31 +1,30 @@
-// Copyright (c) HashiCorp, Inc.
-// SPDX-License-Identifier: BUSL-1.1
+// Copyright (c) 2025 OpenWonton Authors.
+// SPDX-License-Identifier: MPL-2.0
 
 package helper
 
-import (
-	"time"
-)
+import "time"
 
+// Backoff returns an exponential backoff duration capped by backoffLimit.
 func Backoff(backoffBase time.Duration, backoffLimit time.Duration, attempt uint64) time.Duration {
-	const MaxUint = ^uint64(0)
-	const MaxInt = int64(MaxUint >> 1)
-
-	// Ensure lack of non-positive backoffs since these make no sense
-	if backoffBase.Nanoseconds() <= 0 {
-		return max(backoffBase, 0*time.Second)
+	if backoffBase <= 0 {
+		return 0
 	}
 
-	// Ensure that a large attempt will not cause an overflow
-	if attempt > 62 || MaxInt/backoffBase.Nanoseconds() < (1<<attempt) {
+	const maxInt64 = int64(^uint64(0) >> 1)
+	if attempt > 62 {
 		return backoffLimit
 	}
 
-	// Compute deadline and clamp it to backoffLimit
-	deadline := 1 << attempt * backoffBase
-	if deadline > backoffLimit {
-		deadline = backoffLimit
+	base := int64(backoffBase)
+	if base <= 0 || base > (maxInt64>>attempt) {
+		return backoffLimit
 	}
 
-	return deadline
+	wait := time.Duration(base << attempt)
+	if wait > backoffLimit {
+		return backoffLimit
+	}
+
+	return wait
 }

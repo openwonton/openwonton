@@ -12,6 +12,11 @@ operating systems. You can also [build OpenWonton from source](#from-source).
 -> If you are interested in trialing OpenWonton without installing it locally, see the
 [Quickstart](/nomad/docs/install/quickstart) for options to get started with OpenWonton.
 
+-> NOTE: OpenWonton releases are distributed by the OpenWonton project. Package
+managers and repositories labeled for Nomad may install upstream HashiCorp Nomad
+instead of OpenWonton. Prefer the manual installation method or verify with
+`wonton version`.
+
 <Tabs>
 <Tab heading="Manual installation" group="manual">
 
@@ -25,149 +30,29 @@ that the `wonton` binary (or the `nomad` compatibility shim) is available on you
 <Tab heading="Homebrew on macOS" group="homebrew">
 
 [Homebrew](https://brew.sh) is a free and open source package management system
-for Mac OS X. Install the official [OpenWonton
-formula](https://github.com/hashicorp/homebrew-tap) from the terminal.
+for Mac OS X. Homebrew can be used if you have an OpenWonton formula available in
+your environment. The upstream HashiCorp tap provides Nomad packages, not OpenWonton.
 
-First, install the HashiCorp tap, a repository of all of the HashiCorp Homebrew
-packages.
-
-```shell-session
-$ brew tap hashicorp/tap
-```
-
-Now, install OpenWonton with `hashicorp/tap/nomad`.
-
-```shell-session
-$ brew install hashicorp/tap/nomad
-```
-
-~> **NOTE:** This installs a signed binary and is automatically updated with
-every new official release.
-
-To update to the latest, run
-
-```shell-session
-$ brew upgrade hashicorp/tap/nomad
-```
+Prefer the manual installation method or build from source for OpenWonton.
 
 </Tab>
 <Tab heading="Chocolatey on Windows" group="chocolatey">
 
 [Chocolatey](https://chocolatey.org/) is a free and open-source package
-management system for Windows. Install the [OpenWonton
-package](https://chocolatey.org/packages/nomad) from the command-line.
+management system for Windows. Chocolatey can be used if you have an OpenWonton
+package available in your environment. Verify that any package you install is
+an OpenWonton build.
 
-```shell-session
-$ choco install nomad
-```
-
-~> **NOTE:** Chocolatey and the OpenWonton package are **NOT** directly maintained
-by HashiCorp. The latest version of OpenWonton is always available by manual
-installation.
+Prefer the manual installation method or build from source for OpenWonton.
 
 </Tab>
 <Tab heading="Linux Packages" group="linux">
 
-HashiCorp officially maintains and signs packages for the following Linux
-distributions.
+OpenWonton does not publish packages in the HashiCorp apt/rpm repositories. If
+you use upstream Nomad packages, be aware they install HashiCorp Nomad rather
+than OpenWonton.
 
-<Tabs>
-<Tab heading="Ubuntu/Debian">
-
-Install the required packages.
-
-```shell-session
-$ sudo apt-get update && \
-  sudo apt-get install wget gpg coreutils
-```
-
-Add the HashiCorp [GPG key][gpg-key].
-
-```shell-session
-$ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-```
-
-Add the official HashiCorp Linux repository.
-
-```shell-session
-$ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-```
-
-Update and install.
-
-```shell-session
-$ sudo apt-get update && sudo apt-get install nomad
-```
-
-</Tab>
-<Tab heading="CentOS/RHEL">
-
-Install `yum-config-manager` to manage your repositories.
-
-```shell-session
-$ sudo yum install -y yum-utils
-```
-
-Use `yum-config-manager` to add the official HashiCorp Linux repository.
-
-```shell-session
-$ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-```
-
-Install.
-
-```shell-session
-$ sudo yum -y install nomad
-```
-
-</Tab>
-<Tab heading="Fedora">
-
-Install `dnf config-manager` to manage your repositories.
-
-```shell-session
-$ sudo dnf install -y dnf-plugins-core
-```
-
-Use `dnf config-manager` to add the official HashiCorp Linux repository.
-
-```shell-session
-$ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-```
-
-Install.
-
-```shell-session
-$ sudo dnf -y install nomad
-```
-
-</Tab>
-<Tab heading="Amazon Linux">
-
-Install `yum-config-manager` to manage your repositories.
-
-```shell-session
-$ sudo yum install -y yum-utils
-```
-
-Use `yum-config-manager` to add the official HashiCorp Linux repository.
-
-```shell-session
-$ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-```
-
-Install.
-
-```shell-session
-$ sudo yum -y install nomad
-```
-
-</Tab>
-</Tabs>
-
--> **TIP:** Now that you have added the HashiCorp repository, you can install
-[Consul](/consul/tutorials) and
-[Vault](/vault/tutorials) with the same command.
+Prefer the manual installation method or build from source for OpenWonton.
 
 </Tab>
 </Tabs>
@@ -373,9 +258,9 @@ and ensuring `GOPATH/bin` is within your `PATH`. A copy of
 1. Clone the OpenWonton repository from GitHub into your `GOPATH`:
 
    ```shell-session
-   $ mkdir -p $GOPATH/src/github.com/hashicorp && cd $_
+   $ mkdir -p $GOPATH/src/github.com/openwonton && cd $_
    $ git clone https://github.com/openwonton/openwonton.git
-   $ cd nomad
+   $ cd openwonton
    ```
 
 1. Bootstrap the project. This will download and compile libraries and tools
@@ -387,7 +272,7 @@ and ensuring `GOPATH/bin` is within your `PATH`. A copy of
 
 1. Build OpenWonton for your current system and put the
    binary in `./bin/` (relative to the git checkout). The `make dev` target is
-   just a shortcut that builds `nomad` for only your local build environment (no
+   just a shortcut that builds `wonton` for only your local build environment (no
    cross-compiled targets).
 
    ```shell-session
@@ -402,5 +287,4 @@ and ensuring `GOPATH/bin` is within your `PATH`. A copy of
 
 [gh-7865]: https://github.com/openwonton/openwonton/issues/7865
 
-[gpg-key]: https://apt.releases.hashicorp.com/gpg "HashiCorp GPG key"
 [go-version]: https://github.com/openwonton/openwonton/blob/main/.go-version

@@ -1,29 +1,30 @@
 ---
 layout: docs
 page_title: Tools
-description: Learn about tools for Nomad.
+description: Learn about tools for OpenWonton.
 ---
 
 # Tools
 
-External tools provide additional capabilities and use cases to Nomad. They are
-installed separately from Nomad itself and can sometimes be deployed as a Nomad
+External tools provide additional capabilities and use cases to OpenWonton. They are
+installed separately from OpenWonton itself and can sometimes be deployed as an OpenWonton
 job in your cluster.
 
-## HashiCorp-Maintained Tools
+## Ecosystem Tools
 
-The following external tools are currently available for Nomad and maintained by HashiCorp:
+The following external tools are commonly used with Nomad-compatible schedulers.
+Verify compatibility with your OpenWonton release.
 
-- [Autoscaling](/nomad/tools/autoscaling) - HashiCorp's official Nomad Autoscaler. Supports scaling allocations within Nomad and scaling nodes on AWS, Azure, GCP, or arbitrary infrastructure via plugins.
-- [Damon](https://github.com/hashicorp/damon) - A terminal dashboard for Nomad.
-- [Levant](https://github.com/hashicorp/levant) - A templating and deployment tool for HashiCorp Nomad jobs that provides realtime feedback and detailed failure messages upon deployment issues.
-- [Nomad Pack](https://github.com/openwonton/openwonton-pack) - An official package manager and templating tool for Nomad, currently a Tech Preview.
+- [Autoscaling](/nomad/tools/autoscaling) - Nomad Autoscaler. Supports scaling allocations within OpenWonton and scaling nodes on AWS, Azure, GCP, or arbitrary infrastructure via plugins.
+- [Damon](https://github.com/hashicorp/damon) - A terminal dashboard for OpenWonton.
+- [Levant](https://github.com/hashicorp/levant) - A templating and deployment tool for Nomad-compatible jobs that provides realtime feedback and detailed failure messages upon deployment issues.
+- [Nomad Pack](https://github.com/openwonton/openwonton-pack) - A package manager and templating tool for Nomad-compatible jobs.
 - [Nomad Pack GitHub Action](https://github.com/marketplace/actions/setup-hashicorp-nomad-pack) - A GitHub Action for Nomad Pack.
-- [OpenAPI](https://github.com/openwonton/openwonton-openapi) - An OpenAPI/Swagger spec for Nomad, allowing for programmatic generation of SDKs and documentation. Includes a reference implementation in Go built on top of a generated client.
+- [OpenAPI](https://github.com/openwonton/openwonton-openapi) - An OpenAPI/Swagger spec for OpenWonton, allowing for programmatic generation of SDKs and documentation. Includes a reference implementation in Go built on top of a generated client.
 
 ## Community Tools
 
-The following external tools are currently available for Nomad and maintained by members of the Nomad Community:
+The following external tools are currently available for OpenWonton and maintained by members of the community:
 
 - [Caravan](https://caravanproject.io/) - Caravan is a tool to deploy and configure Nomad, Consul and Vault to AWS, Azure, or GCP, all with a single script.
 - [Chaotic](https://github.com/ngine-io/chaotic) - A Chaos Engineering tool to stop allocations, reboot or stop/start virtual machines in your cloud environment

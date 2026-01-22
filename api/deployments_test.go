@@ -1,3 +1,7 @@
+// Copyright (c) HashiCorp, Inc.
+// Copyright (c) 2025 OpenWonton Authors.
+// SPDX-License-Identifier: MPL-2.0
+
 package api
 
 import (

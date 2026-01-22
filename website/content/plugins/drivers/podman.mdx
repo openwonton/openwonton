@@ -10,14 +10,14 @@ description: >-
 
 Name: `podman`
 
-The Podman task driver plugin for Nomad uses the [Pod Manager (podman)][podman]
-daemonless container runtime for executing Nomad tasks. Podman supports OCI
+The Podman task driver plugin for OpenWonton uses the [Pod Manager (podman)][podman]
+daemonless container runtime for executing OpenWonton tasks. Podman supports OCI
 containers and its command line tool is meant to be [a drop-in replacement]
 [podman-cli] for docker.
 
 Source is on [GitHub][github]
 
-Download from HashiCorp [releases][releases]
+Download from the upstream driver [releases][releases]
 
 The example job created by [`nomad init -short`][nomad-init] is easily adapted
 to use Podman instead:
@@ -577,13 +577,13 @@ configuration file.
 [podman]: https://podman.io/
 [podman-cli]: https://podman.io/whatis.html
 [`prestart`]: /nomad/docs/job-specification/lifecycle#prestart
-[releases]: https://releases.hashicorp.com/nomad-driver-podman
+[releases]: https://github.com/hashicorp/nomad-driver-podman/releases
 [rootless_tutorial]: https://github.com/containers/libpod/blob/master/docs/tutorials/rootless_tutorial.md
 [task]: /nomad/docs/job-specification/task#user
 [`network_mode`]: #network_mode
 [network-mode]: http://docs.podman.io/en/latest/markdown/podman-run.1.html#options
 [slirp-issue]: https://github.com/containers/libpod/issues/6097
-[downloaded]: https://releases.hashicorp.com/nomad-driver-podman
+[downloaded]: https://github.com/hashicorp/nomad-driver-podman/releases
 [short-names]: https://github.com/containers/image/blob/master/docs/containers-registries.conf.5.md#short-name-aliasing
 [`command`]: #command
 [`client_http_timeout`]: #client_http_timeout

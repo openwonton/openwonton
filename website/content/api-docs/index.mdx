@@ -2,15 +2,15 @@
 layout: api
 page_title: HTTP API
 description: |-
-  Nomad exposes a RESTful HTTP API to control almost every aspect of the
-  Nomad agent.
+  OpenWonton exposes a RESTful HTTP API to control almost every aspect of the
+  OpenWonton agent.
 ---
 
 # HTTP API
 
-The main interface to Nomad is a RESTful HTTP API. The API can query the current
-state of the system as well as modify the state of the system. The Nomad CLI
-actually invokes Nomad's HTTP for many commands.
+The main interface to OpenWonton is a RESTful HTTP API. The API can query the current
+state of the system as well as modify the state of the system. The OpenWonton CLI
+actually invokes OpenWonton's HTTP API for many commands.
 
 ## Version Prefix
 
@@ -18,15 +18,15 @@ All API routes are prefixed with `/v1/`.
 
 ## Addressing and Ports
 
-Nomad binds to a specific set of addresses and ports. The HTTP API is served via
+OpenWonton binds to a specific set of addresses and ports. The HTTP API is served via
 the `http` address and port. This `address:port` must be accessible locally. If
 you bind to `127.0.0.1:4646`, the API is only available _from that host_. If you
 bind to a private internal IP, the API will be available from within that
 network. If you bind to a public IP, the API will be available from the public
 Internet (not recommended).
 
-The default port for the Nomad HTTP API is `4646`. This can be overridden via
-the Nomad configuration block. Here is an example curl request to query a Nomad
+The default port for the OpenWonton HTTP API is `4646`. This can be overridden via
+the OpenWonton configuration block. Here is an example curl request to query an OpenWonton
 server with the default configuration:
 
 ```shell-session
@@ -34,12 +34,12 @@ $ curl http://127.0.0.1:4646/v1/agent/members
 ```
 
 The conventions used in the API documentation do not list a port and use the
-standard URL `localhost:4646`. Be sure to replace this with your Nomad agent URL
+standard URL `localhost:4646`. Be sure to replace this with your OpenWonton agent URL
 when using the examples.
 
 ## Data Model and Layout
 
-There are five primary nouns in Nomad:
+There are five primary nouns in OpenWonton:
 
 - jobs
 - nodes
@@ -47,7 +47,7 @@ There are five primary nouns in Nomad:
 - deployments
 - evaluations
 
-[![Nomad Data Model](/img/nomad-data-model.png)](/img/nomad-data-model.png)
+[![OpenWonton Data Model](/img/nomad-data-model.png)](/img/nomad-data-model.png)
 
 Jobs are submitted by users and represent a _desired state_. A job is a
 declarative description of tasks to run which are bounded by constraints and
@@ -66,13 +66,13 @@ administration.
 
 ## ACLs
 
-Several endpoints in Nomad use or require ACL tokens to operate. The token are used to authenticate the request and determine if the request is allowed based on the associated authorizations. Tokens are specified per-request by using the `X-Nomad-Token` request header or with the Bearer scheme in the authorization header set to the `SecretID` of an ACL Token.
+Several endpoints in OpenWonton use or require ACL tokens to operate. The token are used to authenticate the request and determine if the request is allowed based on the associated authorizations. Tokens are specified per-request by using the `X-Nomad-Token` request header or with the Bearer scheme in the authorization header set to the `SecretID` of an ACL Token.
 
 For more details about ACLs, please see the [ACL Guide](/nomad/tutorials/access-control).
 
 ## Authentication
 
-When ACLs are enabled, a Nomad token should be provided to API requests using the `X-Nomad-Token` header or with the Bearer scheme in the authorization header. When using authentication, clients should communicate via TLS.
+When ACLs are enabled, a Nomad-compatible token should be provided to API requests using the `X-Nomad-Token` header or with the Bearer scheme in the authorization header. When using authentication, clients should communicate via TLS.
 
 Here is an example using curl with `X-Nomad-Token`:
 

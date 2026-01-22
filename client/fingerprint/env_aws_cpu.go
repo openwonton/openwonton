@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp, Inc.
+// Copyright (c) 2025 OpenWonton Authors.
+// SPDX-License-Identifier: MPL-2.0
 // Code generated from hashicorp/nomad/tools/ec2info; DO NOT EDIT.
 
 package fingerprint

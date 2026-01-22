@@ -1,31 +1,31 @@
-// Copyright (c) HashiCorp, Inc.
-// SPDX-License-Identifier: BUSL-1.1
+// Copyright (c) 2025 OpenWonton Authors.
+// SPDX-License-Identifier: MPL-2.0
 
 package state
 
-import (
-	"testing"
-
-	"github.com/openwonton/openwonton/ci"
-	"github.com/shoenig/test/must"
-)
+import "testing"
 
 func TestSliceIterator(t *testing.T) {
-	ci.Parallel(t)
+	it := NewSliceIterator()
 
-	sliceIterator := NewSliceIterator()
-	must.NotNil(t, sliceIterator)
+	if got := it.Next(); got != nil {
+		t.Fatalf("expected nil on empty iterator, got %#v", got)
+	}
 
-	// Add something and perform our tests to ensure the expected data is
-	// returned.
-	sliceIterator.Add("random-information")
-	must.Len(t, 1, sliceIterator.data)
-	must.Zero(t, sliceIterator.idx)
-	must.Nil(t, sliceIterator.WatchCh())
+	it.Add("first")
+	it.Add("second")
 
-	next1 := sliceIterator.Next()
-	next2 := sliceIterator.Next()
-	must.Eq(t, "random-information", next1)
-	must.Nil(t, next2)
-	must.Eq(t, 1, sliceIterator.idx)
+	if got := it.Next(); got != "first" {
+		t.Fatalf("expected first element, got %#v", got)
+	}
+	if got := it.Next(); got != "second" {
+		t.Fatalf("expected second element, got %#v", got)
+	}
+	if got := it.Next(); got != nil {
+		t.Fatalf("expected nil after exhaustion, got %#v", got)
+	}
+
+	if it.WatchCh() != nil {
+		t.Fatalf("expected nil watch channel")
+	}
 }

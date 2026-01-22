@@ -44,9 +44,9 @@ immediately before a leader election.
 ## Restoring the Keyring from Backup
 
 Key material is never stored in raft. This prevents an attacker with a backup of
-the state store from getting access to encrypted variables. It also allows the
-HashiCorp engineering and support organization to safely handle cluster
-snapshots you might provide without exposing any of your keys or variables.
+the state store from getting access to encrypted variables. It also allows
+maintainers and support organizations to safely handle cluster snapshots you
+might provide without exposing any of your keys or variables.
 
 However, this means that to restore a cluster from snapshot you need to also
 provide the keystore directory with the `.nks.json` key files on at least one

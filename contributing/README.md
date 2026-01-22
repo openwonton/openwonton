@@ -1,11 +1,11 @@
-Nomad Codebase Documentation
+OpenWonton Codebase Documentation
 ===
 
-This directory contains some documentation about the Nomad codebase,
+This directory contains some documentation about the OpenWonton codebase,
 aimed at readers who are interested in making code contributions.
 
-If you're looking for information on _using_ Nomad, please instead refer
-to the [Nomad website](https://nomadproject.io).
+If you're looking for information on _using_ OpenWonton, please instead refer
+to the documentation under `website/`.
 
 Developing with Vagrant
 ---
@@ -16,7 +16,7 @@ A development environment is supplied via Vagrant to make getting started easier
 1. Bring up the Vagrant project
     ```sh
     $ git clone https://github.com/openwonton/openwonton.git
-    $ cd nomad
+    $ cd openwonton
     $ vagrant up
     ```
 
@@ -34,13 +34,13 @@ Developing without Vagrant
 1. Clone this repo
    ```sh
    $ git clone https://github.com/openwonton/openwonton.git
-   $ cd nomad
+   $ cd openwonton
    ```
 1. Bootstrap your environment
    ```sh
    $ make bootstrap
    ```
-1. (Optionally) Set a higher ulimit, as Nomad creates many file handles during normal operations
+1. (Optionally) Set a higher ulimit, as OpenWonton creates many file handles during normal operations
    ```sh
    $ [ "$(ulimit -n)" -lt 1024 ] && ulimit -n 1024
    ```
@@ -58,11 +58,11 @@ Running a development build
 1. Compile a development binary (see the [UI README](https://github.com/openwonton/openwonton/blob/main/ui/README.md) to include the web UI in the binary)
     ```sh
     $ make dev
-    # find the built binary at ./bin/nomad
+    # find the built binary at ./bin/wonton
     ```
 1. Start the agent in dev mode
     ```sh
-    $ sudo bin/nomad agent -dev
+    $ sudo bin/wonton agent -dev
     ```
 1. (Optionally) Run Consul to enable service discovery and health checks
     1. Download [Consul](https://www.consul.io/downloads)
@@ -96,25 +96,25 @@ $ make release
 $ ls ./pkg
 ```
 
-This will generate all the static assets, compile Nomad for multiple
+This will generate all the static assets, compile OpenWonton for multiple
 platforms and place the resulting binaries into the `./pkg` directory.
 
 API Compatibility
 --------------------
-Only the `api/` and `plugins/` packages are intended to be imported by other projects. The root Nomad module does not follow semver and is not intended to be imported directly by other projects.
+Only the `api/` and `plugins/` packages are intended to be imported by other projects. The root OpenWonton module does not follow semver and is not intended to be imported directly by other projects.
 
 ## Architecture
 
-The code for Nomad's major components is organized as:
+The code for OpenWonton's major components is organized as:
 
-* `api/` provides a Go client for Nomad's HTTP API.
-* `client/` contains Nomad's client agent code.
-* `command/` contains Nomad's CLI code.
-* `nomad/` contains Nomad's server agent code.
-* `ui/` contains Nomad's UI code.
-* `website/` contains Nomad's website and documentation.
+* `api/` provides a Go client for OpenWonton's HTTP API.
+* `client/` contains OpenWonton's client agent code.
+* `command/` contains OpenWonton's CLI code.
+* `nomad/` contains OpenWonton's server agent code.
+* `ui/` contains OpenWonton's UI code.
+* `website/` contains OpenWonton's website and documentation.
 
-The high level control flow for many Nomad actions (via the CLI or UI) are:
+The high level control flow for many OpenWonton actions (via the CLI or UI) are:
 
 ```
 # Read actions:
@@ -127,7 +127,7 @@ Client -> HTTP API -> RPC -> Raft -> FSM -> StateStore
 Checklists
 ---
 
-When adding new features to Nomad there are often many places to make changes.
+When adding new features to OpenWonton there are often many places to make changes.
 It is difficult to determine where changes must be made and easy to make
 mistakes.
 

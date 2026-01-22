@@ -1,7 +1,7 @@
 # OpenWonton
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](LICENSE)
 
-OpenWonton is a community-driven, open source, and Nomad-compatible workload orchestrator to deploy and manage containers (docker, podman), non-containerized applications (executable, Java), and virtual machines (qemu) across on-prem and clouds at scale. It is a fork of HashiCorp Nomad.
+OpenWonton is a community-driven, open source, and Nomad-compatible workload orchestrator to deploy and manage containers (docker, podman), non-containerized applications (executable, Java), and virtual machines (qemu) across on-prem and clouds at scale. It is forked from the MPL-2.0 licensed HashiCorp Nomad releases.
 
 OpenWonton is supported on Linux, Windows, and macOS.
 
@@ -19,6 +19,10 @@ OpenWonton provides several key features:
 
 * **Ecosystem Integrations**: OpenWonton integrates seamlessly with tools like Terraform, Consul, and Vault for provisioning, service discovery, and secrets management.
 
+## Project Intent
+
+OpenWonton exists to maintain and evolve the MPL-2.0 licensed Nomad codebase for community use while preserving compatibility for existing operators.
+
 ## Quick Start
 
 You can find Terraform manifests for bringing up a development OpenWonton cluster on a public cloud in the [`terraform`](terraform/) directory. Hetzner Cloud provisioning lives in [`terraform/hetzner`](terraform/hetzner/).
@@ -29,7 +33,15 @@ Documentation lives in the `website/content` directory. The migration guide from
 
 ## Compatibility and Migration
 
-OpenWonton ships a `wonton` CLI and a `nomad` compatibility shim so existing scripts can keep working. New usage should prefer `wonton` directly. If you use the Go API client, update imports to `github.com/openwonton/openwonton/api`. See the migration guide for details.
+OpenWonton ships a `wonton` CLI and a `nomad` compatibility shim so existing scripts can keep working. New usage should prefer `wonton` directly. If you use the Go API client, update imports to `github.com/openwonton/openwonton/api`. The `nomad/` directory name is retained for API and configuration compatibility. See `COMPATIBILITY.md` and the migration guide for details.
+
+## Legal and Provenance
+
+See `LICENSE`, `LEGAL.md`, and `CHANGES_FROM_UPSTREAM.md` for license provenance, upstream references, and documented changes.
+
+## Trademark
+
+Nomad is a trademark of HashiCorp, Inc. OpenWonton is not affiliated with, endorsed by, or sponsored by HashiCorp.
 
 ## Contributing
 

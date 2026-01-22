@@ -55,11 +55,11 @@ names such as `NOMAD_ADDR_<task>_<label>`
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `CONSUL_HTTP_ADDR`       | Specifies the address to the local Consul agent. Will be automatically set to a unix domain socket in bridge networking mode, or a TCP address in host networking mode.                            |
 | `CONSUL_HTTP_TOKEN`      | Specifies the Consul ACL token used to authorize with Consul. Will be automatically set to a generated Consul service identity token specific to the service instance if Consul ACLs are enabled.  |
-| `CONSUL_HTTP_SSL`        | Specifies whether HTTPS should be used when communicating with Consul. Will be automatically set to true if Nomad is configured to communicate with Consul using TLS.                              |
-| `CONSUL_HTTP_SSL_VERIFY` | Specifies whether the HTTPS connection with Consul should be mutually verified. Will be automatically set to true if Nomad is configured to verify TLS certificates.                               |
-| `CONSUL_CACERT`          | Specifies the path to the CA certificate used for Consul communication. Will be automatically set if Nomad is configured with the `consul.share_ssl` option.                                       |
-| `CONSUL_CLIENT_CERT`     | Specifies the path to the Client certificate used for Consul communication. Will be automatically set if Nomad is configured with the `consul.share_ssl` option.                                   |
-| `CONSUL_CLIENT_KEY`      | Specifies the path to the Client Key certificate used for Consul communication. Will be automatically set if Nomad is configured with the `consul.share_ssl` option.                               |
+| `CONSUL_HTTP_SSL`        | Specifies whether HTTPS should be used when communicating with Consul. Will be automatically set to true if OpenWonton is configured to communicate with Consul using TLS.                         |
+| `CONSUL_HTTP_SSL_VERIFY` | Specifies whether the HTTPS connection with Consul should be mutually verified. Will be automatically set to true if OpenWonton is configured to verify TLS certificates.                          |
+| `CONSUL_CACERT`          | Specifies the path to the CA certificate used for Consul communication. Will be automatically set if OpenWonton is configured with the `consul.share_ssl` option.                                  |
+| `CONSUL_CLIENT_CERT`     | Specifies the path to the Client certificate used for Consul communication. Will be automatically set if OpenWonton is configured with the `consul.share_ssl` option.                              |
+| `CONSUL_CLIENT_KEY`      | Specifies the path to the Client Key certificate used for Consul communication. Will be automatically set if OpenWonton is configured with the `consul.share_ssl` option.                          |
 | `CONSUL_TLS_SERVER_NAME` | Specifies the server name to use as the SNI host for Consul communication. Will be automatically set if Consul is configured to use TLS and the task is in a group using bridge networking mode.   |
 
 [upstream]: /nomad/docs/job-specification/upstreams

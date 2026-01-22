@@ -113,8 +113,8 @@ supports special behavior for several other signals useful for debugging.
   signals are handled by the Go runtime and will cause the OpenWonton agent to exit
   and print its stack trace.
 
-When using the official HashiCorp packages on Linux, you can send these signals
-via `systemctl`. For example, to print the OpenWonton agent's metrics:
+When running OpenWonton as a systemd-managed service on Linux, you can send these
+signals via `systemctl`. For example, to print the OpenWonton agent's metrics:
 
 ```shell-session
 $ sudo systemctl kill wonton -s SIGUSR1
@@ -123,7 +123,7 @@ $ sudo systemctl kill wonton -s SIGUSR1
 You can then read those metrics in the service logs:
 
 ```shell-session
-$ journalctl -u nomad
+$ journalctl -u wonton
 ```
 
 ## Lifecycle
