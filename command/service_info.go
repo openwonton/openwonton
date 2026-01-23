@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -63,7 +63,7 @@ Service Info Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (s *ServiceInfoCommand) Synopsis() string {
-	return "Display an individual Nomad service registration"
+	return "Display an individual OpenWonton service registration"
 }
 
 func (s *ServiceInfoCommand) AutocompleteFlags() complete.Flags {

@@ -47,7 +47,7 @@ func (r *RecommendationDismissCommand) Help() string {
 	helpText := `
 Usage: wonton recommendation dismiss [options] <recommendation_ids>
 
-  Dismiss one or more Nomad recommendations.
+  Dismiss one or more OpenWonton recommendations.
 
   When ACLs are enabled, this command requires a token with the 'submit-job',
   'read-job', and 'submit-recommendation' capabilities for the
@@ -61,7 +61,7 @@ General Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (r *RecommendationDismissCommand) Synopsis() string {
-	return "Dismiss one or more Nomad recommendations"
+	return "Dismiss one or more OpenWonton recommendations"
 }
 
 func (r *RecommendationDismissCommand) AutocompleteFlags() complete.Flags {

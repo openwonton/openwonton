@@ -40,25 +40,32 @@ No BUSL headers detected as of 2026-01-22. Keep running
 - Confirm code originates from MPL-2.0 licensed upstream releases and exclude
   any BSL-era code.
 - Document notable changes in `CHANGES_FROM_UPSTREAM.md`.
-- Use `scripts/audit-mpl-headers.sh` to list Go files under `nomad/` missing
-  MPL-2.0 headers.
-- Header audit (all Go files excluding vendor/) currently missing MPL headers
-  in:
-  - `api/deployments_test.go`
-  - `client/fingerprint/env_aws_cpu.go`
-  - `client/logmon/proto/logmon.pb.go`
-  - `client/structs/structs.generated.go`
-  - `command/agent/bindata_assetfs.go`
-  - `drivers/docker/docklog/proto/docker_logger.pb.go`
-  - `drivers/shared/executor/proto/executor.pb.go`
-  - `helper/raftutil/msgtypes.go`
-  - `plugins/base/proto/base.pb.go`
-  - `plugins/device/proto/device.pb.go`
-  - `plugins/drivers/proto/driver.pb.go`
-  - `plugins/shared/hclspec/hcl_spec.pb.go`
-  - `plugins/shared/structs/proto/attribute.pb.go`
-  - `plugins/shared/structs/proto/recoverable_error.pb.go`
-  - `plugins/shared/structs/proto/stats.pb.go`
+- Use `scripts/audit-mpl-headers.sh` to list Go files missing MPL-2.0 headers.
+  The audit skips vendor/, generated outputs (files matching `*.pb.go`,
+  `*.generated.go`, `*bindata*.go`, or containing "Code generated"), and the
+  Apache-2.0 file `client/lib/nsutil/netns_linux.go`.
+- If the audit returns files, add MPL headers or document exceptions below.
+
+### Header Audit Exceptions
+
+- `client/lib/nsutil/netns_linux.go` (Apache-2.0; derived from CNI plugins).
+- Generated Go outputs: `*.pb.go`, `*.generated.go`,
+  `command/agent/bindata_assetfs.go`, and any file containing "Code generated".
+
+## Nomad Directory Provenance Audit (v1.6.5 base)
+
+This audit summarizes changes under `nomad/` relative to the upstream v1.6.5
+base commit.
+
+- Base commit `a7cfff372cd52b02232a02bd3ffb5e5d35f88a0f` is an ancestor of `HEAD`.
+- Commits touching `nomad/` after the base:
+  - `6fe6e99ff` "first nomad to wonton commit"
+  - `3954732d6` "license stuff"
+- Diffstat: 264 files changed, 933 insertions(+), 907 deletions(-).
+- BSL/BUSL scan: no hits under `nomad/`.
+- Import path status: 0 occurrences of `github.com/hashicorp/nomad` and 865
+  occurrences of `github.com/openwonton/openwonton` under `nomad/`.
+- Detailed categorized diff report: `NOMAD_DIFF_REPORT.md`.
 
 ## Trademarks
 

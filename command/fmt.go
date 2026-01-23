@@ -51,7 +51,7 @@ func (*FormatCommand) Help() string {
 	helpText := `
 Usage: wonton fmt [flags] paths ...
 
-  Formats Nomad agent configuration and job file to a canonical format.
+  Formats OpenWonton agent configuration and job file to a canonical format.
   If a path is a directory, it will recursively format all files
   with .nomad and .hcl extensions in the directory.
 
@@ -82,7 +82,7 @@ Format Options:
 }
 
 func (*FormatCommand) Synopsis() string {
-	return "Rewrites Nomad config and job files to canonical format"
+	return "Rewrites OpenWonton config and job files to canonical format"
 }
 
 func (*FormatCommand) AutocompleteArgs() complete.Predictor {

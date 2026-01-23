@@ -18,8 +18,8 @@ func (f *ACLCommand) Help() string {
 Usage: wonton acl <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL policies and tokens.
-  Users can bootstrap Nomad's ACL system, create policies that restrict access,
-  and generate tokens from those policies.
+  Users can bootstrap the OpenWonton ACL system, create policies that restrict
+  access, and generate tokens from those policies.
 
   Bootstrap ACLs:
 

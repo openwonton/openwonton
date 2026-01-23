@@ -22,7 +22,7 @@ func (c *VolumeRegisterCommand) Help() string {
 	helpText := `
 Usage: wonton volume register [options] <input>
 
-  Creates or updates a volume in Nomad. The volume must exist on the remote
+  Creates or updates a volume in OpenWonton. The volume must exist on the remote
   storage provider before it can be used by a task.
 
   If the supplied path is "-" the volume file is read from stdin. Otherwise, it

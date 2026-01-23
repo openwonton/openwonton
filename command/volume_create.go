@@ -20,7 +20,7 @@ func (c *VolumeCreateCommand) Help() string {
 	helpText := `
 Usage: wonton volume create [options] <input>
 
-  Creates a volume in an external storage provider and registers it in Nomad.
+  Creates a volume in an external storage provider and registers it in OpenWonton.
 
   If the supplied path is "-" the volume file is read from stdin. Otherwise, it
   is read from the file at the supplied path.

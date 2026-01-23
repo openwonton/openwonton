@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 type NodeCommand struct {
@@ -20,8 +20,9 @@ func (f *NodeCommand) Help() string {
 	helpText := `
 Usage: wonton node <subcommand> [options] [args]
 
-  This command groups subcommands for interacting with nodes. Nodes in Nomad are
-  agent's that can run submitted workloads. This command can be used to examine
+  This command groups subcommands for interacting with nodes. Nodes in
+  OpenWonton are agents that can run submitted workloads. This command can be
+  used to examine
   nodes and operate on nodes, such as draining workloads off of them.
 
   Examine the status of a node:

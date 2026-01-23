@@ -76,7 +76,7 @@ func (e ErrJobRestartPlacementFailure) Is(err error) bool {
 type JobRestartCommand struct {
 	Meta
 
-	// client is the Nomad API client shared by all functions in the command to
+	// client is the OpenWonton API client shared by all functions in the command to
 	// reuse the same connection.
 	client *api.Client
 
@@ -115,7 +115,7 @@ Usage: wonton job restart [options] <job>
   rather restarted in-place.
 
   Rescheduling the job uses the 'Stop Allocation' API endpoint to stop the
-  allocations and trigger the Nomad scheduler to compute new placements. This
+  allocations and trigger the OpenWonton scheduler to compute new placements. This
   may cause the new allocations to be scheduled in different clients from the
   originals.
 
@@ -131,7 +131,7 @@ Usage: wonton job restart [options] <job>
   groups and tasks are defined only the tasks for the allocations of those
   groups are restarted.
 
-  When rescheduling, the current allocations are stopped triggering the Nomad
+  When rescheduling, the current allocations are stopped triggering the OpenWonton
   scheduler to create replacement allocations that may be placed in different
   clients. The command waits until the new allocations have client status
   'ready' before proceeding with the remaining batches. Services health checks

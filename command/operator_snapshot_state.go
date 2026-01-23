@@ -47,7 +47,7 @@ func (c *OperatorSnapshotStateCommand) AutocompleteArgs() complete.Predictor {
 }
 
 func (c *OperatorSnapshotStateCommand) Synopsis() string {
-	return "Displays information about a Nomad snapshot file"
+	return "Displays information about an OpenWonton snapshot file"
 }
 
 func (c *OperatorSnapshotStateCommand) Name() string { return "operator snapshot state" }

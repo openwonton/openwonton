@@ -13,8 +13,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 type MonitorCommand struct {
@@ -32,8 +32,8 @@ func (c *MonitorCommand) Help() string {
 	helpText := `
 Usage: wonton monitor [options]
 
-  Stream log messages of a nomad agent. The monitor command lets you
-  listen for log levels that may be filtered out of the Nomad agent. For
+  Stream log messages of an OpenWonton agent. The monitor command lets you
+  listen for log levels that may be filtered out of the OpenWonton agent. For
   example your agent may only be logging at INFO level, but with the monitor
   command you can set -log-level DEBUG
 
@@ -65,7 +65,7 @@ Monitor Specific Options:
 }
 
 func (c *MonitorCommand) Synopsis() string {
-	return "Stream logs from a Nomad agent"
+	return "Stream logs from an OpenWonton agent"
 }
 
 func (c *MonitorCommand) Name() string { return "monitor" }

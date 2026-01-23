@@ -40,7 +40,7 @@ func (l *LoginCommand) Help() string {
 Usage: wonton login [options]
 
   The login command will exchange the provided third party credentials with the
-  requested auth method for a newly minted Nomad ACL token.
+  requested auth method for a newly minted OpenWonton ACL token.
 
 General Options:
 
@@ -57,8 +57,8 @@ Login Options:
     in the form of <IP>:<PORT> and defaults to "localhost:4649".
 
   -login-token
-    Login token used for authentication that will be exchanged for a Nomad ACL
-    Token. It is only required if using auth method type other than OIDC. 
+    Login token used for authentication that will be exchanged for an OpenWonton ACL
+    Token. It is only required if using auth method type other than OIDC.
 
   -json
     Output the ACL token in JSON format.
@@ -71,7 +71,7 @@ Login Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (l *LoginCommand) Synopsis() string {
-	return "Login to Nomad using an auth method"
+	return "Login to OpenWonton using an auth method"
 }
 
 func (l *LoginCommand) AutocompleteFlags() complete.Flags {

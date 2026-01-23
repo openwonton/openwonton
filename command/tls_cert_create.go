@@ -58,7 +58,7 @@ func (c *TLSCertCreateCommand) Help() string {
 	helpText := `
 Usage: wonton tls cert create [options]
 
-  Create a new TLS certificate to use within the Nomad cluster TLS
+  Create a new TLS certificate to use within the OpenWonton cluster TLS
   configuration. You should use the -client, -server or -cli options to create
   certificates for these roles.
 
@@ -77,7 +77,7 @@ Certificate Create Options:
     #DOMAIN#-agent-ca.pem.
 
   -cli
-    Generate a certificate for use with the Nomad CLI.
+    Generate a certificate for use with the OpenWonton CLI.
 
   -client
     Generate a client certificate.
@@ -95,7 +95,7 @@ Certificate Create Options:
   -key
     Provide path to the certificate authority key. Defaults to
     #DOMAIN#-agent-ca-key.pem.
-  
+
   -region
     Provide the region. Only used for -server certificates.
     Defaults to "global".

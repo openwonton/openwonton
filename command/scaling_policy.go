@@ -25,7 +25,7 @@ Usage: wonton scaling policy <subcommand> [options]
 
   This command groups subcommands for interacting with scaling policies. Scaling
   policies can be used by an external autoscaler to perform scaling actions on
-  Nomad targets.
+  OpenWonton targets.
 
   List policies:
 
@@ -42,7 +42,7 @@ Usage: wonton scaling policy <subcommand> [options]
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (s *ScalingPolicyCommand) Synopsis() string {
-	return "Interact with Nomad scaling policies"
+	return "Interact with OpenWonton scaling policies"
 }
 
 // Name returns the name of this command.

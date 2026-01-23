@@ -46,7 +46,7 @@ const (
 
 	// ErrEntOnly is the error returned if accessing an enterprise only
 	// endpoint
-	ErrEntOnly = "Nomad Enterprise only endpoint"
+	ErrEntOnly = "Enterprise-only endpoint"
 
 	// ErrServerOnly is the error text returned if accessing a server only
 	// endpoint
@@ -66,7 +66,7 @@ var (
 
 	// Displayed when ui is disabled, but overridden if the ui build
 	// tag isn't enabled
-	stubHTML = "<html><p>Nomad UI is disabled</p></html>"
+	stubHTML = "<html><p>OpenWonton UI is disabled</p></html>"
 
 	// allowCORSWithMethods sets permissive CORS headers for a handler, used by
 	// wrapCORS and wrapCORSWithMethods

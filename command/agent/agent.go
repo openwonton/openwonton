@@ -21,6 +21,7 @@ import (
 	consulapi "github.com/hashicorp/consul/api"
 	log "github.com/hashicorp/go-hclog"
 	uuidparse "github.com/hashicorp/go-uuid"
+	"github.com/hashicorp/raft"
 	"github.com/openwonton/openwonton/client"
 	clientconfig "github.com/openwonton/openwonton/client/config"
 	"github.com/openwonton/openwonton/client/lib/cgutil"
@@ -37,7 +38,6 @@ import (
 	"github.com/openwonton/openwonton/nomad/deploymentwatcher"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/nomad/structs/config"
-	"github.com/hashicorp/raft"
 )
 
 const (
@@ -673,9 +673,9 @@ func (a *Agent) finalizeClientConfig(c *clientconfig.Config) error {
 	}
 	if len(invalidConsulKeys) > 0 {
 		a.logger.Warn("invalid consul keys", "keys", strings.Join(invalidConsulKeys, ","))
-		a.logger.Warn(`Nomad client ignores consul related configuration in client options.
-		Please refer to the guide https://www.nomadproject.io/docs/agent/configuration/consul.html
-		to configure Nomad to work with Consul.`)
+		a.logger.Warn(`OpenWonton client ignores consul related configuration in client options.
+		Please refer to the guide https://openwonton.io/docs/agent/configuration/consul.html
+		to configure OpenWonton to work with Consul.`)
 	}
 
 	return nil

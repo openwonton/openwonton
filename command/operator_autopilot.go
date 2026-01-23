@@ -27,10 +27,11 @@ func (c *OperatorAutopilotCommand) Help() string {
 	helpText := `
 Usage: wonton operator autopilot <subcommand> [options]
 
-  This command groups subcommands for interacting with Nomad's Autopilot
-  subsystem. Autopilot provides automatic, operator-friendly management of Nomad
-  servers. The command can be used to view or modify the current Autopilot
-  configuration. For a full guide see: https://www.nomadproject.io/guides/autopilot.html
+  This command groups subcommands for interacting with the OpenWonton Autopilot
+  subsystem. Autopilot provides automatic, operator-friendly management of
+  OpenWonton servers. The command can be used to view or modify the current
+  Autopilot configuration. For a full guide see:
+  https://openwonton.io/docs/configuration/autopilot
 
   Get the current Autopilot configuration:
 

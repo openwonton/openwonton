@@ -29,7 +29,7 @@ func TestCommand_LicenseGet_OSSErr(t *testing.T) {
 		require.Equal(t, 0, code)
 	} else {
 		require.Equal(t, 1, code)
-		require.Contains(t, ui.ErrorWriter.String(), "Nomad Enterprise only endpoint")
+		require.Contains(t, ui.ErrorWriter.String(), "Enterprise-only endpoint")
 	}
 }
 

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 // Ensure ACLBindingRuleCommand satisfies the cli.Command interface.
@@ -25,8 +25,9 @@ func (a *ACLBindingRuleCommand) Help() string {
 Usage: wonton acl binding-rule <subcommand> [options] [args]
 
   This command groups subcommands for interacting with ACL binding rules.
-  Nomad's ACL system can be used to control access to data and APIs. For a full
-  guide see: https://www.nomadproject.io/guides/acl.html
+  OpenWonton provides a Nomad-compatible ACL system to control access to data
+  and APIs. For a full guide see:
+  https://openwonton.io/docs/concepts/acl
 
   Create an ACL binding rule:
 

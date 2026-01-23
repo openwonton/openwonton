@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -60,7 +60,7 @@ Recommendation List Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (r *RecommendationListCommand) Synopsis() string {
-	return "Display all Nomad recommendations"
+	return "Display all OpenWonton recommendations"
 }
 
 func (r *RecommendationListCommand) AutocompleteFlags() complete.Flags {

@@ -248,7 +248,7 @@ func getLocalNodeID(client *api.Client) (string, error) {
 	}
 	clientStats, ok := info.Stats["client"]
 	if !ok {
-		return "", fmt.Errorf("Nomad not running in client mode")
+		return "", fmt.Errorf("OpenWonton not running in client mode")
 	}
 
 	nodeID, ok := clientStats["node_id"]

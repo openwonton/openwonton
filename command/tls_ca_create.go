@@ -72,7 +72,7 @@ CA Create Options:
     combination with -domain and -name-constraint.
 
   -common-name
-    Common Name of CA. Defaults to "Nomad Agent CA".
+    Common Name of CA. Defaults to "Nomad Agent CA" for compatibility.
 
   -country
     Country of the CA. Defaults to "US".
@@ -82,8 +82,8 @@ CA Create Options:
     Defaults to 5 years or 1825 days.
 
   -domain
-    Domain of Nomad cluster. Only used in combination with -name-constraint.
-    Defaults to "nomad".
+    Domain of the OpenWonton cluster. Only used in combination with -name-constraint.
+    Defaults to "nomad" for compatibility.
 
   -locality
     Locality of the CA. Defaults to "San Francisco".
@@ -99,7 +99,7 @@ CA Create Options:
     Organization of the CA. Defaults to "HashiCorp Inc.".
 
   -organizational-unit
-    Organizational Unit of the CA. Defaults to "Nomad".
+    Organizational Unit of the CA. Defaults to "Nomad" for compatibility.
 
   -postal-code
     Postal Code of the CA. Defaults to "94105".
@@ -137,7 +137,7 @@ func (c *TLSCACreateCommand) AutocompleteArgs() complete.Predictor {
 }
 
 func (c *TLSCACreateCommand) Synopsis() string {
-	return "Create a certificate authority for Nomad"
+	return "Create a certificate authority for OpenWonton"
 }
 
 func (c *TLSCACreateCommand) Name() string { return "tls ca create" }

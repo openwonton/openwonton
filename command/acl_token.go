@@ -17,10 +17,11 @@ func (f *ACLTokenCommand) Help() string {
 	helpText := `
 Usage: wonton acl token <subcommand> [options] [args]
 
-  This command groups subcommands for interacting with ACL tokens. Nomad's ACL
-  system can be used to control access to data and APIs. ACL tokens are
-  associated with one or more ACL policies which grant specific capabilities.
-  For a full guide see: https://www.nomadproject.io/guides/acl.html
+  This command groups subcommands for interacting with ACL tokens. OpenWonton
+  provides a Nomad-compatible ACL system to control access to data and APIs.
+  ACL tokens are associated with one or more ACL policies which grant specific
+  capabilities. For a full guide see:
+  https://openwonton.io/docs/concepts/acl
 
   Create an ACL token:
 

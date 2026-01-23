@@ -15,11 +15,11 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/openwonton/openwonton/api"
-	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
 	"github.com/mitchellh/colorstring"
 	"github.com/mitchellh/mapstructure"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -33,12 +33,12 @@ Usage: wonton var <subcommand> [options] [args]
 
   This command groups subcommands for interacting with variables. Variables
   allow operators to provide credentials and otherwise sensitive material to
-  Nomad jobs at runtime via the template block or directly through
-  the Nomad API and CLI.
+  OpenWonton jobs at runtime via the template block or directly through the
+  OpenWonton API and CLI.
 
   Users can create new variables; list, inspect, and delete existing
   variables, and more. For a full guide on variables see:
-  https://www.nomadproject.io/docs/concepts/variables
+  https://openwonton.io/docs/concepts/variables
 
   Create a variable specification file:
 

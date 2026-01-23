@@ -21,7 +21,7 @@ func (c *EvalListCommand) Help() string {
 	helpText := `
 Usage: wonton eval list [options]
 
-  List is used to list the set of evaluations processed by Nomad.
+  List is used to list the set of evaluations processed by OpenWonton.
 
 General Options:
 
@@ -58,7 +58,7 @@ Eval List Options:
 }
 
 func (c *EvalListCommand) Synopsis() string {
-	return "List the set of evaluations processed by Nomad"
+	return "List the set of evaluations processed by OpenWonton"
 }
 
 func (c *EvalListCommand) AutocompleteFlags() complete.Flags {

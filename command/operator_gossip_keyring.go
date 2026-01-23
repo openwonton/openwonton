@@ -21,7 +21,7 @@ func (c *OperatorGossipKeyringCommand) Help() string {
 	helpText := `
 Usage: wonton operator gossip keyring [options]
 
-  Manages encryption keys used for gossip messages between Nomad servers. Gossip
+  Manages encryption keys used for gossip messages between OpenWonton servers. Gossip
   encryption is optional. When enabled, this command may be used to examine
   active encryption keys in the cluster, add new keys, and remove old ones. When
   combined, this functionality provides the ability to perform key rotation

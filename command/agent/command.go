@@ -27,6 +27,7 @@ import (
 	hclog "github.com/hashicorp/go-hclog"
 	gsyslog "github.com/hashicorp/go-syslog"
 	"github.com/hashicorp/logutils"
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/helper"
 	flaghelper "github.com/openwonton/openwonton/helper/flags"
 	gatedwriter "github.com/openwonton/openwonton/helper/gated-writer"
@@ -35,14 +36,13 @@ import (
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/openwonton/openwonton/version"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 
 // gracefulTimeout controls how long we wait before forcefully terminating
 const gracefulTimeout = 5 * time.Second
 
-// Command is a Command implementation that runs a Nomad agent.
+// Command is a Command implementation that runs a OpenWonton agent.
 // The command will not end unless a shutdown message is sent on the
 // ShutdownCh. If two messages are sent on the ShutdownCh it will forcibly
 // exit.
@@ -335,7 +335,7 @@ func (c *Command) IsValidConfig(config, cmdConfig *Config) bool {
 	}
 	if !config.DevMode && (config.TLSConfig == nil ||
 		!config.TLSConfig.EnableHTTP || !config.TLSConfig.EnableRPC) {
-		c.Ui.Error("WARNING: mTLS is not configured - Nomad is not secure without mTLS!")
+		c.Ui.Error("WARNING: mTLS is not configured - OpenWonton is not secure without mTLS!")
 	}
 
 	if config.Server.EncryptKey != "" {
@@ -564,7 +564,7 @@ func SetupLoggers(ui cli.Ui, config *Config) (*logutils.LevelFilter, *gatedwrite
 
 // setupAgent is used to start the agent and various interfaces
 func (c *Command) setupAgent(config *Config, logger hclog.InterceptLogger, logOutput io.Writer, inmem *metrics.InmemSink) error {
-	c.Ui.Output("Starting Nomad agent...")
+	c.Ui.Output("Starting OpenWonton agent...")
 
 	agent, err := NewAgent(config, logger, logOutput, inmem)
 	if err != nil {
@@ -619,7 +619,7 @@ func (c *Command) checkpointResults(results *checkpoint.CheckResponse, err error
 		return
 	}
 	if results.Outdated {
-		c.Ui.Error(fmt.Sprintf("Newer Nomad version available: %s (currently running: %s)", results.CurrentVersion, c.Version.VersionNumber()))
+		c.Ui.Error(fmt.Sprintf("Newer OpenWonton version available: %s (currently running: %s)", results.CurrentVersion, c.Version.VersionNumber()))
 	}
 	for _, alert := range results.Alerts {
 		switch alert.Level {
@@ -821,7 +821,7 @@ func (c *Command) Run(args []string) int {
 
 	// Agent configuration output
 	padding := 18
-	c.Ui.Output("Nomad agent configuration:\n")
+	c.Ui.Output("OpenWonton agent configuration:\n")
 	for _, k := range infoKeys {
 		c.Ui.Info(fmt.Sprintf(
 			"%s%s: %s",
@@ -832,7 +832,7 @@ func (c *Command) Run(args []string) int {
 	c.Ui.Output("")
 
 	// Output the header that the server has started
-	c.Ui.Output("Nomad agent started! Log data will stream in below:\n")
+	c.Ui.Output("OpenWonton agent started! Log data will stream in below:\n")
 
 	// Enable log streaming
 	logGate.Flush()
@@ -1184,7 +1184,7 @@ func (c *Command) setupTelemetry(config *Config) (*metrics.InmemSink, error) {
 		cfg.CheckManager.Broker.SelectTag = telConfig.CirconusBrokerSelectTag
 
 		if cfg.CheckManager.Check.DisplayName == "" {
-			cfg.CheckManager.Check.DisplayName = "Nomad"
+			cfg.CheckManager.Check.DisplayName = "OpenWonton"
 		}
 
 		if cfg.CheckManager.API.TokenApp == "" {
@@ -1297,17 +1297,17 @@ func (c *Command) getAdvertiseAddrSynopsis() string {
 }
 
 func (c *Command) Synopsis() string {
-	return "Runs a Nomad agent"
+	return "Runs an OpenWonton agent"
 }
 
 func (c *Command) Help() string {
 	helpText := `
 Usage: wonton agent [options]
 
-  Starts the Nomad agent and runs until an interrupt is received.
+  Starts the OpenWonton agent and runs until an interrupt is received.
   The agent may be a client and/or server.
 
-  The Nomad agent's configuration primarily comes from the config
+  The OpenWonton agent's configuration primarily comes from the config
   files used, but a subset of the options may also be passed directly
   as CLI arguments, listed below.
 
@@ -1320,7 +1320,7 @@ General Options (clients and servers):
 
   -config=<path>
     The path to either a single config file or a directory of config
-    files to use for configuring the Nomad agent. This option may be
+    files to use for configuring the OpenWonton agent. This option may be
     specified multiple times. If multiple config files are used, the
     values from each will be merged together. During merging, values
     from files found later in the list are merged over values from
@@ -1333,15 +1333,15 @@ General Options (clients and servers):
     dir is also used to store the replicated log.
 
   -plugin-dir=<path>
-    The plugin directory is used to discover Nomad plugins. If not specified,
+    The plugin directory is used to discover OpenWonton plugins. If not specified,
     the plugin directory defaults to be that of <data-dir>/plugins/.
 
   -dc=<datacenter>
-    The name of the datacenter this Nomad agent is a member of. By
+    The name of the datacenter this OpenWonton agent is a member of. By
     default this is set to "dc1".
 
   -log-level=<level>
-    Specify the verbosity level of Nomad's logs. Valid values include
+    Specify the verbosity level of OpenWonton's logs. Valid values include
     DEBUG, INFO, and WARN, in decreasing order of verbosity. The
     default is INFO.
 
@@ -1357,13 +1357,13 @@ General Options (clients and servers):
     the current hostname of the machine.
 
   -region=<region>
-    Name of the region the Nomad agent will be a member of. By default
+    Name of the region the OpenWonton agent will be a member of. By default
     this value is set to "global".
 
   -dev
     Start the agent in development mode. This enables a pre-configured
     dual-role agent (client + server) which is useful for developing
-    or testing Nomad. No other configuration is required to start the
+    or testing OpenWonton. No other configuration is required to start the
     agent in this mode, but you may pass an optional comma-separated
     list of mode configurations:
 
@@ -1383,7 +1383,7 @@ Server Options:
   -bootstrap-expect=<num>
     Configures the expected number of servers nodes to wait for before
     bootstrapping the cluster. Once <num> servers have joined each other,
-    Nomad initiates the bootstrap process.
+    OpenWonton initiates the bootstrap process.
 
   -encrypt=<key>
     Provides the gossip encryption key
@@ -1473,10 +1473,10 @@ Consul Options:
     Consul Agent, given in the format username:password.
 
   -consul-auto-advertise
-    Specifies if Nomad should advertise its services in Consul. The services
-    are named according to server_service_name and client_service_name. Nomad
+    Specifies if OpenWonton should advertise its services in Consul. The services
+    are named according to server_service_name and client_service_name. OpenWonton
     servers and clients advertise their respective services, each tagged
-    appropriately with either http or rpc tag. Nomad servers also advertise a
+    appropriately with either http or rpc tag. OpenWonton servers also advertise a
     serf tagged service.
 
   -consul-ca-file=<path>
@@ -1492,35 +1492,35 @@ Consul Options:
     default, this is the bind address.
 
   -consul-client-auto-join
-    Specifies if the Nomad clients should automatically discover servers in the
+    Specifies if the OpenWonton clients should automatically discover servers in the
     same region by searching for the Consul service name defined in the
     server_service_name option.
 
   -consul-client-service-name=<name>
-    Specifies the name of the service in Consul for the Nomad clients.
+    Specifies the name of the service in Consul for the OpenWonton clients.
 
   -consul-client-http-check-name=<name>
-    Specifies the HTTP health check name in Consul for the Nomad clients.
+    Specifies the HTTP health check name in Consul for the OpenWonton clients.
 
   -consul-key-file=<path>
     Specifies the path to the private key used for Consul communication. If this
     is set then you need to also set cert_file.
 
   -consul-server-service-name=<name>
-    Specifies the name of the service in Consul for the Nomad servers.
+    Specifies the name of the service in Consul for the OpenWonton servers.
 
   -consul-server-http-check-name=<name>
-    Specifies the HTTP health check name in Consul for the Nomad servers.
+    Specifies the HTTP health check name in Consul for the OpenWonton servers.
 
   -consul-server-serf-check-name=<name>
-    Specifies the Serf health check name in Consul for the Nomad servers.
+    Specifies the Serf health check name in Consul for the OpenWonton servers.
 
   -consul-server-rpc-check-name=<name>
-    Specifies the RPC health check name in Consul for the Nomad servers.
+    Specifies the RPC health check name in Consul for the OpenWonton servers.
 
   -consul-server-auto-join
-    Specifies if the Nomad servers should automatically discover and join other
-    Nomad servers by searching for the Consul service name defined in the
+    Specifies if the OpenWonton servers should automatically discover and join other
+    OpenWonton servers by searching for the Consul service name defined in the
     server_service_name option. This search only happens if the server does not
     have a leader.
 

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 var _ cli.Command = &LicenseCommand{}
@@ -22,9 +22,9 @@ func (l *LicenseCommand) Help() string {
 	helpText := `
 Usage: wonton license <subcommand> [options] [args]
 
-This command has subcommands for managing the Nomad Enterprise license.
+This command has subcommands for managing enterprise license data.
 For more detailed examples see:
-https://www.nomadproject.io/docs/commands/license/
+https://openwonton.io/api-docs/operator/license/
 
 Retrieve the server's license:
 
@@ -35,7 +35,7 @@ Retrieve the server's license:
 }
 
 func (l *LicenseCommand) Synopsis() string {
-	return "Interact with Nomad Enterprise License"
+	return "Interact with enterprise license information"
 }
 
 func (l *LicenseCommand) Name() string { return "license" }

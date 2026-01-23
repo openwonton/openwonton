@@ -6,8 +6,8 @@ package command
 import (
 	"strings"
 
-	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 
@@ -22,8 +22,8 @@ Usage: wonton quota <subcommand> [options] [args]
   This command groups subcommands for interacting with resource quotas. Resource
   quotas allow operators to restrict the aggregate resource usage of namespaces.
   Users can inspect existing quota specifications, create new quotas, delete and
-  list existing quotas, and more. For a full guide on resource quotas see:
-  https://www.nomadproject.io/guides/quotas.html
+  list existing quotas, and more. For documentation on resource quotas see:
+  https://openwonton.io/api-docs/quotas
 
   Examine a quota's status:
 

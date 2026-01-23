@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -59,7 +59,7 @@ Policy Info Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (s *ScalingPolicyListCommand) Synopsis() string {
-	return "Display all Nomad scaling policies"
+	return "Display all OpenWonton scaling policies"
 }
 
 func (s *ScalingPolicyListCommand) AutocompleteFlags() complete.Flags {

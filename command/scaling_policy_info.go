@@ -52,7 +52,7 @@ Policy Info Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (s *ScalingPolicyInfoCommand) Synopsis() string {
-	return "Display an individual Nomad scaling policy"
+	return "Display an individual OpenWonton scaling policy"
 }
 
 func (s *ScalingPolicyInfoCommand) AutocompleteFlags() complete.Flags {

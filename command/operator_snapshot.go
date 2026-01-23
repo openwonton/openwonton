@@ -18,7 +18,7 @@ func (f *OperatorSnapshotCommand) Help() string {
 Usage: wonton operator snapshot <subcommand> [options]
 
   This command has subcommands for saving and inspecting the state
-  of the Nomad servers for disaster recovery. These are atomic, point-in-time
+  of the OpenWonton servers for disaster recovery. These are atomic, point-in-time
   snapshots which include jobs, nodes, allocations, periodic jobs, and ACLs.
 
   If ACLs are enabled, a management token must be supplied in order to perform
@@ -33,7 +33,7 @@ Usage: wonton operator snapshot <subcommand> [options]
       $ wonton operator snapshot inspect backup.snap
 
   Run a daemon process that locally saves a snapshot every hour (available only in
-  Nomad Enterprise) :
+  Enterprise) :
 
       $ wonton operator snapshot agent
 
@@ -43,7 +43,7 @@ Usage: wonton operator snapshot <subcommand> [options]
 }
 
 func (f *OperatorSnapshotCommand) Synopsis() string {
-	return "Saves and inspects snapshots of Nomad server state"
+	return "Saves and inspects snapshots of OpenWonton server state"
 }
 
 func (f *OperatorSnapshotCommand) Name() string { return "operator snapshot" }

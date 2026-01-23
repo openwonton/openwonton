@@ -23,7 +23,7 @@ func (c *ServerMembersCommand) Help() string {
 	helpText := `
 Usage: wonton server members [options]
 
-  Display a list of the known servers and their status. Only Nomad servers are
+  Display a list of the known servers and their status. Only OpenWonton servers are
   able to service this command.
 
   If ACLs are enabled, this option requires a token with the 'node:read'

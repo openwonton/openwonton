@@ -25,9 +25,9 @@ func (c *TLSCommand) Help() string {
 	helpText := `
 Usage: wonton tls <subcommand> <subcommand> [options]
 
-This command groups subcommands for creating certificates for Nomad TLS configuration. 
-The TLS command allows operators to generate self signed certificates to use
-when securing your Nomad cluster.
+This command groups subcommands for creating certificates for OpenWonton TLS
+configuration. The TLS command allows operators to generate self signed
+certificates to use when securing your OpenWonton cluster.
 
 Some simple examples for creating certificates can be found here.
 More detailed examples are available in the subcommands or the documentation.
@@ -49,7 +49,7 @@ Create a client certificate
 }
 
 func (c *TLSCommand) Synopsis() string {
-	return "Generate Self Signed TLS Certificates for Nomad"
+	return "Generate self-signed TLS certificates for OpenWonton"
 }
 
 func (c *TLSCommand) Name() string { return "tls" }

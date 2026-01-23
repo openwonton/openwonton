@@ -21,7 +21,7 @@ func (c *VolumeDeregisterCommand) Help() string {
 	helpText := `
 Usage: wonton volume deregister [options] <id>
 
-  Remove an unused volume from Nomad.
+  Remove an unused volume from OpenWonton.
 
   When ACLs are enabled, this command requires a token with the
   'csi-write-volume' capability for the volume's namespace.

@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 // Ensure ACLRoleCommand satisfies the cli.Command interface.
@@ -25,10 +25,11 @@ func (a *ACLRoleCommand) Help() string {
 	helpText := `
 Usage: wonton acl role <subcommand> [options] [args]
 
-  This command groups subcommands for interacting with ACL roles. Nomad's ACL
-  system can be used to control access to data and APIs. ACL roles are
-  associated with one or more ACL policies which grant specific capabilities.
-  For a full guide see: https://www.nomadproject.io/guides/acl.html
+  This command groups subcommands for interacting with ACL roles. OpenWonton
+  provides a Nomad-compatible ACL system to control access to data and APIs.
+  ACL roles are associated with one or more ACL policies which grant specific
+  capabilities. For a full guide see:
+  https://openwonton.io/docs/concepts/acl
 
   Create an ACL role:
 

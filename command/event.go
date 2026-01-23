@@ -22,9 +22,9 @@ func (e *EventCommand) Help() string {
 	helpText := `
 Usage: wonton event <subcommand> [options] [args]
 
-  This command groups subcommands for interacting with Nomad event sinks.
-  Nomad's event sinks system can be used to subscribe to the event stream for
-  events that match specific topics.
+  This command groups subcommands for interacting with OpenWonton event sinks.
+  OpenWonton's event sinks system can be used to subscribe to the event stream
+  for events that match specific topics.
 
   Register or update an event sink:
 

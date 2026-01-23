@@ -31,7 +31,7 @@ Usage: wonton recommendation <subcommand> [options]
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (r *RecommendationCommand) Synopsis() string {
-	return "Interact with the Nomad recommendation endpoint"
+	return "Interact with the OpenWonton recommendation endpoint"
 }
 
 // Name returns the name of this command.

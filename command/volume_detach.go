@@ -21,7 +21,7 @@ func (c *VolumeDetachCommand) Help() string {
 	helpText := `
 Usage: wonton volume detach [options] <vol id> <node id>
 
-  Detach a volume from a Nomad client.
+  Detach a volume from an OpenWonton client.
 
   When ACLs are enabled, this command requires a token with the
   'csi-write-volume' and 'csi-read-volume' capabilities for the volume's

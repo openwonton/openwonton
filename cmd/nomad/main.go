@@ -18,6 +18,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	if os.Getenv("WONTON_NOMAD_SHIM_SILENT") == "" && os.Getenv("NOMAD_SHIM_SILENT") == "" {
+		fmt.Fprintln(os.Stderr, "WARNING: `nomad` is a compatibility shim for OpenWonton. Prefer `wonton` directly.")
+		fmt.Fprintln(os.Stderr, "Set WONTON_NOMAD_SHIM_SILENT=1 to disable this warning.")
+		fmt.Fprintln(os.Stderr, "")
+	}
+
 	cmd := exec.Command(wontonPath, os.Args[1:]...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout

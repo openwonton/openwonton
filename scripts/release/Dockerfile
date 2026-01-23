@@ -1,7 +1,7 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-# Dockerfile for building nomad binaries
+# Dockerfile for building OpenWonton binaries
 # that mimics Vagrant environment as far as required
 # for building the scripts and running provision scripts
 
@@ -46,8 +46,8 @@ ENV GOPATH="/opt/gopath" \
 RUN mkdir -p /opt/gopath/src/github.com/openwonton/openwonton
 RUN mkdir -p /home/vagrant/bin \
     && mkdir -p /home/vagrant/bin /home/vagrant/.ssh \
-    && git config --global user.email "nomad@hashicorp.com" \
-    && git config --global user.name "Nomad Release Bot"
+    && git config --global user.email "openwonton@users.noreply.github.com" \
+    && git config --global user.name "OpenWonton Release Bot"
 
 ## Prepare vagrant user for private github.com deps fetching
 RUN git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true

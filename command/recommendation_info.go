@@ -47,7 +47,7 @@ Recommendation Info Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (r *RecommendationInfoCommand) Synopsis() string {
-	return "Display an individual Nomad recommendation"
+	return "Display an individual OpenWonton recommendation"
 }
 
 func (r *RecommendationInfoCommand) AutocompleteFlags() complete.Flags {

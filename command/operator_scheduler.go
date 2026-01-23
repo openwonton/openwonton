@@ -20,7 +20,7 @@ func (o *OperatorSchedulerCommand) Help() string {
 	helpText := `
 Usage: wonton operator scheduler <subcommand> [options]
 
-  This command groups subcommands for interacting with Nomad's scheduler
+  This command groups subcommands for interacting with the OpenWonton scheduler
   subsystem.
 
   Get the scheduler configuration:

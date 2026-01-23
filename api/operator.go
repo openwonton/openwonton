@@ -342,7 +342,7 @@ func (op *Operator) LicenseGet(q *QueryOptions) (*LicenseReply, *QueryMeta, erro
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusNoContent {
-		return nil, nil, errors.New("Nomad Enterprise only endpoint")
+		return nil, nil, errors.New("Enterprise-only endpoint")
 	}
 
 	if resp.StatusCode != http.StatusOK {

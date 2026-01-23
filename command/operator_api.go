@@ -36,10 +36,11 @@ func (*OperatorAPICommand) Help() string {
 	helpText := `
 Usage: wonton operator api [options] <path>
 
-  api is a utility command for accessing Nomad's HTTP API and is inspired by
-  the popular curl command line tool. Nomad's operator api command populates
-  Nomad's standard environment variables into their appropriate HTTP headers.
-  If the 'path' does not begin with "http" then $NOMAD_ADDR will be used.
+  api is a utility command for accessing the OpenWonton HTTP API
+  (Nomad-compatible) and is inspired by the popular curl command line tool.
+  The operator api command populates Nomad-compatible environment variables
+  into their appropriate HTTP headers. If the 'path' does not begin with
+  "http" then $NOMAD_ADDR will be used.
 
   The 'path' can be in one of the following forms:
 
@@ -48,8 +49,8 @@ Usage: wonton operator api [options] <path>
     https://localhost:4646/v1/allocations <- Scheme will be https://
 
   Note that this command does not always match the popular curl program's
-  behavior. Instead Nomad's operator api command is optimized for common Nomad
-  HTTP API operations.
+  behavior. Instead the OpenWonton operator api command is optimized for common
+  OpenWonton HTTP API operations.
 
 General Options:
 
@@ -87,7 +88,7 @@ Operator API Specific Options:
 }
 
 func (*OperatorAPICommand) Synopsis() string {
-	return "Query Nomad's HTTP API"
+	return "Query OpenWonton's HTTP API"
 }
 
 func (c *OperatorAPICommand) AutocompleteFlags() complete.Flags {

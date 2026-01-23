@@ -22,7 +22,7 @@ func (c *OperatorSnapshotSaveCommand) Help() string {
 	helpText := `
 Usage: wonton operator snapshot save [options] <file>
 
-  Retrieves an atomic, point-in-time snapshot of the state of the Nomad servers
+  Retrieves an atomic, point-in-time snapshot of the state of the OpenWonton servers
   which includes jobs, nodes, allocations, periodic jobs, and ACLs.
 
   If ACLs are enabled, a management token must be supplied in order to perform
@@ -68,7 +68,7 @@ func (c *OperatorSnapshotSaveCommand) AutocompleteArgs() complete.Predictor {
 }
 
 func (c *OperatorSnapshotSaveCommand) Synopsis() string {
-	return "Saves snapshot of Nomad server state"
+	return "Saves snapshot of OpenWonton server state"
 }
 
 func (c *OperatorSnapshotSaveCommand) Name() string { return "operator snapshot save" }

@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -30,7 +30,7 @@ Usage: wonton job scale [options] <job> [<group>] <count>
   Perform a scaling action by altering the count within a job group.
 
   Upon successful job submission, this command will immediately
-  enter an interactive monitor. This is useful to watch Nomad's
+  enter an interactive monitor. This is useful to watch OpenWonton's
   internals make scheduling decisions and place the submitted work
   onto nodes. The monitor will end once job placement is done. It
   is safe to exit the monitor early using ctrl+c.
@@ -61,7 +61,7 @@ Scale Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (j *JobScaleCommand) Synopsis() string {
-	return "Change the count of a Nomad job group"
+	return "Change the count of an OpenWonton job group"
 }
 
 func (j *JobScaleCommand) AutocompleteFlags() complete.Flags {
@@ -139,7 +139,7 @@ func (j *JobScaleCommand) Run(args []string) int {
 	}
 
 	// This is our default message added to scaling submissions.
-	msg := "submitted using the Nomad CLI"
+	msg := "submitted using the OpenWonton CLI"
 
 	// Perform the scaling action.
 	w := &api.WriteOptions{Namespace: namespace}

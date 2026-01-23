@@ -19,7 +19,7 @@ func (c *OperatorMetricsCommand) Help() string {
 	helpText := `
 Usage: wonton operator metrics [options]
 
-Get Nomad metrics
+Get OpenWonton metrics
 
 General Options:
 
@@ -45,7 +45,7 @@ Metrics Specific Options
 }
 
 func (c *OperatorMetricsCommand) Synopsis() string {
-	return "Retrieve Nomad metrics"
+	return "Retrieve OpenWonton metrics"
 }
 
 func (c *OperatorMetricsCommand) AutocompleteFlags() complete.Flags {

@@ -17,10 +17,10 @@ func (f *ServerCommand) Help() string {
 	helpText := `
 Usage: wonton server <subcommand> [options] [args]
 
-  This command groups subcommands for interacting with Nomad servers. Users can
+  This command groups subcommands for interacting with OpenWonton servers. Users can
   list Servers, join a server to the cluster, and force leave a server.
 
-  List Nomad servers:
+  List OpenWonton servers:
 
       $ wonton server members
 

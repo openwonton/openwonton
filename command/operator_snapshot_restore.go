@@ -20,13 +20,13 @@ func (c *OperatorSnapshotRestoreCommand) Help() string {
 	helpText := `
 Usage: wonton operator snapshot restore [options] <file>
 
-  Restores an atomic, point-in-time snapshot of the state of the Nomad servers
+  Restores an atomic, point-in-time snapshot of the state of the OpenWonton servers
   which includes jobs, nodes, allocations, periodic jobs, and ACLs.
 
   Restores involve a potentially dangerous low-level Raft operation that is not
   designed to handle server failures during a restore. This command is primarily
   intended to be used when recovering from a disaster, restoring into a fresh
-  cluster of Nomad servers.
+  cluster of OpenWonton servers.
 
   If ACLs are enabled, a management token must be supplied in order to perform
   snapshot operations.
@@ -50,7 +50,7 @@ func (c *OperatorSnapshotRestoreCommand) AutocompleteArgs() complete.Predictor {
 }
 
 func (c *OperatorSnapshotRestoreCommand) Synopsis() string {
-	return "Restore snapshot of Nomad server state"
+	return "Restore snapshot of OpenWonton server state"
 }
 
 func (c *OperatorSnapshotRestoreCommand) Name() string { return "operator snapshot restore" }

@@ -11,7 +11,7 @@ ARG PRODUCT_REVISION
 # TARGETARCH and TARGETOS are set automatically when --platform is provided.
 ARG TARGETOS TARGETARCH
 
-LABEL maintainer="Nomad Team <nomad@hashicorp.com>"
+LABEL maintainer="OpenWonton Team <openwonton@users.noreply.github.com>"
 LABEL version=${PRODUCT_VERSION}
 LABEL revision=${PRODUCT_REVISION}
 

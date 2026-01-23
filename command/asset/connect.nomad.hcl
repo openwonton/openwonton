@@ -2,14 +2,14 @@
 # "countdash" so it will create a job with the ID and Name "countdash".
 
 # The "job" block is the top-most configuration option in the job
-# specification. A job is a declarative specification of tasks that Nomad
+# specification. A job is a declarative specification of tasks that OpenWonton
 # should run. Jobs have a globally unique name, one or many task groups, which
 # are themselves collections of one or many tasks.
 #
 # For more information and examples on the "job" block, please see
 # the online documentation at:
 #
-#     https://www.nomadproject.io/docs/job-specification/job.html
+#     https://openwonton.io/docs/job-specification/job.html
 #
 job "countdash" {
   # The "region" parameter specifies the region in which to execute the job. If
@@ -28,7 +28,7 @@ job "countdash" {
   #
   # For more information, please see the online documentation at:
   #
-  #     https://www.nomadproject.io/docs/jobspec/schedulers.html
+  #     https://openwonton.io/docs/jobspec/schedulers.html
   #
   type = "service"
 
@@ -39,7 +39,7 @@ job "countdash" {
   # For more information and examples on the "constraint" block, please see
   # the online documentation at:
   #
-  #     https://www.nomadproject.io/docs/job-specification/constraint.html
+  #     https://openwonton.io/docs/job-specification/constraint.html
   #
   # constraint {
   #   attribute = "${attr.kernel.name}"
@@ -56,7 +56,7 @@ job "countdash" {
   # For more information and examples on the "update" block, please see
   # the online documentation at:
   #
-  #     https://www.nomadproject.io/docs/job-specification/update.html
+  #     https://openwonton.io/docs/job-specification/update.html
   #
   update {
     # The "max_parallel" parameter specifies the maximum number of updates to
@@ -106,7 +106,7 @@ job "countdash" {
   # For more information on the "migrate" block, please see
   # the online documentation at:
   #
-  #     https://www.nomadproject.io/docs/job-specification/migrate.html
+  #     https://openwonton.io/docs/job-specification/migrate.html
   #
   migrate {
     # Specifies the number of task groups that can be migrated at the same
@@ -129,13 +129,13 @@ job "countdash" {
     healthy_deadline = "5m"
   }
   # The "group" block defines a series of tasks that should be co-located on
-  # the same Nomad client. Any task within a group will be placed on the same
+  # the same OpenWonton client. Any task within a group will be placed on the same
   # client.
   #
   # For more information and examples on the "group" block, please see
   # the online documentation at:
   #
-  #     https://www.nomadproject.io/docs/job-specification/group.html
+  #     https://openwonton.io/docs/job-specification/group.html
   #
   group "api" {
     # The "count" parameter specifies the number of the task groups that should
@@ -149,7 +149,7 @@ job "countdash" {
     # For more information and examples on the "restart" block, please see
     # the online documentation at:
     #
-    #     https://www.nomadproject.io/docs/job-specification/restart.html
+    #     https://openwonton.io/docs/job-specification/restart.html
     #
     restart {
       # The number of attempts to run the job within the specified interval.
@@ -167,7 +167,7 @@ job "countdash" {
       mode = "fail"
     }
 
-    # The "ephemeral_disk" block instructs Nomad to utilize an ephemeral disk
+    # The "ephemeral_disk" block instructs OpenWonton to utilize an ephemeral disk
     # instead of a hard disk requirement. Clients using this block should
     # not specify disk requirements in the resources block of the task. All
     # tasks in this group will share the same ephemeral disk.
@@ -175,7 +175,7 @@ job "countdash" {
     # For more information and examples on the "ephemeral_disk" block, please
     # see the online documentation at:
     #
-    #     https://www.nomadproject.io/docs/job-specification/ephemeral_disk.html
+    #     https://openwonton.io/docs/job-specification/ephemeral_disk.html
     #
     ephemeral_disk {
       # When sticky is true and the task group is updated, the scheduler
@@ -199,13 +199,13 @@ job "countdash" {
     # For more information and examples on the "affinity" block, please
     # see the online documentation at:
     #
-    #     https://www.nomadproject.io/docs/job-specification/affinity.html
+    #     https://openwonton.io/docs/job-specification/affinity.html
     #
     # affinity {
     #   # attribute specifies the name of a node attribute or metadata
     #   attribute = "${node.datacenter}"
     #
-    #   # value specifies the desired attribute value. In this example Nomad
+    #   # value specifies the desired attribute value. In this example OpenWonton
     #   # will prefer placement in the "us-west1" datacenter.
     #   value = "us-west1"
     #
@@ -222,7 +222,7 @@ job "countdash" {
     # For more information and examples on the "spread" block, please
     # see the online documentation at:
     #
-    #     https://www.nomadproject.io/docs/job-specification/spread.html
+    #     https://openwonton.io/docs/job-specification/spread.html
     #
     # spread {
     #   # attribute specifies the name of a node attribute or metadata
@@ -287,7 +287,7 @@ job "countdash" {
 
       connect {
         # The "sidecar_service" block configures the Envoy sidecar admission
-        # controller. For each task group with a sidecar_service, Nomad  will
+        # controller. For each task group with a sidecar_service, OpenWonton will
         # inject an Envoy task into the task group. A group network will be
         # required and a dynamic port will be registered for remote services
         # to connect to Envoy with the name `connect-proxy-<service>`.
@@ -302,7 +302,7 @@ job "countdash" {
     # For more information and examples on the "task" block, please see
     # the online documentation at:
     #
-    #     https://www.nomadproject.io/docs/job-specification/task.html
+    #     https://openwonton.io/docs/job-specification/task.html
     #
     task "web" {
       # The "driver" parameter specifies the task driver that should be used to
@@ -316,13 +316,13 @@ job "countdash" {
       config {
         image = "hashicorpdev/counter-api:v3"
 
-        # The "auth_soft_fail" configuration instructs Nomad to try public
+        # The "auth_soft_fail" configuration instructs OpenWonton to try public
         # repositories if the task fails to authenticate when pulling images
         # and the Docker driver has an "auth" configuration block.
         auth_soft_fail = true
       }
 
-      # The "artifact" block instructs Nomad to download an artifact from a
+      # The "artifact" block instructs OpenWonton to download an artifact from a
       # remote source prior to starting the task. This provides a convenient
       # mechanism for downloading configuration files or data needed to run the
       # task. It is possible to specify the "artifact" block multiple times to
@@ -331,7 +331,7 @@ job "countdash" {
       # For more information and examples on the "artifact" block, please see
       # the online documentation at:
       #
-      #     https://www.nomadproject.io/docs/job-specification/artifact.html
+      #     https://openwonton.io/docs/job-specification/artifact.html
       #
       # artifact {
       #   source = "http://foo.com/artifact.tar.gz"
@@ -341,7 +341,7 @@ job "countdash" {
       # }
 
 
-      # The "logs" block instructs the Nomad client on how many log files and
+      # The "logs" block instructs the OpenWonton client on how many log files and
       # the maximum size of those logs files to retain. Logging is enabled by
       # default, but the "logs" block allows for finer-grained control over
       # the log rotation and storage configuration.
@@ -349,14 +349,14 @@ job "countdash" {
       # For more information and examples on the "logs" block, please see
       # the online documentation at:
       #
-      #     https://www.nomadproject.io/docs/job-specification/logs.html
+      #     https://openwonton.io/docs/job-specification/logs.html
       #
       # logs {
       #   max_files     = 10
       #   max_file_size = 15
       # }
 
-      # The "identity" block instructs Nomad to expose the task's workload
+      # The "identity" block instructs OpenWonton to expose the task's workload
       # identity token as an environment variable and in the file
       # secrets/nomad_token.
       # identity {
@@ -372,7 +372,7 @@ job "countdash" {
       # For more information and examples on the "resources" block, please see
       # the online documentation at:
       #
-      #     https://www.nomadproject.io/docs/job-specification/resources.html
+      #     https://openwonton.io/docs/job-specification/resources.html
       #
       resources {
         cpu    = 500 # 500 MHz
@@ -416,13 +416,13 @@ job "countdash" {
     # }
   }
   # This job has a second "group" block to define tasks that might be placed
-  # on a separate Nomad client from the group above.
+  # on a separate OpenWonton client from the group above.
   #
   group "dashboard" {
     network {
       mode = "bridge"
 
-      # The `static = 9002` parameter requests the Nomad scheduler reserve
+      # The `static = 9002` parameter requests the OpenWonton scheduler reserve
       # port 9002 on a host network interface. The `to = 9002` parameter
       # forwards that host port to port 9002 inside the network namespace.
       port "http" {

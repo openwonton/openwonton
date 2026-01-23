@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 
@@ -49,7 +49,7 @@ Service List Options:
 
 // Synopsis satisfies the cli.Command Synopsis function.
 func (s *ServiceListCommand) Synopsis() string {
-	return "Display all registered Nomad services"
+	return "Display all registered OpenWonton services"
 }
 
 func (s *ServiceListCommand) AutocompleteFlags() complete.Flags {
