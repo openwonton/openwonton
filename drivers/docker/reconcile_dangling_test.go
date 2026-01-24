@@ -237,6 +237,7 @@ func TestDanglingContainerRemoval_network(t *testing.T) {
 func TestDanglingContainerRemoval_Stopped(t *testing.T) {
 	ci.Parallel(t)
 	testutil.DockerCompatible(t)
+	testutil.RequireLinux(t)
 
 	_, cfg, _ := dockerTask(t)
 

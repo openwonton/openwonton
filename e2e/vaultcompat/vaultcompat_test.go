@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -17,9 +18,9 @@ import (
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-set"
 	"github.com/hashicorp/go-version"
+	vaultapi "github.com/hashicorp/vault/api"
 	nomadapi "github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/testutil"
-	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 )
@@ -124,6 +125,8 @@ func setupVault(t *testing.T, vc *vaultapi.Client) {
 
 func startNomad(t *testing.T, vc *vaultapi.Client) (func(), *nomadapi.Client) {
 	ts := testutil.NewTestServer(t, func(c *testutil.TestServerConfig) {
+		c.Stdout = io.Discard
+		c.Stderr = io.Discard
 		c.Vault = &testutil.VaultConfig{
 			Enabled:              true,
 			Address:              vc.Address(),
