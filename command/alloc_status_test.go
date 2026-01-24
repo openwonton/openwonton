@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/command/agent"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/nomad/mock"
 	"github.com/openwonton/openwonton/nomad/structs"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"github.com/shoenig/test/must"
 )
@@ -480,7 +480,7 @@ func TestAllocStatusCommand_NSD_Checks(t *testing.T) {
 
 	// check output
 	out := ui.OutputWriter.String()
-	must.StrContains(t, out, `Nomad Service Checks:`)
+	must.StrContains(t, out, `OpenWonton Service Checks:`)
 	must.RegexMatch(t, regexp.MustCompile(`Service\s+Task\s+Name\s+Mode\s+Status`), out)
 	must.RegexMatch(t, regexp.MustCompile(`service1\s+\(group\)\s+check1\s+healthiness\s+(pending|failure)`), out)
 }

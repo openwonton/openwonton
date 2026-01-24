@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/openwonton/openwonton/testutil"
-	"github.com/mitchellh/cli"
 	"github.com/stretchr/testify/require"
 )
 
@@ -72,7 +72,7 @@ func TestRetryJoin_Integration(t *testing.T) {
 		}
 		return true, nil
 	}, func(err error) {
-		t.Fatalf(err.Error())
+		t.Fatalf("%v", err)
 	})
 }
 

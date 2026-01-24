@@ -15,13 +15,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/kr/pretty"
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/client/testutil"
 	"github.com/openwonton/openwonton/helper/flatmap"
 	"github.com/openwonton/openwonton/helper/pointer"
-	"github.com/kr/pretty"
-	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )
@@ -460,7 +460,7 @@ func TestJobGetter_HTTPServer(t *testing.T) {
 	}
 	if !reflect.DeepEqual(expectedApiJob, aj) {
 		for _, d := range pretty.Diff(expectedApiJob, aj) {
-			t.Logf(d)
+			t.Log(d)
 		}
 		t.Fatalf("Unexpected file")
 	}

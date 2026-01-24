@@ -1,3 +1,10 @@
+## Unreleased
+
+SECURITY:
+
+* build: Update Go toolchain to 1.24.11 to address stdlib vulnerabilities
+* deps: Upgrade core dependencies to resolve OSV advisories (containerd, docker, runc, selinux, go-getter, go-retryablehttp, golang-jwt/jwt/v5, x/crypto, x/net, protobuf, xz)
+
 ## 1.6.5 (December 13, 2023)
 
 BUG FIXES:

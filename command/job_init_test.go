@@ -114,7 +114,7 @@ func TestInitCommand_listTemplates(t *testing.T) {
 
 	jobCmd = &JobInitCommand{Meta: Meta{Ui: ui}}
 	must.Eq(t, 0, jobCmd.Run([]string{"-address=" + url, "-list-templates"}))
-	expectedOutput = "Use nomad job init -template=<template> with any of the following:\n  template-1\n  template-2\n  template-3\n"
+	expectedOutput = "Use wonton job init -template=<template> with any of the following:\n  template-1\n  template-2\n  template-3\n"
 	must.StrContains(t, ui.OutputWriter.String(), expectedOutput)
 }
 

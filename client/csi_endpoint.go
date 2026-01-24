@@ -568,8 +568,14 @@ func (c *CSI) NodeExpandVolume(req *structs.ClientCSINodeExpandVolumeRequest, re
 	newCapacity, err := manager.ExpandVolume(ctx,
 		req.VolumeID, req.ExternalID, req.Claim.AllocationID, usageOpts, req.Capacity)
 
-	if err != nil && !errors.Is(err, nstructs.ErrCSIClientRPCIgnorable) {
-		return err
+	if err != nil {
+		if !errors.Is(err, nstructs.ErrCSIClientRPCIgnorable) {
+			return err
+		}
+		if req.Capacity != nil && newCapacity == 0 {
+			resp.CapacityBytes = req.Capacity.RequiredBytes
+			return nil
+		}
 	}
 	resp.CapacityBytes = newCapacity
 

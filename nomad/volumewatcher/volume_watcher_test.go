@@ -111,5 +111,5 @@ func TestVolumeReapBadState(t *testing.T) {
 
 	err = w.volumeReapImpl(vol)
 	require.NoError(t, err)
-	require.Equal(t, 2, srv.countCSIUnpublish)
+	require.Equal(t, 2, int(srv.countCSIUnpublish.Load()))
 }

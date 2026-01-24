@@ -4,6 +4,7 @@
 package jobspec2
 
 import (
+	"strings"
 	"time"
 
 	"github.com/openwonton/openwonton/api"
@@ -38,9 +39,12 @@ func normalizeJob(jc *jobConfig) {
 		j.TaskGroups = alone
 	}
 
+	j.Constraints = normalizeConstraints(j.Constraints)
 	for _, tg := range j.TaskGroups {
+		tg.Constraints = normalizeConstraints(tg.Constraints)
 		normalizeNetworkPorts(tg.Networks)
 		for _, t := range tg.Tasks {
+			t.Constraints = normalizeConstraints(t.Constraints)
 			if t.Resources != nil {
 				normalizeNetworkPorts(t.Resources.Networks)
 			}
@@ -114,6 +118,12 @@ func normalizeTemplates(templates []*api.Template) {
 		if t.Perms == nil {
 			t.Perms = pointer.Of("0644")
 		}
+		if t.Uid == nil {
+			t.Uid = pointer.Of(-1)
+		}
+		if t.Gid == nil {
+			t.Gid = pointer.Of(-1)
+		}
 		if t.Splay == nil {
 			t.Splay = pointer.Of(5 * time.Second)
 		}
@@ -140,4 +150,30 @@ func normalizeChangeScript(ch *api.ChangeScript) {
 	if ch.FailOnError == nil {
 		ch.FailOnError = pointer.Of(false)
 	}
+}
+
+func normalizeConstraints(constraints []*api.Constraint) []*api.Constraint {
+	if len(constraints) == 0 {
+		return constraints
+	}
+
+	out := constraints[:0]
+	for _, c := range constraints {
+		if c == nil {
+			continue
+		}
+		if c.Operand == api.ConstraintDistinctHosts {
+			if strings.EqualFold(c.RTarget, "false") {
+				continue
+			}
+			if strings.EqualFold(c.RTarget, "true") {
+				c.RTarget = ""
+			}
+		}
+		out = append(out, c)
+	}
+	if len(out) == 0 {
+		return nil
+	}
+	return out
 }

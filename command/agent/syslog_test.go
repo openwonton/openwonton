@@ -6,6 +6,7 @@ package agent
 import (
 	"os"
 	"runtime"
+	"strings"
 	"testing"
 
 	gsyslog "github.com/hashicorp/go-syslog"
@@ -33,6 +34,9 @@ func TestSyslogFilter(t *testing.T) {
 	s := &SyslogWrapper{l, filt}
 	n, err := s.Write([]byte("[INFO] test"))
 	if err != nil {
+		if strings.Contains(err.Error(), "syslog") {
+			t.Skipf("syslog not available: %v", err)
+		}
 		t.Fatalf("err: %s", err)
 	}
 	if n == 0 {
@@ -41,6 +45,9 @@ func TestSyslogFilter(t *testing.T) {
 
 	n, err = s.Write([]byte("[DEBUG] test"))
 	if err != nil {
+		if strings.Contains(err.Error(), "syslog") {
+			t.Skipf("syslog not available: %v", err)
+		}
 		t.Fatalf("err: %s", err)
 	}
 	if n != 0 {

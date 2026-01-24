@@ -20,14 +20,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
+	"github.com/hashicorp/raft"
+	"github.com/hashicorp/serf/serf"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/helper"
 	"github.com/openwonton/openwonton/nomad/mock"
 	"github.com/openwonton/openwonton/nomad/state"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/testutil"
-	"github.com/hashicorp/raft"
-	"github.com/hashicorp/serf/serf"
 )
 
 func TestLeader_LeftServer(t *testing.T) {
@@ -380,7 +380,7 @@ func TestLeader_PeriodicDispatcher_Restore_Adds(t *testing.T) {
 		}
 		return true, nil
 	}, func(err error) {
-		t.Fatalf(err.Error())
+		t.Fatalf("%v", err)
 	})
 }
 

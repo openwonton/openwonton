@@ -297,7 +297,7 @@ func TestClient_MixedTLS(t *testing.T) {
 			return true, nil
 		},
 		func(err error) {
-			t.Fatalf(err.Error())
+			t.Fatalf("%v", err)
 		},
 	)
 }
@@ -359,7 +359,7 @@ func TestClient_BadTLS(t *testing.T) {
 			return true, nil
 		},
 		func(err error) {
-			t.Fatalf(err.Error())
+			t.Fatalf("%v", err)
 		},
 	)
 }
@@ -1223,7 +1223,7 @@ func TestClient_ReloadTLS_UpgradePlaintextToTLS(t *testing.T) {
 			return true, nil
 		},
 			func(err error) {
-				t.Fatalf(err.Error())
+				t.Fatalf("%v", err)
 			},
 		)
 	}
@@ -1256,7 +1256,7 @@ func TestClient_ReloadTLS_UpgradePlaintextToTLS(t *testing.T) {
 			return true, nil
 		},
 			func(err error) {
-				t.Fatalf(err.Error())
+				t.Fatalf("%v", err)
 			},
 		)
 	}
@@ -1309,7 +1309,7 @@ func TestClient_ReloadTLS_DowngradeTLSToPlaintext(t *testing.T) {
 			}
 			return true, nil
 		}, func(err error) {
-			t.Fatalf(err.Error())
+			t.Fatalf("%v", err)
 		},
 		)
 	}
@@ -1334,7 +1334,7 @@ func TestClient_ReloadTLS_DowngradeTLSToPlaintext(t *testing.T) {
 			}
 			return true, nil
 		}, func(err error) {
-			t.Fatalf(err.Error())
+			t.Fatalf("%v", err)
 		},
 		)
 	}
