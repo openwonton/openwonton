@@ -164,6 +164,7 @@ var uninteresting = []string{
 
 	// not core code
 	"demo",
+	"third_party",
 	"tools",
 	"version",
 }
