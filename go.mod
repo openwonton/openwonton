@@ -101,7 +101,7 @@ require (
 	github.com/moby/sys/mount v0.3.4
 	github.com/moby/sys/mountinfo v0.7.2
 	github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6
-	github.com/opencontainers/runc v1.2.8
+	github.com/opencontainers/runc v1.1.8
 	github.com/opencontainers/runtime-spec v1.2.0
 	github.com/openwonton/openwonton/api v0.0.0-20230103221135-ce00d683f9be
 	github.com/posener/complete v1.2.3
