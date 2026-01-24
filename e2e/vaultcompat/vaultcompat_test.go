@@ -7,7 +7,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -124,9 +123,13 @@ func setupVault(t *testing.T, vc *vaultapi.Client) {
 }
 
 func startNomad(t *testing.T, vc *vaultapi.Client) (func(), *nomadapi.Client) {
+	nullFile, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0)
+	must.NoError(t, err, must.Sprint("failed to open null device"))
+	t.Cleanup(func() { _ = nullFile.Close() })
+
 	ts := testutil.NewTestServer(t, func(c *testutil.TestServerConfig) {
-		c.Stdout = io.Discard
-		c.Stderr = io.Discard
+		c.Stdout = nullFile
+		c.Stderr = nullFile
 		c.Vault = &testutil.VaultConfig{
 			Enabled:              true,
 			Address:              vc.Address(),
