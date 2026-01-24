@@ -17,15 +17,15 @@ updates:
     labels:
       - "theme/dependencies"
       - "theme/api"
-  - package-ecosystem: npm
-    directory: "/ui"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "09:00"
-    labels:
-      - "theme/dependencies"
-      - "theme/ui"
+  # - package-ecosystem: npm
+  #   directory: "/ui"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "sunday"
+  #     time: "09:00"
+  #   labels:
+  #     - "theme/dependencies"
+  #     - "theme/ui"
   - package-ecosystem: npm
     directory: "/website"
     schedule:
