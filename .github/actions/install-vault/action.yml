@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 name: install-vault
+description: Install Vault for CI tests
 inputs:
   version:
     required: false
@@ -9,25 +10,25 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Install Vault
-    run: |-
-      set -x
+    - name: Install Vault
+      run: |-
+        set -x
 
-      case "${OSTYPE}" in
-        linux*)  os="linux" ;;
-        darwin*) os="darwin" ;;
-        msys*)   os="windows" ;;
-        *)       echo "unknown os: ${OSTYPE}"; exit 1 ;;
-      esac
+        case "${OSTYPE}" in
+          linux*)  os="linux" ;;
+          darwin*) os="darwin" ;;
+          msys*)   os="windows" ;;
+          *)       echo "unknown os: ${OSTYPE}"; exit 1 ;;
+        esac
 
-      curl -SL --fail -o /tmp/vault.zip https://releases.hashicorp.com/vault/"${{ inputs.version }}"/vault_"${{ inputs.version }}"_"${os}"_amd64.zip
+        curl -SL --fail -o /tmp/vault.zip https://releases.hashicorp.com/vault/"${{ inputs.version }}"/vault_"${{ inputs.version }}"_"${os}"_amd64.zip
 
-      if [[ "${os}" != "windows" ]]; then
-        sudo unzip -d /usr/local/bin /tmp/vault.zip
-        rm -rf /tmp/vault*
-      else
-        rm -rf c:\Windows\vault.exe
-        unzip /tmp/vault.zip -d "/c/Windows"
-        rm -rf /tmp/vault*
-      fi
-    shell: bash
+        if [[ "${os}" != "windows" ]]; then
+          sudo unzip -d /usr/local/bin /tmp/vault.zip
+          rm -rf /tmp/vault*
+        else
+          rm -rf c:\Windows\vault.exe
+          unzip /tmp/vault.zip -d "/c/Windows"
+          rm -rf /tmp/vault*
+        fi
+      shell: bash

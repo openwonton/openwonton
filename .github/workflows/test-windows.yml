@@ -43,10 +43,10 @@ env:
   VAULT_VERSION: 1.4.1
 jobs:
   test-windows:
-    runs-on: windows-2019
+    runs-on: windows-2022
     env:
       GOTESTSUM_PATH: c:\tmp\test-reports
-      BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2019
+      BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2022
     steps:
       - name: Docker Info
         run: docker version
@@ -73,7 +73,7 @@ jobs:
       - name: Pre-download docker test image
         shell: bash
         run: |-
-          docker pull docker.io/hashicorpdev/busybox-windows:ltsc2019
+          docker pull docker.io/hashicorpdev/busybox-windows:ltsc2022
       - name: Build wonton
         shell: bash
         run: |-
@@ -81,7 +81,7 @@ jobs:
       - name: Run tests with gotestsum
         shell: bash
         env:
-          BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2019
+          BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2022
         run: |-
           # Only test docker driver tests for now
           export PATH=/c/go/bin:/c/gopath/bin:$PATH
