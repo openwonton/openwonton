@@ -362,7 +362,7 @@ func (s *SystemScheduler) computePlacements(place []allocTuple) error {
 
 		node, ok := nodeByID[missing.Alloc.NodeID]
 		if !ok {
-			s.logger.Debug("could not find node %q", missing.Alloc.NodeID)
+			s.logger.Debug("could not find node", "node_id", missing.Alloc.NodeID)
 			continue
 		}
 

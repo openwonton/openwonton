@@ -7,9 +7,9 @@ import (
 	"context"
 	"time"
 
+	vapi "github.com/hashicorp/vault/api"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/nomad/structs/config"
-	vapi "github.com/hashicorp/vault/api"
 )
 
 // TestVaultClient is a Vault client appropriate for use during testing. Its

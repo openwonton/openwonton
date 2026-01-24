@@ -10,13 +10,13 @@ import (
 	"sync/atomic"
 	"time"
 
+	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/command/agent/consul"
 	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/openwonton/openwonton/nomad/mock"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/version"
-	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/shoenig/test/must"
 )
 

@@ -13,10 +13,10 @@ import (
 
 	metrics "github.com/armon/go-metrics"
 	hclog "github.com/hashicorp/go-hclog"
+	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/openwonton/openwonton/helper/useragent"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/nomad/structs/config"
-	vaultapi "github.com/hashicorp/vault/api"
 )
 
 // TokenDeriverFunc takes in an allocation and a set of tasks and derives a

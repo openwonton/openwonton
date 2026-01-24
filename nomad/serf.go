@@ -9,9 +9,9 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 
-	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/raft"
 	"github.com/hashicorp/serf/serf"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (

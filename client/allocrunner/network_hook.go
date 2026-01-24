@@ -8,10 +8,10 @@ import (
 	"fmt"
 
 	hclog "github.com/hashicorp/go-hclog"
+	"github.com/miekg/dns"
 	"github.com/openwonton/openwonton/client/taskenv"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/plugins/drivers"
-	"github.com/miekg/dns"
 )
 
 const (

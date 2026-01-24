@@ -13,6 +13,7 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
+	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/client/allocdir"
 	"github.com/openwonton/openwonton/client/lib/cgutil"
@@ -25,7 +26,6 @@ import (
 	"github.com/openwonton/openwonton/plugins/base"
 	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/openwonton/openwonton/plugins/shared/hclspec"
-	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/stretchr/testify/require"
 )
 

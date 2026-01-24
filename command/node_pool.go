@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-set"
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/api/contexts"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 

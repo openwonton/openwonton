@@ -17,10 +17,10 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
+	"github.com/hpcloud/tail/watch"
 	cstructs "github.com/openwonton/openwonton/client/structs"
 	"github.com/openwonton/openwonton/helper/escapingfs"
 	"github.com/openwonton/openwonton/nomad/structs"
-	"github.com/hpcloud/tail/watch"
 	tomb "gopkg.in/tomb.v1"
 )
 

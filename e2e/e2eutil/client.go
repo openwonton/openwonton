@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	capi "github.com/hashicorp/consul/api"
+	vapi "github.com/hashicorp/vault/api"
 	napi "github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/helper/useragent"
-	vapi "github.com/hashicorp/vault/api"
 	"github.com/shoenig/test/must"
 )
 

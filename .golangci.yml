@@ -3,7 +3,7 @@
 
 run:
   # Timeout for analysis.
-  timeout: 10m
+  timeout: 20m
 
   # Modules download mode (do not modify go.mod)
   module-download-mode: readonly
@@ -94,6 +94,6 @@ linters:
     - durationcheck
     # - errchkjson (todo)
     # - errorlint (todo)
-    - exportloopref
+    - copyloopvar
     - usestdlibvars
   fast: false

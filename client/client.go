@@ -20,6 +20,7 @@ import (
 	consulapi "github.com/hashicorp/consul/api"
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
+	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/openwonton/openwonton/client/allocdir"
 	"github.com/openwonton/openwonton/client/allocrunner"
 	"github.com/openwonton/openwonton/client/allocrunner/interfaces"
@@ -57,7 +58,6 @@ import (
 	nconfig "github.com/openwonton/openwonton/nomad/structs/config"
 	"github.com/openwonton/openwonton/plugins/csi"
 	"github.com/openwonton/openwonton/plugins/device"
-	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/shirou/gopsutil/v3/host"
 	"golang.org/x/exp/maps"
 )
@@ -1247,7 +1247,7 @@ func (c *Client) restoreState() error {
 		allocState, err := c.stateDB.GetAcknowledgedState(alloc.ID)
 		if err != nil {
 			c.logger.Error("error restoring last acknowledged alloc state, will update again",
-				err, "alloc_id", alloc.ID)
+				"error", err, "alloc_id", alloc.ID)
 		} else {
 			ar.AcknowledgeState(allocState)
 		}

@@ -9,12 +9,12 @@ import (
 	"time"
 
 	consulapi "github.com/hashicorp/consul/api"
+	"github.com/kr/pretty"
 	"github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/e2e/framework"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/jobspec"
 	"github.com/openwonton/openwonton/testutil"
-	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )
 

@@ -233,7 +233,8 @@ func (a *Allocations) execImpl(encoder *codec.Encoder, decoder *codec.Decoder, e
 			}
 		}
 
-		a.c.logger.Info("task exec session starting", logArgs...)
+		logger := a.c.logger.With(logArgs...)
+		logger.Info("task exec session starting")
 	}
 
 	// Check alloc-exec permission.

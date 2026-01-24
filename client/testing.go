@@ -9,6 +9,7 @@ import (
 	"net/rpc"
 	"time"
 
+	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/openwonton/openwonton/client/config"
 	"github.com/openwonton/openwonton/client/fingerprint"
 	"github.com/openwonton/openwonton/client/servers"
@@ -18,7 +19,6 @@ import (
 	"github.com/openwonton/openwonton/helper/pluginutils/singleton"
 	"github.com/openwonton/openwonton/helper/pool"
 	"github.com/openwonton/openwonton/helper/testlog"
-	testing "github.com/mitchellh/go-testing-interface"
 )
 
 // TestClient creates an in-memory client for testing purposes and returns a

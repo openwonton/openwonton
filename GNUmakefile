@@ -40,7 +40,7 @@ GOTEST_GROUP := nomad client command drivers quick
 endif
 
 # tag corresponding to latest release we maintain backward compatibility with
-PROTO_COMPARE_TAG ?= v1.0.3$(if $(findstring ent,$(GO_TAGS)),+ent,)
+PROTO_COMPARE_TAG ?= v1.6.5$(if $(findstring ent,$(GO_TAGS)),+ent,)
 
 # LAST_RELEASE is the git sha of the latest release corresponding to this branch. main should have the latest
 # published release, and release branches should point to the latest published release in the X.Y release line.
@@ -161,7 +161,8 @@ deps:  ## Install build and development dependencies
 	go install github.com/a8m/tree/cmd/tree@fce18e2a750ea4e7f53ee706b1c3d9cbb22de79c
 	go install gotest.tools/gotestsum@v1.10.0
 	go install github.com/hashicorp/hcl/v2/cmd/hclfmt@d0c4fa8b0bbc2e4eeccd1ed2a32c2089ed8c5cf1
-	go install github.com/golang/protobuf/protoc-gen-go@v1.3.4
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.35.2
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
 	go install github.com/hashicorp/go-msgpack/v2/codec/codecgen@v2.1.5
 	go install github.com/bufbuild/buf/cmd/buf@v0.36.0
 	go install github.com/hashicorp/go-changelog/cmd/changelog-build@latest
@@ -174,7 +175,6 @@ lint-deps: ## Install linter dependencies
 	@echo "==> Updating linter dependencies..."
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.8
 	go install github.com/client9/misspell/cmd/misspell@v0.3.4
-	go install github.com/hashicorp/go-hclog/hclogvet@v0.1.6
 
 .PHONY: git-hooks
 git-dir = $(shell git rev-parse --git-dir)
@@ -189,7 +189,7 @@ check: ## Lint the source code
 	@golangci-lint run
 
 	@echo "==> Linting hclog statements..."
-	@hclogvet .
+	@go run ./internal/tools/hclogvet ./...
 
 	@echo "==> Spell checking website..."
 	@misspell -error -source=text website/pages/

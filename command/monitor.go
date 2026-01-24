@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 const (

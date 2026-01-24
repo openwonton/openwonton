@@ -7,8 +7,8 @@ import (
 	"os"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/openwonton/openwonton/plugins/shared/cmd/launcher/command"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/plugins/shared/cmd/launcher/command"
 )
 
 const (

@@ -9,8 +9,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 	"github.com/posener/complete"
 )
 

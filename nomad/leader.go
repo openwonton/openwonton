@@ -17,12 +17,12 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-version"
+	"github.com/hashicorp/raft"
+	"github.com/hashicorp/serf/serf"
 	"github.com/openwonton/openwonton/helper"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/nomad/state"
 	"github.com/openwonton/openwonton/nomad/structs"
-	"github.com/hashicorp/raft"
-	"github.com/hashicorp/serf/serf"
 	"golang.org/x/time/rate"
 )
 
@@ -2667,7 +2667,7 @@ func (s *Server) initializeKeyring(stopCh <-chan struct{}) {
 	store := s.fsm.State()
 	keyMeta, err := store.GetActiveRootKeyMeta(nil)
 	if err != nil {
-		logger.Error("failed to get active key: %v", err)
+		logger.Error("failed to get active key", "error", err)
 		return
 	}
 	if keyMeta != nil {
@@ -2696,13 +2696,13 @@ func (s *Server) initializeKeyring(stopCh <-chan struct{}) {
 	rootKey, err := structs.NewRootKey(structs.EncryptionAlgorithmAES256GCM)
 	rootKey.Meta.SetActive()
 	if err != nil {
-		logger.Error("could not initialize keyring: %v", err)
+		logger.Error("could not initialize keyring", "error", err)
 		return
 	}
 
 	err = s.encrypter.AddKey(rootKey)
 	if err != nil {
-		logger.Error("could not add initial key to keyring: %v", err)
+		logger.Error("could not add initial key to keyring", "error", err)
 		return
 	}
 
@@ -2710,7 +2710,7 @@ func (s *Server) initializeKeyring(stopCh <-chan struct{}) {
 		structs.KeyringUpdateRootKeyMetaRequest{
 			RootKeyMeta: rootKey.Meta,
 		}); err != nil {
-		logger.Error("could not initialize keyring: %v", err)
+		logger.Error("could not initialize keyring", "error", err)
 		return
 	}
 

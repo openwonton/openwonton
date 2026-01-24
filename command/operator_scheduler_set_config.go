@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/api"
 	flagHelper "github.com/openwonton/openwonton/helper/flags"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 

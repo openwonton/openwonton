@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 // Ensure ACLAuthMethodCommand satisfies the cli.Command interface.

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openwonton/openwonton/command/agent"
-	"github.com/openwonton/openwonton/version"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/command/agent"
+	"github.com/openwonton/openwonton/version"
 )
 
 const (

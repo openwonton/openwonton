@@ -13,9 +13,9 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/hashicorp/raft"
 	raftboltdb "github.com/hashicorp/raft-boltdb/v2"
+	"github.com/openwonton/openwonton/nomad/structs"
 	"go.etcd.io/bbolt"
 )
 

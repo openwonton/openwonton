@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/gosuri/uilive"
-	"github.com/openwonton/openwonton/api"
-	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/go-glint"
 	"github.com/mitchellh/go-glint/components"
 	"github.com/moby/term"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 

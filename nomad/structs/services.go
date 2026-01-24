@@ -21,10 +21,10 @@ import (
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-set"
+	"github.com/mitchellh/copystructure"
 	"github.com/openwonton/openwonton/helper"
 	"github.com/openwonton/openwonton/helper/args"
 	"github.com/openwonton/openwonton/helper/pointer"
-	"github.com/mitchellh/copystructure"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 )

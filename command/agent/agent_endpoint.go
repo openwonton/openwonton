@@ -19,13 +19,13 @@ import (
 	"github.com/docker/docker/pkg/ioutils"
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
+	"github.com/hashicorp/serf/serf"
 	"github.com/openwonton/openwonton/api"
 	cstructs "github.com/openwonton/openwonton/client/structs"
 	"github.com/openwonton/openwonton/command/agent/host"
 	"github.com/openwonton/openwonton/command/agent/pprof"
 	"github.com/openwonton/openwonton/nomad"
 	"github.com/openwonton/openwonton/nomad/structs"
-	"github.com/hashicorp/serf/serf"
 )
 
 type Member struct {
@@ -106,7 +106,7 @@ func (s *HTTPServer) AgentSelfRequest(resp http.ResponseWriter, req *http.Reques
 }
 
 func (s *HTTPServer) AgentJoinRequest(resp http.ResponseWriter, req *http.Request) (interface{}, error) {
-	if req.Method != "PUT" && req.Method != "POST" {
+	if req.Method != http.MethodPut && req.Method != http.MethodPost {
 		return nil, CodedError(405, ErrInvalidMethod)
 	}
 	srv := s.agent.Server()
@@ -310,7 +310,7 @@ func (s *HTTPServer) AgentMonitor(resp http.ResponseWriter, req *http.Request) (
 }
 
 func (s *HTTPServer) AgentForceLeaveRequest(resp http.ResponseWriter, req *http.Request) (interface{}, error) {
-	if req.Method != "PUT" && req.Method != "POST" {
+	if req.Method != http.MethodPut && req.Method != http.MethodPost {
 		return nil, CodedError(405, ErrInvalidMethod)
 	}
 	srv := s.agent.Server()

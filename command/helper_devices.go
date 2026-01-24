@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api"
 )
 
 func deviceQualifiedID(vendor, typ, name, id string) string {
