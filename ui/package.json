@@ -70,7 +70,7 @@
     "ember-a11y-testing": "^4.0.0",
     "ember-auto-import": "^2.4.0",
     "ember-can": "^4.1.0",
-    "ember-classic-decorator": "^3.0.0",
+    "ember-classic-decorator": "^3.0.1",
     "ember-cli": "~3.28.5",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-clipboard": "^1.0.0",
