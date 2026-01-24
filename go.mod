@@ -134,7 +134,8 @@ require (
 
 require (
 	cyphar.com/go-pathrs v0.2.1 // indirect
-	github.com/checkpoint-restore/go-criu/v6 v6.3.0 // indirect
+	github.com/checkpoint-restore/go-criu/v5 v5.3.0 // indirect
+	github.com/cilium/ebpf v0.7.0 // indirect
 	github.com/containerd/errdefs v0.3.0 // indirect
 	github.com/containerd/log v0.1.0 // indirect
 	github.com/docker/distribution v2.8.3+incompatible // indirect
