@@ -7,6 +7,7 @@ toolchain go1.24.11
 // Pinned dependencies are noted in github.com/openwonton/openwonton/issues/11826
 replace (
 	github.com/Microsoft/go-winio => github.com/endocrimes/go-winio v0.4.13-0.20190628114223-fb47a8b41948
+	github.com/hashicorp/go-msgpack => ./third_party/go-msgpack
 	github.com/hashicorp/hcl => github.com/hashicorp/hcl v1.0.1-0.20201016140508-a07e7d50bbee
 )
 
