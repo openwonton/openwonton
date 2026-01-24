@@ -68,6 +68,11 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 	client2 := agent.NewTestAgent(t, "client2", agentConfFunc)
 	defer client2.Shutdown()
 
+	require.NotNil(client1.Client())
+	require.NotNil(client2.Client())
+	testutil.WaitForClient(t, server.RPC, client1.Client().NodeID(), client1.Client().Region())
+	testutil.WaitForClient(t, server.RPC, client2.Client().NodeID(), client2.Client().Region())
+
 	job := mock.Job()
 	job.Constraints = []*structs.Constraint{
 		{
@@ -118,7 +123,7 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 
 	// Wait for new alloc to be running
 	var newAlloc *structs.AllocListStub
-	testutil.WaitForResult(func() (bool, error) {
+	testutil.WaitForResultRetries(1000*testutil.TestMultiplier(), func() (bool, error) {
 		allocArgs := &structs.JobSpecificRequest{}
 		allocArgs.JobID = job.ID
 		allocArgs.QueryOptions.Region = "global"
