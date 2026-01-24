@@ -195,7 +195,11 @@ check: ## Lint the source code
 	@misspell -error -source=text website/pages/
 
 	@echo "==> Checking for breaking changes in protos..."
-	@buf breaking --config tools/buf/buf.yaml --against-config tools/buf/buf.yaml --against .git#tag=$(PROTO_COMPARE_TAG)
+	@if git rev-parse -q --verify "refs/tags/$(PROTO_COMPARE_TAG)" >/dev/null 2>&1; then \
+		buf breaking --config tools/buf/buf.yaml --against-config tools/buf/buf.yaml --against .git#tag=$(PROTO_COMPARE_TAG); \
+	else \
+		echo "==> Skipping proto breaking check: tag $(PROTO_COMPARE_TAG) not found"; \
+	fi
 
 	@echo "==> Check proto files are in-sync..."
 	@$(MAKE) proto
@@ -234,7 +238,11 @@ checkproto: ## Lint protobuf files
 	@buf check lint --config tools/buf/buf.yaml
 
 	@echo "==> Checking for breaking changes in protos..."
-	@buf check breaking --config tools/buf/buf.yaml --against-config tools/buf/buf.yaml --against .git#tag=$(PROTO_COMPARE_TAG)
+	@if git rev-parse -q --verify "refs/tags/$(PROTO_COMPARE_TAG)" >/dev/null 2>&1; then \
+		buf check breaking --config tools/buf/buf.yaml --against-config tools/buf/buf.yaml --against .git#tag=$(PROTO_COMPARE_TAG); \
+	else \
+		echo "==> Skipping proto breaking check: tag $(PROTO_COMPARE_TAG) not found"; \
+	fi
 
 .PHONY: generate-all
 generate-all: generate-structs proto ## Generate structs, protobufs

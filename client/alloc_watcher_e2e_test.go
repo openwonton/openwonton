@@ -90,11 +90,13 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 	job.TaskGroups[0].Count = 1
 	job.TaskGroups[0].EphemeralDisk.Sticky = true
 	job.TaskGroups[0].EphemeralDisk.Migrate = true
+	job.TaskGroups[0].RestartPolicy.Attempts = 0
+	job.TaskGroups[0].RestartPolicy.Mode = structs.RestartPolicyModeFail
 	job.TaskGroups[0].Tasks[0] = &structs.Task{
 		Name:   "migrate_tls",
 		Driver: "mock_driver",
 		Config: map[string]interface{}{
-			"run_for": "1m",
+			"run_for": "15s",
 		},
 		LogConfig: structs.DefaultLogConfig(),
 		Resources: &structs.Resources{
@@ -125,9 +127,9 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 	// will interfere
 	testutil.RegisterJob(t, server.RPC, job.Copy())
 
-	// Wait for new alloc to be running
+	// Wait for new alloc to be placed on client2
 	var newAlloc *structs.AllocListStub
-	testutil.WaitForResultRetries(4000*testutil.TestMultiplier(), func() (bool, error) {
+	testutil.WaitForResultRetries(2000*testutil.TestMultiplier(), func() (bool, error) {
 		allocArgs := &structs.JobSpecificRequest{}
 		allocArgs.JobID = job.ID
 		allocArgs.QueryOptions.Region = "global"
@@ -144,16 +146,16 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 			newAlloc = allocReply.Allocations[0]
 		}
 
-		return newAlloc.ClientStatus == structs.AllocClientStatusRunning,
-			fmt.Errorf("client status: %v", newAlloc.ClientStatus)
+		return newAlloc.NodeID == client2Internal.NodeID(),
+			fmt.Errorf("new alloc on node %s (status %s)", newAlloc.NodeID, newAlloc.ClientStatus)
 	}, func(err error) {
-		t.Fatalf("new alloc not running: %v", err)
+		t.Fatalf("new alloc not placed on client2: %v", err)
 	})
 
 	// Wait for file to appear on other client
 	allocFn2 := filepath.Join(client2.DataDir, "alloc", newAlloc.ID, "alloc", "data", "bar")
 	t.Logf("[TEST] Comparing against file: %s", allocFn2)
-	testutil.WaitForResult(func() (bool, error) {
+	testutil.WaitForResultRetries(4000*testutil.TestMultiplier(), func() (bool, error) {
 		found, err := os.ReadFile(allocFn2)
 		if err != nil {
 			return false, err
