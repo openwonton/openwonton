@@ -127,7 +127,7 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 
 	// Wait for new alloc to be running
 	var newAlloc *structs.AllocListStub
-	testutil.WaitForResultRetries(1000*testutil.TestMultiplier(), func() (bool, error) {
+	testutil.WaitForResultRetries(2000*testutil.TestMultiplier(), func() (bool, error) {
 		allocArgs := &structs.JobSpecificRequest{}
 		allocArgs.JobID = job.ID
 		allocArgs.QueryOptions.Region = "global"

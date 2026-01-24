@@ -16,12 +16,12 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-set"
-	"github.com/openwonton/openwonton/helper"
-	"github.com/openwonton/openwonton/lib/cpuset"
-	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/opencontainers/runc/libcontainer/cgroups"
 	"github.com/opencontainers/runc/libcontainer/cgroups/fs2"
 	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/openwonton/openwonton/helper"
+	"github.com/openwonton/openwonton/lib/cpuset"
+	"github.com/openwonton/openwonton/nomad/structs"
 )
 
 const (
