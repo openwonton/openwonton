@@ -172,3 +172,53 @@ func MaybeDisableMemorySwappiness() *uint64 {
 
 	return zero
 }
+
+// GetInitCgroupPath returns the cgroup path for PID 1 for a cgroups.v1 subsystem.
+func GetInitCgroupPath(subsystem string) (string, error) {
+	cgroup, err := getInitCgroup(subsystem)
+	if err != nil {
+		return "", err
+	}
+
+	mnt, root, err := cgroups.FindCgroupMountpointAndRoot("", subsystem)
+	if err != nil {
+		return "", err
+	}
+
+	// Paths in /proc/1/cgroup are host-relative; map them to the mount root.
+	relCgroup, err := filepath.Rel(root, cgroup)
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(mnt, relCgroup), nil
+}
+
+func getInitCgroup(subsystem string) (string, error) {
+	cgroupsMap, err := cgroups.ParseCgroupFile("/proc/1/cgroup")
+	if err != nil {
+		return "", err
+	}
+
+	if p, ok := cgroupsMap[subsystem]; ok {
+		return p, nil
+	}
+
+	if p, ok := cgroupsMap[cgroups.CgroupNamePrefix+subsystem]; ok {
+		return p, nil
+	}
+
+	return "", cgroups.NewNotFoundError(subsystem)
+}
+
+// EnterPid moves a pid into the specified cgroup paths.
+func EnterPid(cgroupPaths map[string]string, pid int) error {
+	for _, path := range cgroupPaths {
+		if _, err := os.Stat(path); err == nil {
+			if err := cgroups.WriteCgroupProc(path, pid); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
