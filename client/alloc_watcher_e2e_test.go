@@ -68,10 +68,14 @@ func TestPrevAlloc_StreamAllocDir_TLS(t *testing.T) {
 	client2 := agent.NewTestAgent(t, "client2", agentConfFunc)
 	defer client2.Shutdown()
 
-	require.NotNil(client1.Client())
-	require.NotNil(client2.Client())
-	testutil.WaitForClient(t, server.RPC, client1.Client().NodeID(), client1.Client().Region())
-	testutil.WaitForClient(t, server.RPC, client2.Client().NodeID(), client2.Client().Region())
+	require.NotNil(client1.Agent)
+	require.NotNil(client2.Agent)
+	client1Internal := client1.Agent.Client()
+	client2Internal := client2.Agent.Client()
+	require.NotNil(client1Internal)
+	require.NotNil(client2Internal)
+	testutil.WaitForClient(t, server.RPC, client1Internal.NodeID(), client1Internal.Region())
+	testutil.WaitForClient(t, server.RPC, client2Internal.NodeID(), client2Internal.Region())
 
 	job := mock.Job()
 	job.Constraints = []*structs.Constraint{
