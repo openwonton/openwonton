@@ -4,8 +4,8 @@
  */
 
 /* eslint-disable */
-export default `// Use Nomad Variables to modify this job's output:
-// run "nomad var put nomad/jobs/variables-example name=YOUR_NAME" to get started
+export default `// Use OpenWonton Variables to modify this job's output:
+// run "wonton var put nomad/jobs/variables-example name=YOUR_NAME" to get started
 
 job "variables-example" {
   // Specifies the datacenter where this job should be run
@@ -39,7 +39,7 @@ job "variables-example" {
       }
 
       // Create a template resource that will be used to render the html file
-      // using the Nomad variable at "nomad/jobs/variables-example"
+      // using the OpenWonton variable at "nomad/jobs/variables-example"
       template {
         data        = "<html>hello, {{ with nomadVar \\" nomad/jobs/variables-example \\" }}{{ .name }}{{ end }}</html>"
         destination = "local/index.html"

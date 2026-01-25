@@ -1,0 +1,31 @@
+# Copyright (c) 2025 OpenWonton Authors.
+# SPDX-License-Identifier: MPL-2.0
+
+name: setup-js
+description: install node and yarn, and run yarn install
+inputs:
+  node-version:
+    description: "node version"
+    default: "18"
+runs:
+  using: composite
+  steps:
+    - name: Install yarn
+      run: |-
+        yarn --version && exit
+        npm install yarn --no-package-lock --no-save
+        cd node_modules/.bin
+          ./yarn --version
+          echo "$PWD" >> "$GITHUB_PATH"
+      working-directory: /tmp
+      shell: bash
+    - name: Setup node
+      uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: yarn
+        cache-dependency-path: ui/yarn.lock
+    - name: Yarn install
+      run: yarn install --frozen-lockfile
+      working-directory: ui
+      shell: bash

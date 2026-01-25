@@ -36,7 +36,7 @@ module('Acceptance | job definition', function (hooks) {
 
   test('visiting /jobs/:job_id/definition', async function (assert) {
     assert.equal(currentURL(), `/jobs/${job.id}/definition`);
-    assert.equal(document.title, `Job ${job.name} definition - Nomad`);
+    assert.equal(document.title, `Job ${job.name} definition - OpenWonton`);
   });
 
   test('the job definition page starts in read-only view', async function (assert) {

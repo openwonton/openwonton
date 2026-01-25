@@ -6,16 +6,9 @@ description: Frequently asked questions and answers for OpenWonton
 
 # Frequently Asked Questions
 
-## Q: What is Checkpoint? / Does OpenWonton call home?
+## Q: Does OpenWonton call home?
 
-OpenWonton makes use of a HashiCorp service called [Checkpoint](https://checkpoint.hashicorp.com)
-which is used to check for updates and critical security bulletins.
-Only anonymous information, which cannot be used to identify the user or host, is
-sent to Checkpoint. An anonymous ID is sent which helps de-duplicate warning messages.
-This anonymous ID can be disabled. Using the Checkpoint service is optional and can be disabled.
-
-See [`disable_anonymous_signature`](/nomad/docs/configuration#disable_anonymous_signature)
-and [`disable_update_check`](/nomad/docs/configuration#disable_update_check).
+OpenWonton disables the automated update check and telemetry found in the original project for privacy reasons.
 
 ## Q: Is OpenWonton eventually or strongly consistent?
 

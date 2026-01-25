@@ -3,6 +3,7 @@
 
 package csimanager
 
+// Clean-room replacement; see CLEAN_ROOM_NOTES.md.
 import (
 	"context"
 	"fmt"

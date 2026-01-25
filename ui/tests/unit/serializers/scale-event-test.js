@@ -26,7 +26,7 @@ module('Unit | Serializer | Scale Event', function (hooks) {
         Message: 'job scaling blocked due to active deployment',
         Meta: {
           OriginalCount: 3,
-          OriginalMessage: 'submitted using the Nomad CLI',
+          OriginalMessage: 'submitted using the OpenWonton CLI',
           OriginalMeta: null,
         },
         PreviousCount: 1,
@@ -40,7 +40,7 @@ module('Unit | Serializer | Scale Event', function (hooks) {
             message: 'job scaling blocked due to active deployment',
             meta: {
               OriginalCount: 3,
-              OriginalMessage: 'submitted using the Nomad CLI',
+              OriginalMessage: 'submitted using the OpenWonton CLI',
               OriginalMeta: null,
             },
             previousCount: 1,
@@ -60,7 +60,7 @@ module('Unit | Serializer | Scale Event', function (hooks) {
         CreateIndex: 23,
         Error: false,
         EvalID: '753bb12c-345e-22b2-f0b4-17f84239b98b',
-        Message: 'submitted using the Nomad CLI',
+        Message: 'submitted using the OpenWonton CLI',
         Meta: null,
         PreviousCount: 1,
         Time: +sampleDate * 1000000,
@@ -70,7 +70,7 @@ module('Unit | Serializer | Scale Event', function (hooks) {
           attributes: {
             count: 3,
             error: false,
-            message: 'submitted using the Nomad CLI',
+            message: 'submitted using the OpenWonton CLI',
             meta: {},
             previousCount: 1,
             time: sampleDate,

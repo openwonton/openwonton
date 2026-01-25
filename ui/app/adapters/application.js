@@ -93,7 +93,7 @@ export default class ApplicationAdapter extends RESTAdapter {
   // the singular form of the resource name.
   //
   // REST:  /some-resources/:id
-  // Nomad: /some-resource/:id
+  // OpenWonton: /some-resource/:id
   //
   // This is the original implementation of _buildURL
   // without the pluralization of modelName

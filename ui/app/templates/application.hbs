@@ -6,7 +6,7 @@
 {{page-title
   (if this.system.shouldShowRegions (concat this.system.activeRegion " - "))
   (if this.system.agent.config.UI.Label.Text (concat this.system.agent.config.UI.Label.Text " - "))
-  "Nomad"
+  "OpenWonton"
   separator=" - "
 }}
 <SvgPatterns />
@@ -20,7 +20,7 @@
         queue
           (action close)
           (action (optional flash.customCloseAction))
-        
+
       }}
     as |T|>
       {{#if flash.title}}

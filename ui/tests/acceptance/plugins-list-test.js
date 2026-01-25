@@ -31,7 +31,7 @@ module('Acceptance | plugins list', function (hooks) {
     await PluginsList.visit();
 
     assert.equal(currentURL(), '/csi/plugins');
-    assert.equal(document.title, 'CSI Plugins - Nomad');
+    assert.equal(document.title, 'CSI Plugins - OpenWonton');
   });
 
   test('/csi/plugins should list the first page of plugins sorted by id', async function (assert) {

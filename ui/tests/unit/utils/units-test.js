@@ -64,7 +64,7 @@ module('Unit | Util | units#formatScheduledBytes', function () {
     {
       in: [1024 ** 3],
       out: '1,024 MiB',
-      name: 'max unit is MiB, just like Nomad expects in job specs',
+      name: 'max unit is MiB, just like OpenWonton expects in job specs',
     },
     {
       in: [1024 ** 3 + 1024 ** 2 * 0.6],
@@ -133,7 +133,7 @@ module('Unit | Util | units#formatScheduledHertz', function () {
     {
       in: [1000 ** 3],
       out: '1,000 MHz',
-      name: 'max unit is MHz, just like Nomad expects in job specs',
+      name: 'max unit is MHz, just like OpenWonton expects in job specs',
     },
     {
       in: [1000 ** 3 + 1000 ** 2 * 0.6],

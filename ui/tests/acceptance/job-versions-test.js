@@ -49,7 +49,7 @@ module('Acceptance | job versions', function (hooks) {
       versions.length,
       'Each version gets a row in the timeline'
     );
-    assert.equal(document.title, `Job ${job.name} versions - Nomad`);
+    assert.equal(document.title, `Job ${job.name} versions - OpenWonton`);
   });
 
   test('each version mentions the version number, the stability, and the submitted time', async function (assert) {

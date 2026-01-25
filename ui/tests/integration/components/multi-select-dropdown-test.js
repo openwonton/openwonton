@@ -31,7 +31,7 @@ module('Integration | Component | multi-select dropdown', function (hooks) {
     selection: [],
     options: [
       { key: 'consul', label: 'Consul' },
-      { key: 'nomad', label: 'Nomad' },
+      { key: 'nomad', label: 'OpenWonton' },
       { key: 'terraform', label: 'Terraform' },
       { key: 'packer', label: 'Packer' },
       { key: 'vagrant', label: 'Vagrant' },

@@ -3,6 +3,7 @@
 
 package state
 
+// Clean-room replacement; see CLEAN_ROOM_NOTES.md.
 import "testing"
 
 func TestSliceIterator(t *testing.T) {

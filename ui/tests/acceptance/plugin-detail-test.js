@@ -42,7 +42,7 @@ module('Acceptance | plugin detail', function (hooks) {
   test('/csi/plugins/:id should show the plugin name in the title', async function (assert) {
     await PluginDetail.visit({ id: plugin.id });
 
-    assert.equal(document.title, `CSI Plugin ${plugin.id} - Nomad`);
+    assert.equal(document.title, `CSI Plugin ${plugin.id} - OpenWonton`);
     assert.equal(PluginDetail.title, plugin.id);
   });
 

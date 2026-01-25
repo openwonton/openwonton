@@ -14,7 +14,7 @@ import { tracked } from '@glimmer/tracking';
 import jsonToHcl from 'nomad-ui/utils/json-to-hcl';
 
 /**
- * JobEditor component that provides an interface for editing and managing Nomad jobs.
+ * JobEditor component that provides an interface for editing and managing OpenWonton jobs.
  *
  * @class JobEditor
  * @extends Component

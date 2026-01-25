@@ -131,23 +131,6 @@
             Evaluations
           </LinkTo>
         </li>
-        {{#if (can "list policies")}}
-          <li
-            {{keyboard-shortcut
-              menuLevel=true
-              pattern=(array "g" "a")
-              action=(action this.transitionTo 'access-control')
-            }}
-          >
-            <LinkTo
-              @route="access-control"
-              @activeClass="is-active"
-              data-test-gutter-link="access-control"
-            >
-              Access Control
-            </LinkTo>
-          </li>
-        {{/if}}
       </ul>
     </aside>
     {{#if this.system.agent.version}}

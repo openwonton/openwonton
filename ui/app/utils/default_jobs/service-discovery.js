@@ -53,7 +53,7 @@ EOF
         name     = "nomad-service-discovery-example-server"
         provider = "nomad"
         port     = "www"
-        // If you're running Nomad in dev mode, uncomment the following address_mode line to allow this service to be discovered
+        // If you're running OpenWonton in dev mode, uncomment the following address_mode line to allow this service to be discovered
         // address_mode = "driver"
 
         check {

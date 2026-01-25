@@ -22,7 +22,6 @@ import (
 	"github.com/armon/go-metrics/circonus"
 	"github.com/armon/go-metrics/datadog"
 	"github.com/armon/go-metrics/prometheus"
-	checkpoint "github.com/hashicorp/go-checkpoint"
 	discover "github.com/hashicorp/go-discover"
 	hclog "github.com/hashicorp/go-hclog"
 	gsyslog "github.com/hashicorp/go-syslog"
@@ -584,51 +583,7 @@ func (c *Command) setupAgent(config *Config, logger hclog.InterceptLogger, logOu
 	}
 	c.httpServers = httpServers
 
-	// If DisableUpdateCheck is not enabled, set up update checking
-	// (DisableUpdateCheck is false by default)
-	if config.DisableUpdateCheck != nil && !*config.DisableUpdateCheck {
-		version := config.Version.Version
-		if config.Version.VersionPrerelease != "" {
-			version += fmt.Sprintf("-%s", config.Version.VersionPrerelease)
-		}
-		updateParams := &checkpoint.CheckParams{
-			Product: "nomad",
-			Version: version,
-		}
-		if !config.DisableAnonymousSignature {
-			updateParams.SignatureFile = filepath.Join(config.DataDir, "checkpoint-signature")
-		}
-
-		// Schedule a periodic check with expected interval of 24 hours
-		checkpoint.CheckInterval(updateParams, 24*time.Hour, c.checkpointResults)
-
-		// Do an immediate check within the next 30 seconds
-		go func() {
-			time.Sleep(helper.RandomStagger(30 * time.Second))
-			c.checkpointResults(checkpoint.Check(updateParams))
-		}()
-	}
-
 	return nil
-}
-
-// checkpointResults is used to handler periodic results from our update checker
-func (c *Command) checkpointResults(results *checkpoint.CheckResponse, err error) {
-	if err != nil {
-		c.Ui.Error(fmt.Sprintf("Failed to check for updates: %v", err))
-		return
-	}
-	if results.Outdated {
-		c.Ui.Error(fmt.Sprintf("Newer OpenWonton version available: %s (currently running: %s)", results.CurrentVersion, c.Version.VersionNumber()))
-	}
-	for _, alert := range results.Alerts {
-		switch alert.Level {
-		case "info":
-			c.Ui.Info(fmt.Sprintf("Bulletin [%s]: %s (%s)", alert.Level, alert.Message, alert.URL))
-		default:
-			c.Ui.Error(fmt.Sprintf("Bulletin [%s]: %s (%s)", alert.Level, alert.Message, alert.URL))
-		}
-	}
 }
 
 func (c *Command) AutocompleteFlags() complete.Flags {

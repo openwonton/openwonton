@@ -57,7 +57,7 @@ export default function moduleForJob(
         : `/jobs/${job.name}`;
 
       assert.equal(decodeURIComponent(currentURL()), expectedURL);
-      assert.equal(document.title, `Job ${job.name} - Nomad`);
+      assert.equal(document.title, `Job ${job.name} - OpenWonton`);
     });
 
     test('the subnav links to overview', async function (assert) {

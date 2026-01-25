@@ -295,7 +295,7 @@ export default class Job extends Model {
 
   scale(group, count, message) {
     if (message == null)
-      message = `Manually scaled to ${count} from the Nomad UI`;
+      message = `Manually scaled to ${count} from the OpenWonton UI`;
     return this.store.adapterFor('job').scale(this, group, count, message);
   }
 
