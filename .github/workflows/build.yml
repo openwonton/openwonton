@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        goos: [windows, freebsd]
+        goos: [windows]
         goarch: ["amd64", "arm64"]
       fail-fast: true
 
@@ -141,8 +141,14 @@ jobs:
 
     steps:
       - name: Install build packages
+        env:
+          DEBIAN_FRONTEND: noninteractive
+          TZ: Etc/UTC
         run: |
           apt-get update
+          apt-get install -y --no-install-recommends tzdata
+          ln -fs "/usr/share/zoneinfo/${TZ}" /etc/localtime
+          dpkg-reconfigure -f noninteractive tzdata
           apt-get install -y --no-install-recommends \
             ca-certificates \
             curl \
