@@ -157,6 +157,9 @@ jobs:
             gcc \
             g++ \
             pkg-config \
+            libc6-dev \
+            libc6-dev-arm64-cross \
+            libc6-dev-armhf-cross \
             libcap-dev \
             libseccomp-dev \
             unzip \
@@ -195,10 +198,11 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.make-prerelease == 'true' }}
 
       - name: Set gcc
+        shell: bash
         run: |
-          if [ "${{ matrix.goarch }}" == "arm" ]; then
+          if [ "${{ matrix.goarch }}" = "arm" ]; then
             echo "CC=arm-linux-gnueabihf-gcc" >> "$GITHUB_ENV"
-          elif [ "${{ matrix.goarch }}" == "arm64" ]; then
+          elif [ "${{ matrix.goarch }}" = "arm64" ]; then
             echo "CC=aarch64-linux-gnu-gcc" >> "$GITHUB_ENV"
           fi
 
