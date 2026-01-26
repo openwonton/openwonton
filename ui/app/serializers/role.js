@@ -11,8 +11,13 @@ import { copy } from 'ember-copy';
 @classic
 export default class RoleSerializer extends ApplicationSerializer {
   normalize(typeHash, hash) {
-    hash.Policies = hash.Policies || []; // null guard
-    hash.PolicyIDs = hash.Policies.map((policy) => policy.Name);
+    const policies =
+      hash.Policies ||
+      (hash.PolicyIDs || []).map((policyName) => {
+        return { Name: policyName };
+      });
+    hash.Policies = policies; // null guard + PolicyIDs fallback
+    hash.PolicyIDs = policies.map((policy) => policy.Name);
     hash.PolicyNames = copy(hash.PolicyIDs);
     return super.normalize(typeHash, hash);
   }

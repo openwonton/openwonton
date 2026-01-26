@@ -73,9 +73,21 @@ export default class TokenService extends Service {
       if (this.selfToken) {
         // return yield this.selfToken.get('policies');
         let tokenPolicies = yield this.selfToken.get('policies');
+        if (tokenPolicies.length) {
+          yield Promise.all(
+            tokenPolicies.map((policy) => {
+              return policy.reload();
+            })
+          );
+        }
         let rolePolicies = [];
         const roles = yield this.selfToken.get('roles');
         if (roles.length) {
+          yield Promise.all(
+            roles.map((role) => {
+              return role.reload();
+            })
+          );
           yield Promise.all(
             roles.map((role) => {
               return role.policies;
@@ -87,6 +99,13 @@ export default class TokenService extends Service {
             })
             .map((policies) => policies.toArray())
             .flat();
+          if (rolePolicies.length) {
+            yield Promise.all(
+              rolePolicies.map((policy) => {
+                return policy.reload();
+              })
+            );
+          }
         }
         return [...tokenPolicies.toArray(), ...rolePolicies];
       } else {

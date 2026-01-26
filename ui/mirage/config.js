@@ -614,6 +614,7 @@ export default function () {
     const policy = policies.findBy({ name: req.params.id });
     const secret = req.requestHeaders['X-Nomad-Token'];
     const tokenForSecret = tokens.findBy({ secretId: secret });
+    const policyId = policy?.id || policy?.name;
     if (req.params.id === 'anonymous') {
       if (policy) {
         return this.serialize(policy);
@@ -626,11 +627,14 @@ export default function () {
     // is of type management
     if (
       tokenForSecret &&
-      (tokenForSecret.policies.includes(policy) ||
-        tokenForSecret.roles.models.any((role) =>
-          role.policies.includes(policy)
-        ) ||
-        tokenForSecret.type === 'management')
+      (tokenForSecret.type === 'management' ||
+        (policyId &&
+          ((tokenForSecret.policyIds || []).includes(policyId) ||
+            server.db.roles
+              .find(tokenForSecret.roleIds || [])
+              .map((role) => role.policyIds || [])
+              .flat()
+              .includes(policyId))))
     ) {
       return this.serialize(policy);
     }
@@ -640,12 +644,22 @@ export default function () {
   });
 
   this.get('/acl/roles', function ({ roles }, req) {
-    return this.serialize(roles.all());
+    const records = roles.all().models;
+    return this.serialize(roles.all()).map((role, index) => {
+      role.Policies = (records[index]?.attrs?.policyIds || []).map((policy) => {
+        return { Name: policy };
+      });
+      return role;
+    });
   });
 
   this.get('/acl/role/:id', function ({ roles }, req) {
     const role = roles.findBy({ id: req.params.id });
-    return this.serialize(role);
+    const payload = this.serialize(role);
+    payload.Policies = (role?.attrs?.policyIds || []).map((policy) => {
+      return { Name: policy };
+    });
+    return payload;
   });
 
   this.post('/acl/role', function (schema, request) {

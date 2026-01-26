@@ -130,48 +130,45 @@ export default class Tokens extends Controller {
       this.clearTokenProperties();
 
       // Set bearer token instead of findSelf etc.
-      TokenAdapter.loginJWT(secret, methodName).then(
-        (token) => {
-          this.token.setProperties({
-            secret: token.secret,
-            tokenNotFound: false,
-          });
-          this.set('secret', null);
+      try {
+        const token = await TokenAdapter.loginJWT(secret, methodName);
+        this.token.setProperties({
+          secret: token.secret,
+          tokenNotFound: false,
+        });
+        this.set('secret', null);
 
-          // Clear out all data to ensure only data the new token is privileged to see is shown
-          this.resetStore();
+        // Clear out all data to ensure only data the new token is privileged to see is shown
+        this.resetStore();
 
-          // Refetch the token and associated policies
-          this.token.get('fetchSelfTokenAndPolicies').perform().catch();
+        // Refetch the token and associated policies
+        await this.token.get('fetchSelfTokenAndPolicies').perform();
 
-          this.signInStatus = 'success';
-        },
-        () => {
-          this.token.set('secret', undefined);
-          this.signInStatus = 'failure';
-        }
-      );
+        this.signInStatus = 'success';
+      } catch (e) {
+        this.token.set('secret', undefined);
+        this.signInStatus = 'failure';
+      }
     } else {
       this.clearTokenProperties();
       this.token.set('secret', secret);
       this.set('secret', null);
 
-      TokenAdapter.findSelf().then(
-        () => {
-          // Clear out all data to ensure only data the new token is privileged to see is shown
-          this.resetStore();
+      try {
+        await TokenAdapter.findSelf();
 
-          // Refetch the token and associated policies
-          this.token.get('fetchSelfTokenAndPolicies').perform().catch();
+        // Clear out all data to ensure only data the new token is privileged to see is shown
+        this.resetStore();
 
-          this.signInStatus = 'success';
-          this.token.set('tokenNotFound', false);
-        },
-        () => {
-          this.token.set('secret', undefined);
-          this.signInStatus = 'failure';
-        }
-      );
+        // Refetch the token and associated policies
+        await this.token.get('fetchSelfTokenAndPolicies').perform();
+
+        this.signInStatus = 'success';
+        this.token.set('tokenNotFound', false);
+      } catch (e) {
+        this.token.set('secret', undefined);
+        this.signInStatus = 'failure';
+      }
     }
   }
 
