@@ -79,8 +79,8 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        goos: [windows]
-        goarch: ["amd64"]
+        goos: [windows, freebsd]
+        goarch: ["amd64", "arm64"]
       fail-fast: true
 
     name: Go ${{ needs.get-go-version.outputs.go-version }} ${{ matrix.goos }} ${{ matrix.goarch }} build
@@ -117,6 +117,7 @@ jobs:
           GOARCH: ${{ matrix.goarch }}
           GO_TAGS: ${{ env.GO_TAGS }}
           CGO_ENABLED: 0
+          TARGETS: ${{ matrix.goos }}_${{ matrix.goarch }}
         run: |
           go clean -cache
           make pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip
@@ -129,6 +130,7 @@ jobs:
   build-linux:
     needs: [get-go-version, get-product-version]
     runs-on: ubuntu-22.04
+    container: ubuntu:20.04
     strategy:
       matrix:
         goos: [linux]
@@ -138,6 +140,27 @@ jobs:
     name: Go ${{ needs.get-go-version.outputs.go-version }} ${{ matrix.goos }} ${{ matrix.goarch }} build
 
     steps:
+      - name: Install build packages
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            ca-certificates \
+            curl \
+            git \
+            make \
+            gcc \
+            g++ \
+            pkg-config \
+            libcap-dev \
+            libseccomp-dev \
+            unzip \
+            zip \
+            xz-utils \
+            software-properties-common \
+            binutils-aarch64-linux-gnu \
+            binutils-arm-linux-gnueabihf \
+            gcc-aarch64-linux-gnu \
+            gcc-arm-linux-gnueabihf
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
           ref: ${{ github.event.inputs.build-ref }}
@@ -162,17 +185,6 @@ jobs:
       - name: Build prerelease
         run: make prerelease
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.make-prerelease == 'true' }}
-
-      - name: Install Linux build utilties
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo apt-get update
-          sudo apt-get install -y \
-            binutils-aarch64-linux-gnu \
-            binutils-arm-linux-gnueabihf \
-            gcc-aarch64-linux-gnu \
-            gcc-arm-linux-gnueabihf
 
       - name: Set gcc
         run: |
@@ -302,7 +314,7 @@ jobs:
         run: |
           echo "revision=${{ github.event.inputs.build-ref }}" >> "$GITHUB_ENV"
       - name: Docker Build (Action)
-        uses: hashicorp/actions-docker-build@v1
+        uses: hashicorp/actions-docker-build@200254326a30d7b747745592f8f4d226bbe4abe4 # v2.2.0
         with:
           smoke_test: |
             TEST_VERSION="$(docker run "${IMAGE_NAME}" version | awk '/OpenWonton v/{print $2}')"
@@ -325,7 +337,7 @@ jobs:
 
   minimum-os:
     name: OS Compatibility
-    # A quick smoke test of our binaries on our minimum target OS (RHEL 7). Why RHEL 7? Because the glibc version is that old (2.17).
+    # A quick smoke test of our binaries on our minimum target OS (Ubuntu 20.04 / Debian 11; glibc 2.31).
     needs:
       - get-go-version
       - get-product-version
@@ -351,7 +363,7 @@ jobs:
           artifact_name: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
         run: |
           echo "::group::Unpack and Prep"
-          docker pull registry.access.redhat.com/ubi7/ubi-minimal:7.9-1057
+          docker pull ubuntu:20.04
           unzip "$artifact_name"
           echo "::group::Diagnostics"
           echo "CGO related build information:"
@@ -359,7 +371,7 @@ jobs:
           echo "GLIBC links:"
           go tool nm ./wonton | grep -i glibc | cut -d @ -f 2-3 | sort --version-sort | uniq
           echo "::group::Smoke test binary"
-          docker run --rm -v "$PWD:/src" registry.access.redhat.com/ubi7/ubi-minimal:7.9-1057 /src/wonton version
+          docker run --rm -v "$PWD:/src" ubuntu:20.04 /src/wonton version
 
 permissions:
   contents: read
