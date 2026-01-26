@@ -21,7 +21,8 @@ jobs:
           BACKPORT_TARGET_TEMPLATE: "stable-{{.target}}"
           # Enabling this option increased the number of backport failures.
           BACKPORT_MERGE_COMMIT: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # backport-assistant calls /user, which requires a PAT (GITHUB_TOKEN won't work).
+          GITHUB_TOKEN: ${{ secrets.BACKPORT_ASSISTANT_TOKEN }}
       - name: Backport changes to targeted release branch
         run: |
           backport-assistant backport -merge-method=squash -automerge
@@ -30,7 +31,8 @@ jobs:
           BACKPORT_TARGET_TEMPLATE: "release/{{.target}}"
           # Enabling this option increased the number of backport failures.
           BACKPORT_MERGE_COMMIT: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # backport-assistant calls /user, which requires a PAT (GITHUB_TOKEN won't work).
+          GITHUB_TOKEN: ${{ secrets.BACKPORT_ASSISTANT_TOKEN }}
 
   handle-failure:
     needs:
