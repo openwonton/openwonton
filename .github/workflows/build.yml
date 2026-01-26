@@ -352,9 +352,6 @@ jobs:
           bin_name: ${{ env.PKG_NAME }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{env.PKG_NAME}}:${{env.version}}
-          dev_tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ env.PKG_NAME }}:${{ env.version }}-dev
-            ghcr.io/${{ github.repository_owner }}/${{ env.PKG_NAME }}:${{ env.version }}-${{env.revision}}
 
   minimum-os:
     name: OS Compatibility
