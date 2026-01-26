@@ -11,12 +11,12 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/kr/pretty"
 	api "github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/openwonton/openwonton/jobspec2"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/testutil"
-	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )
 

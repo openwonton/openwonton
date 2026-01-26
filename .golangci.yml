@@ -3,7 +3,7 @@
 
 run:
   # Timeout for analysis.
-  deadline: 10m
+  timeout: 20m
 
   # Modules download mode (do not modify go.mod)
   module-download-mode: readonly
@@ -69,10 +69,10 @@ linters-settings:
 
 issues:
   exclude:
-  - ifElseChain
-  - singleCaseSwitch
-  - assignOp
-  - unlambda
+    - ifElseChain
+    - singleCaseSwitch
+    - assignOp
+    - unlambda
 
 linters:
   disable-all: true
@@ -94,7 +94,6 @@ linters:
     - durationcheck
     # - errchkjson (todo)
     # - errorlint (todo)
-    - exportloopref
+    - copyloopvar
     - usestdlibvars
   fast: false
-

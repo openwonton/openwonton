@@ -25,9 +25,9 @@ import (
 	"time"
 
 	cleanhttp "github.com/hashicorp/go-cleanhttp"
+	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/helper/discover"
-	testing "github.com/mitchellh/go-testing-interface"
 )
 
 // TestServerConfig is the main server configuration struct.
@@ -132,9 +132,10 @@ func defaultServerConfig() *TestServerConfig {
 
 // TestServer is the main server wrapper struct.
 type TestServer struct {
-	cmd    *exec.Cmd
-	Config *TestServerConfig
-	t      testing.T
+	cmd      *exec.Cmd
+	Config   *TestServerConfig
+	t        testing.T
+	nullFile *os.File
 
 	HTTPAddr   string
 	SerfAddr   string
@@ -186,14 +187,27 @@ func NewTestServer(t testing.T, cb ServerConfigCallback) *TestServer {
 	}
 	configFile.Close()
 
+	var nullFile *os.File
 	stdout := io.Writer(os.Stdout)
 	if nomadConfig.Stdout != nil {
 		stdout = nomadConfig.Stdout
+	} else {
+		nullFile, err = os.OpenFile(os.DevNull, os.O_WRONLY, 0)
+		if err == nil {
+			stdout = nullFile
+		}
 	}
 
 	stderr := io.Writer(os.Stderr)
 	if nomadConfig.Stderr != nil {
 		stderr = nomadConfig.Stderr
+	} else if nullFile != nil {
+		stderr = nullFile
+	} else {
+		nullFile, err = os.OpenFile(os.DevNull, os.O_WRONLY, 0)
+		if err == nil {
+			stderr = nullFile
+		}
 	}
 
 	args := []string{"agent", "-config", configFile.Name()}
@@ -212,9 +226,10 @@ func NewTestServer(t testing.T, cb ServerConfigCallback) *TestServer {
 	client := cleanhttp.DefaultClient()
 
 	server := &TestServer{
-		Config: nomadConfig,
-		cmd:    cmd,
-		t:      t,
+		Config:   nomadConfig,
+		cmd:      cmd,
+		t:        t,
+		nullFile: nullFile,
 
 		HTTPAddr:   fmt.Sprintf("127.0.0.1:%d", nomadConfig.Ports.HTTP),
 		SerfAddr:   fmt.Sprintf("127.0.0.1:%d", nomadConfig.Ports.Serf),
@@ -239,6 +254,11 @@ func NewTestServer(t testing.T, cb ServerConfigCallback) *TestServer {
 // directory once we are done.
 func (s *TestServer) Stop() {
 	defer os.RemoveAll(s.Config.DataDir)
+	defer func() {
+		if s.nullFile != nil {
+			_ = s.nullFile.Close()
+		}
+	}()
 
 	// wait for the process to exit to be sure that the data dir can be
 	// deleted on all platforms.

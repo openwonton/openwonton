@@ -9,8 +9,8 @@ import (
 	multierror "github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/openwonton/openwonton/api"
 	"github.com/mitchellh/mapstructure"
+	"github.com/openwonton/openwonton/api"
 )
 
 func parseMultiregion(result *api.Multiregion, list *ast.ObjectList) error {

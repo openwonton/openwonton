@@ -10,13 +10,13 @@ import (
 	"os/exec"
 	"time"
 
+	vapi "github.com/hashicorp/vault/api"
+	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/openwonton/openwonton/ci"
 	"github.com/openwonton/openwonton/helper/testlog"
 	"github.com/openwonton/openwonton/helper/useragent"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/nomad/structs/config"
-	vapi "github.com/hashicorp/vault/api"
-	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/stretchr/testify/require"
 )
 

@@ -20,12 +20,12 @@ import (
 	vapi "github.com/hashicorp/vault/api"
 	"golang.org/x/sync/errgroup"
 
+	"github.com/hashicorp/raft"
 	"github.com/openwonton/openwonton/acl"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/nomad/state"
 	"github.com/openwonton/openwonton/nomad/state/paginator"
 	"github.com/openwonton/openwonton/nomad/structs"
-	"github.com/hashicorp/raft"
 )
 
 const (

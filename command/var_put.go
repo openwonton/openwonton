@@ -17,10 +17,10 @@ import (
 	"github.com/hashicorp/go-set"
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
-	"github.com/openwonton/openwonton/api"
-	"github.com/openwonton/openwonton/helper"
 	"github.com/mitchellh/cli"
 	"github.com/mitchellh/mapstructure"
+	"github.com/openwonton/openwonton/api"
+	"github.com/openwonton/openwonton/helper"
 	"github.com/posener/complete"
 	"golang.org/x/exp/slices"
 )

@@ -87,7 +87,7 @@ func TestWorker_dequeueEvaluation(t *testing.T) {
 
 	// Create a worker
 	poolArgs := getSchedulerWorkerPoolArgsFromConfigLocked(s1.config).Copy()
-	w, _ := NewWorker(s1.shutdownCtx, s1, poolArgs)
+	w := newWorker(s1.shutdownCtx, s1, poolArgs)
 
 	// Attempt dequeue
 	eval, token, waitIndex, shutdown := w.dequeueEvaluation(10 * time.Millisecond)

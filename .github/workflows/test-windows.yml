@@ -5,47 +5,48 @@ on:
       - main
       - release/**
     paths-ignore:
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.changelog/**'
-      - '.tours/**'
-      - 'contributing/**'
-      - 'demo/**'
-      - 'dev/**'
-      - 'e2e/**'
-      - 'integrations/**'
-      - 'pkg/**'
-      - 'scripts/**'
-      - 'terraform/**'
-      - 'ui/**'
-      - 'website/**'
+      - "README.md"
+      - "CHANGELOG.md"
+      - ".changelog/**"
+      - ".tours/**"
+      - "contributing/**"
+      - "demo/**"
+      - "dev/**"
+      - "e2e/**"
+      - "integrations/**"
+      - "pkg/**"
+      - "scripts/**"
+      - "terraform/**"
+      - "ui/**"
+      - "website/**"
   push:
     branches:
       - main
       - release/**
     paths-ignore:
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.changelog/**'
-      - '.tours/**'
-      - 'contributing/**'
-      - 'demo/**'
-      - 'dev/**'
-      - 'e2e/**'
-      - 'integrations/**'
-      - 'pkg/**'
-      - 'scripts/**'
-      - 'terraform/**'
-      - 'ui/**'
-      - 'website/**'
+      - "README.md"
+      - "CHANGELOG.md"
+      - ".changelog/**"
+      - ".tours/**"
+      - "contributing/**"
+      - "demo/**"
+      - "dev/**"
+      - "e2e/**"
+      - "integrations/**"
+      - "pkg/**"
+      - "scripts/**"
+      - "terraform/**"
+      - "ui/**"
+      - "website/**"
 
 env:
   VAULT_VERSION: 1.4.1
 jobs:
   test-windows:
-    runs-on: 'windows-2019-16core'
+    runs-on: windows-2022
     env:
       GOTESTSUM_PATH: c:\tmp\test-reports
+      BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2022
     steps:
       - name: Docker Info
         run: docker version
@@ -72,15 +73,15 @@ jobs:
       - name: Pre-download docker test image
         shell: bash
         run: |-
-          docker pull docker.mirror.hashicorp.services/hashicorpdev/busybox-windows:ltsc2019
-      - name: Build nomad
+          docker pull docker.io/hashicorpdev/busybox-windows:ltsc2022
+      - name: Build wonton
         shell: bash
         run: |-
-          go install .
+          go install ./cmd/wonton
       - name: Run tests with gotestsum
         shell: bash
         env:
-          BUSYBOX_IMAGE: docker.mirror.hashicorp.services/hashicorpdev/busybox-windows:ltsc2019
+          BUSYBOX_IMAGE: docker.io/hashicorpdev/busybox-windows:ltsc2022
         run: |-
           # Only test docker driver tests for now
           export PATH=/c/go/bin:/c/gopath/bin:$PATH
@@ -89,7 +90,7 @@ jobs:
             github.com/openwonton/openwonton/drivers/docker \
             github.com/openwonton/openwonton/client/lib/fifo \
             github.com/openwonton/openwonton/client/logmon
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: results.xml
           path: results.xml

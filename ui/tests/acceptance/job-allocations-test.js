@@ -74,7 +74,7 @@ module('Acceptance | job allocations', function (hooks) {
       );
     });
 
-    assert.equal(document.title, `Job ${job.name} allocations - Nomad`);
+    assert.equal(document.title, `Job ${job.name} allocations - OpenWonton`);
   });
 
   test('clicking an allocation results in the correct endpoint being hit', async function (assert) {

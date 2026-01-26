@@ -22,13 +22,13 @@ import (
 	log "github.com/hashicorp/go-hclog"
 	memdb "github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-msgpack/codec"
+	"github.com/hashicorp/raft"
+	"github.com/hashicorp/yamux"
 	"github.com/openwonton/openwonton/helper"
 	"github.com/openwonton/openwonton/helper/pool"
 	"github.com/openwonton/openwonton/nomad/state"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/nomad/structs/config"
-	"github.com/hashicorp/raft"
-	"github.com/hashicorp/yamux"
 )
 
 const (

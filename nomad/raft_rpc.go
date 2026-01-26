@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/hashicorp/raft"
 	"github.com/openwonton/openwonton/helper/pool"
 	"github.com/openwonton/openwonton/helper/tlsutil"
-	"github.com/hashicorp/raft"
 )
 
 // RaftLayer implements the raft.StreamLayer interface,

@@ -16,6 +16,7 @@ import { initialize as fragmentSerializerInitializer } from 'nomad-ui/initialize
 import setupCodeMirror from 'nomad-ui/tests/helpers/codemirror';
 import { componentA11yAudit } from 'nomad-ui/tests/helpers/a11y-audit';
 import percySnapshot from '@percy/ember';
+import jsonToHcl from 'nomad-ui/utils/json-to-hcl';
 
 const Editor = create(jobEditor());
 
@@ -495,17 +496,6 @@ module('Integration | Component | job-editor', function (hooks) {
     assert.equal(job._newDefinition, 'pablo', 'Definition is set on the model');
 
     // Check if the newDefinitionVariables are set on the model
-    function jsonToHcl(obj) {
-      const hclLines = [];
-
-      for (const key in obj) {
-        const value = obj[key];
-        const hclValue = typeof value === 'string' ? `"${value}"` : value;
-        hclLines.push(`${key}=${hclValue}\n`);
-      }
-
-      return hclLines.join('\n');
-    }
     const expectedVariables = jsonToHcl(this.variables.flags).concat(
       this.variables.literal
     );

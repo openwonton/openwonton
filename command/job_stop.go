@@ -148,10 +148,8 @@ func (c *JobStopCommand) Run(args []string) int {
 
 	var wg sync.WaitGroup
 	for _, jobID := range jobIDs {
-		jobID := jobID
-
 		wg.Add(1)
-		go func() {
+		go func(jobID string) {
 			defer wg.Done()
 
 			// Truncate the id unless full length is requested
@@ -242,7 +240,7 @@ func (c *JobStopCommand) Run(args []string) int {
 			// and return result on status channel
 			mon := newMonitor(c.Ui, client, length)
 			statusCh <- mon.monitor(evalID)
-		}()
+		}(jobID)
 	}
 	// users will still see
 	// errors if any while we

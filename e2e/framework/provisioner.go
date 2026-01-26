@@ -9,10 +9,10 @@ import (
 	"testing"
 
 	capi "github.com/hashicorp/consul/api"
+	vapi "github.com/hashicorp/vault/api"
 	napi "github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/helper/useragent"
 	"github.com/openwonton/openwonton/helper/uuid"
-	vapi "github.com/hashicorp/vault/api"
 )
 
 // ClusterInfo is a handle to a provisioned cluster, along with clients

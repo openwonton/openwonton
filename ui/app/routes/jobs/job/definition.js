@@ -33,7 +33,7 @@ export default class DefinitionRoute extends Route {
       variableLiteral = specificationResponse?.Variables ?? null;
       format = specificationResponse?.Format ?? 'json';
     } catch (e) {
-      // Swallow the error because Nomad job pre-1.6 will not have a specification
+      // Swallow the error because legacy jobs pre-1.6 will not have a specification
     }
 
     return {

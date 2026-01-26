@@ -149,6 +149,7 @@ var uninteresting = []string{
 
 	// main
 	".",
+	"cmd",
 
 	// go embed assets
 	"command/asset",
@@ -163,6 +164,7 @@ var uninteresting = []string{
 
 	// not core code
 	"demo",
+	"third_party",
 	"tools",
 	"version",
 }

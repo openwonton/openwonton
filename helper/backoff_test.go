@@ -3,6 +3,7 @@
 
 package helper
 
+// Clean-room replacement; see CLEAN_ROOM_NOTES.md.
 import (
 	"testing"
 	"time"

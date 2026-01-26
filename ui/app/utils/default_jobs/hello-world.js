@@ -35,7 +35,7 @@ export default `job "hello-world" {
       port     = "www"
     }
 
-    // Tasks are individual units of work that are run by Nomad.
+    // Tasks are individual units of work that are run by OpenWonton.
     task "web" {
       // This particular task starts a simple web server within a Docker container
       driver = "docker"
@@ -49,7 +49,7 @@ export default `job "hello-world" {
 
       template {
         data        = <<EOF
-                        <h1>Hello, Nomad!</h1>
+                        <h1>Hello, OpenWonton!</h1>
                         <ul>
                           <li>Task: {{env "NOMAD_TASK_NAME"}}</li>
                           <li>Group: {{env "NOMAD_GROUP_NAME"}}</li>

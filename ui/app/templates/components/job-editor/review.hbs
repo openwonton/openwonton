@@ -28,11 +28,11 @@
 </Hds::Alert>
 <br>
 
-{{#if this.warnings}}
+{{#if @data.planOutput.warnings}}
   <Hds::Alert @type="inline" @color="warning" data-test-dry-run-warnings as |A|>
     <A.Description data-test-dry-run-warning-body>
       <p>
-        {{this.warnings}}
+        {{@data.planOutput.warnings}}
       </p>
     </A.Description>
   </Hds::Alert>

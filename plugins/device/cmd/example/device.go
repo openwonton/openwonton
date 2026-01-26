@@ -13,12 +13,12 @@ import (
 	"time"
 
 	log "github.com/hashicorp/go-hclog"
+	"github.com/kr/pretty"
 	"github.com/openwonton/openwonton/helper/pointer"
 	"github.com/openwonton/openwonton/plugins/base"
 	"github.com/openwonton/openwonton/plugins/device"
 	"github.com/openwonton/openwonton/plugins/shared/hclspec"
 	"github.com/openwonton/openwonton/plugins/shared/structs"
-	"github.com/kr/pretty"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

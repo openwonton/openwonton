@@ -9,11 +9,11 @@ import (
 	"github.com/hashicorp/go-msgpack/codec"
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
+	"github.com/mitchellh/mapstructure"
 	"github.com/openwonton/openwonton/helper/pluginutils/hclspecutils"
 	"github.com/openwonton/openwonton/nomad/structs"
 	"github.com/openwonton/openwonton/plugins/drivers"
 	"github.com/openwonton/openwonton/plugins/shared/hclspec"
-	"github.com/mitchellh/mapstructure"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
 )

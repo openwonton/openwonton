@@ -6,8 +6,8 @@ package config
 import (
 	"time"
 
-	"github.com/openwonton/openwonton/helper/pointer"
 	vault "github.com/hashicorp/vault/api"
+	"github.com/openwonton/openwonton/helper/pointer"
 )
 
 const (

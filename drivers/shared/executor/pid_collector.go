@@ -10,10 +10,10 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
+	ps "github.com/mitchellh/go-ps"
 	"github.com/openwonton/openwonton/client/lib/resources"
 	"github.com/openwonton/openwonton/helper/stats"
 	"github.com/openwonton/openwonton/plugins/drivers"
-	ps "github.com/mitchellh/go-ps"
 	"github.com/shirou/gopsutil/v3/process"
 )
 

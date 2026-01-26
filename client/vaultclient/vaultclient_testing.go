@@ -6,9 +6,9 @@ package vaultclient
 import (
 	"sync"
 
+	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/openwonton/openwonton/helper/uuid"
 	"github.com/openwonton/openwonton/nomad/structs"
-	vaultapi "github.com/hashicorp/vault/api"
 )
 
 // MockVaultClient is used for testing the vaultclient integration and is safe

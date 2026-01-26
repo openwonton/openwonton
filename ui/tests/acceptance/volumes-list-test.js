@@ -53,7 +53,7 @@ module('Acceptance | volumes list', function (hooks) {
     await VolumesList.visit();
 
     assert.equal(currentURL(), '/csi/volumes');
-    assert.equal(document.title, 'CSI Volumes - Nomad');
+    assert.equal(document.title, 'CSI Volumes - OpenWonton');
   });
 
   test('/csi/volumes should list the first page of volumes sorted by name', async function (assert) {

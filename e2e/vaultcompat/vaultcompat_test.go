@@ -17,9 +17,9 @@ import (
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-set"
 	"github.com/hashicorp/go-version"
+	vaultapi "github.com/hashicorp/vault/api"
 	nomadapi "github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/testutil"
-	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 )
@@ -123,7 +123,13 @@ func setupVault(t *testing.T, vc *vaultapi.Client) {
 }
 
 func startNomad(t *testing.T, vc *vaultapi.Client) (func(), *nomadapi.Client) {
+	nullFile, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0)
+	must.NoError(t, err, must.Sprint("failed to open null device"))
+	t.Cleanup(func() { _ = nullFile.Close() })
+
 	ts := testutil.NewTestServer(t, func(c *testutil.TestServerConfig) {
+		c.Stdout = nullFile
+		c.Stderr = nullFile
 		c.Vault = &testutil.VaultConfig{
 			Enabled:              true,
 			Address:              vc.Address(),

@@ -69,12 +69,12 @@ func (d *killer) v1(cgroup *configs.Cgroup) error {
 	// move executor PID into the init freezer cgroup so we can kill the task
 	// pids without killing the executor (which is the process running this code,
 	// doing the killing)
-	initPath, err := cgroups.GetInitCgroupPath(freezer)
+	initPath, err := GetInitCgroupPath(freezer)
 	if err != nil {
 		return fmt.Errorf("failed to find init cgroup: %w", err)
 	}
 	m := map[string]string{freezer: initPath}
-	if err = cgroups.EnterPid(m, d.pid); err != nil {
+	if err = EnterPid(m, d.pid); err != nil {
 		return fmt.Errorf("failed to add executor pid to init cgroup: %w", err)
 	}
 

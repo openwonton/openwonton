@@ -82,7 +82,7 @@ module('Acceptance | job clients', function (hooks) {
     const clientsInTable = Clients.clients.map((c) => c.id).sort();
     assert.deepEqual(clientsInTable, clientIDs);
 
-    assert.equal(document.title, `Job ${job.name} clients - Nomad`);
+    assert.equal(document.title, `Job ${job.name} clients - OpenWonton`);
   });
 
   test('dates have tooltip', async function (assert) {

@@ -94,7 +94,7 @@ export default class TopoViz extends Component {
     const nodes = this.args.nodes;
     const allocations = this.args.allocations;
 
-    // Nodes may not have a resources property due to having an old Nomad agent version.
+    // Nodes may not have a resources property due to having a legacy agent version.
     const badNodes = [];
 
     // Wrap nodes in a topo viz specific data structure and build an index to speed up allocation assignment
@@ -118,7 +118,7 @@ export default class TopoViz extends Component {
       const nodeId = allocation.belongsTo('node').id();
       const nodeContainer = nodeIndex[nodeId];
 
-      // Ignore orphaned allocations and allocations on nodes with an old Nomad agent version.
+      // Ignore orphaned allocations and allocations on nodes with a legacy agent version.
       if (!nodeContainer) return;
 
       const allocationContainer = this.dataForAllocation(

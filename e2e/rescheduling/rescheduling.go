@@ -3,6 +3,7 @@
 
 package rescheduling
 
+// Clean-room replacement; see CLEAN_ROOM_NOTES.md.
 import (
 	"fmt"
 

@@ -17,7 +17,7 @@ export default class VolumeSerializer extends ApplicationSerializer {
 
   // Volumes treat Allocations as embedded records. Ember has an
   // EmbeddedRecords mixin, but it assumes an application is using
-  // the REST serializer and Nomad does not.
+  // the REST serializer and OpenWonton does not.
   normalize(typeHash, hash) {
     hash.NamespaceID = hash.Namespace;
 

@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       build-ref:
-        description: 'The git ref to build from'
+        description: "The git ref to build from"
         type: string
-        default: ''
+        default: ""
         required: false
       make-prerelease:
         description: "Run prerelease to generate files"
@@ -19,12 +19,12 @@ on:
         default: true
 
 env:
-  PKG_NAME: "nomad"
+  PKG_NAME: "wonton"
   GO_TAGS: "release"
 
 jobs:
   get-go-version:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       go-version: ${{ steps.get-go-version.outputs.go-version }}
     steps:
@@ -39,7 +39,7 @@ jobs:
           echo "Building with Go $(cat .go-version)"
           echo "go-version=$(cat .go-version)" >> "$GITHUB_OUTPUT"
   get-product-version:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       product-version: ${{ steps.get-product-version.outputs.product-version }}
     steps:
@@ -53,7 +53,7 @@ jobs:
           echo "product-version=$(make version)" >> "$GITHUB_OUTPUT"
   generate-metadata-file:
     needs: get-product-version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       filepath: ${{ steps.generate-metadata-file.outputs.filepath }}
     steps:
@@ -67,16 +67,16 @@ jobs:
         with:
           version: ${{ needs.get-product-version.outputs.product-version }}
           product: ${{ env.PKG_NAME }}
-          repositoryOwner: "hashicorp"
+          repositoryOwner: ${{ github.repository_owner }}
           sha: ${{ github.event.inputs.build-ref }}
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: metadata.json
           path: ${{ steps.generate-metadata-file.outputs.filepath }}
 
   build-other:
     needs: [get-go-version, get-product-version]
-    runs-on: [ custom, linux, xxl, 20.04 ]
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         goos: [windows]
@@ -116,19 +116,19 @@ jobs:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
           GO_TAGS: ${{ env.GO_TAGS }}
-          CGO_ENABLED: 1
+          CGO_ENABLED: 0
         run: |
           go clean -cache
           make pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip
           mv pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
           path: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
 
   build-linux:
     needs: [get-go-version, get-product-version]
-    runs-on: [ custom, linux, xxl, 20.04 ]
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         goos: [linux]
@@ -193,7 +193,7 @@ jobs:
           go clean -cache
           make pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip
           mv pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
           path: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
@@ -202,10 +202,10 @@ jobs:
         uses: hashicorp/actions-packaging-linux@v1
         with:
           name: ${{ env.PKG_NAME }}
-          description: "Nomad is an easy-to-use, flexible, and performant workload orchestrator that can deploy a mix of microservice, batch, containerized, and non-containerized applications."
+          description: "OpenWonton is an easy-to-use, flexible, and performant workload orchestrator that can deploy a mix of microservice, batch, containerized, and non-containerized applications."
           arch: ${{ matrix.goarch }}
           version: ${{ needs.get-product-version.outputs.product-version }}
-          maintainer: "HashiCorp"
+          maintainer: "OpenWonton"
           homepage: "https://github.com/openwonton/openwonton"
           license: "MPL-2.0"
           binary: "pkg/${{ matrix.goos }}_${{ matrix.goarch }}/${{ env.PKG_NAME }}"
@@ -221,19 +221,19 @@ jobs:
           echo "RPM_PACKAGE=$(basename out/*.rpm)" >> "$GITHUB_ENV"
           echo "DEB_PACKAGE=$(basename out/*.deb)" >> "$GITHUB_ENV"
 
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: ${{ env.RPM_PACKAGE }}
           path: out/${{ env.RPM_PACKAGE }}
 
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: ${{ env.DEB_PACKAGE }}
           path: out/${{ env.DEB_PACKAGE }}
 
   build-darwin:
     needs: [get-go-version, get-product-version]
-    runs-on: ${{ endsWith(github.repository, '-enterprise') && fromJSON('["self-hosted", "ondemand", "macos"]') || 'macos-latest' }}
+    runs-on: macos-latest
     strategy:
       matrix:
         goos: [darwin]
@@ -246,14 +246,6 @@ jobs:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
           ref: ${{ github.event.inputs.build-ref }}
-
-      - uses: ./.github/actions/vault-secrets
-        with:
-          paths: |-
-            kv/data/github/hashicorp/nomad-enterprise/gha ELEVATED_GITHUB_TOKEN ;
-      - name: Git config token
-        if: endsWith(github.repository, '-enterprise')
-        run: git config --global url.'https://${{ env.ELEVATED_GITHUB_TOKEN }}@github.com'.insteadOf 'https://github.com'
 
       - name: Setup go
         uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # v4.0.1
@@ -287,7 +279,7 @@ jobs:
           go clean -cache
           make pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip
           mv pkg/${{ matrix.goos }}_${{ matrix.goarch }}.zip ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
-      - uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      - uses: actions/upload-artifact@v4 # v4
         with:
           name: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
           path: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
@@ -297,7 +289,7 @@ jobs:
     needs:
       - get-product-version
       - build-linux
-    runs-on: [ custom, linux, xxl, 20.04 ]
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         arch: ["arm64", "amd64"]
@@ -314,7 +306,7 @@ jobs:
         uses: hashicorp/actions-docker-build@v1
         with:
           smoke_test: |
-            TEST_VERSION="$(docker run "${IMAGE_NAME}" version | awk '/Nomad v/{print $2}')"
+            TEST_VERSION="$(docker run "${IMAGE_NAME}" version | awk '/OpenWonton v/{print $2}')"
             if [ "${TEST_VERSION}" != "v${version}" ]; then
               echo "Test FAILED"
               exit 1
@@ -324,11 +316,13 @@ jobs:
           revision: ${{env.revision}}
           target: release
           arch: ${{matrix.arch}}
+          pkg_name: ${{ env.PKG_NAME }}_${{ env.version }}
+          bin_name: ${{ env.PKG_NAME }}
           tags: |
-            docker.io/hashicorp/${{env.PKG_NAME}}:${{env.version}}
+            ghcr.io/${{ github.repository_owner }}/${{env.PKG_NAME}}:${{env.version}}
           dev_tags: |
-            docker.io/hashicorppreview/${{ env.PKG_NAME }}:${{ env.version }}-dev
-            docker.io/hashicorppreview/${{ env.PKG_NAME }}:${{ env.version }}-${{env.revision}}
+            ghcr.io/${{ github.repository_owner }}/${{ env.PKG_NAME }}:${{ env.version }}-dev
+            ghcr.io/${{ github.repository_owner }}/${{ env.PKG_NAME }}:${{ env.version }}-${{env.revision}}
 
   minimum-os:
     name: OS Compatibility
@@ -350,7 +344,7 @@ jobs:
       - uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # v4.0.1
         with:
           go-version: ${{needs.get-go-version.outputs.go-version}}
-      - uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+      - uses: actions/download-artifact@v4 # v4
         with:
           name: ${{ env.PKG_NAME }}_${{ needs.get-product-version.outputs.product-version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
       - name: Test binary
@@ -362,11 +356,11 @@ jobs:
           unzip "$artifact_name"
           echo "::group::Diagnostics"
           echo "CGO related build information:"
-          go version -m ./nomad | grep CGO
+          go version -m ./wonton | grep CGO
           echo "GLIBC links:"
-          go tool nm ./nomad | grep -i glibc | cut -d @ -f 2-3 | sort --version-sort | uniq
+          go tool nm ./wonton | grep -i glibc | cut -d @ -f 2-3 | sort --version-sort | uniq
           echo "::group::Smoke test binary"
-          docker run --rm -v "$PWD:/src" registry.access.redhat.com/ubi7/ubi-minimal:7.9-1057 /src/nomad version
+          docker run --rm -v "$PWD:/src" registry.access.redhat.com/ubi7/ubi-minimal:7.9-1057 /src/wonton version
 
 permissions:
   contents: read

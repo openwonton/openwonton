@@ -6,8 +6,8 @@ package command
 import (
 	"strings"
 
-	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/mitchellh/cli"
+	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/posener/complete"
 )
 

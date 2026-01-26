@@ -13,9 +13,9 @@ import (
 
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
+	"github.com/mitchellh/mapstructure"
 	"github.com/openwonton/openwonton/api"
 	flaghelper "github.com/openwonton/openwonton/helper/flags"
-	"github.com/mitchellh/mapstructure"
 	"github.com/posener/complete"
 )
 

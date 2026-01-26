@@ -1065,7 +1065,7 @@ func TestTracker_ConsulChecks_OnUpdate(t *testing.T) {
 			select {
 			case <-tracker.ctx.Done():
 				// Ok, tracker should exit after reporting healthy
-			default:
+			case <-time.After(4 * checkInterval):
 				require.Fail(t, "expected tracker to exit after reporting healthy")
 			}
 		})

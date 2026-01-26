@@ -41,7 +41,7 @@ module('Acceptance | jobs list', function (hooks) {
     await JobsList.visit();
 
     assert.equal(currentURL(), '/jobs');
-    assert.equal(document.title, 'Jobs - Nomad');
+    assert.equal(document.title, 'Jobs - OpenWonton');
   });
 
   test('/jobs should list the first page of jobs sorted by modify index', async function (assert) {

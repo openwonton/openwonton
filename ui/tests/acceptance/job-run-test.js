@@ -86,7 +86,7 @@ module('Acceptance | job run', function (hooks) {
     await JobRun.visit();
 
     assert.equal(currentURL(), '/jobs/run');
-    assert.equal(document.title, 'Run a job - Nomad');
+    assert.equal(document.title, 'Run a job - OpenWonton');
   });
 
   test('when submitting a job, the site redirects to the new job overview page', async function (assert) {

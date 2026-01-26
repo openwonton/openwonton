@@ -14,10 +14,10 @@ import (
 	"strings"
 	"syscall"
 
+	"github.com/moby/term"
 	"github.com/openwonton/openwonton/api"
 	"github.com/openwonton/openwonton/api/contexts"
 	"github.com/openwonton/openwonton/helper/escapingio"
-	"github.com/moby/term"
 	"github.com/posener/complete"
 )
 

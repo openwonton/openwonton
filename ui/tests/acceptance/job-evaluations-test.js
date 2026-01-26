@@ -47,7 +47,7 @@ module('Acceptance | job evaluations', function (hooks) {
       assert.equal(evaluation.id, shortId, `Evaluation ${index} is ${shortId}`);
     });
 
-    assert.equal(document.title, `Job ${job.name} evaluations - Nomad`);
+    assert.equal(document.title, `Job ${job.name} evaluations - OpenWonton`);
   });
 
   test('evaluations table is sortable', async function (assert) {

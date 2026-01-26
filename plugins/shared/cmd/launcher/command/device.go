@@ -18,12 +18,12 @@ import (
 	"github.com/hashicorp/hcl"
 	"github.com/hashicorp/hcl/hcl/ast"
 	"github.com/hashicorp/hcl/v2/hcldec"
+	"github.com/kr/pretty"
+	"github.com/mitchellh/cli"
 	"github.com/openwonton/openwonton/helper/pluginutils/hclspecutils"
 	"github.com/openwonton/openwonton/helper/pluginutils/hclutils"
 	"github.com/openwonton/openwonton/plugins/base"
 	"github.com/openwonton/openwonton/plugins/device"
-	"github.com/kr/pretty"
-	"github.com/mitchellh/cli"
 	"github.com/zclconf/go-cty/cty/msgpack"
 )
 
