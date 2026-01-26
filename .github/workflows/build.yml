@@ -161,6 +161,7 @@ jobs:
           apt-get install -y --no-install-recommends gh
           apt-get install -y --no-install-recommends \
             git \
+            file \
             make \
             gcc \
             g++ \
