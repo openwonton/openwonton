@@ -129,7 +129,8 @@ jobs:
 
   build-linux:
     needs: [get-go-version, get-product-version]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+    container: ubuntu:20.04
     strategy:
       matrix:
         goos: [linux]
@@ -139,6 +140,27 @@ jobs:
     name: Go ${{ needs.get-go-version.outputs.go-version }} ${{ matrix.goos }} ${{ matrix.goarch }} build
 
     steps:
+      - name: Install build packages
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            ca-certificates \
+            curl \
+            git \
+            make \
+            gcc \
+            g++ \
+            pkg-config \
+            libcap-dev \
+            libseccomp-dev \
+            unzip \
+            zip \
+            xz-utils \
+            software-properties-common \
+            binutils-aarch64-linux-gnu \
+            binutils-arm-linux-gnueabihf \
+            gcc-aarch64-linux-gnu \
+            gcc-arm-linux-gnueabihf
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
           ref: ${{ github.event.inputs.build-ref }}
@@ -163,17 +185,6 @@ jobs:
       - name: Build prerelease
         run: make prerelease
         if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.make-prerelease == 'true' }}
-
-      - name: Install Linux build utilties
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo apt-get update
-          sudo apt-get install -y \
-            binutils-aarch64-linux-gnu \
-            binutils-arm-linux-gnueabihf \
-            gcc-aarch64-linux-gnu \
-            gcc-arm-linux-gnueabihf
 
       - name: Set gcc
         run: |
