@@ -153,6 +153,7 @@ jobs:
             ca-certificates \
             curl \
             git \
+            gh \
             make \
             gcc \
             g++ \
