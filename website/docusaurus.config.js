@@ -3,7 +3,7 @@
 
 const path = require('path');
 
-const baseUrl = process.env.DOCUSAURUS_BASE_URL || '/nomad/';
+const baseUrl = process.env.DOCUSAURUS_BASE_URL || '/';
 
 module.exports = {
   title: 'OpenWonton',
