@@ -47,7 +47,14 @@ There are five primary nouns in OpenWonton:
 - deployments
 - evaluations
 
-[![OpenWonton Data Model](/img/nomad-data-model.png)](/img/nomad-data-model.png)
+Mermaid diagram:
+
+```mermaid
+flowchart LR
+  Eval["Evaluation"] --> Alloc["Allocation"]
+  Alloc --> Node["Node"]
+  Alloc --> Job["Job"]
+```
 
 Jobs are submitted by users and represent a _desired state_. A job is a
 declarative description of tasks to run which are bounded by constraints and

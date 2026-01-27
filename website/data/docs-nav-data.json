@@ -2243,7 +2243,7 @@
     "divider": true
   },
   {
-    "title": "Nomad vs. Kubernetes",
+    "title": "OpenWonton vs. Kubernetes",
     "routes": [
       {
         "title": "Overview",
@@ -2260,42 +2260,12 @@
     ]
   },
   {
-    "title": "Nomad Ecosystem",
+    "title": "OpenWonton Ecosystem",
     "path": "ecosystem"
   },
   {
-    "title": "Nomad Partnerships",
+    "title": "OpenWonton Partnerships",
     "path": "partnerships"
-  },
-  {
-    "title": "Who Uses Nomad",
-    "path": "who-uses-nomad"
-  },
-  {
-    "title": "Nomad Enterprise",
-    "routes": [
-      {
-        "title": "Overview",
-        "path": "enterprise"
-      },
-      {
-        "title": "License",
-        "routes": [
-          {
-            "title": "Overview",
-            "path": "enterprise/license"
-          },
-          {
-            "title": "FAQ",
-            "path": "enterprise/license/faq"
-          }
-        ]
-      },
-      {
-        "title": "Sentinel",
-        "path": "enterprise/sentinel"
-      }
-    ]
   },
   {
     "title": "FAQ",

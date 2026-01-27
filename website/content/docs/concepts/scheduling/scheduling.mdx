@@ -2,11 +2,19 @@
 layout: docs
 page_title: Scheduling
 description: Learn about how scheduling works in OpenWonton.
+slug: /docs/concepts/scheduling/scheduling
 ---
 
 # Scheduling in OpenWonton
 
-[![OpenWonton Data Model][img-data-model]][img-data-model]
+Mermaid diagram:
+
+```mermaid
+flowchart LR
+  Eval["Evaluation"] --> Alloc["Allocation"]
+  Alloc --> Node["Node"]
+  Alloc --> Job["Job"]
+```
 
 There are four primary "nouns" in OpenWonton; jobs, nodes, allocations, and
 evaluations. Jobs are submitted by users and represent a _desired state_. A job
@@ -27,7 +35,41 @@ and reconcile it with the desired state.
 
 This diagram shows the flow of an evaluation through OpenWonton:
 
-[![OpenWonton Evaluation Flow][img-eval-flow]][img-eval-flow]
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  classDef event stroke-dasharray:5 3,fill:#0d1722,stroke:#f6a23a
+  classDef core fill:#121a24,stroke:#f6a23a
+  classDef alloc fill:#16212d,stroke:#f6a23a
+
+  subgraph Events["Events"]
+    direction LR
+    JR["Job register"]:::event -->|Create| EV1["Evaluation"]
+    JU["Job update"]:::event -->|Create| EV2["Evaluation"]
+    NF["Node failure"]:::event -->|Create| EV3["Evaluation"]
+  end
+
+  EV1 -->|Enqueue| Broker["Evaluation Broker<br/>(Leader)"]:::core
+  EV2 -->|Enqueue| Broker
+  EV3 -->|Enqueue| Broker
+
+  Broker -->|Dequeue| Svc["Server<br/>Service scheduler"]:::core
+  Broker -->|Dequeue| Batch["Server<br/>Batch scheduler"]:::core
+  Broker -->|Dequeue| Custom["Server<br/>Custom scheduler"]:::core
+
+  Svc -->|Submit plan| PlanQ["Plan Queue<br/>(Leader)"]:::core
+  Batch -->|Submit plan| PlanQ
+  Custom -->|Submit plan| PlanQ
+
+  PlanQ -->|Plan result| Svc
+  PlanQ -->|Plan result| Batch
+  PlanQ -->|Plan result| Custom
+
+  PlanQ -->|Create| A1["Allocation"]:::alloc
+  PlanQ -->|Create| A2["Allocation"]:::alloc
+  PlanQ -->|Create| A3["Allocation"]:::alloc
+```
 
 The lifecycle of an evaluation begins with an event causing the evaluation to
 be created. Evaluations are created in the `pending` state and are enqueued
@@ -89,5 +131,3 @@ begin execution.
 
 [omega]: https://research.google.com/pubs/pub41684.html
 [borg]: https://research.google.com/pubs/pub43438.html
-[img-data-model]: /img/nomad-data-model.png
-[img-eval-flow]: /img/nomad-evaluation-flow.png

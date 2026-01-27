@@ -1,10 +1,11 @@
-# Proprietary License
+# Website License and Attribution
 
-This license is temporary while a more official one is drafted. However,
-this should make it clear:
+The documentation text in this website is derived from HashiCorp Nomad
+documentation and is licensed under the Mozilla Public License, v. 2.0
+(MPL-2.0). Portions of the text are Copyright (c) HashiCorp, Inc.
 
-The text contents of this website are MPL 2.0 licensed.
+The website theme, layout, and original assets in this repository are
+Copyright (c) 2026 OpenWonton Authors and licensed under MPL-2.0 unless
+otherwise noted.
 
-The design contents of this website are proprietary and may not be reproduced
-or reused in any way other than to run the website locally. The license for
-the design is owned solely by HashiCorp, Inc.
+Trademarks are owned by their respective holders.

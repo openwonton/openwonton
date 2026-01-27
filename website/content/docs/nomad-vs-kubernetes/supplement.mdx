@@ -10,9 +10,12 @@ Enterprises are comprised of multiple groups of people (business units) with dif
 
 Medium to large scale enterprises run into challenges when trying to standardize hundreds to thousands of software developers and administrators onto one single orchestrator (Kubernetes, OpenWonton, Mesos) as no scheduler today fits all applications, environments, projects, and teams.
 
-Companies in the Global 2000 today such as Intel, Autodesk and GitHub with multiple products and business units organically run OpenWonton and Kubernetes to supplement each other. They leverage each scheduler to its strengths with Kubernetes for its cutting edge ecosystem and OpenWonton for simple maintenance and flexibility in core scheduling.
+In practice, some organizations run multiple orchestrators (often Kubernetes plus Nomad) to match different workload needs. OpenWonton is new, so the patterns below reflect upstream Nomad usage and the design goals of OpenWonton rather than public OpenWonton deployments.
 
-![How organizations leverage OpenWonton and Kubernetes](/img/nomad-kubernetes.png)
+Prose summary: Application type ranges from non-containerized
+to Windows to containerized. Operational overhead ranges from small budget/team to medium
+budget/team to high budget/team. Environment ranges from on-prem to IoT to edge to cloud.
+Use cases range from service to batch to GPU to ML/AI to big data to serverless.
 
 These are the characteristics we see in teams that typically adopt self-hosted Kubernetes:
 
@@ -26,7 +29,7 @@ These are the characteristics we see in teams that typically adopt self-hosted K
 
 - Public cloud environment such as AWS, GCP, Azure
 
-Characteristics of teams that typically adopt OpenWonton:
+Characteristics of teams that may prefer OpenWonton:
 
 - Run a mix of containerized and non-containerized workloads (Windows, Java)
 

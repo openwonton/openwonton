@@ -32,7 +32,18 @@ In closed-loop systems there are a few key components:
 * **Sensor** reads the system output and translates it to a value that can be
   used by the controller.
 
-[![Closed-loop controller](/img/autoscaling/control-loop.png)](/img/autoscaling/control-loop.png)
+Mermaid diagram:
+
+```mermaid
+flowchart LR
+  Setpoint["Setpoint"] --> Comparator((Comparator))
+  Comparator --> Controller["Controller"]
+  Controller --> Actuator["Actuator"]
+  Actuator --> System["System"]
+  System --> Output["Output"]
+  Output --> Sensor["Sensor"]
+  Sensor --> Comparator
+```
 
 The Nomad Autoscaler follows this same base architecture and offloads some of
 the components to [different types of plugins](/nomad/tools/autoscaling/concepts/plugins).
@@ -49,4 +60,17 @@ the components to [different types of plugins](/nomad/tools/autoscaling/concepts
   apply changes defined by the Autoscaler.
 * **APM plugins** read application performance metrics from external sources.
 
-[![Nomad Autoscaler architecture](/img/autoscaling/autoscaler-arch.png)](/img/autoscaling/autoscaler-arch.png)
+Mermaid diagram:
+
+```mermaid
+flowchart LR
+  Policy["Policy"] --> Strategy((Strategy plugin))
+  Strategy --> Autoscaler["Nomad Autoscaler"]
+  Autoscaler --> TargetPlugin["Target plugin"]
+  TargetPlugin --> Target["Target"]
+
+  Target -->|Target status| TargetPlugin
+  Target -->|Metrics| APM["APM plugin"]
+  APM --> Strategy
+  TargetPlugin --> Strategy
+```

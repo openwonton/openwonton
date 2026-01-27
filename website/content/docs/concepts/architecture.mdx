@@ -21,7 +21,31 @@ spelunking through the source code.
 
 Looking at only a single region, at a high level OpenWonton looks like this:
 
-[![Regional Architecture](/img/nomad-architecture-region.png)](/img/nomad-architecture-region.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Region["Single Region"]
+    direction TB
+    subgraph Clients
+      direction LR
+      C1["Client DC1"]
+      C2["Client DC2"]
+      C3["Client DC3"]
+    end
+    subgraph Servers
+      direction LR
+      S1["Server Follower"]
+      S2["Server Leader"]
+      S3["Server Follower"]
+    end
+    C1 -->|RPC| S1
+    C2 -->|RPC| S2
+    C3 -->|RPC| S3
+    S1 <--> |Replication / Forwarding| S2
+    S2 <--> |Replication / Forwarding| S3
+  end
+```
 
 Within each region, we have both clients and servers. Servers are responsible for
 accepting jobs from users, managing clients, and [computing task placements](/nomad/docs/concepts/scheduling/scheduling).
@@ -32,7 +56,32 @@ In some cases, for either availability or scalability, you may need to run multi
 regions. OpenWonton supports federating multiple regions together into a single cluster.
 At a high level, this setup looks like this:
 
-[![Global Architecture](/img/nomad-architecture-global.png)](/img/nomad-architecture-global.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Regions[Regions]
+    direction TB
+    subgraph RegionA["Region A"]
+      direction LR
+      A1["Server Follower"]
+      A2["Server Leader"]
+      A3["Server Follower"]
+      A1 <--> |Replication / Forwarding| A2
+      A2 <--> |Replication / Forwarding| A3
+    end
+    subgraph RegionB["Region B"]
+      direction LR
+      B1["Server Follower"]
+      B2["Server Leader"]
+      B3["Server Follower"]
+      B1 <--> |Replication / Forwarding| B2
+      B2 <--> |Replication / Forwarding| B3
+    end
+  end
+  A2 -. Gossip .- B2
+  A3 -->|Region forwarding| B3
+```
 
 Regions are fully independent from each other, and do not share jobs, clients, or
 state. They are loosely-coupled using a gossip protocol, which allows users to

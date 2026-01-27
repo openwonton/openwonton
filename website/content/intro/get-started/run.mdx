@@ -1,0 +1,30 @@
+---
+layout: intro
+page_title: Run OpenWonton Locally
+description: |-
+  Start a local development agent and verify it is running.
+---
+
+# Run OpenWonton locally
+
+Start a local development agent in one terminal. On Linux, run the client with
+`sudo` so that networking and resource accounting work correctly.
+
+```shell-session
+$ sudo wonton agent -dev
+```
+
+Open a second terminal and verify the agent is reachable.
+
+```shell-session
+$ export NOMAD_ADDR=http://127.0.0.1:4646
+$ wonton status
+$ wonton node status
+```
+
+The development agent runs a combined server and client. When you are ready to
+run a real cluster, use separate server and client configurations instead of
+`-dev`.
+
+For more details about agent configuration, see
+[Operating OpenWonton Agents](/nomad/docs/operations/nomad-agent).
