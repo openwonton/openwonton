@@ -155,7 +155,7 @@ jobs:
           set -euo pipefail
           echo "Waiting for build workflow for ref ${BUILD_REF}"
           run_id=""
-          for i in {1..30}; do
+          for _ in {1..30}; do
             run_id=$(gh run list \
               --workflow build.yml \
               --branch "${{ github.ref_name }}" \
@@ -187,10 +187,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          tag="v${{ github.event.inputs.version }}"
-          title="OpenWonton ${{ github.event.inputs.version }}"
+          version="${{ github.event.inputs.version }}"
+          tag="v${version}"
+          title="OpenWonton ${version}"
           prerelease_flag=""
-          if [[ "${{ github.event.inputs.version }}" == *-* ]]; then
+          if [[ "${version}" == *-* ]]; then
             prerelease_flag="--prerelease"
           fi
           mapfile -t assets < <(find dist -maxdepth 4 -type f)
