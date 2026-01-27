@@ -18,6 +18,10 @@ on:
         type: string
         default: ""
 
+permissions:
+  contents: write
+  actions: read
+
 env:
   GO_TAGS: "release"
 
@@ -141,6 +145,68 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh workflow run build.yml --ref ${{ github.ref_name }} --field build-ref=${{ steps.commit-change-push.outputs.build-ref }} --field make-prerelease=false
+      - name: Wait for build workflow
+        id: wait-build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_REF: ${{ steps.commit-change-push.outputs.build-ref }}
+        run: |
+          set -euo pipefail
+          echo "Waiting for build workflow for ref ${BUILD_REF}"
+          run_id=""
+          for i in {1..30}; do
+            run_id=$(gh run list \
+              --workflow build.yml \
+              --branch "${{ github.ref_name }}" \
+              --json databaseId,headSha \
+              --jq ".[] | select(.headSha==\"${BUILD_REF}\") | .databaseId" \
+              | head -n 1)
+            if [ -n "${run_id}" ]; then
+              echo "build-run-id=${run_id}" >> "$GITHUB_OUTPUT"
+              break
+            fi
+            echo "Build run not found yet, retrying..."
+            sleep 10
+          done
+          if [ -z "${run_id}" ]; then
+            echo "::error::Failed to find build run for ${BUILD_REF}"
+            exit 1
+          fi
+          gh run watch "${run_id}" --exit-status
+      - name: Download build artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p dist
+          gh run download "${{ steps.wait-build.outputs.build-run-id }}" --dir dist
+          echo "Downloaded artifacts:"
+          find dist -maxdepth 4 -type f -print
+      - name: Upload release assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag="v${{ github.event.inputs.version }}"
+          title="OpenWonton ${{ github.event.inputs.version }}"
+          prerelease_flag=""
+          if [[ "${{ github.event.inputs.version }}" == *-* ]]; then
+            prerelease_flag="--prerelease"
+          fi
+          mapfile -t assets < <(find dist -maxdepth 4 -type f)
+          if [ "${#assets[@]}" -eq 0 ]; then
+            echo "::error::No artifacts found to upload"
+            exit 1
+          fi
+          if gh release view "${tag}" >/dev/null 2>&1; then
+            gh release upload "${tag}" "${assets[@]}" --clobber
+          else
+            gh release create "${tag}" "${assets[@]}" \
+              --title "${title}" \
+              --notes "Release ${tag}" \
+              --target "${{ steps.commit-change-push.outputs.build-ref }}" \
+              ${prerelease_flag} \
+              --draft
+          fi
 
       - name: Revert notification channel
         if: ${{ github.event.inputs.notification-channel != '' }}
