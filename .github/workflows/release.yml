@@ -209,6 +209,9 @@ jobs:
               ${prerelease_flag} \
               --draft
           fi
+      - name: Cleanup downloaded artifacts
+        run: |
+          rm -rf dist
 
       - name: Revert notification channel
         if: ${{ github.event.inputs.notification-channel != '' }}
