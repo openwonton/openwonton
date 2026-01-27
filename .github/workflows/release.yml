@@ -20,7 +20,8 @@ on:
 
 permissions:
   contents: write
-  actions: read
+  actions: write
+  id-token: write
 
 env:
   GO_TAGS: "release"
@@ -265,8 +266,3 @@ jobs:
           else
             echo "no files were updated"
           fi
-
-permissions:
-  contents: write
-  actions: write
-  id-token: write
