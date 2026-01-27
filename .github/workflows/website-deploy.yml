@@ -1,0 +1,52 @@
+name: Deploy Docs (Bunny)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'website/**'
+      - '.github/workflows/website-deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: website-deploy
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: website
+
+      - name: Build site
+        run: npm run build
+        working-directory: website
+
+      - name: Deploy to Bunny Storage
+        uses: ayeressian/bunnycdn-storage-deploy@v2.4.0
+        with:
+          source: 'website/build'
+          storageZoneName: '${{ secrets.BUNNY_STORAGE_ZONE }}'
+          storagePassword: '${{ secrets.BUNNY_STORAGE_PASSWORD }}'
+          storageEndpoint: '${{ secrets.BUNNY_STORAGE_ENDPOINT }}'
+          accessKey: '${{ secrets.BUNNY_API_KEY }}'
+          pullZoneId: '${{ secrets.BUNNY_PULL_ZONE_ID }}'
+          upload: 'true'
+          remove: 'true'
+          purgePullZone: 'true'
+          purgePullZoneDelay: '5'
+          maxRetries: '5'

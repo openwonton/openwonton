@@ -1,0 +1,30 @@
+---
+layout: intro
+page_title: Install OpenWonton
+description: |-
+  Install the OpenWonton CLI and verify the installation.
+---
+
+# Install the OpenWonton CLI
+
+OpenWonton is distributed as a single binary. The fastest way to get started is
+installing a release build and adding it to your PATH.
+
+## Install from releases
+
+1. Download the latest OpenWonton release from GitHub:
+   https://github.com/openwonton/openwonton/releases
+2. Unzip the archive and place the `wonton` binary in a directory on your PATH.
+3. Verify that the CLI is available.
+
+```shell-session
+$ wonton version
+```
+
+If you also have the `nomad` compatibility shim installed, it should report the
+same version.
+
+## More installation options
+
+For detailed installation steps, package manager notes, and post-install setup,
+see [Installing OpenWonton](/nomad/docs/install).

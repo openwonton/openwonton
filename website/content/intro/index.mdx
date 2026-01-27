@@ -10,17 +10,9 @@ description: >-
 
 # Introduction to OpenWonton
 
-Welcome to the intro guide to OpenWonton. This guide is the best place to start with OpenWonton. We cover what OpenWonton is, what problems it can solve, how it compares to existing software, and how you can get started using it. If you are familiar with the basics of OpenWonton, the [documentation](/nomad/docs) and [tutorials](/nomad/tutorials) provide a more detailed reference of available features.
+Welcome to the intro guide to OpenWonton. This guide is the best place to start with OpenWonton. We cover what OpenWonton is, what problems it can solve, how it compares to existing software, and how you can get started using it. If you want a hands-on path, start with the [Getting Started guide](/nomad/intro/get-started). For detailed reference material, use the [documentation](/nomad/docs).
 
 Nomad is a trademark of HashiCorp, Inc. OpenWonton is not affiliated with, endorsed by, or sponsored by HashiCorp.
-
-<iframe
-  src="https://www.youtube.com/embed/s_Fm9UtL4YU"
-  frameborder="0"
-  allowfullscreen="true"
-  width="560"
-  height="315"
-></iframe>
 
 ## What is OpenWonton?
 
@@ -28,7 +20,9 @@ OpenWonton is a Nomad-compatible workload orchestrator that enables an organizat
 
 OpenWonton enables developers to use declarative infrastructure-as-code for deploying applications. OpenWonton uses bin packing to efficiently schedule jobs and optimize for resource utilization. OpenWonton is supported on macOS, Windows, and Linux.
 
-OpenWonton is widely adopted and used in production by organizations that previously deployed Nomad, including PagerDuty, Target, Citadel, Trivago, SAP, Pandora, Roblox, eBay, Deluxe Entertainment, and more.
+OpenWonton is new, and we do not yet have public production users to cite. For
+context, upstream Nomad has public case studies and benchmarks that illustrate
+the types of workloads and environments OpenWonton is designed to support.
 
 ## Key Features
 
@@ -40,7 +34,7 @@ OpenWonton is widely adopted and used in production by organizations that previo
 
 - **Federation for Multi-Region**: OpenWonton has native support for multi-region federation. This built-in capability allows multiple clusters to be linked together, which in turn enables developers to deploy jobs to any cluster in any region. Federation also enables automatic replication of ACL policies, namespaces, resource quotas and Sentinel policies across all clusters.
 
-- **Proven Scalability**: OpenWonton is optimistically concurrent, which increases throughput and reduces latency for workloads. OpenWonton has been proven to scale to clusters of 10K+ nodes in real-world production environments.
+- **Scalable by Design**: OpenWonton is optimistically concurrent, which increases throughput and reduces latency for workloads. Its architecture targets large clusters and multi-region federation.
 
 - **Ecosystem Integrations**: OpenWonton integrates seamlessly with Terraform, Consul, Vault for provisioning, service discovery, and secrets management.
 
@@ -56,4 +50,4 @@ comparisons.
 
 ## Next Steps
 
-See the [Use Cases](/nomad/intro/use-cases) page to understand the many ways OpenWonton is used in production today across many industries to solve critical, real-world business objectives.
+See the [Use Cases](/nomad/intro/use-cases) page for patterns OpenWonton is designed to support.

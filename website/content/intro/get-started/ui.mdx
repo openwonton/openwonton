@@ -1,0 +1,31 @@
+---
+layout: intro
+page_title: Use the Web UI
+description: |-
+  Explore jobs, nodes, and allocations in the OpenWonton UI.
+---
+
+# Use the Web UI
+
+OpenWonton serves a built-in UI from the agent on port 4646. When running the
+local development agent, open the UI in your browser at:
+
+```
+http://127.0.0.1:4646/ui
+```
+
+From the UI you can:
+
+- Inspect jobs and allocations.
+- View node health and resources.
+- See task logs and events.
+
+If you prefer the CLI, you can open the UI from a terminal:
+
+```shell-session
+$ wonton ui
+```
+
+For UI configuration details, see
+[UI configuration](/nomad/docs/configuration/ui) and
+[UI command](/nomad/docs/commands/ui).

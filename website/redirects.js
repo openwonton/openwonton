@@ -45,4 +45,14 @@ module.exports = [
     destination: '/nomad/tools/autoscaling/concepts/policy-eval/node-selector-strategy',
     permanent: true,
   },
+  {
+    source: '/nomad/docs/enterprise',
+    destination: '/nomad/docs',
+    permanent: true,
+  },
+  {
+    source: '/nomad/docs/enterprise/:path*',
+    destination: '/nomad/docs',
+    permanent: true,
+  },
 ]

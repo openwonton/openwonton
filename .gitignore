@@ -140,3 +140,5 @@ tools/missing/missing
 # local progress files
  progress.md
  plan.md
+
+website/.docusaurus

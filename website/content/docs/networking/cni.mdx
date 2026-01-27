@@ -125,8 +125,38 @@ a convenient jumping off point to discuss a worked example.
 }
 ```
 
-<!-- Source: https://www.figma.com/file/Ne2qaPUlBTmTYer9biCfK9/Networking?node-id=0%3A1&t=BepgOoQ0kb76GwIr-1 -->
-[![Visual example of OpenWonton bridge network](/img/nomad-bridge-network.png)](/img/nomad-bridge-network.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Host["Host Network Namespace"]
+    direction TB
+    NIC["NIC"] --> Bridge["Bridge (CNI)"]
+    Bridge --> vNIC1["vNIC"]
+    Bridge --> vNIC2["vNIC"]
+  end
+  subgraph Alloc1["Allocation Network Namespace"]
+    direction TB
+    subgraph Alloc1Inner[" "]
+      direction LR
+      vNIC1 --> eth0a["eth0"]
+      eth0a --- lo0a["lo0"]
+      eth0a --- Tasks1["Tasks / Containers"]
+    end
+  end
+  subgraph Alloc2["Allocation Network Namespace"]
+    direction TB
+    subgraph Alloc2Inner[" "]
+      direction LR
+      vNIC2 --> eth0b["eth0"]
+      eth0b --- lo0b["lo0"]
+      eth0b --- Tasks2["Tasks / Containers"]
+    end
+  end
+  style Alloc1Inner fill:transparent,stroke:transparent
+  style Alloc2Inner fill:transparent,stroke:transparent
+  linkStyle 4,5,7,8 stroke:transparent,stroke-width:0px
+```
 
 For a more thorough understanding of this configuration, consider each CNI
 plugin's configuration in turn.
@@ -223,5 +253,5 @@ a unique value for your configuration.
 [cni_spec_plugin_config]: https://github.com/containernetworking/cni/blob/main/SPEC.md#plugin-configuration-objects
 [firewall]: https://www.cni.dev/plugins/current/meta/firewall/
 [loopback]: https://github.com/containernetworking/plugins#main-interface-creating
-[nomad_install]: /nomad/tutorials/get-started/get-started-install#post-installation-steps
+[nomad_install]: /nomad/docs/install#post-installation-steps
 [portmap]: https://www.cni.dev/plugins/current/meta/portmap/
