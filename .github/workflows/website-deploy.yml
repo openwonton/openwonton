@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'website/**'
-      - '.github/workflows/website-deploy.yml'
+      - "website/**"
+      - ".github/workflows/website-deploy.yml"
   workflow_dispatch:
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
           cache-dependency-path: website/package-lock.json
 
@@ -39,14 +39,14 @@ jobs:
       - name: Deploy to Bunny Storage
         uses: ayeressian/bunnycdn-storage-deploy@v2.4.0
         with:
-          source: 'website/build'
-          storageZoneName: '${{ secrets.BUNNY_STORAGE_ZONE }}'
-          storagePassword: '${{ secrets.BUNNY_STORAGE_PASSWORD }}'
-          storageEndpoint: '${{ secrets.BUNNY_STORAGE_ENDPOINT }}'
-          accessKey: '${{ secrets.BUNNY_API_KEY }}'
-          pullZoneId: '${{ secrets.BUNNY_PULL_ZONE_ID }}'
-          upload: 'true'
-          remove: 'true'
-          purgePullZone: 'true'
-          purgePullZoneDelay: '5'
-          maxRetries: '5'
+          source: "website/build"
+          storageZoneName: "${{ secrets.BUNNY_STORAGE_ZONE }}"
+          storagePassword: "${{ secrets.BUNNY_STORAGE_PASSWORD }}"
+          storageEndpoint: "${{ secrets.BUNNY_STORAGE_ENDPOINT }}"
+          accessKey: "${{ secrets.BUNNY_API_KEY }}"
+          pullZoneId: "${{ secrets.BUNNY_PULL_ZONE_ID }}"
+          upload: "true"
+          remove: "true"
+          purgePullZone: "true"
+          purgePullZoneDelay: "5"
+          maxRetries: "5"
