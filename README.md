@@ -25,7 +25,14 @@ OpenWonton exists to maintain and evolve the MPL-2.0 licensed Nomad codebase for
 
 ## Quick Start
 
-You can find Terraform manifests for bringing up a development OpenWonton cluster on a public cloud in the [`terraform`](terraform/) directory. Hetzner Cloud provisioning lives in [`terraform/hetzner`](terraform/hetzner/).
+For the fastest local trial:
+
+1. Download a release from [OpenWonton releases](https://github.com/openwonton/openwonton/releases).
+2. Extract the archive and move `wonton` onto your `PATH`.
+3. Run `wonton agent -dev`.
+4. In another terminal, run `wonton status`.
+
+For a cloud-based dev cluster, you can find Terraform manifests in the [`terraform`](terraform/) directory. Hetzner Cloud provisioning lives in [`terraform/hetzner`](terraform/hetzner/).
 
 ## Documentation
 
