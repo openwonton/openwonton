@@ -55,6 +55,7 @@ ui/dist/
 *.iml
 
 website/.bundle
+website/.docusaurus
 website/vendor
 
 # Go work files
