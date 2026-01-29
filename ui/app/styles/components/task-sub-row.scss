@@ -22,7 +22,7 @@ table tbody .task-sub-row {
         overflow: hidden;
         white-space: nowrap;
         &:before {
-          color: black;
+          color: $openwonton-ink;
           content: '/';
           display: inline-block;
           margin-right: 0.5rem;
@@ -36,7 +36,7 @@ table tbody .task-sub-row {
         font-weight: normal;
         background-color: transparent;
         svg {
-          color: black;
+          color: $openwonton-ink;
           margin-right: 5px;
           position: relative;
           top: 3px;

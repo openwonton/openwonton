@@ -4,11 +4,11 @@
  */
 
 .exec-button {
-  color: $ui-gray-800;
-  border-color: $ui-gray-300;
+  color: $openwonton-text;
+  border-color: $openwonton-border;
 
   span {
-    color: $ui-gray-800;
+    color: $openwonton-text;
   }
 
   .icon:first-child:not(:last-child) {

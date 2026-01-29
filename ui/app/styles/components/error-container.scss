@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background: $white-ter;
+  background: $openwonton-panel;
 
   .error-message {
     width: 95vw;
@@ -23,15 +23,15 @@
   }
 
   .error-stack-trace {
-    border: 1px solid $grey-lighter;
+    border: 1px solid $openwonton-border;
     border-radius: $radius;
-    background: $white;
+    background: $openwonton-panel-strong;
   }
 
   .error-links {
     padding-top: 15px;
     margin-top: 15px;
-    border-top: 1px solid $grey-lighter;
+    border-top: 1px solid $openwonton-border;
     width: 95vw;
     max-width: 600px;
     text-align: center;

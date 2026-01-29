@@ -20,14 +20,14 @@
       width: 20em;
     }
 
-    background: $nomad-green-darker;
-    border: 0;
+    background: $openwonton-panel;
+    border: 1px solid $openwonton-border;
 
     .icon {
       margin-top: 1px;
       margin-left: 2px;
 
-      fill: white;
+      fill: $openwonton-text-muted;
       opacity: 0.7;
     }
 
@@ -37,6 +37,7 @@
       padding-left: 2px;
       transform: translateY(-1px);
       font-weight: $weight-semibold;
+      color: $openwonton-text-muted;
     }
 
     .shortcut {
@@ -48,16 +49,17 @@
       padding-top: 3px;
       text-align: center;
       opacity: 0.7;
-      background: $nomad-green-dark;
+      background: $openwonton-panel-strong;
+      color: $openwonton-text;
       font-weight: $weight-semibold;
     }
 
     &.ember-power-select-trigger--active {
-      background: white;
-      border-color: white;
+      background: $openwonton-panel-strong;
+      border-color: $openwonton-accent;
 
       .icon {
-        fill: black;
+        fill: $openwonton-text;
         opacity: 1;
       }
     }

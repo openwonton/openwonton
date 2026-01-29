@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-right: 1px solid $grey-blue;
+  border-right: 1px solid $openwonton-border;
   overflow: hidden;
 
   .collapsed-only {
@@ -18,7 +18,7 @@
     border-right: none;
 
     &.is-open {
-      box-shadow: 0 0 30px darken($nomad-green-darker, 20%);
+      box-shadow: 0 0 30px rgba(246, 162, 58, 0.25);
     }
 
     .collapsed-only {
@@ -34,18 +34,20 @@
     transform: translateX($gutter-width);
     z-index: $z-gutter;
     transition: transform ease-in-out 0.2s;
+    background: $openwonton-panel-strong;
+    border-bottom: 1px solid $openwonton-border;
 
     &.is-open {
       transform: translateX(0);
     }
 
     .gutter-toggle {
-      fill: $grey-light;
+      fill: $openwonton-text-muted;
     }
 
     .nomad-logo {
-      color: $grey-light;
-      fill: $grey-light;
+      color: $openwonton-text;
+      fill: $openwonton-text;
     }
 
     .logo-container {
@@ -67,7 +69,7 @@
 
   .gutter-footer {
     text-align: center;
-    border-top: 1px solid lighten($grey-blue, 10%);
+    border-top: 1px solid $openwonton-border;
     padding: 0.5em 0;
     margin-top: auto;
   }
@@ -78,7 +80,7 @@
 .gutter-backdrop {
   display: block;
   position: fixed;
-  background: darken($nomad-green-darker, 10%);
+  background: $openwonton-ink;
   opacity: 0;
   width: calc(100vw + #{$gutter-width});
   height: 100vh;

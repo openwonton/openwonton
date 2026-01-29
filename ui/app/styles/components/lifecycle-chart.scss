@@ -49,11 +49,11 @@
     }
 
     &.is-active {
-      background: $white-bis;
-      border-top: 2px solid $vagrant-blue;
+      background: $openwonton-panel;
+      border-top: 2px solid $openwonton-accent;
 
       .name {
-        color: $vagrant-blue;
+        color: $openwonton-accent;
       }
     }
 
@@ -88,9 +88,9 @@
     .task {
       margin: 0.55em 0.9em;
       padding: 0.3em 0.55em;
-      border: 1px solid $grey-blue;
+      border: 1px solid $openwonton-border;
       border-radius: $radius;
-      background: white;
+      background: $openwonton-panel-strong;
 
       .name {
         font-weight: $weight-semibold;
@@ -116,7 +116,7 @@
     &.is-active {
       .task {
         border-color: $nomad-green;
-        background: lighten($nomad-green, 50%);
+        background: rgba($nomad-green, 0.2);
 
         .lifecycle {
           color: $ui-gray-500;

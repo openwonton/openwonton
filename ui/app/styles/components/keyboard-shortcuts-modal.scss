@@ -5,7 +5,7 @@
 
 .keyboard-shortcuts {
   position: fixed;
-  background-color: white;
+  background-color: $openwonton-panel-strong;
   padding: 2rem;
   margin-top: 20vh;
   width: 40vw;
@@ -43,7 +43,7 @@
       display: grid;
       grid-template-columns: auto 1fr;
       &:not(:last-of-type) {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $openwonton-border;
       }
       strong {
         padding: 0.25rem 0;
@@ -56,17 +56,17 @@
         }
         button {
           border: none;
-          background: #eee;
+          background: $openwonton-panel;
           cursor: pointer;
 
           &:hover {
-            background: #ddd;
+            background: $openwonton-panel-strong;
           }
 
           &[disabled],
           &[disabled]:hover {
-            background: #eee;
-            color: black;
+            background: $openwonton-panel;
+            color: $openwonton-ink;
             cursor: not-allowed;
           }
           span {
@@ -75,7 +75,7 @@
           }
 
           &.reset-to-default {
-            background: white;
+            background: transparent;
             color: $red;
             font-size: 0.75rem;
           }
@@ -85,7 +85,7 @@
   }
 
   footer {
-    background: #eee;
+    background: $openwonton-panel;
     padding: 1rem 2rem;
     margin: 1rem -2rem -2rem;
     display: grid;
@@ -100,8 +100,8 @@
 // Global keyboard hint style
 
 [data-shortcut] {
-  background: lighten($nomad-green, 25%);
-  border: 1px solid $nomad-green-dark;
+  background: rgba($openwonton-accent, 0.2);
+  border: 1px solid $openwonton-accent;
   content: attr(data-shortcut);
   display: block;
   position: absolute;
@@ -110,7 +110,7 @@
   font-size: 0.75rem;
   padding: 0 0.5rem;
   text-transform: lowercase;
-  color: black;
+  color: $openwonton-ink;
   font-weight: 300;
   z-index: $z-popover;
   &.menu-level {

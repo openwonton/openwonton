@@ -7,7 +7,7 @@
   width: 100%;
 
   .table.boxed-section-body.is-full-bleed {
-    border: 1px solid $grey-blue;
+    border: 1px solid $openwonton-border;
   }
 
   tbody {
@@ -30,7 +30,7 @@
     // This is adapted from Bulma’s .button.is-loading::after
     &.ember-transitioning-in::after {
       animation: spinAround 500ms infinite linear;
-      border: 2px solid $grey-light;
+      border: 2px solid $openwonton-border;
       border-radius: 290486px;
       border-right-color: transparent;
       border-top-color: transparent;
@@ -73,7 +73,7 @@
     }
 
     .is-active a {
-      color: $black;
+      color: $openwonton-text;
     }
   }
 }

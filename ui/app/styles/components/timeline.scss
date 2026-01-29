@@ -16,7 +16,7 @@
     left: 1em;
     bottom: 0;
     width: 1px;
-    background: $grey-blue;
+    background: $openwonton-border;
     z-index: $z-base - 1;
   }
 
@@ -29,7 +29,7 @@
     padding-left: 2em;
     margin-top: 3em;
     transform: translateY(-50%);
-    color: darken($grey-blue, 20%);
+    color: $openwonton-text-muted;
     font-size: $size-7;
 
     &:first-child {
@@ -46,8 +46,8 @@
       left: 1em;
       top: 50%;
       transform: translate(-25%, -50%);
-      border: 1px solid $grey-blue;
-      background: $white;
+      border: 1px solid $openwonton-border;
+      background: $openwonton-panel-strong;
     }
   }
 

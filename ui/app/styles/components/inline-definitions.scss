@@ -7,7 +7,7 @@
   .label {
     text-transform: uppercase;
     display: inline-block;
-    color: darken($grey-blue, 20%);
+    color: $openwonton-text-muted;
     margin-right: 2rem;
     margin-bottom: 0;
     font-size: inherit;
@@ -15,7 +15,7 @@
   }
 
   &.is-faded {
-    color: darken($grey-blue, 20%);
+    color: $openwonton-text-muted;
   }
 
   .pair {
@@ -36,7 +36,7 @@
     }
 
     &.is-faded {
-      color: darken($grey-blue, 20%);
+      color: $openwonton-text-muted;
     }
 
     .has-emphasis {
