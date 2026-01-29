@@ -250,7 +250,8 @@ jobs:
         run: |
           # These generated files are only needed when building the final
           # binary and should be not be present in the repository afterwards.
-          find . -name '*.generated.go' -print0 | xargs -0 git rm
+          # Keep codec fast-path helpers which are required for normal builds.
+          find . -name '*.generated.go' -not -path './third_party/go-msgpack/codec/*' -print0 | xargs -0 git rm
           git status
 
       - name: Commit post-release changes
