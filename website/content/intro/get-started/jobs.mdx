@@ -1,0 +1,82 @@
+---
+layout: intro
+page_title: Deploy Your First Job
+description: |-
+  Submit a simple Docker job, update it, and stop it.
+---
+
+# Deploy your first job
+
+This walkthrough uses the Docker driver. Make sure Docker is running locally.
+If you do not have Docker, use the `exec` driver instead.
+
+## Create a job file
+
+Create a file named `openwonton-echo.hcl` with the following contents.
+
+```hcl
+job "openwonton-echo" {
+  datacenters = ["dc1"]
+
+  group "app" {
+    network {
+      port "http" {
+        to = 5678
+      }
+    }
+
+    task "echo" {
+      driver = "docker"
+
+      config {
+        image = "hashicorp/http-echo:0.2.3"
+        args  = ["-text", "hello from openwonton"]
+        ports = ["http"]
+      }
+
+      resources {
+        cpu    = 100
+        memory = 128
+      }
+    }
+  }
+}
+```
+
+## Run the job
+
+```shell-session
+$ wonton job run openwonton-echo.hcl
+$ wonton job status openwonton-echo
+```
+
+Find the allocation ID, then inspect the host port.
+
+```shell-session
+$ wonton alloc status --short
+$ wonton alloc status <alloc-id>
+```
+
+You should see a host port for the `http` label. Test it with curl.
+
+```shell-session
+$ curl http://127.0.0.1:<host-port>
+```
+
+## Update the job
+
+Change the text in the `args` line, then run the job again.
+
+```shell-session
+$ wonton job run openwonton-echo.hcl
+```
+
+## Stop the job
+
+```shell-session
+$ wonton job stop openwonton-echo
+```
+
+For more about job specs and drivers, see
+[Job Specifications](/nomad/docs/job-specification) and
+[Drivers](/nomad/docs/drivers).

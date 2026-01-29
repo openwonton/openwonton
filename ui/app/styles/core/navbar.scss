@@ -8,33 +8,32 @@
   align-items: center;
 
   &.is-primary {
-    background: linear-gradient(
-      to right,
-      $nomad-green-darker,
-      $nomad-green-dark
-    );
+    background: rgba($openwonton-ink, 0.9);
     height: 3.5rem;
-    color: $primary-invert;
+    color: $openwonton-text;
     padding-left: 20px;
     padding-right: 20px;
     overflow: visible;
     align-items: center;
     justify-content: space-between;
     z-index: $z-gutter;
+    border-bottom: 1px solid $openwonton-border;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
 
     .navbar-item {
-      color: rgba($primary-invert, 0.8);
+      color: $openwonton-text-muted;
       text-decoration: none;
 
       &:hover {
-        color: $primary-invert;
+        color: $openwonton-accent-strong;
         background: transparent;
       }
 
       &.is-active,
       &.active {
-        color: $primary-invert;
-        border-bottom-color: $primary-invert;
+        color: $openwonton-accent-strong;
+        border-bottom-color: $openwonton-accent;
       }
 
       + .navbar-item {
@@ -43,7 +42,7 @@
         &::before {
           width: 1px;
           height: 1em;
-          background: rgba($primary-invert, 0.5);
+          background: $openwonton-border;
           content: ' ';
           display: block;
           position: absolute;
@@ -64,10 +63,10 @@
     }
 
     .navbar-end > a.navbar-item {
-      color: rgba($primary-invert, 0.8);
+      color: $openwonton-text-muted;
 
       &:hover {
-        color: $primary-invert;
+        color: $openwonton-accent-strong;
         background: transparent;
       }
     }
@@ -80,11 +79,12 @@
   }
 
   &.is-secondary {
-    background-color: $nomad-green-dark;
+    background-color: $openwonton-panel-strong;
     padding: 1.25rem 20px 1.25rem 0;
     height: 4.5rem;
     font-weight: $weight-semibold;
-    color: $primary-invert;
+    color: $openwonton-text;
+    border-bottom: 1px solid $openwonton-border;
 
     .navbar-item {
       font-size: $size-4;
@@ -92,19 +92,20 @@
   }
 
   &.is-popup {
-    background-color: $nomad-green-dark;
+    background-color: $openwonton-panel-strong;
     height: 3.5rem;
-    color: $primary-invert;
+    color: $openwonton-text;
     padding-left: 20px;
     padding-right: 20px;
     overflow: hidden;
+    border-bottom: 1px solid $openwonton-border;
 
     .navbar-brand {
       margin-right: 8px;
     }
 
     .navbar-item {
-      color: white;
+      color: $openwonton-text;
 
       .navbar-label {
         font-weight: 600;
@@ -120,11 +121,11 @@
     }
 
     .navbar-end > a.navbar-item {
-      color: rgba($primary-invert, 0.8);
+      color: $openwonton-text-muted;
       text-decoration: none;
 
       &:hover {
-        color: $primary-invert;
+        color: $openwonton-accent-strong;
         background: transparent;
       }
     }
@@ -162,13 +163,13 @@
     padding: 0.5rem 1rem 0.5rem 0.75rem;
     z-index: $z-gutter;
     button.hds-dropdown-toggle-icon {
-      border-color: var(--token-color-palette-neutral-200);
+      border-color: $openwonton-border;
       background-color: transparent;
-      color: var(--token-color-surface-primary);
+      color: $openwonton-text;
 
       &.hds-dropdown-toggle-icon--is-open {
-        background-color: var(--token-color-surface-primary);
-        color: var(--token-color-foreground-primary);
+        background-color: $openwonton-panel-strong;
+        color: $openwonton-accent;
       }
     }
   }
@@ -176,8 +177,9 @@
   .custom-label {
     border-radius: 1rem;
     padding: 0.25rem 1rem;
-    background: black;
-    color: white;
+    background: $openwonton-panel;
+    color: $openwonton-text;
+    border: 1px solid $openwonton-border;
     display: grid;
     align-self: center;
   }

@@ -12,29 +12,30 @@
   line-height: 1;
   border-radius: $radius;
   box-shadow: $button-box-shadow-standard;
-  background: $white-bis;
-  border: 1px solid $grey-light;
+  background: $openwonton-panel;
+  color: $openwonton-text;
+  border: 1px solid $openwonton-border;
   height: 2.25em;
   font-size: 1rem;
   outline: none;
   cursor: pointer;
 
   &:focus {
-    box-shadow: $button-box-shadow-standard, inset 0 0 0 2px $grey-lighter;
+    box-shadow: $button-box-shadow-standard, inset 0 0 0 2px $openwonton-accent;
   }
 
   &.is-outlined {
-    border-color: rgba($white, 0.5);
-    color: $white;
+    border-color: $openwonton-border;
+    color: $openwonton-text;
     background: transparent;
     box-shadow: $button-box-shadow-standard, 0 0 2px 2px rgba($black, 0.1);
 
     .ember-power-select-status-icon {
-      border-top-color: rgba($white, 0.75);
+      border-top-color: $openwonton-text-muted;
     }
 
     .ember-power-select-prefix {
-      color: rgba($white, 0.75);
+      color: $openwonton-text-muted;
     }
   }
 
@@ -74,7 +75,7 @@
     box-shadow: none;
 
     &:focus {
-      box-shadow: inset 0 0 0 2px $grey-lighter;
+      box-shadow: inset 0 0 0 2px $openwonton-accent;
     }
   }
 
@@ -84,7 +85,7 @@
   .button {
     @each $name, $pair in $colors {
       &.is-#{$name}:focus {
-        box-shadow: inset 0 0 0 2px $grey-lighter;
+        box-shadow: inset 0 0 0 2px $openwonton-accent;
       }
     }
   }
@@ -133,7 +134,7 @@
 
 .ember-power-select-prefix,
 .dropdown-prefix {
-  color: $grey;
+  color: $openwonton-text-muted;
 }
 
 .ember-power-select-option,
@@ -157,7 +158,9 @@
 }
 
 .dropdown-options {
-  border: 1px solid $grey-light;
+  border: 1px solid $openwonton-border;
+  background: $openwonton-panel;
+  color: $openwonton-text;
   margin-top: -1px;
   max-height: 400px;
   overflow: auto;
@@ -186,17 +189,17 @@
 
     & + .dropdown-option,
     & + .ember-power-select-option {
-      border-top: 1px solid $grey-lighter;
+      border-top: 1px solid $openwonton-border;
     }
 
     &:hover,
     &:focus,
     &[aria-current='true'],
     &[aria-selected='true'] {
-      background: $white-bis;
-      color: $black;
+      background: $openwonton-panel-strong;
+      color: $openwonton-text;
       outline: none;
-      border-left: 2px solid $blue;
+      border-left: 2px solid $openwonton-accent;
       label,
       .dropdown-label {
         padding-left: 6px;
@@ -205,13 +208,13 @@
     }
 
     &[aria-selected='true'] {
-      background: $blue-050;
+      background: rgba($openwonton-accent, 0.12);
     }
   }
 
   .dropdown-empty {
     display: block;
     padding: 8px 12px;
-    color: $grey-light;
+    color: $openwonton-text-muted;
   }
 }

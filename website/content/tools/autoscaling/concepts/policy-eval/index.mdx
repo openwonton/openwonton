@@ -26,10 +26,36 @@ If the policy target are Nomad clients the target plugin will usually execute
 more steps, such as [selecting nodes to be removed][concepts_node_selector] and
 draining them.
 
-[![Scaling policy evaluation pipeline](/img/autoscaling/policy-eval.png)](/img/autoscaling/policy-eval.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  classDef source stroke-dasharray:5 3
+
+  subgraph Sources["Policy sources"]
+    direction LR
+    PS1["Policy source"]:::source
+    PS2["Policy source"]:::source
+    PS3["Policy source"]:::source
+  end
+
+  PS1 --> SP1["Scaling policy"] --> PH1["Policy handler"]
+  PS2 --> SP2["Scaling policy"] --> PH2["Policy handler"]
+  PS3 --> SP3["Scaling policy"] --> PH3["Policy handler"]
+
+  PH1 -->|Enqueue| Broker["Broker"]
+  PH2 --> Broker
+  PH3 -->|Enqueue| Broker
+
+  Broker -->|Dequeue| W1["Worker"]
+  Broker -->|Dequeue| W2["Worker"]
+
+  W1 --> TS1["Target status"] --> APM1["APM query"] --> SS1["Scaling strategy"] --> ST1["Scale target"] --> W1
+  W2 --> TS2["Target status"] --> APM2["APM query"] --> SS2["Scaling strategy"] --> ST2["Scale target"] --> W2
+```
 
 [agent]: /nomad/tools/autoscaling/agent
-[agent_source]: /nomad/tools/autoscaling/agent/source
+[agent_source]: /nomad/tools/autoscaling/agent/policy#source-parameters
 [concepts_node_selector]: /nomad/tools/autoscaling/concepts/policy-eval/node-selector-strategy
 [policy_cooldown]: /nomad/tools/autoscaling/policy#cooldown
 [policy_eval_interval]: /nomad/tools/autoscaling/policy#evaluation_interval

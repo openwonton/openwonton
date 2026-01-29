@@ -45,8 +45,34 @@ OpenWonton reserves a random port in the client between [`min_dynamic_port`][] a
 [`max_dynamic_port`][] that has not been allocated yet and creates a port
 mapping from the host network interface to the allocation.
 
-<!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![OpenWonton Port Mapping](/img/networking/port_mapping.png)](/img/networking/port_mapping.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Allocations[" "]
+    direction LR
+    subgraph A1["Allocation"]
+      direction TB
+      A1Port["Port"]
+    end
+    subgraph A2["Allocation"]
+      direction TB
+      A2Port["Port"]
+    end
+    subgraph A3["Allocation"]
+      direction TB
+      A3Port1["Port"]
+      A3Port2["Port"]
+    end
+  end
+
+  Eth0["eth0 (client)"]
+
+  A1Port -->|22731| Eth0
+  A2Port -->|22960| Eth0
+  A3Port1 -->|27739| Eth0
+  A3Port2 -->|30101| Eth0
+```
 
 The selected port number can be accessed by tasks using the
 [`NOMAD_PORT_<label>`][runtime_environment] environment variable to bind and
@@ -101,8 +127,34 @@ called `nomad` (or the value set in [`bridge_network_name`][]) using the
 mode you must first [install the CNI plugins][cni_install] into your clients.
 By default a single bridge is created in each OpenWonton client.
 
-<!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![OpenWonton Bridge](/img/networking/bridge.png)](/img/networking/bridge.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Allocations[" "]
+    direction LR
+    subgraph A1["Allocation"]
+      direction TB
+      A1Eth["eth0"] --> A1Veth["veth1"]
+    end
+    subgraph A2["Allocation"]
+      direction TB
+      A2Eth["eth0"] --> A2Veth["veth2"]
+    end
+    subgraph A3["Allocation"]
+      direction TB
+      A3Eth["eth0"] --> A3Veth["veth3"]
+    end
+  end
+
+  Bridge["OpenWonton (bridge)"]
+  A1Veth --> Bridge
+  A2Veth --> Bridge
+  A3Veth --> Bridge
+
+  Bridge --> IPT["iptables"]
+  IPT --> HostEth["eth0"]
+```
 
 Allocations that use the `bridge` network mode run in an isolated network
 namespace and are connected to the bridge. This allows OpenWonton to map random
@@ -192,8 +244,58 @@ group "..." {
 The diagram below illustrates what happens when a Docker task is configured
 incorrectly.
 
-<!-- Source: https://drive.google.com/file/d/1q4a2ab0TyLEPdWiO2DIianAPWuPqLqZ4/view?usp=share_link -->
-[![OpenWonton Bridge](/img/networking/docker_bridge.png)](/img/networking/docker_bridge.png)
+Mermaid diagram:
+
+```mermaid
+flowchart TB
+  subgraph Allocations[" "]
+    direction LR
+    subgraph ALeft["Allocation"]
+      direction TB
+      ALeftEth["eth0"] --> ALeftVeth["veth1"]
+    end
+
+    subgraph ACenter["Allocation"]
+      direction TB
+      subgraph PauseNS["Pause container<br/>network namespace"]
+        direction LR
+        Pause["Pause container"]
+        Task["Task"]
+      end
+      ACenterEth["eth0"] --> ACenterVeth["veth2"]
+    end
+
+    subgraph ARight["Misconfigured allocation"]
+      direction LR
+      subgraph PauseNS2["Network namespace"]
+        direction TB
+        Pause2["Pause container"]
+        PauseEth["eth0"] --> PauseVeth["veth3"]
+      end
+      subgraph TaskNS["Network namespace"]
+        direction TB
+        Task2["Task"]
+        TaskEth["eth0"] --> TaskVeth["veth4"]
+      end
+    end
+  end
+
+  style PauseNS stroke-dasharray:5 3,fill:transparent
+  style PauseNS2 stroke-dasharray:5 3,fill:transparent
+  style TaskNS stroke-dasharray:5 3,fill:transparent
+
+  NomadBridge["OpenWonton (bridge)"]
+  DockerBridge["Docker (bridge)"]
+
+  ALeftVeth --> NomadBridge
+  ACenterVeth --> DockerBridge
+  PauseVeth --> DockerBridge
+  TaskVeth --> DockerBridge
+
+  NomadBridge --> IPT["iptables"]
+  DockerBridge --> IPT
+  IPT --> HostEth["eth0"]
+```
 
 The tasks in the rightmost allocation are not able to communicate with each
 other using their loopback interface because they were placed in different

@@ -4,7 +4,7 @@
     "path": "use-cases"
   },
   {
-    "title": "Nomad vs. Other Software",
+    "title": "OpenWonton vs. Other Software",
     "routes": [
       {
         "title": "Overview",
@@ -29,27 +29,31 @@
     "routes": [
       {
         "title": "Overview",
-        "href": "https://learn.hashicorp.com/collections/nomad/get-started"
+        "path": "get-started"
       },
       {
-        "title": "Running Nomad",
-        "href": "https://learn.hashicorp.com/tutorials/nomad/get-started-run"
+        "title": "Install OpenWonton",
+        "path": "get-started/install"
       },
       {
-        "title": "Jobs",
-        "href": "https://learn.hashicorp.com/tutorials/nomad/get-started-jobs"
+        "title": "Run OpenWonton",
+        "path": "get-started/run"
+      },
+      {
+        "title": "Deploy a Job",
+        "path": "get-started/jobs"
       },
       {
         "title": "Clustering",
-        "href": "https://learn.hashicorp.com/tutorials/nomad/clustering"
+        "path": "get-started/cluster"
       },
       {
         "title": "Web UI",
-        "href": "https://learn.hashicorp.com/tutorials/nomad/get-started-ui"
+        "path": "get-started/ui"
       },
       {
         "title": "Next Steps",
-        "href": "https://learn.hashicorp.com/tutorials/nomad/get-started-learn-more"
+        "path": "get-started/next-steps"
       }
     ]
   }

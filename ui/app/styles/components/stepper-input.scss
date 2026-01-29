@@ -39,7 +39,7 @@
 
     &:focus {
       outline: none;
-      box-shadow: inset 0 0 0 1px $grey-light;
+      box-shadow: inset 0 0 0 1px $openwonton-accent;
     }
   }
 
@@ -78,7 +78,7 @@
       .stepper-input-stepper.is-#{$name} {
         &:focus {
           outline: none;
-          box-shadow: inset 0 0 0 1px rgba($white, 0.4);
+          box-shadow: inset 0 0 0 1px rgba($openwonton-text, 0.4);
         }
       }
     }
@@ -101,8 +101,8 @@
 
     .stepper-input-input {
       opacity: 1;
-      color: $grey;
-      background-color: $white;
+      color: $openwonton-text-muted;
+      background-color: $openwonton-panel;
     }
   }
 }

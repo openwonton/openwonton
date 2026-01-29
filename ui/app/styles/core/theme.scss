@@ -1,0 +1,38 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+html,
+body,
+body > .ember-view {
+  background-color: $openwonton-ink;
+  color: $openwonton-text;
+}
+
+body {
+  color-scheme: dark;
+  background-image: radial-gradient(
+      900px 540px at 12% -10%,
+      rgba(246, 162, 58, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 420px at 90% 10%,
+      rgba(88, 156, 255, 0.16),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0b1118 0%, #0a0f15 45%, #070b10 100%);
+}
+
+::selection {
+  background: $openwonton-glow;
+  color: $white;
+}
+
+a:focus-visible,
+button:focus-visible,
+.button:focus-visible {
+  outline: 2px solid rgba(246, 162, 58, 0.6);
+  outline-offset: 2px;
+}

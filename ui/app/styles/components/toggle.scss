@@ -11,7 +11,7 @@ $size: 12px;
   position: relative;
 
   &.is-disabled {
-    color: $grey-blue;
+    color: $openwonton-text-muted;
     cursor: not-allowed;
   }
 
@@ -42,7 +42,7 @@ $size: 12px;
     width: $size * 2;
     height: $size;
     border-radius: $size;
-    background: $grey-blue;
+    background: $openwonton-border;
     transition: background 0.3s ease-in-out;
 
     &::after {
@@ -52,7 +52,7 @@ $size: 12px;
       width: calc(#{$size} - 4px);
       height: calc(#{$size} - 4px);
       border-radius: 100%;
-      background: $white;
+      background: $openwonton-text;
       left: 2px;
       top: 2px;
       transform: translateX(0);
@@ -63,12 +63,12 @@ $size: 12px;
   // Always style the toggler based off the input state to
   // ensure that the native input is driving behavior.
   .input:focus + .toggler {
-    box-shadow: 0 0 0 1px $grey-light;
+    box-shadow: 0 0 0 1px $openwonton-accent;
     outline: none;
   }
 
   .input:checked + .toggler {
-    background: $blue;
+    background: $openwonton-accent;
 
     &::after {
       transform: translateX($size);
@@ -76,11 +76,11 @@ $size: 12px;
   }
 
   .input:checked:focus + .toggler {
-    box-shadow: 0 0 0 1px rgba($blue, 0.5);
+    box-shadow: 0 0 0 1px rgba($openwonton-accent, 0.5);
   }
 
   .input:disabled + .toggler {
-    background: rgba($grey-blue, 0.6);
+    background: rgba($openwonton-border, 0.7);
 
     &::after {
       opacity: 0.5;
@@ -88,6 +88,6 @@ $size: 12px;
   }
 
   .input:checked:disabled + .toggler {
-    background: rgba($blue, 0.5);
+    background: rgba($openwonton-accent, 0.5);
   }
 }

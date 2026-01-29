@@ -10,7 +10,7 @@
 
   .metric {
     padding: 0.75em 1em;
-    border: 1px solid $grey-blue;
+    border: 1px solid $openwonton-border;
     display: flex;
     flex-direction: column;
     min-width: 120px;
@@ -36,7 +36,7 @@
       &.is-#{$name} {
         border-color: $color;
         color: $color;
-        background: lighten($color, 40%);
+        background: rgba($color, 0.16);
 
         .label {
           color: $color;
@@ -45,12 +45,12 @@
     }
 
     &.is-faded {
-      color: $grey-blue;
-      border-color: $grey-blue;
-      background: $white;
+      color: $openwonton-text-muted;
+      border-color: $openwonton-border;
+      background: $openwonton-panel;
 
       .label {
-        color: $grey-blue;
+        color: $openwonton-text-muted;
       }
     }
 

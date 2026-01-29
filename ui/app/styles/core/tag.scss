@@ -15,8 +15,8 @@
 
   &.is-pending,
   &.is-light {
-    background: $grey-blue;
-    color: findColorInvert(darken($grey-blue, 10%));
+    background: rgba($openwonton-text-muted, 0.2);
+    color: $openwonton-text;
   }
 
   &.is-running {
@@ -51,7 +51,7 @@
 
   &.is-hollow {
     font-weight: $weight-semibold;
-    color: darken($grey-blue, 20%);
+    color: $openwonton-text-muted;
     background: transparent;
   }
 
@@ -60,7 +60,7 @@
   }
 
   &.is-outlined {
-    box-shadow: 0 0 0 1px $white;
+    box-shadow: 0 0 0 1px $openwonton-border;
   }
 
   &.is-alone {
@@ -94,7 +94,7 @@
     &:before {
       content: 'Canary';
       background-color: $blue-light;
-      color: $black;
+      color: $openwonton-ink;
       line-height: 1.5em;
       margin-left: -$tagPadding;
       margin-right: $tagPadding;

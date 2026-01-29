@@ -38,6 +38,40 @@ Install OpenWonton on the public cloud.
 </Tab>
 <Tab heading="Try it Locally">
 
+## Download a release
+
+The quickest way to try OpenWonton locally is to download a prebuilt release.
+
+1. Download the archive for your OS and CPU from [OpenWonton releases][releases].
+2. Extract the archive and move `wonton` onto your `PATH`.
+3. Verify the install: `wonton version`.
+4. Start a dev agent: `wonton agent -dev`.
+5. In another terminal, run `wonton status`.
+
+If the archive name in the release differs, use the exact asset URL from the releases page.
+
+### Linux (amd64 example)
+
+```shell-session
+$ VERSION="0.0.0" # replace with the release version, e.g. 1.6.5
+$ curl -L -o /tmp/wonton.zip \
+  "https://github.com/openwonton/openwonton/releases/download/v${VERSION}/wonton_${VERSION}_linux_amd64.zip"
+$ unzip /tmp/wonton.zip -d /tmp/wonton
+$ sudo install /tmp/wonton/wonton /usr/local/bin/wonton
+```
+
+### macOS (macosx) with arch detection
+
+```shell-session
+$ VERSION="0.0.0" # replace with the release version, e.g. 1.6.5
+$ ARCH="$(uname -m)"
+$ if [ "$ARCH" = "arm64" ]; then ARCH="arm64"; else ARCH="amd64"; fi
+$ curl -L -o /tmp/wonton.zip \
+  "https://github.com/openwonton/openwonton/releases/download/v${VERSION}/wonton_${VERSION}_darwin_${ARCH}.zip"
+$ unzip /tmp/wonton.zip -d /tmp/wonton
+$ sudo install /tmp/wonton/wonton /usr/local/bin/wonton
+```
+
 ## Install OpenWonton on your machine
 
 If you would like to try OpenWonton locally, you can install OpenWonton on your local
@@ -102,5 +136,6 @@ At this point the Vagrant box is running and ready to go.
 
 [faq-win-mac]: /nomad/docs/faq#q-how-to-connect-to-my-host-network-when-using-docker-desktop-windows-and-macos
 [installing-binary]: /nomad/docs/install#precompiled-binaries
-[vagrant-environment]: /nomad/tutorials/get-started/get-started-install#vagrant-setup-optional
+[vagrant-environment]: /nomad/docs/install/quickstart#run-openwonton-in-vagrant
 [virtualbox]: https://www.virtualbox.org/
+[releases]: https://github.com/openwonton/openwonton/releases

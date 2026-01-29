@@ -25,13 +25,13 @@
 
       &.is-hollow {
         box-shadow: 0 0 0 1px $color;
-        background: $white;
+        background: transparent;
         color: darken($color, 10%);
       }
 
       &.is-subtle {
         background: rgba($color, 0.3);
-        color: $white;
+        color: $openwonton-text;
       }
     }
   }
@@ -45,8 +45,8 @@
   }
 
   &.is-secondary {
-    color: darken($grey-blue, 30%);
-    background: lighten($grey-blue, 10%);
+    color: $openwonton-text-muted;
+    background: rgba($openwonton-text-muted, 0.2);
   }
 }
 

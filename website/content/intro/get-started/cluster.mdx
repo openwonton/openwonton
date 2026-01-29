@@ -1,0 +1,67 @@
+---
+layout: intro
+page_title: Create a Small Cluster
+description: |-
+  Run a server and client locally to learn how clustering works.
+---
+
+# Create a small cluster
+
+The development agent is a combined server and client. To understand the
+server-client model, you can run a local server and client separately.
+
+## Create a server configuration
+
+Create `server.hcl`.
+
+```hcl
+data_dir = "data/server"
+bind_addr = "127.0.0.1"
+
+server {
+  enabled = true
+  bootstrap_expect = 1
+}
+
+client {
+  enabled = false
+}
+```
+
+Start the server agent.
+
+```shell-session
+$ wonton agent -config=server.hcl
+```
+
+## Create a client configuration
+
+Create `client.hcl`.
+
+```hcl
+data_dir = "data/client"
+bind_addr = "127.0.0.1"
+
+client {
+  enabled = true
+  servers = ["127.0.0.1:4647"]
+}
+```
+
+Start the client agent in another terminal. On Linux, run the client with
+`sudo`.
+
+```shell-session
+$ sudo wonton agent -config=client.hcl
+```
+
+## Verify the cluster
+
+```shell-session
+$ wonton server members
+$ wonton node status
+```
+
+For production deployments, review the full setup guides in
+[Installing OpenWonton](/nomad/docs/install/production) and
+[Operating OpenWonton Agents](/nomad/docs/operations/nomad-agent).

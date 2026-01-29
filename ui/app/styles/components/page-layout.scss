@@ -37,7 +37,8 @@
         bottom: 0;
         top: $header-height;
         z-index: $z-gutter;
-        background: $white;
+        background: $openwonton-panel;
+        border-right: 1px solid $openwonton-border;
       }
 
       &.is-right {
