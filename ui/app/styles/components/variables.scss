@@ -81,7 +81,7 @@
       height: 100%;
       box-shadow: none;
       margin-left: -2px;
-      border-color: $grey-blue;
+      border-color: $openwonton-border;
     }
 
     .key-value-error {
@@ -112,8 +112,8 @@
     }
 
     pre {
-      background: black;
-      color: $white;
+      background: $openwonton-code;
+      color: $openwonton-text;
       max-height: 500px;
       overflow: auto;
       code {
@@ -133,8 +133,8 @@
     gap: 1rem;
 
     .button.is-info.is-inverted.add-more[disabled] {
-      border-color: #dbdbdb;
-      box-shadow: 0 2px 0 0 rgb(122 122 122 / 20%);
+      border-color: $openwonton-border;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);
     }
   }
 }
@@ -172,7 +172,7 @@ table.path-tree {
   margin: 0.5rem 0;
   code {
     background-color: lighten($grey-lighter, 8%);
-    border: 1px solid $grey-lighter;
+    border: 1px solid $openwonton-border;
     padding: 0 0.25rem;
     border-radius: 4px;
   }
@@ -181,7 +181,7 @@ table.path-tree {
 .job-template-hint {
   margin-top: 0.5rem;
   code {
-    background-color: #eee;
+    background-color: $openwonton-panel-strong;
     padding: 0.25rem;
   }
   .copy-button {

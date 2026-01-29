@@ -7,7 +7,7 @@
   .title {
     .back-link {
       text-decoration: none;
-      color: #363636;
+      color: $openwonton-text;
       position: relative;
       top: 4px;
     }
@@ -124,7 +124,7 @@ table.health-checks {
           }
 
           & > .timestamp {
-            color: black;
+            color: $openwonton-text-muted;
             font-size: 0.75rem;
             position: absolute;
             top: 100%;
@@ -141,7 +141,7 @@ table.health-checks {
 
             &:before {
               display: none;
-              border-left: 1px solid $grey-blue;
+              border-left: 1px solid $openwonton-border;
               content: '';
               position: absolute;
               left: 50%;
@@ -152,7 +152,7 @@ table.health-checks {
             &:after {
               display: block;
               width: calc(12px + 2px); // account for grid.gap
-              border-top: 1px solid $grey-blue;
+              border-top: 1px solid $openwonton-border;
               content: '';
               position: absolute;
               left: calc(50% - 1px);

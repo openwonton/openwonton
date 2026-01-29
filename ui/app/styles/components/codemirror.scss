@@ -165,7 +165,7 @@ header.run-job-header {
   &.sticky {
     position: sticky;
     bottom: 0;
-    background: white;
+    background: $openwonton-panel;
     padding: 0.5rem 0;
 
     &.pull-left {
@@ -175,8 +175,8 @@ header.run-job-header {
 }
 
 .job-definition-select {
-  border: 1px solid $grey-blue;
-  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid $openwonton-border;
+  background: $openwonton-panel;
   border-radius: 2px;
   display: grid;
   gap: 0.5rem;
@@ -196,11 +196,11 @@ header.run-job-header {
     transition: 0.1s;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba($openwonton-text, 0.08);
     }
 
     &.is-active {
-      background: $white;
+      background: $openwonton-panel-strong;
     }
   }
 }

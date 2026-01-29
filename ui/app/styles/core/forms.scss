@@ -5,9 +5,9 @@
 
 @mixin input {
   @include control;
-  background-color: #fff;
-  border-color: $grey-blue;
-  color: $text;
+  background-color: $openwonton-panel-strong;
+  border-color: $openwonton-border;
+  color: $openwonton-text;
 
   &:hover,
   &.is-hovered,
@@ -15,12 +15,13 @@
   &.is-active,
   &:focus,
   &.is-focused {
-    border-color: darken($grey-blue, 5%);
+    border-color: $openwonton-accent;
   }
 
   &[disabled] {
-    background-color: $grey-blue;
-    border-color: darken($grey-blue, 5%);
+    background-color: $openwonton-panel;
+    border-color: $openwonton-border;
+    color: $openwonton-text-muted;
   }
 }
 
@@ -32,7 +33,7 @@
   height: auto;
 
   &::placeholder {
-    color: $grey-blue;
+    color: $openwonton-text-muted;
   }
 
   &.is-compact {
@@ -89,7 +90,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05ch;
     margin-bottom: 1.5em;
-    color: $grey;
+    color: $openwonton-text-muted;
     font-weight: $weight-medium;
   }
 }
@@ -147,7 +148,8 @@
   box-shadow: 0 0 0 100vw rgba(0, 2, 30, 0.8);
   padding: 1rem;
   text-align: center;
-  background-color: white;
+  background-color: $openwonton-panel-strong;
+  color: $openwonton-text;
   h1 {
     font-size: 2rem;
     font-weight: 400;
@@ -160,8 +162,8 @@
     display: grid;
     gap: 0.5rem;
     button {
-      background-color: #444;
-      color: white;
+      background-color: $openwonton-panel;
+      color: $openwonton-text;
       &.error {
         background-color: darkred;
       }

@@ -8,7 +8,8 @@
 .table {
   color: $text;
   border-radius: $radius;
-  border: 1px solid $grey-blue;
+  border: 1px solid $openwonton-border;
+  background: $openwonton-panel;
   border-collapse: separate;
   width: 100%;
 
@@ -59,20 +60,20 @@
 
   &.is-darkened {
     tbody tr:not(.is-selected) {
-      background-color: $white-bis;
+      background-color: $openwonton-panel;
 
       &:hover {
-        background-color: $white-ter;
+        background-color: $openwonton-panel-strong;
       }
     }
 
     &.is-striped {
       tbody tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: $white-ter;
+          background-color: $openwonton-panel-strong;
 
           &:hover {
-            background-color: darken($white-ter, 5%);
+            background-color: lighten($openwonton-panel-strong, 3%);
           }
         }
       }
@@ -138,7 +139,7 @@
     }
 
     a {
-      color: $blue;
+      color: $openwonton-accent;
       text-decoration: underline;
       font-weight: $weight-normal;
 
@@ -150,8 +151,9 @@
   }
 
   thead {
-    background: $white-ter;
-    border: 1px solid $grey-blue;
+    background: $openwonton-panel-strong;
+    border: 1px solid $openwonton-border;
+    background: $openwonton-panel;
 
     tr {
       &:hover {
@@ -161,10 +163,10 @@
 
     td,
     th {
-      color: $grey-light;
+      color: $openwonton-text-muted;
       font-weight: $weight-normal;
       vertical-align: bottom;
-      border-bottom: 1px solid $grey-blue;
+      border-bottom: 1px solid $openwonton-border;
 
       &.is-selectable {
         padding: 0;
@@ -177,7 +179,7 @@
           position: relative;
 
           &:hover {
-            background-color: darken($white-ter, 5%);
+            background-color: rgba($openwonton-accent, 0.08);
           }
 
           &::before,
@@ -222,7 +224,7 @@
       }
 
       a {
-        color: $grey;
+        color: $openwonton-text-muted;
       }
     }
   }
@@ -235,7 +237,7 @@
       }
 
       &.is-active {
-        background: rgba($blue, 0.1);
+        background: rgba($openwonton-accent, 0.16);
 
         td:first-child {
           position: relative;
@@ -248,7 +250,7 @@
             bottom: 0;
             left: -1px;
             display: block;
-            background: $blue;
+            background: $openwonton-accent;
           }
         }
       }
@@ -256,12 +258,13 @@
 
     td.is-subheading {
       font-weight: $weight-bold;
-      background: $white;
-      color: $blue;
+      background: $openwonton-panel-strong;
+      color: $openwonton-accent;
     }
 
     td {
-      border: 1px solid $grey-blue;
+      border: 1px solid $openwonton-border;
+      background: $openwonton-panel;
       border-width: 0 0 1px;
       padding: 1.25em 1.5em;
 
@@ -272,15 +275,16 @@
   }
 
   .is-faded {
-    color: $grey-light;
+    color: $openwonton-text-muted;
   }
 }
 
 .table tfoot,
 .table-foot {
   margin-top: -1px;
-  background: $white-ter;
-  border: 1px solid $grey-blue;
+  background: $openwonton-panel-strong;
+  border: 1px solid $openwonton-border;
+  background: $openwonton-panel;
   border-bottom-right-radius: $radius;
   border-bottom-left-radius: $radius;
   overflow: hidden;
@@ -313,7 +317,7 @@
 
     .label,
     .field-label {
-      color: $grey;
+      color: $openwonton-text-muted;
       flex-basis: 0;
       flex-grow: 1;
       flex-shrink: 0;

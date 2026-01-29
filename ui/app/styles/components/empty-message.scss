@@ -5,22 +5,22 @@
 
 .empty-message {
   padding: 1.5rem;
-  background: $white-ter;
+  background: $openwonton-panel-strong;
   border-radius: $radius;
 
   .empty-message-headline {
     font-size: $size-3;
-    color: $grey;
+    color: $openwonton-text-muted;
     text-align: center;
   }
 
   .empty-message-body {
     padding: 0 20%;
     text-align: center;
-    color: $grey;
+    color: $openwonton-text-muted;
 
     strong {
-      color: $grey;
+      color: $openwonton-text;
     }
 
     &:not(:last-child) {
@@ -39,12 +39,12 @@
   }
 
   .terminal {
-    background: $grey-lighter;
+    background: $openwonton-panel;
     border-radius: $radius;
     padding: 0.75rem 1rem;
 
     .prompt {
-      color: $grey;
+      color: $openwonton-text-muted;
     }
   }
 }

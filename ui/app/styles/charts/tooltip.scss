@@ -11,9 +11,9 @@
   position: absolute;
   top: 0;
   display: none;
-  background: $white;
-  color: rgba($black, 0.6);
-  border: 1px solid $grey;
+  background: $openwonton-panel-strong;
+  color: $openwonton-text-muted;
+  border: 1px solid $openwonton-border;
   min-width: 150px;
   margin-top: -10px;
   transform: translate(-50%, -100%);
@@ -31,7 +31,7 @@
     content: '';
     width: 0;
     height: 0;
-    border-top: 7px solid $grey;
+    border-top: 7px solid $openwonton-border;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
     position: absolute;
@@ -47,7 +47,7 @@
     content: '';
     width: 0;
     height: 0;
-    border-top: 6px solid $white;
+    border-top: 6px solid $openwonton-panel-strong;
     border-right: 6px solid transparent;
     border-left: 6px solid transparent;
     position: absolute;
@@ -66,8 +66,8 @@
 
     &.is-static {
       .label {
-        color: $black;
-        background: $white;
+        color: $openwonton-text;
+        background: $openwonton-panel;
       }
     }
   }
@@ -87,11 +87,11 @@
     .label {
       white-space: nowrap;
       font-weight: $weight-bold;
-      color: $black;
+      color: $openwonton-text;
       margin: 0;
 
       &.is-empty {
-        color: rgba($grey, 0.6);
+        color: $openwonton-text-muted;
       }
     }
 
@@ -100,21 +100,21 @@
     }
 
     + li {
-      border-top: 1px solid $grey-light;
+      border-top: 1px solid $openwonton-border;
     }
   }
 
   &.with-active-datum {
     li .label {
-      color: rgba($black, 0.6);
+      color: $openwonton-text-muted;
     }
 
     li.is-active {
-      color: $black;
-      background: $white-ter;
+      color: $openwonton-text;
+      background: $openwonton-panel;
 
       .label {
-        color: $black;
+        color: $openwonton-text;
       }
     }
   }

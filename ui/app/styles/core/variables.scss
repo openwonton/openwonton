@@ -3,24 +3,55 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-$orange: #fa8e23;
+$openwonton-ink: #0a0f15;
+$openwonton-panel: #121a24;
+$openwonton-panel-strong: #16212d;
+$openwonton-border: #243344;
+$openwonton-text: #e4ecf4;
+$openwonton-text-muted: #9db0c2;
+$openwonton-accent: #f6a23a;
+$openwonton-accent-strong: #ffb55c;
+$openwonton-glow: rgba(246, 162, 58, 0.35);
+$openwonton-code: #0d1722;
+
+$orange: $openwonton-accent;
 $green: #2eb039;
-$blue: $vagrant-blue;
+$blue: #589cff;
 $purple: $terraform-purple;
 $red: #c84034;
-$grey-blue: #bbc4d1;
-$blue-light: #c0d5ff;
-$yellow: #fac402;
+$grey-blue: $openwonton-text-muted;
+$blue-light: lighten($blue, 18%);
+$yellow: #face30;
 
-$primary: $nomad-green;
+$primary: $openwonton-accent;
+$primary-invert: $openwonton-ink;
+$link: $openwonton-accent;
+$link-hover: $openwonton-accent-strong;
 $warning: $orange;
-$warning-invert: $white;
+$warning-invert: $openwonton-ink;
 $danger: $red;
 $info: $blue;
 $unknown: $yellow;
-$dark: #234;
-$dark-2: darken($dark, 5%);
-$dark-3: darken($dark, 10%);
+$dark: $openwonton-code;
+$dark-2: darken($dark, 4%);
+$dark-3: darken($dark, 8%);
+
+$body-background-color: $openwonton-ink;
+$body-color: $openwonton-text;
+$background: $openwonton-panel;
+$scheme-main: $openwonton-ink;
+$scheme-main-bis: $openwonton-panel;
+$scheme-main-ter: $openwonton-panel-strong;
+$border: $openwonton-border;
+$border-hover: lighten($openwonton-border, 8%);
+$text: $openwonton-text;
+$text-strong: lighten($openwonton-text, 4%);
+$text-light: $openwonton-text-muted;
+$white-bis: $openwonton-panel;
+$white-ter: $openwonton-panel-strong;
+$grey: $openwonton-text-muted;
+$grey-light: #b7c4d2;
+$grey-lighter: #2d4156;
 
 $radius: 2px;
 
@@ -32,10 +63,10 @@ $size-7: 0.85rem;
 
 $title-weight: $weight-semibold;
 
-$family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+$family-sans-serif: 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+$family-monospace: 'Space Mono', 'SFMono-Regular', Menlo, monospace;
 
-$text: $black;
+$black: $openwonton-ink;
 
 $header-height: 112px;
 $gutter-width: 250px;

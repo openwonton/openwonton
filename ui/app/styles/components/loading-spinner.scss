@@ -8,7 +8,7 @@ $duration: 5s;
 $side-length: 50px;
 $cube-length: $side-length * 5;
 
-$lighter-side: $grey-blue;
+$lighter-side: $openwonton-panel-strong;
 $darker-side: darken($lighter-side, 15%);
 
 .loading-spinner {
@@ -36,7 +36,7 @@ $darker-side: darken($lighter-side, 15%);
       width: 32%;
       height: 32%;
       transform: translateY(-20px);
-      fill: white;
+      fill: $openwonton-accent;
       animation: n-fade $duration forwards infinite;
     }
   }

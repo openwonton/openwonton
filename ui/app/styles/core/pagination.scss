@@ -4,7 +4,7 @@
  */
 
 .pagination {
-  color: $grey;
+  color: $openwonton-text-muted;
 
   .pagination-numbers {
     padding: 0.75rem 0.5rem;
@@ -26,11 +26,11 @@
 
     &:hover {
       box-shadow: none;
-      background-color: darken($white-ter, 5%);
+      background-color: rgba($openwonton-accent, 0.1);
     }
 
     &:active {
-      background-color: darken($white-ter, 10%);
+      background-color: rgba($openwonton-accent, 0.18);
     }
   }
 }

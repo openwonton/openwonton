@@ -4,25 +4,56 @@
  */
 
 .global-search-dropdown {
-  background: transparent;
+  background: $openwonton-panel;
   border: 0;
   position: fixed;
 
   .ember-power-select-search {
-    margin-left: $icon-dimensions;
+    margin-left: 0;
     border: 0;
+    background: $openwonton-panel;
+    position: relative;
+    z-index: 1;
   }
 
-  input,
-  input:focus {
-    background: transparent;
-    border: 0;
+  .ember-power-select-search::before {
+    content: '';
+    position: absolute;
+    left: 0.6rem;
+    top: 50%;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translateY(-50%);
+    background-color: $openwonton-text-muted;
+    -webkit-mask: url('/images/icons/search.svg') no-repeat center / contain;
+    mask: url('/images/icons/search.svg') no-repeat center / contain;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  input {
+    background: $openwonton-panel-strong;
+    border: 1px solid $openwonton-border;
+    color: $openwonton-text;
     outline: 0;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  input:focus {
+    border-color: $openwonton-accent;
+  }
+
+  input::placeholder {
+    color: $openwonton-text-muted;
   }
 
   // Prevent Safari from disrupting styling, adapted from http://geek.michaelgrace.org/2011/06/webkit-search-input-styling/
   input[type='search'] {
     -webkit-appearance: textfield;
+    padding-left: 2rem;
   }
 
   input::-webkit-search-decoration,
@@ -31,12 +62,12 @@
   }
 
   .ember-power-select-options {
-    background: white;
+    background: $openwonton-panel;
     padding: 0.35rem;
 
     &[role='listbox'] {
-      border: 1px solid $grey-blue;
-      box-shadow: 0 6px 8px -2px rgba($black, 0.05), 0 8px 4px -4px rgba($black, 0.1);
+      border: 1px solid $openwonton-border;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
 
     .ember-power-select-option {
@@ -44,8 +75,8 @@
       border-radius: $radius;
 
       &[aria-current='true'] {
-        background: transparentize($blue, 0.8);
-        color: $blue;
+        background: rgba($openwonton-accent, 0.15);
+        color: $openwonton-accent-strong;
       }
     }
   }
@@ -53,7 +84,7 @@
   .ember-power-select-group-name {
     text-transform: uppercase;
     display: inline;
-    color: darken($grey-blue, 20%);
+    color: $openwonton-text-muted;
     font-size: $size-7;
     font-weight: $weight-semibold;
   }

@@ -6,7 +6,7 @@
 .accordion {
   .accordion-head,
   .accordion-body {
-    border: 1px solid $grey-blue;
+    border: 1px solid $openwonton-border;
     border-bottom: none;
     padding: 0.75em 1.5em;
 
@@ -16,7 +16,7 @@
     }
 
     &:last-child {
-      border-bottom: 1px solid $grey-blue;
+      border-bottom: 1px solid $openwonton-border;
       border-bottom-left-radius: $radius;
       border-bottom-right-radius: $radius;
     }
@@ -28,11 +28,11 @@
 
   .accordion-head {
     display: flex;
-    background: $white-ter;
+    background: $openwonton-panel-strong;
     flex: 1;
 
     &.is-light {
-      background: $white;
+      background: $openwonton-panel;
     }
 
     .accordion-head-content {

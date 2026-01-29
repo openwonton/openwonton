@@ -13,8 +13,9 @@
   .boxed-section-head,
   .boxed-section-foot {
     padding: 0.75em 1.5em;
-    border: 1px solid $grey-blue;
-    background: $white-ter;
+    border: 1px solid $openwonton-border;
+    background: $openwonton-panel-strong;
+    color: $openwonton-text;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -51,7 +52,7 @@
     border-top-right-radius: $radius;
 
     &.is-light {
-      background: $white;
+      background: $openwonton-panel;
     }
 
     &.is-hollow {
@@ -90,8 +91,8 @@
 
   .boxed-section-body {
     padding: 0.75em 1.5em;
-    background: $white;
-    border: 1px solid $grey-blue;
+    background: $openwonton-panel;
+    border: 1px solid $openwonton-border;
     margin-top: -1px;
     border-radius: $radius;
 
@@ -109,9 +110,9 @@
     }
 
     &.is-dark {
-      background: $dark-2;
-      border-color: lighten($dark, 30%);
-      color: $white;
+      background: $openwonton-code;
+      border-color: $openwonton-border;
+      color: $openwonton-text;
     }
 
     &.with-foot {
