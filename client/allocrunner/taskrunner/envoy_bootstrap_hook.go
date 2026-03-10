@@ -159,6 +159,16 @@ func newEnvoyBootstrapHook(c *envoyBootstrapHookConfig) *envoyBootstrapHook {
 	}
 }
 
+func resolveConsulBootstrapCLI() string {
+	for _, candidate := range []string{"consul", "opengyoza", "/var/lib/chubo/bin/opengyoza"} {
+		if path, err := exec.LookPath(candidate); err == nil {
+			return path
+		}
+	}
+
+	return "consul"
+}
+
 // getConsulNamespace will resolve the Consul namespace, choosing between
 //   - agent config (low precedence)
 //   - task group config (high precedence)
@@ -334,7 +344,7 @@ func (h *envoyBootstrapHook) Prestart(ctx context.Context, req *ifs.TaskPrestart
 		}
 
 		// Prepare bootstrap command to run.
-		cmd := exec.CommandContext(ctx, "consul", bootstrapArgs...)
+		cmd := exec.CommandContext(ctx, resolveConsulBootstrapCLI(), bootstrapArgs...)
 		cmd.Env = bootstrapEnv
 
 		// Redirect stdout to secrets/envoy_bootstrap.json.
