@@ -275,6 +275,8 @@ func groupConnectHook(job *structs.Job, g *structs.TaskGroup) error {
 		// mutate depending on what the connect block is being used for
 
 		case service.Connect.HasSidecar():
+			defaultSidecarLocalService(g, service)
+
 			// interpolate the connect service name, which is used to create
 			// a name of an injected sidecar task
 			service.Name = env.ReplaceEnv(service.Name)
@@ -382,6 +384,38 @@ func groupConnectHook(job *structs.Job, g *structs.TaskGroup) error {
 	// re-canonicalize group network since this hook runs after canonicalizaton
 	g.Networks[0].Canonicalize()
 	return nil
+}
+
+// defaultSidecarLocalService sets the implicit bridge-mode sidecar local
+// service endpoint to loopback and the service's in-namespace port. This keeps
+// Envoy targeting the task-local listener instead of the host-mapped port.
+func defaultSidecarLocalService(g *structs.TaskGroup, service *structs.Service) {
+	if len(g.Networks) != 1 || g.Networks[0].Mode != "bridge" {
+		return
+	}
+
+	sidecar := service.Connect.SidecarService
+	if sidecar == nil {
+		return
+	}
+	if sidecar.Proxy == nil {
+		sidecar.Proxy = new(structs.ConsulProxy)
+	}
+	if sidecar.Proxy.LocalServiceAddress == "" {
+		sidecar.Proxy.LocalServiceAddress = "127.0.0.1"
+	}
+	if sidecar.Proxy.LocalServicePort != 0 {
+		return
+	}
+
+	if mapping := g.Networks.Port(service.PortLabel); mapping.To > 0 {
+		sidecar.Proxy.LocalServicePort = mapping.To
+		return
+	}
+
+	if port, err := strconv.Atoi(service.PortLabel); err == nil && port > 0 {
+		sidecar.Proxy.LocalServicePort = port
+	}
 }
 
 // gatewayProxyIsDefault returns false if any of these gateway proxy configuration

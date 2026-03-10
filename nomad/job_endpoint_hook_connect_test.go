@@ -163,6 +163,14 @@ func TestJobEndpointConnect_groupConnectHook(t *testing.T) {
 	// Expect sidecar tasks to be in canonical form.
 	tgExp.Tasks[0].Canonicalize(job, tgExp)
 	tgExp.Tasks[1].Canonicalize(job, tgExp)
+	tgExp.Services[0].Connect.SidecarService.Proxy = &structs.ConsulProxy{
+		LocalServiceAddress: "127.0.0.1",
+		LocalServicePort:    8080,
+	}
+	tgExp.Services[1].Connect.SidecarService.Proxy = &structs.ConsulProxy{
+		LocalServiceAddress: "127.0.0.1",
+		LocalServicePort:    9090,
+	}
 	tgExp.Networks[0].DynamicPorts = []structs.Port{{
 		Label: fmt.Sprintf("%s-%s", structs.ConnectProxyPrefix, "backend"),
 		To:    -1,
@@ -178,6 +186,37 @@ func TestJobEndpointConnect_groupConnectHook(t *testing.T) {
 	// Test that hook is idempotent
 	require.NoError(t, groupConnectHook(job, job.TaskGroups[0]))
 	require.Exactly(t, tgExp, job.TaskGroups[0])
+}
+
+func TestJobEndpointConnect_groupConnectHook_DefaultsBridgeLocalService(t *testing.T) {
+	ci.Parallel(t)
+
+	job := &structs.Job{
+		TaskGroups: []*structs.TaskGroup{{
+			Name: "group",
+			Networks: structs.Networks{{
+				Mode: "bridge",
+				DynamicPorts: []structs.Port{{
+					Label: "http",
+					To:    5678,
+				}},
+			}},
+			Services: []*structs.Service{{
+				Name:      "connect-upstream-http",
+				PortLabel: "http",
+				Connect: &structs.ConsulConnect{
+					SidecarService: &structs.ConsulSidecarService{},
+				},
+			}},
+		}},
+	}
+
+	require.NoError(t, groupConnectHook(job, job.TaskGroups[0]))
+
+	proxy := job.TaskGroups[0].Services[0].Connect.SidecarService.Proxy
+	require.NotNil(t, proxy)
+	require.Equal(t, "127.0.0.1", proxy.LocalServiceAddress)
+	require.Equal(t, 5678, proxy.LocalServicePort)
 }
 
 func TestJobEndpointConnect_groupConnectHook_IngressGateway_BridgeNetwork(t *testing.T) {
