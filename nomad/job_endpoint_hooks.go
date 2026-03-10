@@ -20,6 +20,12 @@ const (
 )
 
 var (
+	// consulMinimumVersion is the minimum Consul-compatible version required
+	// for service discovery on this fork. OpenGyoza currently tracks the
+	// Consul 1.6.4 API surface, so the scheduler cannot enforce a higher floor
+	// without blocking otherwise compatible placements.
+	consulMinimumVersion = ">= 1.6.4"
+
 	// vaultConstraint is the implicit constraint added to jobs requesting a
 	// Vault token
 	vaultConstraint = &structs.Constraint{
@@ -30,11 +36,10 @@ var (
 
 	// consulServiceDiscoveryConstraint is the implicit constraint added to
 	// task groups which include services utilising the Consul provider. The
-	// Consul version is pinned to a minimum of that which introduced the
-	// namespace feature.
+	// minimum tracks the Consul-compatible surface available from OpenGyoza.
 	consulServiceDiscoveryConstraint = &structs.Constraint{
 		LTarget: attrConsulVersion,
-		RTarget: ">= 1.7.0",
+		RTarget: consulMinimumVersion,
 		Operand: structs.ConstraintSemver,
 	}
 

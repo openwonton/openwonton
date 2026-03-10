@@ -24,6 +24,12 @@ const (
 	// defaultConnectTimeout is the default amount of time a connect gateway will
 	// wait for a response from an upstream service (same as consul)
 	defaultConnectTimeout = 5 * time.Second
+
+	// connectMinimumVersion is the minimum Consul-compatible version required
+	// to attempt Connect placement on this fork. OpenGyoza currently reports
+	// itself as Consul 1.6.4, so the upstream 1.8.0 gate prevents even basic
+	// compatibility testing.
+	connectMinimumVersion = ">= 1.6.4"
 )
 
 // connectSidecarResources returns the set of resources used by default for
@@ -78,24 +84,26 @@ func connectGatewayDriverConfig(hostNetwork bool) map[string]interface{} {
 
 // connectSidecarVersionConstraint is used when building the sidecar task to ensure
 // the proper Consul version is used that supports the necessary Connect
-// features. This includes bootstrapping envoy with a unix socket for Consul's
-// gRPC xDS API, and support for generating local service identity tokens.
+// features. On this fork the minimum is lowered to the OpenGyoza-compatible
+// floor so Connect can be validated against the available Consul 1.6.4 API
+// surface instead of being rejected at admission time.
 func connectSidecarVersionConstraint() *structs.Constraint {
 	return &structs.Constraint{
 		LTarget: "${attr.consul.version}",
-		RTarget: ">= 1.8.0",
+		RTarget: connectMinimumVersion,
 		Operand: structs.ConstraintSemver,
 	}
 }
 
 // connectGatewayVersionConstraint is used when building a connect gateway
 // task to ensure proper Consul version is used that supports Connect Gateway
-// features. This includes making use of Consul Configuration Entries of type
-// {ingress,terminating,mesh}-gateway.
+// features. On this fork the minimum is lowered to the OpenGyoza-compatible
+// floor so gateways are not rejected before runtime compatibility can be
+// evaluated.
 func connectGatewayVersionConstraint() *structs.Constraint {
 	return &structs.Constraint{
 		LTarget: "${attr.consul.version}",
-		RTarget: ">= 1.8.0",
+		RTarget: connectMinimumVersion,
 		Operand: structs.ConstraintSemver,
 	}
 }
